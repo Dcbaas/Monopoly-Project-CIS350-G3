@@ -1,5 +1,7 @@
 package GamePackage;
 
+import java.util.Random;
+
 /*****************************************************************
  The Die Class will be a random number generator that "rolls"
  a die some methods to return the value of the die.
@@ -39,12 +41,13 @@ public class Die {
      Generate a random number between 1 - 6 and assign it to the die
      @return none
      *****************************************************************/
-    public void roll(){
+    public void roll() {
         // Generate a random number
         Random random = new Random();
-        random.nextInt(6) + 1;
 
         // Assign random number to value
-        value = random;
+        value = random.nextInt(6) + 1;
+
+       
     }
 }
