@@ -57,7 +57,6 @@ public class BoardSquare {
       *
       * @return occupiedBy the list of players on this BoardSquare.
       ***************************************************************/
-     //Todo: Do we want to keep this method?
     public ArrayList<Player> getOccupiedBy() {
         return occupiedBy;
     }
@@ -68,7 +67,6 @@ public class BoardSquare {
       * @param occupiedBy the list of players that will be who is
       *                   occupying this BoardSquare.
       ***************************************************************/
-     //Todo: Do we want to keep this method.
     public void setOccupiedBy(ArrayList<Player> occupiedBy) {
         this.occupiedBy = occupiedBy;
     }
