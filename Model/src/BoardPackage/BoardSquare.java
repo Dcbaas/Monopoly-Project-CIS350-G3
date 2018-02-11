@@ -14,6 +14,11 @@ import java.util.ArrayList;
   * @version 2/11/2018
  *********************************************************************/
 public class BoardSquare {
+
+    /**A constant for the maximum number of player that can be on a
+     * square*/
+    public static final int MAX_PLAYERS = 6;
+
     /**A String to track the name of the BoardSquare*/
     protected String name;
 
@@ -30,7 +35,7 @@ public class BoardSquare {
      ****************************************************************/
     public BoardSquare(String name) {
         this.name = name;
-        occupiedBy = new ArrayList<Player>(6);
+        occupiedBy = new ArrayList<Player>(MAX_PLAYERS);
     }
 
     /*****************************************************************
