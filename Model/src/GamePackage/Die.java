@@ -7,7 +7,7 @@ import java.util.Random;
  a die some methods to return the value of the die.
 
  @author Dylan Kernohan
- @version Winter 2018
+ @version 2/11/2018
  *****************************************************************/
 public class Die {
 
