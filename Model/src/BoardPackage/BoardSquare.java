@@ -11,7 +11,7 @@ import java.util.ArrayList;
   * variables.
   *
   * @author David Baas
-  * @version 1.0
+  * @version 2/11/2018
  *********************************************************************/
 public class BoardSquare {
     /**A String to track the name of the BoardSquare*/
