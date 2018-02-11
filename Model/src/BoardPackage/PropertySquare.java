@@ -9,55 +9,124 @@ import GamePackage.Player;
  * landing on this BoardSquare.
  *
  * @author David Baas
- * 
+ * @version 2/11/2018
  ********************************************************************/
 public class PropertySquare extends BoardSquare{
 
-    final int price;
+    private final int price;
 
-    final int mortgageValue;
+    private final int mortgageValue;
 
-    int baseRent;
+    private final int baseRent;
 
-    int oneHouseRent;
+    private final int oneHouseRent;
 
-    int twoHouseRent;
+    private final int twoHouseRent;
 
-    int threeHouseRent;
+    private final int threeHouseRent;
 
-    int fourHouseRent;
+    private final int fourHouseRent;
 
-    int hotelRent;
+    private final int hotelRent;
 
-    int numHouses;
+    private int numHouses;
 
-    boolean isMortgaged;
+    private boolean isMortgaged;
 
-    Player owner;
+    private Player owner;
 
-    int houseCost;
+    private final int houseCost;
 
-    int hotelCost;
+    private final int hotelCost;
 
     public PropertySquare(String name, int price, int mortgageValue,
                           int baseRent, int oneHouseRent,
                           int twoHouseRent, int threeHouseRent,
                           int fourHouseRent, int hotelRent,
-                          int numHouses, boolean isMortgaged,
-                          Player owner, int houseCost, int hotelCost) {
+                          int numHouses, int houseCost,
+                          int hotelCost) {
         super(name);
+
         this.price = price;
         this.mortgageValue = mortgageValue;
+
         this.baseRent = baseRent;
         this.oneHouseRent = oneHouseRent;
         this.twoHouseRent = twoHouseRent;
         this.threeHouseRent = threeHouseRent;
         this.fourHouseRent = fourHouseRent;
         this.hotelRent = hotelRent;
+
         this.numHouses = numHouses;
-        this.isMortgaged = isMortgaged;
-        this.owner = owner;
+        isMortgaged = false;
+        owner = null;
+
+
         this.houseCost = houseCost;
         this.hotelCost = hotelCost;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public int getMortgageValue() {
+        return mortgageValue;
+    }
+
+    public int getBaseRent() {
+        return baseRent;
+    }
+
+    public int getOneHouseRent() {
+        return oneHouseRent;
+    }
+
+    public int getTwoHouseRent() {
+        return twoHouseRent;
+    }
+
+    public int getThreeHouseRent() {
+        return threeHouseRent;
+    }
+
+    public int getFourHouseRent() {
+        return fourHouseRent;
+    }
+
+    public int getHotelRent() {
+        return hotelRent;
+    }
+
+    public int getNumHouses() {
+        return numHouses;
+    }
+
+    public void setNumHouses(int numHouses) {
+        this.numHouses = numHouses;
+    }
+
+    public boolean isMortgaged() {
+        return isMortgaged;
+    }
+
+    public void setMortgaged(boolean mortgaged) {
+        isMortgaged = mortgaged;
+    }
+
+    public Player getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Player owner) {
+        this.owner = owner;
+    }
+
+    public int getHouseCost() {
+        return houseCost;
+    }
+
+    public int getHotelCost() {
+        return hotelCost;
     }
 }
