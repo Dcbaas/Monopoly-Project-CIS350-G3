@@ -13,7 +13,7 @@ import java.util.ArrayList;
   * @author David Baas
   * @version 2/11/2018
  *********************************************************************/
-public class BoardSquare {
+public abstract class BoardSquare {
 
     /**A constant for the maximum number of player that can be on a
      * square*/
