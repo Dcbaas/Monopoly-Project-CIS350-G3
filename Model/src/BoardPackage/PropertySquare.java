@@ -5,7 +5,7 @@ import GamePackage.Player;
 /********************************************************************
  * The PropertySquare class is a BoardSquare class that defines the
  * BoardSquares that are properties. It tracks variables related to
- * properties such as the price of purchase and the rent cost of
+ * properties such as the PRICE of purchase and the rent cost of
  * landing on this BoardSquare.
  *
  * @author David Baas
@@ -13,29 +13,29 @@ import GamePackage.Player;
  ********************************************************************/
 public class PropertySquare extends BoardSquare{
 
-    /**An int to hold the price of the property*/
-    private final int price;
+    /**An int to hold the PRICE of the property*/
+    private final int PRICE;
 
     /**An int to hold the property's mortgage value*/
-    private final int mortgageValue;
+    private final int MORTGAGE_VAL;
 
     /**An int to hold the cost of rent w/ no houses.*/
-    private final int baseRent;
+    private final int BASE_RENT;
 
     /**An int to hold the cost of rent w/ one house*/
-    private final int oneHouseRent;
+    private final int ONE_HOUSE_RENT;
 
     /**An int to hold the cost of rent w/ two houses*/
-    private final int twoHouseRent;
+    private final int TWO_HOUSE_RENT;
 
     /**An int to hold the cost of rent w/ three houses*/
-    private final int threeHouseRent;
+    private final int THREE_HOUSE_RENT;
 
     /**An int to hold the cost of rent w/ four houses*/
-    private final int fourHouseRent;
+    private final int FOUR_HOUSE_RENT;
 
     /**An int to hold the cost of rent w/ a hotel*/
-    private final int hotelRent;
+    private final int HOTEL_RENT;
 
     /**An int to track how many houses are on the property*/
     private int numHouses;
@@ -47,16 +47,16 @@ public class PropertySquare extends BoardSquare{
     private Player owner;
 
     /**An int to track the cost of purchasing one house for this property*/
-    private final int houseCost;
+    private final int HOUSE_COST;
 
     /**An int to track the cost of purchasing one hotel for this property*/
-    private final int hotelCost;
+    private final int HOTEL_COST;
 
     /******************************************************************
      * The constructor creates a Property and sets all the attributes
      * related to the property.
      * @param name the name of the PropertySquare
-     * @param price the price of the property
+     * @param price the PRICE of the property
      * @param mortgageValue The mortgage value of the property.
      * @param baseRent The rent cost of the property.
      * @param oneHouseRent The rent cost of the property w/ one house.
@@ -76,32 +76,32 @@ public class PropertySquare extends BoardSquare{
                           int hotelCost) {
         super(name);
 
-        this.price = price;
-        this.mortgageValue = mortgageValue;
+        PRICE = price;
+        MORTGAGE_VAL = mortgageValue;
 
-        this.baseRent = baseRent;
-        this.oneHouseRent = oneHouseRent;
-        this.twoHouseRent = twoHouseRent;
-        this.threeHouseRent = threeHouseRent;
-        this.fourHouseRent = fourHouseRent;
-        this.hotelRent = hotelRent;
+        BASE_RENT = baseRent;
+        ONE_HOUSE_RENT = oneHouseRent;
+        TWO_HOUSE_RENT = twoHouseRent;
+        THREE_HOUSE_RENT = threeHouseRent;
+        FOUR_HOUSE_RENT = fourHouseRent;
+        HOTEL_RENT = hotelRent;
 
         this.numHouses = numHouses;
         isMortgaged = false;
         owner = null;
 
 
-        this.houseCost = houseCost;
-        this.hotelCost = hotelCost;
+        HOUSE_COST = houseCost;
+        HOTEL_COST = hotelCost;
     }
 
     /******************************************************************
-     * The getPrice method returns the price of this property.
+     * The getPrice method returns the PRICE of this property.
      *
-     * @return the price of the property.
+     * @return the PRICE of the property.
      *****************************************************************/
     public int getPrice() {
-        return price;
+        return PRICE;
     }
 
     /******************************************************************
@@ -111,7 +111,7 @@ public class PropertySquare extends BoardSquare{
      * @return the mortgage value of the property.
      *****************************************************************/
     public int getMortgageValue() {
-        return mortgageValue;
+        return MORTGAGE_VAL;
     }
 
     /******************************************************************
@@ -120,62 +120,62 @@ public class PropertySquare extends BoardSquare{
      * @return The base rent of the property.
      *****************************************************************/
     public int getBaseRent() {
-        return baseRent;
+        return BASE_RENT;
     }
 
     /******************************************************************
      * The getOneHouseRent method returns the cost of rent with one
      * house on the property.
      *
-     * @return oneHouseRent The cost of rent w/ one house on the
+     * @return ONE_HOUSE_RENT The cost of rent w/ one house on the
      * property.
      *****************************************************************/
     public int getOneHouseRent() {
-        return oneHouseRent;
+        return ONE_HOUSE_RENT;
     }
 
     /******************************************************************
      * The getTwoHouseRent method returns the cost of rent with two
      * houses on the property.
      *
-     * @return twoHouseRent The cost of rent w/ two houses on the
+     * @return TWO_HOUSE_RENT The cost of rent w/ two houses on the
      * property.
      *****************************************************************/
     public int getTwoHouseRent() {
-        return twoHouseRent;
+        return TWO_HOUSE_RENT;
     }
 
     /******************************************************************
      * The getThreeHouseRent method returns the cost of rent with three
      * houses on the property.
      *
-     * @return threeHouseRent The cost of rent w/ three houses on the
+     * @return THREE_HOUSE_RENT The cost of rent w/ three houses on the
      * property.
      *****************************************************************/
     public int getThreeHouseRent() {
-        return threeHouseRent;
+        return THREE_HOUSE_RENT;
     }
 
     /******************************************************************
-     * The getFourHouseRent method returns the cost of rent with four
+     * The getFOUR_HOUSE_RENT method returns the cost of rent with four
      * houses on the property.
      *
-     * @return fourHouseRent The cost of rent w/ three houses on the
+     * @return FOUR_HOUSE_RENT The cost of rent w/ three houses on the
      * property.
      *****************************************************************/
-    public int getFourHouseRent() {
-        return fourHouseRent;
+    public int getFOUR_HOUSE_RENT() {
+        return FOUR_HOUSE_RENT;
     }
 
     /******************************************************************
      * The getHotelRent method returns the cost of rent with a hotel
      * on the property.
      *
-     * @return hotelRent The cost of rent w/ three houses on the
+     * @return HOTEL_RENT The cost of rent w/ three houses on the
      * property.
      *****************************************************************/
     public int getHotelRent() {
-        return hotelRent;
+        return HOTEL_RENT;
     }
 
     /******************************************************************
@@ -243,19 +243,19 @@ public class PropertySquare extends BoardSquare{
      * The getHouseCost method returns the cost of purchasing a house
      * on this property.
      *
-     * @return houseCost the cost of purchasing a house on this property.
+     * @return HOUSE_COST the cost of purchasing a house on this property.
      *****************************************************************/
     public int getHouseCost() {
-        return houseCost;
+        return HOUSE_COST;
     }
 
     /******************************************************************
      * The getHotelCost method returns the cost of purchasing a Hotel
      * on this property.
      *
-     * @return hotelCost the cost of purchasing a Hotel on this property.
+     * @return HOTEL_COST the cost of purchasing a Hotel on this property.
      *****************************************************************/
     public int getHotelCost() {
-        return hotelCost;
+        return HOTEL_COST;
     }
 }
