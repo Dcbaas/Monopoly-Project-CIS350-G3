@@ -9,7 +9,7 @@ import GamePackage.Player;
  * landing on this BoardSquare.
  *
  * @author David Baas
- * @version 2/11/2018
+ * @version 2/12/2018
  ********************************************************************/
 public class PropertySquare extends BoardSquare{
 
