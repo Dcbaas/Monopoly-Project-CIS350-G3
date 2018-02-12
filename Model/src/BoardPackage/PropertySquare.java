@@ -40,6 +40,9 @@ public class PropertySquare extends BoardSquare{
     /**An int to track how many houses are on the property*/
     private int numHouses;
 
+    /**A boolean to track weather the property has a hotel.*/
+    private boolean hasHotel;
+
     /**A boolean flag to track if the property is mortgaged*/
     private boolean isMortgaged;
 
@@ -87,6 +90,7 @@ public class PropertySquare extends BoardSquare{
         HOTEL_RENT = hotelRent;
 
         this.numHouses = numHouses;
+        hasHotel = false;
         isMortgaged = false;
         owner = null;
 
@@ -98,7 +102,7 @@ public class PropertySquare extends BoardSquare{
     /******************************************************************
      * The getPrice method returns the PRICE of this property.
      *
-     * @return the PRICE of the property.
+     * @return PRICE the price of the property.
      *****************************************************************/
     public int getPrice() {
         return PRICE;
@@ -108,7 +112,7 @@ public class PropertySquare extends BoardSquare{
      * The getMortgageValue method returns the value of mortgaging
      * this property.
      *
-     * @return the mortgage value of the property.
+     * @return MORTGAGE_VAL the mortgage value of the property.
      *****************************************************************/
     public int getMortgageValue() {
         return MORTGAGE_VAL;
@@ -117,7 +121,7 @@ public class PropertySquare extends BoardSquare{
     /******************************************************************
      * The getBaseRent method returns the cost of rent for this property
      *
-     * @return The base rent of the property.
+     * @return BASE_RENT the base rent of the property.
      *****************************************************************/
     public int getBaseRent() {
         return BASE_RENT;
@@ -127,7 +131,7 @@ public class PropertySquare extends BoardSquare{
      * The getOneHouseRent method returns the cost of rent with one
      * house on the property.
      *
-     * @return ONE_HOUSE_RENT The cost of rent w/ one house on the
+     * @return ONE_HOUSE_RENT the cost of rent w/ one house on the
      * property.
      *****************************************************************/
     public int getOneHouseRent() {
@@ -138,7 +142,7 @@ public class PropertySquare extends BoardSquare{
      * The getTwoHouseRent method returns the cost of rent with two
      * houses on the property.
      *
-     * @return TWO_HOUSE_RENT The cost of rent w/ two houses on the
+     * @return TWO_HOUSE_RENT the cost of rent w/ two houses on the
      * property.
      *****************************************************************/
     public int getTwoHouseRent() {
@@ -149,7 +153,7 @@ public class PropertySquare extends BoardSquare{
      * The getThreeHouseRent method returns the cost of rent with three
      * houses on the property.
      *
-     * @return THREE_HOUSE_RENT The cost of rent w/ three houses on the
+     * @return THREE_HOUSE_RENT the cost of rent w/ three houses on the
      * property.
      *****************************************************************/
     public int getThreeHouseRent() {
@@ -160,7 +164,7 @@ public class PropertySquare extends BoardSquare{
      * The getFOUR_HOUSE_RENT method returns the cost of rent with four
      * houses on the property.
      *
-     * @return FOUR_HOUSE_RENT The cost of rent w/ three houses on the
+     * @return FOUR_HOUSE_RENT the cost of rent w/ three houses on the
      * property.
      *****************************************************************/
     public int getFOUR_HOUSE_RENT() {
@@ -171,7 +175,7 @@ public class PropertySquare extends BoardSquare{
      * The getHotelRent method returns the cost of rent with a hotel
      * on the property.
      *
-     * @return HOTEL_RENT The cost of rent w/ three houses on the
+     * @return HOTEL_RENT the cost of rent w/ three houses on the
      * property.
      *****************************************************************/
     public int getHotelRent() {
@@ -199,10 +203,32 @@ public class PropertySquare extends BoardSquare{
     }
 
     /******************************************************************
+     * The isHasHotel method returns weather the property has a hotel
+     * or not.
+     *
+     * @return hasHotel true if the property has a hotel, false
+     * otherwise.
+     *****************************************************************/
+    public boolean isHasHotel() {
+        return hasHotel;
+    }
+
+    /******************************************************************
+     * The setHasHotel method set the hotel flag to determine if this
+     * property has a hotel.
+     *
+     * @param hasHotel set weather this property has a hotel or not.
+     *****************************************************************/
+    public void setHasHotel(boolean hasHotel) {
+        this.hasHotel = hasHotel;
+    }
+
+    /******************************************************************
      * The isMortgaged method returns weather the property is
      * mortgaged or not.
      *
-     * @return true if the property is mortgaged, false otherwise.
+     * @return isMortgaged true if the property is mortgaged, false
+     * otherwise.
      *****************************************************************/
     public boolean isMortgaged() {
         return isMortgaged;
