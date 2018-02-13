@@ -1,5 +1,7 @@
 package BoardPackage;
 
+import GamePackage.Player;
+
 /*****************************************************************
  The RailRoadSquare class is a BoardSquare that tracks
  information specific to RailRoadSquares.
@@ -30,13 +32,22 @@ public class RailRoadSquare extends BoardSquare{
     /**A flag to tell if this RailRoad is currently mortgaged*/
     private boolean isMortgaged;
 
+    /**The player that owns this RailRoad*/
+    private Player owner;
+
 
     /*****************************************************************
      Constructor instantiates the variables and sets the name of the
      BoardSquare to what is input as a parameter.
 
-
      @param name String that will be the name of the BoardSquare.
+     @param price The price of the RailRoad square
+     @param baseRent The initial rent of the RailRoad square
+     @param twoRent rent if a player owns two RailRoads
+     @param threeRent rent if a player owns three RailRoads
+     @param fourRent The rent if a player owns four RailRoads
+     @param mortgageValue The value a player receives if they
+     mortgage this RailRoad
      ****************************************************************/
     public RailRoadSquare(String name, int price, int baseRent,
                           int twoRent, int threeRent, int fourRent,
@@ -50,6 +61,8 @@ public class RailRoadSquare extends BoardSquare{
         this.FOUR_RENT = fourRent;
         this.MORTGAGE_VALUE = mortgageValue;
         this.isMortgaged = false;
+        // TODO: Do we want to keep this null or make Bank own all squares to start out with? If so we would add Bank as param
+        this.owner = null;
     }
 
 
@@ -127,5 +140,23 @@ public class RailRoadSquare extends BoardSquare{
      ****************************************************************/
     public void setMortgaged(boolean mortgaged) {
         isMortgaged = mortgaged;
+    }
+
+    /*****************************************************************
+     This method gets the player that owns this RailRoad.
+
+     @return owner The player that owns this Railroad.
+     ****************************************************************/
+    public Player getOwner() {
+        return owner;
+    }
+
+    /*****************************************************************
+     This method sets the player that owns this RailRoad.
+
+     @param owner The player that owns the RailRoad.
+     ****************************************************************/
+    public void setOwner(Player owner) {
+        this.owner = owner;
     }
 }
