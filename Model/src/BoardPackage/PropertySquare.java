@@ -183,6 +183,33 @@ public class PropertySquare extends BoardSquare{
     }
 
     /******************************************************************
+     * The getCurrentRent method returns the current rent price of the
+     * property based off of if the property has a hotel or how many
+     * houses the property has.
+     * @return BASE_RENT, ONE_HOUSE_RENT, TWO_HOUSE_RENT,
+     * THREE_HOUSE_RENT, FOUR_HOUSE_RENT, or HOTEL_RENT depending on
+     * if there is a hotel on the property or how many houses are on
+     * the property.
+     *****************************************************************/
+    //Todo: is this comment block right with regards to the return statements
+    public int getCurrentRent(){
+        if(hasHotel)
+            return HOTEL_RENT;
+
+        switch (numHouses){
+            case 1: return ONE_HOUSE_RENT;
+
+            case 2: return TWO_HOUSE_RENT;
+
+            case 3: return THREE_HOUSE_RENT;
+
+            case 4: return FOUR_HOUSE_RENT;
+
+            default: return BASE_RENT;
+        }
+    }
+
+    /******************************************************************
      * The getNumHouses method returns how many houses are on this
      * property.
      *
