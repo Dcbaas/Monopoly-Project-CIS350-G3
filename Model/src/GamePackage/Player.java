@@ -11,15 +11,15 @@ import CardPackage.Card;
  * and other stats.
  * 
  * @author Dustin Ecker
- * @version 2/11/2018
+ * @version 2/14/2018
  *********************************************************************/
 public class Player {
 	
 	/** Player's name */
-	private String displayName;
+	private final String DISPLAY_NAME;
 	
 	/** Player's token */
-	private String token;
+	private final String TOKEN;
 	
 	/** Tells if player can move */
 	private boolean canMove;
@@ -44,9 +44,8 @@ public class Player {
 	 * @param wallet Sets the player's starting wallet value.
 	 *****************************************************************/
 	public Player(String displayName, String token, int wallet) {
-		super();
-		this.displayName = displayName;
-		this.token = token;
+		DISPLAY_NAME = displayName;
+		TOKEN = token;
 		this.wallet = wallet;
 		
 		canMove = true;
@@ -62,16 +61,7 @@ public class Player {
 	 * @return displayName Returns the String displayName.
 	 *****************************************************************/
 	public String getDisplayName() {
-		return displayName;
-	}
-
-	/******************************************************************
-	 * Setter method for displayName variable.
-	 * 
-	 * @param displayName Sets the String displayName.
-	 *****************************************************************/
-	public void setDisplayName(String displayName) {
-		this.displayName = displayName;
+		return DISPLAY_NAME;
 	}
 
 	/******************************************************************
@@ -80,16 +70,7 @@ public class Player {
 	 * @return token Returns the String token.
 	 *****************************************************************/
 	public String getToken() {
-		return token;
-	}
-
-	/******************************************************************
-	 * Setter method for token variable.
-	 * 
-	 * @param token Sets the String token.
-	 *****************************************************************/
-	public void setToken(String token) {
-		this.token = token;
+		return TOKEN;
 	}
 
 	/******************************************************************
@@ -202,7 +183,7 @@ public class Player {
 			amountPaid = amount;
 		}
 		else {
-			amountPaid = amount - wallet;
+			amountPaid = wallet;
 			wallet -= amountPaid;
 		}
 		
@@ -232,13 +213,24 @@ public class Player {
 	}
 	
 	/******************************************************************
+	 * Removes the property from the player's ArrayList of properties
+	 * owned.
+	 * 
+	 * @param property The property to be removed from owned properties
+	 * list.
+	 *****************************************************************/
+	public void giveProperty(BoardSquare property) {
+		propertiesOwned.remove(property);
+	}
+	
+	/******************************************************************
 	 * Adds the property to the player's ArrayList of properties
 	 * owned.
 	 * 
 	 * @param property The property to be added to owned properties
 	 * list.
 	 *****************************************************************/
-	public void giveProperty(BoardSquare property) {
+	public void recieveProperty(BoardSquare property) {
 		propertiesOwned.add(property);
 	}
 	
