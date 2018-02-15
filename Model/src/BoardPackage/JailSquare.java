@@ -28,5 +28,27 @@ public class JailSquare extends BoardSquare {
         inJail = new ArrayList<Player>();
     }
 
+    public void addToJail(Player p){
+        for(Player o: inJail){
+            if(p.equals(o))
+                return;
+        }
+        inJail.add(p);
+    }
 
+    public boolean removeFromJail(Player p){
+        if(inJail.contains(p)) {
+            inJail.remove(p);
+            return true;
+        }
+        return false;
+    }
+
+    public ArrayList<Player> getInJail() {
+        return inJail;
+    }
+
+    public void setInJail(ArrayList<Player> inJail) {
+        this.inJail = inJail;
+    }
 }
