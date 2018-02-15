@@ -5,7 +5,7 @@ package BoardPackage;
  * where when you land on it nothing happens. This class exist however
  * for the possiblity of adding functionality for this board square
  * later.
- */
+ ********************************************************************/
 public class FreeParkingSquare extends BoardSquare {
 
     /*****************************************************************
