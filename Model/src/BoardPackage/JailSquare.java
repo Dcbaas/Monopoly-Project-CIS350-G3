@@ -52,7 +52,7 @@ public class JailSquare extends BoardSquare {
      * @param p the Player being removed from jail.
      * @return true if the Player specified exist in the inJail list
      * and is removed, false otherwise.
-     */
+     ****************************************************************/
     public boolean removeFromJail(Player p){
         if(inJail.contains(p)) {
             inJail.remove(p);
