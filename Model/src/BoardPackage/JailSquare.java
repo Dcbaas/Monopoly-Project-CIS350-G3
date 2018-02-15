@@ -28,6 +28,13 @@ public class JailSquare extends BoardSquare {
         inJail = new ArrayList<Player>();
     }
 
+    /*****************************************************************
+     * The addToJail method adds a single player into the jail list
+     * There is a check when this method is invoked that the same
+     * player is not added to jail twice.
+     *
+     * @param p the Player who is being sent to jail.
+     */
     public void addToJail(Player p){
         for(Player o: inJail){
             if(p.equals(o))
@@ -36,6 +43,16 @@ public class JailSquare extends BoardSquare {
         inJail.add(p);
     }
 
+    /*****************************************************************
+     * The removeFrom Jail method removes a player from being in jail.
+     * There is a distinction from being in jail and visiting jail.
+     * There is a check to see if the player being removed from jail
+     * is within the inJail list.
+     *
+     * @param p the Player being removed from jail.
+     * @return true if the Player specified exist in the inJail list
+     * and is removed, false otherwise.
+     */
     public boolean removeFromJail(Player p){
         if(inJail.contains(p)) {
             inJail.remove(p);
@@ -44,10 +61,22 @@ public class JailSquare extends BoardSquare {
         return false;
     }
 
+    /*****************************************************************
+     * The getInJail method returns the list of player currently in
+     * jail.
+     *
+     * @return inJail the ArrayList of Players currently in jail.
+     */
     public ArrayList<Player> getInJail() {
         return inJail;
     }
 
+    /*****************************************************************
+     * The setInJail method sets the inJail ArrayList to a list of
+     * Players from the input parameters.
+     * @param inJail the ArrayList of players that will be stored for
+     *               this instance of inJail.
+     ****************************************************************/
     public void setInJail(ArrayList<Player> inJail) {
         this.inJail = inJail;
     }
