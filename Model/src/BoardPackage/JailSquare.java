@@ -34,7 +34,7 @@ public class JailSquare extends BoardSquare {
      * player is not added to jail twice.
      *
      * @param p the Player who is being sent to jail.
-     */
+     ****************************************************************/
     public void addToJail(Player p){
         for(Player o: inJail){
             if(p.equals(o))
