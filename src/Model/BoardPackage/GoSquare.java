@@ -1,4 +1,4 @@
-package BoardPackage;
+package Model.BoardPackage;
 
 /*********************************************************************
  * The GoSquare is the first square on the board in Monopoly. It is

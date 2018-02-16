@@ -1,6 +1,6 @@
-package BoardPackage;
+package Model.BoardPackage;
 
-import GamePackage.Player;
+import Model.GamePackage.Player;
 
 /********************************************************************
  * The PropertySquare class is a BoardSquare class that defines the
@@ -267,7 +267,7 @@ public class PropertySquare extends BoardSquare{
      * @param mortgaged the mortgage status this property is being set
      *                  to.
      *****************************************************************/
-    public void setMortgaged(boolean mortgaged) {
+    public void setIsMortgaged(boolean mortgaged) {
         isMortgaged = mortgaged;
     }
 

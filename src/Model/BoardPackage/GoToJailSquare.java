@@ -1,4 +1,4 @@
-package BoardPackage;
+package Model.BoardPackage;
 
 /*********************************************************************
  * The GoToJailSquare class represents the square on the board of

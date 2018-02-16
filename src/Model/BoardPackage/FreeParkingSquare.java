@@ -1,4 +1,4 @@
-package BoardPackage;
+package Model.BoardPackage;
 
 /*********************************************************************
  * The FreeParkingSquare is a board square on the Monopoly game board
