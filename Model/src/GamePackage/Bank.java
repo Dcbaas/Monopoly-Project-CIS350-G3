@@ -13,12 +13,17 @@ import java.util.ArrayList;
  * @version 2/13/2018
  ***************************************************************************************************************/
 public class Bank {
-    /* Number of houses and Hotels */
-    private int numHouses, numHotels;
+    /* Number of houses */
+    private int numHouses,
 
-    /* List of properties owned and properties mortgaged */
+    /* Number of Hotels */
+    private int numHotels;
 
-    private ArrayList<PropertySquare> propertiesOwned, propertiesMortgaged;
+    /* List of properties owned */
+    private ArrayList<PropertySquare> propertiesOwned;
+
+    /* List of properties mortgaged */
+    private ArrayList<PropertySquare> propertiesMortgaged;
 
     /**
      *  This constructor initializes the bank with a specific set of properties,
@@ -29,8 +34,8 @@ public class Bank {
         /** initialises all variables */
         propertiesOwned = listOfProperties;
         propertiesMortgaged = new ArrayList<>(listOfProperties.size());
-        numHotels = 16;
-        numHouses = 16;
+        numHotels = 32;
+        numHouses = 12;
     }
 
     /****************************************************************************************************************
