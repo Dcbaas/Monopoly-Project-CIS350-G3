@@ -1,10 +1,9 @@
 package Model.GamePackage;
 
-import java.util.ArrayList;
+import Model.BoardPackage.PropertySquare;
+import Model.CardPackage.Card;
 
-import BoardPackage.BoardSquare;
-import BoardPackage.PropertySquare;
-import CardPackage.Card;
+import java.util.ArrayList;
 
 /**********************************************************************
  * The Player class will keep track of each player's money, properties,
