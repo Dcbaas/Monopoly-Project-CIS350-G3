@@ -1,6 +1,7 @@
 package Model.BoardPackage;
 
-import GamePackage.Player;
+
+import Model.GamePackage.Player;
 
 import java.util.ArrayList;
 
