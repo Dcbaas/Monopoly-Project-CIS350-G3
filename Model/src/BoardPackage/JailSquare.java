@@ -33,14 +33,10 @@ public class JailSquare extends BoardSquare {
      * There is a check when this method is invoked that the same
      * player is not added to jail twice.
      *
-     * @param p the Player who is being sent to jail.
+     * @param player the Player who is being sent to jail.
      ****************************************************************/
-    public void addToJail(Player p){
-        for(Player o: inJail){
-            if(p.equals(o))
-                return;
-        }
-        inJail.add(p);
+    public void addToJail(Player player){
+        inJail.add(player);
     }
 
     /*****************************************************************
@@ -49,16 +45,12 @@ public class JailSquare extends BoardSquare {
      * There is a check to see if the player being removed from jail
      * is within the inJail list.
      *
-     * @param p the Player being removed from jail.
+     * @param player the Player being removed from jail.
      * @return true if the Player specified exist in the inJail list
      * and is removed, false otherwise.
      ****************************************************************/
-    public boolean removeFromJail(Player p){
-        if(inJail.contains(p)) {
-            inJail.remove(p);
-            return true;
-        }
-        return false;
+    public boolean removeFromJail(Player player){
+        return inJail.remove(player);
     }
 
     /*****************************************************************
