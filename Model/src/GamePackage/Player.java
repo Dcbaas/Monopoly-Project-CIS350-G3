@@ -207,7 +207,7 @@ public class Player {
 	 * 
 	 * @param property The property to be mortgaged.
 	 *****************************************************************/
-	public void mortgage(BoardSquare property) {
+	public void mortgage(PropertySquare property) {
 		wallet += property.getMortgageValue();
 		property.setIsMortgaged(true);
 	}
