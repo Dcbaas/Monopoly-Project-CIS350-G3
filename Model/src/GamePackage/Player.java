@@ -31,7 +31,7 @@ public class Player {
 	private int wallet;
 	
 	/** ArrayList that holds player's owned properties */
-	private ArrayList<BoardSquare> propertiesOwned;
+	private ArrayList<PropertySquare> propertiesOwned;
 	
 	/** ArrayList that holds player's cards held */
 	private ArrayList<Card> cardsHeld;
@@ -51,7 +51,7 @@ public class Player {
 		canMove = true;
 		isBankrupt = false;
 		
-		propertiesOwned = new ArrayList<BoardSquare>();
+		propertiesOwned = new ArrayList<PropertySquare>();
 		cardsHeld = new ArrayList<Card>();
 	}
 
@@ -132,7 +132,7 @@ public class Player {
 	 * 
 	 * @return propertiesOwned Returns the ArrayList propertiesOwned.
 	 *****************************************************************/
-	public ArrayList<BoardSquare> getPropertiesOwned() {
+	public ArrayList<PropertySquare> getPropertiesOwned() {
 		return propertiesOwned;
 	}
 
@@ -141,7 +141,7 @@ public class Player {
 	 * 
 	 * @param propertiesOwned Sets the ArrayList propertiesOwned.
 	 *****************************************************************/
-	public void setPropertiesOwned(ArrayList<BoardSquare> 
+	public void setPropertiesOwned(ArrayList<PropertySquare> 
 	propertiesOwned) {
 		this.propertiesOwned = propertiesOwned;
 	}
@@ -191,17 +191,6 @@ public class Player {
 	}
 	
 	/******************************************************************
-	 * Removes the property from the player's ArrayList of properties
-	 * owned.
-	 * 
-	 * @param property The property to be removed from owned properties
-	 * list.
-	 *****************************************************************/
-	public void sell(BoardSquare property) {
-		propertiesOwned.remove(property);
-	}
-	
-	/******************************************************************
 	 * Mortgages the player's property and adds the mortgage value to
 	 * their wallet.
 	 * 
@@ -219,7 +208,7 @@ public class Player {
 	 * @param property The property to be removed from owned properties
 	 * list.
 	 *****************************************************************/
-	public void giveProperty(BoardSquare property) {
+	public void giveProperty(PropertySquare property) {
 		propertiesOwned.remove(property);
 	}
 	
@@ -230,7 +219,7 @@ public class Player {
 	 * @param property The property to be added to owned properties
 	 * list.
 	 *****************************************************************/
-	public void recieveProperty(BoardSquare property) {
+	public void recieveProperty(PropertySquare property) {
 		propertiesOwned.add(property);
 	}
 	
