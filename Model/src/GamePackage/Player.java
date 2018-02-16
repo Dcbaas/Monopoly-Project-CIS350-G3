@@ -11,7 +11,7 @@ import CardPackage.Card;
  * and other stats.
  * 
  * @author Dustin Ecker
- * @version 2/14/2018
+ * @version 2/16/2018
  *********************************************************************/
 public class Player {
 	
@@ -242,6 +242,7 @@ public class Player {
 	 *****************************************************************/
 	public void buildHouse(PropertySquare property) {
 		property.setNumHouses(property.getNumHouses() + 1);
+		wallet -= property.getHouseCost();
 	}
 	
 	/******************************************************************
@@ -251,7 +252,29 @@ public class Player {
 	 * @param property The property that the hotel will be built on.
 	 *****************************************************************/
 	public void buildHotel(PropertySquare property) {
-		property.setNumHotels(1);
+		property.setHasHotel(true);
+		wallet -= property.getHotelCost();
 	}
 	
+	/******************************************************************
+	 * Sells a house on the property from the players ArrayList of 
+	 * properties owned.
+	 * 
+	 * @param property The property that the house will be sold from.
+	 *****************************************************************/
+	public void sellHouse(PropertySquare property) {
+		property.setNumHouses(property.getNumHouses() - 1);
+		wallet += property.getHouseCost() / 2;
+	}
+	
+	/******************************************************************
+	 * Sells a hotel on the property from the players ArrayList of 
+	 * properties owned.
+	 * 
+	 * @param property The property that the hotel will be sold from.
+	 *****************************************************************/
+	public void sellHotel(PropertySquare property) {
+		property.setHasHotel(false);
+		wallet += property.getHotelCost() / 2;
+	}
 }
