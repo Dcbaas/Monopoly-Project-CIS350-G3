@@ -1,6 +1,6 @@
-package src.BoardPackage;
+package Model.BoardPackage;
 
-import GamePackage.Player;
+import Model.GamePackage.Player;
 
 /*****************************************************************
  The RailRoadSquare class is a BoardSquare that tracks

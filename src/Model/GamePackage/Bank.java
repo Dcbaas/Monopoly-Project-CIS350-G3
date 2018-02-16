@@ -1,7 +1,7 @@
-package src.BoardPackage;
+package Model.GamePackage;
 
 /**
  * Created by Dylan Kernohan on 2/10/18.
  */
-public class GoSquare {
+public class Bank {
 }

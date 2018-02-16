@@ -1,4 +1,4 @@
-package src.BoardPackage;
+package Model.BoardPackage;
 
 public class UtilitiesSquare {
 }

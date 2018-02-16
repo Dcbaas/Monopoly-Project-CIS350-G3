@@ -1,4 +1,4 @@
-package src.BoardPackage;
+package Model.BoardPackage;
 
 /**
  * Created by Dylan Kernohan on 2/10/18.
