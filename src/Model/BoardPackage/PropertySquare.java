@@ -1,7 +1,5 @@
 package Model.BoardPackage;
 
-import Model.GamePackage.Player;
-
 /********************************************************************
  * The PropertySquare class is a BoardSquare class that defines the
  * BoardSquares that are properties. It tracks variables related to
@@ -13,8 +11,6 @@ import Model.GamePackage.Player;
  * @version 2/17/2018
  ********************************************************************/
 public class PropertySquare extends OwnableSquare{
-
-
 
     /**An int to hold the cost of rent w/ no houses.*/
     private final int BASE_RENT;
@@ -215,7 +211,7 @@ public class PropertySquare extends OwnableSquare{
     public void setHasHotel(boolean hasHotel) {
         this.hasHotel = hasHotel;
     }
-    
+
     /******************************************************************
      * The getHouseCost method returns the cost of purchasing a house
      * on this property.
