@@ -22,6 +22,8 @@ public class GoSquare extends BoardSquare{
      ****************************************************************/
     public GoSquare(String name, int payoutAmount) {
         super(name);
+
+        type = 5;
         this.payoutAmount = payoutAmount;
     }
 

@@ -66,6 +66,8 @@ public class PropertySquare extends OwnableSquare{
                           int hotelCost) {
         super(name, price, mortgageValue);
 
+        type = 0;
+
         BASE_RENT = baseRent;
         ONE_HOUSE_RENT = oneHouseRent;
         TWO_HOUSE_RENT = twoHouseRent;

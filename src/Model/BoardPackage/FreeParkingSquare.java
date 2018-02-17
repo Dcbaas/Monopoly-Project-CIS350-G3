@@ -19,5 +19,6 @@ public class FreeParkingSquare extends BoardSquare {
      ****************************************************************/
     public FreeParkingSquare(String name) {
         super(name);
+        type = 4;
     }
 }

@@ -42,6 +42,8 @@ public class RailRoadSquare extends OwnableSquare{
                           int mortgageValue) {
 
         super(name,price,mortgageValue);
+        type = 1;
+
         this.BASE_RENT = baseRent;
         this.TWO_RENT = twoRent;
         this.THREE_RENT = threeRent;

@@ -19,5 +19,6 @@ public class GoToJailSquare extends BoardSquare {
      ****************************************************************/
     public GoToJailSquare(String name) {
         super(name);
+        type = 7;
     }
 }

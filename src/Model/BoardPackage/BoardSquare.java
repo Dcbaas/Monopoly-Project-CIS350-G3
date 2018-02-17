@@ -27,6 +27,9 @@ public abstract class BoardSquare {
      */
     protected ArrayList<Player> occupiedBy;
 
+    /**An integer to represent the type of boardSquare*/
+    protected int type;
+
     /*****************************************************************
      * Constructor instantiates the variables and sets the name of the
      * BoardSquare to what is input as a parameter.
@@ -36,6 +39,7 @@ public abstract class BoardSquare {
     public BoardSquare(String name) {
         this.name = name;
         occupiedBy = new ArrayList<Player>(MAX_PLAYERS);
+        type = 2;
     }
 
     /*****************************************************************

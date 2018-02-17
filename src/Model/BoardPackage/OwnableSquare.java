@@ -13,16 +13,16 @@ import Model.GamePackage.Player;
 public class OwnableSquare extends BoardSquare{
 
     /**An int to hold the PRICE of the property*/
-    private final int PRICE;
+    protected final int PRICE;
 
     /**An int to hold the property's mortgage value*/
-    private final int MORTGAGE_VAL;
+    protected final int MORTGAGE_VAL;
 
     /**A boolean flag to track if the property is mortgaged*/
-    private boolean isMortgaged;
+    protected boolean isMortgaged;
 
     /**A Player variable to track what player owns this property*/
-    private Player owner;
+    protected Player owner;
 
     /*****************************************************************
      * The default constructor initializes all of the variables.

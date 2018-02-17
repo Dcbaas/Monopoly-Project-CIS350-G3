@@ -21,7 +21,8 @@ public class UtilitiesSquare extends OwnableSquare {
 	 * property.
 	 *****************************************************************/
 	public UtilitiesSquare(String name, int price, int mortgageValue) {
-		super(name,price,mortgageValue);
+		super(name, price, mortgageValue);
+		type = 3;
 
 	}
 
