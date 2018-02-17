@@ -1,7 +1,7 @@
 package Model.GamePackage;
 
-import BoardPackage.BoardSquare;
-import BoardPackage.PropertySquare;
+
+import Model.BoardPackage.OwnableSquare;
 
 import java.util.ArrayList;
 
@@ -14,23 +14,23 @@ import java.util.ArrayList;
  ***************************************************************************************************************/
 public class Bank {
     /* Number of houses */
-    private int numHouses,
+    private int numHouses;
 
     /* Number of Hotels */
     private int numHotels;
 
     /* List of properties owned */
-    private ArrayList<PropertySquare> propertiesOwned;
+    private ArrayList<OwnableSquare> propertiesOwned;
 
     /* List of properties mortgaged */
-    private ArrayList<PropertySquare> propertiesMortgaged;
+    private ArrayList<OwnableSquare> propertiesMortgaged;
 
     /**
      *  This constructor initializes the bank with a specific set of properties,
      *  and uses the size of properties tocompute the size of the properties that can be mortgaged.
      * @param listOfProperties
      */
-    public Bank(ArrayList<PropertySquare> listOfProperties) {
+    public Bank(ArrayList<OwnableSquare> listOfProperties) {
         /** initialises all variables */
         propertiesOwned = listOfProperties;
         propertiesMortgaged = new ArrayList<>(listOfProperties.size());
@@ -43,9 +43,9 @@ public class Bank {
      *
      * @param property
      ***************************************************************************************************************/
-    public PropertySquare giveProperty(PropertySquare property) {
+    public OwnableSquare giveProperty(OwnableSquare property) {
         //removes and returns the specific property.
-        return propertiesOwned.remove(property.getId());
+        return propertiesOwned.remove(property.getPosition());
     }
 
     /****************************************************************************************************************
@@ -53,7 +53,7 @@ public class Bank {
      *
      * @param property
      ***************************************************************************************************************/
-    public void receiveProperty(PropertySquare property) {
+    public void receiveProperty(OwnableSquare property) {
         //Sets the owner of the property to null since to show.
         property.setOwner(null);
 
@@ -130,7 +130,7 @@ public class Bank {
      *
      * @return
      ***************************************************************************************************************/
-    public ArrayList<PropertySquare> getPropertiesOwned() {
+    public ArrayList<OwnableSquare> getPropertiesOwned() {
         return propertiesOwned;
     }
 
@@ -139,7 +139,7 @@ public class Bank {
      *
      * @param propertiesOwned
      ***************************************************************************************************************/
-    public void setPropertiesOwned(ArrayList<PropertySquare> propertiesOwned) {
+    public void setPropertiesOwned(ArrayList<OwnableSquare> propertiesOwned) {
         this.propertiesOwned = propertiesOwned;
     }
 
@@ -148,7 +148,7 @@ public class Bank {
      *
      * @return
      ***************************************************************************************************************/
-    public ArrayList<PropertySquare> getPropertiesMortgaged() {
+    public ArrayList<OwnableSquare> getPropertiesMortgaged() {
         return propertiesMortgaged;
     }
 
@@ -157,7 +157,7 @@ public class Bank {
      *
      * @param propertiesMortgaged
      ***************************************************************************************************************/
-    public void setPropertiesMortgaged(ArrayList<PropertySquare> propertiesMortgaged) {
+    public void setPropertiesMortgaged(ArrayList<OwnableSquare> propertiesMortgaged) {
         this.propertiesMortgaged = propertiesMortgaged;
     }
 }

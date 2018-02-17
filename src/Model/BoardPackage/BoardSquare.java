@@ -17,7 +17,7 @@ public abstract class BoardSquare {
 
     /**A constant for the maximum number of player that can be on a
      * square*/
-    public static final int MAX_PLAYERS = 6;
+    public static final int MAX_PLAYERS = 8;
 
     /**A String to track the name of the BoardSquare*/
     protected String name;
@@ -103,4 +103,14 @@ public abstract class BoardSquare {
     public void removePlayer(Player p){
         occupiedBy.remove(p);
     }
-}
+
+     /****************************************************************
+      * The getPosition method returns what position this board square
+      * is on the board.
+      *
+      * @return POSITION The position of this boardsquare on the board
+      */
+    public int getPosition() {
+         return POSITION;
+    }
+ }
