@@ -37,11 +37,11 @@ public class RailRoadSquare extends OwnableSquare{
      @param mortgageValue The value a player receives if they
      mortgage this RailRoad
      ****************************************************************/
-    public RailRoadSquare(String name, int price, int baseRent,
+    public RailRoadSquare(String name,int postion, int price, int baseRent,
                           int twoRent, int threeRent, int fourRent,
                           int mortgageValue) {
 
-        super(name,price,mortgageValue);
+        super(name, postion, price,mortgageValue);
         type = 1;
 
         this.BASE_RENT = baseRent;

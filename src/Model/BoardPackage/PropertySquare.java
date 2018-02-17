@@ -58,13 +58,13 @@ public class PropertySquare extends OwnableSquare{
      * @param houseCost The cost of adding a house to the property.
      * @param hotelCost The cost of adding a hotel to the property.
      *****************************************************************/
-    public PropertySquare(String name, int price, int mortgageValue,
+    public PropertySquare(String name,int postion, int price, int mortgageValue,
                           int baseRent, int oneHouseRent,
                           int twoHouseRent, int threeHouseRent,
                           int fourHouseRent, int hotelRent,
                           int numHouses, int houseCost,
                           int hotelCost) {
-        super(name, price, mortgageValue);
+        super(name, postion, price, mortgageValue);
 
         type = 0;
 

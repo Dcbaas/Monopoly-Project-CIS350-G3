@@ -20,8 +20,8 @@ public class UtilitiesSquare extends OwnableSquare {
 	 * @param mortgageValue The value returned from mortgaging this
 	 * property.
 	 *****************************************************************/
-	public UtilitiesSquare(String name, int price, int mortgageValue) {
-		super(name, price, mortgageValue);
+	public UtilitiesSquare(String name, int postion, int price, int mortgageValue) {
+		super(name, postion, price, mortgageValue);
 		type = 3;
 
 	}

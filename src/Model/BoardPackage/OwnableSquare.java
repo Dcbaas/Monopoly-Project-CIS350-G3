@@ -31,8 +31,8 @@ public class OwnableSquare extends BoardSquare{
      * @param PRICE the PRICE of the property
      * @param MORTGAGE_VAL The mortgage value of the property.
      ****************************************************************/
-    public OwnableSquare(String name, int PRICE, int MORTGAGE_VAL) {
-        super(name);
+    public OwnableSquare(String name,int position, int PRICE, int MORTGAGE_VAL) {
+        super(name,position);
         this.PRICE = PRICE;
         this.MORTGAGE_VAL = MORTGAGE_VAL;
         isMortgaged = false;

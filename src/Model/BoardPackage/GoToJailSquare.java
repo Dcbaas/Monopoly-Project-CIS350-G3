@@ -18,7 +18,7 @@ public class GoToJailSquare extends BoardSquare {
      * @param name String that will be the name of the GoToJailSquare.
      ****************************************************************/
     public GoToJailSquare(String name) {
-        super(name);
+        super(name,30);
         type = 7;
     }
 }

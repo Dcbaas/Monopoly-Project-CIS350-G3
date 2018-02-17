@@ -30,14 +30,18 @@ public abstract class BoardSquare {
     /**An integer to represent the type of boardSquare*/
     protected int type;
 
+    /**A integer that represents the square's POSITION on the board.*/
+    protected final int POSITION;
+
     /*****************************************************************
      * Constructor instantiates the variables and sets the name of the
      * BoardSquare to what is input as a parameter.
      *
      * @param name String that will be the name of the BoardSquare.
      ****************************************************************/
-    public BoardSquare(String name) {
+    public BoardSquare(String name,int position) {
         this.name = name;
+        this.POSITION = position;
         occupiedBy = new ArrayList<Player>(MAX_PLAYERS);
         type = 2;
     }
