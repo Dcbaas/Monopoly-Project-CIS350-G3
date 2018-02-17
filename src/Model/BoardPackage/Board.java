@@ -16,7 +16,6 @@ import java.util.stream.Stream;
  */
 public class Board {
     List<BoardSquare> squaresList = new ArrayList<>();
-    int goID, jailId, goToJailID, freeParkID;
 
     public Board(String fileName) {
         //read file into stream, try-with-resources
@@ -33,11 +32,15 @@ public class Board {
                         squaresList.add(new RailRoadSquare(scnr.next(),scnr.nextInt(),scnr.nextInt(),scnr.nextInt(),scnr.nextInt(),
                                 scnr.nextInt(),scnr.nextInt()));
                         break;
-//                    case 3:
-//                        new UtilitiesSquare(); //TODO: finish constructor logic
-//                        break;
+                    case 2:
+                        squaresList.add(new BoardSquare(scnr.next()) {
+                        });
+                        break;
+                    case 3:
+                        squaresList.add(new UtilitiesSquare(scnr.next(), scnr.nextInt(), scnr.nextInt()));
+                        break;
                     case 4:
-                        squaresList.add(new FreeParkingSquare(scnr.next()));
+                        squaresList.add(new FreeParkingSquare(scnr.next());
                         break;
                     case 5:
                         squaresList.add(new GoSquare(scnr.next(), scnr.nextInt()));
@@ -45,7 +48,7 @@ public class Board {
                     case 6:
                         squaresList.add(new JailSquare(scnr.next()));
                     case 7:
-                        new GoToJailSquare(scnr.next());
+                        squaresList.add(new GoToJailSquare(scnr.next()));
                         break;
                     default:
                         new IOException();
@@ -58,24 +61,22 @@ public class Board {
     }
 
     public int getLocationType(int position) {
-//        return squaresList.get(position).getType(); //TODO:Create type for BoarSquareClass
-        return -1;
+        return squaresList.get(position).getType();
     }
 
-    public PropertySquare getProperty(int position) {
-        return (PropertySquare) squaresList.get(position);
+    public OwnableSquare getProperty(int position) {
+        return (OwnableSquare) squaresList.get(position);
     }
 
 
     public void setPlayerPosition(Player player, int position) {
-//        squaresList.get(player.getPosition()).removePlayer(player); //TODO: create position variable for Player class
+        squaresList.get(player.getPosition()).removePlayer(player);
         squaresList.get(position).addPlayer(player);
     }
 
-    public List<BoardSquare> getProperties() {
-        //finds all BoardSquare classes and returns them as an ArrayList
-//        return squaresList.stream().filter(boardSquare -> boardSquare.getType() == 1).collect(Collectors.toCollection(ArrayList::new));
-        return squaresList;
+    public ArrayList<OwnableSquare> getOwnableSquares() {
+        // finds all BoardSquare classes and returns them as an ArrayList
+        return (ArrayList<OwnableSquare>)squaresList.stream().filter(boardSquare -> (boardSquare.getType() == 0) || boardSquare.getType() == 1 || boardSquare.getType() == 3).collect(Collectors.toCollection(ArrayList::new));
     }
 
     public List<BoardSquare> getSquaresList() {
@@ -83,7 +84,9 @@ public class Board {
     }
 
     public void sendToJail(Player player) {
-        setPlayerPosition(player, jailId);
+        player.setInJail(0);
+        setPlayerPosition(player, 10);
     }
 }
 
+q
