@@ -1,5 +1,6 @@
 package Model.GamePackage;
 
+import Model.BoardPackage.OwnableSquare;
 import Model.BoardPackage.PropertySquare;
 import Model.CardPackage.Card;
 
@@ -10,7 +11,8 @@ import java.util.ArrayList;
  * and other stats.
  *
  * @author Dustin Ecker
- * @version 2/16/2018
+ * @since 2/16/2018
+ * @version 2/17/2018
  *********************************************************************/
 public class Player {
 
@@ -35,6 +37,9 @@ public class Player {
 	/** ArrayList that holds player's cards held */
 	private ArrayList<Card> cardsHeld;
 
+	/**An integer to represent the players positon on the board.*/
+	private int position;
+
 	/******************************************************************
 	 * Constructor method for Player class.
 	 *
@@ -46,6 +51,8 @@ public class Player {
 		DISPLAY_NAME = displayName;
 		TOKEN = token;
 		this.wallet = wallet;
+
+		position = 0;
 
 		canMove = true;
 		isBankrupt = false;
@@ -195,9 +202,9 @@ public class Player {
 	 *
 	 * @param property The property to be mortgaged.
 	 *****************************************************************/
-	public void mortgage(PropertySquare property) {
-		wallet += property.getMortgageValue();
-		property.setIsMortgaged(true);
+	public void mortgage(OwnableSquare property) {
+		wallet += property.getMORTGAGE_VAL();
+		property.setMortgaged(true);
 	}
 
 	/******************************************************************
@@ -264,5 +271,23 @@ public class Player {
 	public void sellHotel(PropertySquare property) {
 		property.setHasHotel(false);
 		wallet += property.getHotelCost() / 2;
+	}
+
+	/******************************************************************
+	 * The getPosition method returns the current position of the player.
+	 * @return position the current position of the player.
+	 *****************************************************************/
+	public int getPosition() {
+		return position;
+	}
+
+	/******************************************************************
+	 * The setPosition method sets the postion of the player on the
+     * board
+	 * @param position the positon the boaad the player is being sent
+     *                 to.
+	 *****************************************************************/
+	public void setPosition(int position) {
+		this.position = position;
 	}
 }
