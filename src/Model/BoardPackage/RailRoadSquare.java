@@ -6,13 +6,11 @@ import Model.GamePackage.Player;
  The RailRoadSquare class is a BoardSquare that tracks
  information specific to RailRoadSquares.
 
- @author Dylan Kernohan
- @version 2/12/2018
+ @author Dylan Kernohan David Baas
+ @since 2/12/2018
+ @version 2/17/2018
  *****************************************************************/
-public class RailRoadSquare extends BoardSquare{
-
-    /**The price of the RailRoad square*/
-    private final int PRICE;
+public class RailRoadSquare extends OwnableSquare{
 
     /**The initial rent of the RailRoad square*/
     private final int BASE_RENT;
@@ -25,16 +23,6 @@ public class RailRoadSquare extends BoardSquare{
 
     /**The rent if a player owns four RailRoads*/
     private final int FOUR_RENT;
-
-    /**The value a player receives if they mortgage this RailRoad*/
-    private final int MORTGAGE_VALUE;
-
-    /**A flag to tell if this RailRoad is currently mortgaged*/
-    private boolean isMortgaged;
-
-    /**The player that owns this RailRoad*/
-    private Player owner;
-
 
     /*****************************************************************
      Constructor instantiates the variables and sets the name of the
@@ -53,26 +41,11 @@ public class RailRoadSquare extends BoardSquare{
                           int twoRent, int threeRent, int fourRent,
                           int mortgageValue) {
 
-        super(name);
-        this.PRICE = price;
+        super(name,price,mortgageValue);
         this.BASE_RENT = baseRent;
         this.TWO_RENT = twoRent;
         this.THREE_RENT = threeRent;
         this.FOUR_RENT = fourRent;
-        this.MORTGAGE_VALUE = mortgageValue;
-        this.isMortgaged = false;
-        // TODO: Do we want to keep this null or make Bank own all squares to start out with? If so we would add Bank as param
-        this.owner = null;
-    }
-
-
-    /*****************************************************************
-     Get the price of the RailRoad square.
-
-     @return PRICE The price of the RailRoad square.
-     ****************************************************************/
-    public int getPRICE() {
-        return PRICE;
     }
 
     /*****************************************************************
@@ -112,51 +85,5 @@ public class RailRoadSquare extends BoardSquare{
      ****************************************************************/
     public int getFOUR_RENT() {
         return FOUR_RENT;
-    }
-
-    /*****************************************************************
-     Get the mortgage value of the RailRoad square.
-
-     @return MORTGAGE_VALUE The mortgage value of the RailRoad.
-     ****************************************************************/
-    public int getMORTGAGE_VALUE() {
-        return MORTGAGE_VALUE;
-    }
-
-    /*****************************************************************
-     This method tells if the RailRoad is mortgaged or not.
-
-     @return isMortgaged True if the RailRoad is mortgaged, False if
-     it is not.
-     ****************************************************************/
-    public boolean isMortgaged() {
-        return isMortgaged;
-    }
-
-    /*****************************************************************
-     This method sets the boolean flag isMortgaged.
-
-     @param mortgaged The boolean value this flag is being set to.
-     ****************************************************************/
-    public void setMortgaged(boolean mortgaged) {
-        isMortgaged = mortgaged;
-    }
-
-    /*****************************************************************
-     This method gets the player that owns this RailRoad.
-
-     @return owner The player that owns this Railroad.
-     ****************************************************************/
-    public Player getOwner() {
-        return owner;
-    }
-
-    /*****************************************************************
-     This method sets the player that owns this RailRoad.
-
-     @param owner The player that owns the RailRoad.
-     ****************************************************************/
-    public void setOwner(Player owner) {
-        this.owner = owner;
     }
 }
