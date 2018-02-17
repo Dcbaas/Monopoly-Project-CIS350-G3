@@ -1,0 +1,4 @@
+1,Kings Cross Station,200,25,50,100,200,100
+1,Marylebone Station,200,25,50,100,200,100
+1,Fenchurch St Station,200,25,50,100,200,100
+1,Liverpool Street Station,200,25,50,100,200,100

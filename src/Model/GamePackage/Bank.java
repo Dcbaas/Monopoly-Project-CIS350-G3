@@ -1,7 +1,8 @@
 package Model.GamePackage;
 
-import BoardPackage.BoardSquare;
-import BoardPackage.PropertySquare;
+
+
+import Model.BoardPackage.PropertySquare;
 
 import java.util.ArrayList;
 
@@ -14,7 +15,7 @@ import java.util.ArrayList;
  ***************************************************************************************************************/
 public class Bank {
     /* Number of houses */
-    private int numHouses,
+    private int numHouses;
 
     /* Number of Hotels */
     private int numHotels;
@@ -45,7 +46,8 @@ public class Bank {
      ***************************************************************************************************************/
     public PropertySquare giveProperty(PropertySquare property) {
         //removes and returns the specific property.
-        return propertiesOwned.remove(property.getId());
+//        return propertiesOwned.remove(property.getId());
+        return null;
     }
 
     /****************************************************************************************************************
