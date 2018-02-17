@@ -32,7 +32,7 @@ public class Board {
                     case 1:
                         squaresList.add(new RailRoadSquare(scnr.next(),scnr.nextInt(),scnr.nextInt(),scnr.nextInt(),scnr.nextInt(),
                                 scnr.nextInt(),scnr.nextInt()));
-//                        break;
+                        break;
 //                    case 3:
 //                        new UtilitiesSquare(); //TODO: finish constructor logic
 //                        break;
@@ -59,6 +59,7 @@ public class Board {
 
     public int getLocationType(int position) {
 //        return squaresList.get(position).getType(); //TODO:Create type for BoarSquareClass
+        return -1;
     }
 
     public PropertySquare getProperty(int position) {
@@ -74,7 +75,7 @@ public class Board {
     public List<BoardSquare> getProperties() {
         //finds all BoardSquare classes and returns them as an ArrayList
 //        return squaresList.stream().filter(boardSquare -> boardSquare.getType() == 1).collect(Collectors.toCollection(ArrayList::new));
-        return null;
+        return squaresList;
     }
 
     public List<BoardSquare> getSquaresList() {
