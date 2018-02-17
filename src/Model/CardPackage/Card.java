@@ -1,5 +1,12 @@
 package Model.CardPackage;
 
+/**********************************************************************
+ * The Card class is a template for creating each Chance and Community
+ * Chest card.
+ * 
+ * @author Dustin Ecker
+ * @version 2/17/2018
+ *********************************************************************/
 public class Card {
 	
 	/** String to hold card description */
