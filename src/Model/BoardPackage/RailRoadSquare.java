@@ -39,9 +39,9 @@ public class RailRoadSquare extends OwnableSquare{
      ****************************************************************/
     public RailRoadSquare(String name,int postion, int price, int baseRent,
                           int twoRent, int threeRent, int fourRent,
-                          int mortgageValue) {
+                          int mortgageValue, int groupNumber) {
 
-        super(name, postion, price,mortgageValue);
+        super(name, postion, price,mortgageValue, groupNumber);
         type = 1;
 
         this.BASE_RENT = baseRent;

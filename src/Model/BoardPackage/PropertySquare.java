@@ -63,8 +63,8 @@ public class PropertySquare extends OwnableSquare{
                           int twoHouseRent, int threeHouseRent,
                           int fourHouseRent, int hotelRent,
                           int numHouses, int houseCost,
-                          int hotelCost) {
-        super(name, postion, price, mortgageValue);
+                          int hotelCost, int groupNumber) {
+        super(name, postion, price, mortgageValue, groupNumber );
 
         type = 0;
 
