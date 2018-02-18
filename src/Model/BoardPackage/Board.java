@@ -13,6 +13,9 @@ import java.util.stream.Stream;
 
 /******************************************************************************************************
  * This class represents the monopoly game board, it's main purpouse is to handle player movement.
+ *
+ * @author Santiago Quiroga
+ * @version 2/18/2018
  *****************************************************************************************************/
 public class Board {
     /** The list of all saquares in the board */
