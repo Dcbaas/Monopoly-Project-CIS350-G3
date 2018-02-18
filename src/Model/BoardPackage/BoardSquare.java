@@ -105,12 +105,33 @@ public abstract class BoardSquare {
     }
 
      /****************************************************************
-      * The getPosition method returns what position this board square
+      * The getPOSITION method returns what position this board square
       * is on the board.
       *
       * @return POSITION The position of this boardsquare on the board
-      */
-    public int getPosition() {
+      ***************************************************************/
+    public int getPOSITION() {
          return POSITION;
+    }
+
+     /****************************************************************
+      * The getType method returns what type of BoardSquare this
+      * board square is.
+      *
+      * @return type the type of BoardSquare this board square is.
+      */
+    public int getType() {
+         return type;
+     }
+
+     /****************************************************************
+      * the setType method sets what type of board square this
+      * BoardSquare is.
+      *
+      * @param type the type of BoardSquare this BoardSquare will be
+      *             set to.
+      */
+    public void setType(int type) {
+         this.type = type;
     }
  }
