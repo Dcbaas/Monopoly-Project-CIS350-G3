@@ -325,4 +325,23 @@ public class Player {
 		property.setHasHotel(false);
 		wallet += property.getHotelCost() / 2;
 	}
+
+    /******************************************************************
+     * This method adds a group number to the ArrayList.
+     *
+     * @param groupNumber The group number being added
+     *****************************************************************/
+	public boolean addGroupOwned(int groupNumber){
+	    return groupsOwned.add((Integer) groupNumber);
+    }
+
+    /******************************************************************
+     * This method removes a group number from the ArrayList.
+     *
+     * @param groupNumber The group number being removed.
+     * @return
+     *****************************************************************/
+    public boolean removeGroupOwned(int groupNumber){
+        return groupsOwned.remove((Integer) groupNumber);
+    }
 }
