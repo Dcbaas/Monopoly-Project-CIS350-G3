@@ -1,7 +1,5 @@
 package Model.BoardPackage;
 
-import Model.GamePackage.Player;
-
 /********************************************************************
  * The PropertySquare class is a BoardSquare class that defines the
  * BoardSquares that are properties. It tracks variables related to
@@ -9,15 +7,10 @@ import Model.GamePackage.Player;
  * landing on this BoardSquare.
  *
  * @author David Baas
- * @version 2/12/2018
+ * @since 2/12/2018
+ * @version 2/17/2018
  ********************************************************************/
-public class PropertySquare extends BoardSquare{
-
-    /**An int to hold the PRICE of the property*/
-    private final int PRICE;
-
-    /**An int to hold the property's mortgage value*/
-    private final int MORTGAGE_VAL;
+public class PropertySquare extends OwnableSquare{
 
     /**An int to hold the cost of rent w/ no houses.*/
     private final int BASE_RENT;
@@ -43,12 +36,6 @@ public class PropertySquare extends BoardSquare{
     /**A boolean to track weather the property has a hotel.*/
     private boolean hasHotel;
 
-    /**A boolean flag to track if the property is mortgaged*/
-    private boolean isMortgaged;
-
-    /**A Player variable to track what player owns this property*/
-    private Player owner;
-
     /**An int to track the cost of purchasing one house for this property*/
     private final int HOUSE_COST;
 
@@ -71,16 +58,15 @@ public class PropertySquare extends BoardSquare{
      * @param houseCost The cost of adding a house to the property.
      * @param hotelCost The cost of adding a hotel to the property.
      *****************************************************************/
-    public PropertySquare(String name, int price, int mortgageValue,
+    public PropertySquare(String name,int postion, int price, int mortgageValue,
                           int baseRent, int oneHouseRent,
                           int twoHouseRent, int threeHouseRent,
                           int fourHouseRent, int hotelRent,
                           int numHouses, int houseCost,
                           int hotelCost) {
-        super(name);
+        super(name, postion, price, mortgageValue);
 
-        PRICE = price;
-        MORTGAGE_VAL = mortgageValue;
+        type = 0;
 
         BASE_RENT = baseRent;
         ONE_HOUSE_RENT = oneHouseRent;
@@ -91,31 +77,9 @@ public class PropertySquare extends BoardSquare{
 
         this.numHouses = numHouses;
         hasHotel = false;
-        isMortgaged = false;
-        owner = null;
-
 
         HOUSE_COST = houseCost;
         HOTEL_COST = hotelCost;
-    }
-
-    /******************************************************************
-     * The getPrice method returns the PRICE of this property.
-     *
-     * @return PRICE the price of the property.
-     *****************************************************************/
-    public int getPrice() {
-        return PRICE;
-    }
-
-    /******************************************************************
-     * The getMortgageValue method returns the value of mortgaging
-     * this property.
-     *
-     * @return MORTGAGE_VAL the mortgage value of the property.
-     *****************************************************************/
-    public int getMortgageValue() {
-        return MORTGAGE_VAL;
     }
 
     /******************************************************************
@@ -248,48 +212,6 @@ public class PropertySquare extends BoardSquare{
      *****************************************************************/
     public void setHasHotel(boolean hasHotel) {
         this.hasHotel = hasHotel;
-    }
-
-    /******************************************************************
-     * The isMortgaged method returns weather the property is
-     * mortgaged or not.
-     *
-     * @return isMortgaged true if the property is mortgaged, false
-     * otherwise.
-     *****************************************************************/
-    public boolean isMortgaged() {
-        return isMortgaged;
-    }
-
-    /******************************************************************
-     * The setMortgaged method sets the mortgage flag.
-     *
-     * @param mortgaged the mortgage status this property is being set
-     *                  to.
-     *****************************************************************/
-    public void setIsMortgaged(boolean mortgaged) {
-        isMortgaged = mortgaged;
-    }
-
-    /******************************************************************
-     * The getOwner method returns the Player who owns this property or
-     * null if the bank owns the property.
-     *
-     * @return owner the Player who owns the property or null if the
-     * bank owns the property.
-     *****************************************************************/
-    public Player getOwner() {
-        return owner;
-    }
-
-    /******************************************************************
-     * The setOwner method sets the Player who owns this property.
-     * set the input to null if the bank should own the property.
-     *
-     * @param owner the Player who will own the property.
-     *****************************************************************/
-    public void setOwner(Player owner) {
-        this.owner = owner;
     }
 
     /******************************************************************

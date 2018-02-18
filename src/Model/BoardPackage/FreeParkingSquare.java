@@ -18,6 +18,7 @@ public class FreeParkingSquare extends BoardSquare {
      * @param name String that will be the name of the BoardSquare.
      ****************************************************************/
     public FreeParkingSquare(String name) {
-        super(name);
+        super(name,20);
+        type = 4;
     }
 }
