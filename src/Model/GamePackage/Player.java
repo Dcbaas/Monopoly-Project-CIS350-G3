@@ -10,9 +10,9 @@ import java.util.ArrayList;
  * The Player class will keep track of each player's money, properties,
  * and other stats.
  *
- * @author Dustin Ecker
+ * @author Dustin Ecker Dylan Kernohan
  * @since 2/16/2018
- * @version 2/17/2018
+ * @version 2/18/2018
  *********************************************************************/
 public class Player {
 
@@ -21,9 +21,6 @@ public class Player {
 
 	/** Player's token */
 	private final String TOKEN;
-
-	/** Tells if player can move */
-	private boolean canMove;
 
 	/** Tells if player is bankrupt */
 	private boolean isBankrupt;
@@ -40,6 +37,17 @@ public class Player {
 	/**An integer to represent the players positon on the board.*/
 	private int position;
 
+	/**An int that tells if they player is in Jail, and for how many turns.
+	 * -1 = not in Jail
+	 * 0 - 3 = Number of turns in Jail
+	 */
+	private int inJail;
+
+	/**An array list that keeps tracks of which groups of ownableSqaures
+	 * the player owns.
+	 */
+	private ArrayList<Integer> groupsOwned;
+
 	/******************************************************************
 	 * Constructor method for Player class.
 	 *
@@ -54,11 +62,13 @@ public class Player {
 
 		position = 0;
 
-		canMove = true;
 		isBankrupt = false;
 
 		propertiesOwned = new ArrayList<PropertySquare>();
 		cardsHeld = new ArrayList<Card>();
+
+		inJail = -1;
+		groupsOwned = new ArrayList<Integer>();
 	}
 
 	/******************************************************************
@@ -79,23 +89,6 @@ public class Player {
 		return TOKEN;
 	}
 
-	/******************************************************************
-	 * Getter method for canMove variable.
-	 *
-	 * @return canMove Returns the boolean canMove.
-	 *****************************************************************/
-	public boolean canMove() {
-		return canMove;
-	}
-
-	/******************************************************************
-	 * Setter method for canMove variable.
-	 *
-	 * @param canMove Sets the boolean canMove.
-	 *****************************************************************/
-	public void setCanMove(boolean canMove) {
-		this.canMove = canMove;
-	}
 
 	/******************************************************************
 	 * Getter method for isBankrupt variable.
@@ -171,6 +164,66 @@ public class Player {
 	}
 
 	/******************************************************************
+	 * The getPosition method returns the current position of the player.
+	 * @return position the current position of the player.
+	 *****************************************************************/
+	public int getPosition() {
+		return position;
+	}
+
+	/******************************************************************
+	 * The setPosition method sets the postion of the player on the
+	 * board
+	 * @param position the positon the boaad the player is being sent
+	 *                 to.
+	 *****************************************************************/
+	public void setPosition(int position) {
+		this.position = position;
+	}
+
+    /******************************************************************
+     * This method gets an int that says if the player is in Jail or not.
+     * -1 = not in jail
+     * 0 - 3 = Number of turns in Jail
+     * @return inJail An int that says if the player is in jail.
+     * -1 = not in jail
+     * 0 - 3 = Number of turns in Jail
+     *****************************************************************/
+    public int getInJail() {
+        return inJail;
+    }
+
+    /******************************************************************
+     * This method sets the int value saying if the player is in Jail.
+     * -1 = not in jail
+     * 0 - 3 = Number of turns in Jail
+     * @param inJail An int that says if the player is in Jail
+     *               -1 = not in jail
+     *                0 - 3 = Number of turns in Jail
+     ******************************************************************/
+    public void setInJail(int inJail) {
+        this.inJail = inJail;
+    }
+
+    /*****************************************************************
+     * This method gets a list of all the groups of ownable squares
+     * this player owns.
+     * @return groupsOwned An array list of all the groups this
+     * player owns.
+     *****************************************************************/
+    public ArrayList<Integer> getGroupsOwned() {
+        return groupsOwned;
+    }
+
+    /******************************************************************
+     * This method sets the list of groups the player owns.
+     * @param groupsOwned An array list of groups the player owns.
+     ******************************************************************/
+    public void setGroupsOwned(ArrayList<Integer> groupsOwned) {
+        this.groupsOwned = groupsOwned;
+    }
+
+    /******************************************************************
 	 * Checks to make sure player has sufficient funds before
 	 * subtracting amount from wallet. If the player has sufficient
 	 * funds the method subtracts amount from wallet and returns the
@@ -273,21 +326,22 @@ public class Player {
 		wallet += property.getHotelCost() / 2;
 	}
 
-	/******************************************************************
-	 * The getPosition method returns the current position of the player.
-	 * @return position the current position of the player.
-	 *****************************************************************/
-	public int getPosition() {
-		return position;
-	}
+    /******************************************************************
+     * This method adds a group number to the ArrayList.
+     *
+     * @param groupNumber The group number being added
+     *****************************************************************/
+	public boolean addGroupOwned(int groupNumber){
+	    return groupsOwned.add((Integer) groupNumber);
+    }
 
-	/******************************************************************
-	 * The setPosition method sets the postion of the player on the
-     * board
-	 * @param position the positon the boaad the player is being sent
-     *                 to.
-	 *****************************************************************/
-	public void setPosition(int position) {
-		this.position = position;
-	}
+    /******************************************************************
+     * This method removes a group number from the ArrayList.
+     *
+     * @param groupNumber The group number being removed.
+     * @return
+     *****************************************************************/
+    public boolean removeGroupOwned(int groupNumber){
+        return groupsOwned.remove((Integer) groupNumber);
+    }
 }
