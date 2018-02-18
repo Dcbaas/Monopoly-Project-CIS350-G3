@@ -1,12 +1,7 @@
 package Model.GamePackage;
 
 
-<<<<<<< HEAD
-
-import Model.BoardPackage.PropertySquare;
-=======
 import Model.BoardPackage.OwnableSquare;
->>>>>>> master
 
 import java.util.ArrayList;
 
@@ -50,12 +45,7 @@ public class Bank {
      ***************************************************************************************************************/
     public OwnableSquare giveProperty(OwnableSquare property) {
         //removes and returns the specific property.
-<<<<<<< HEAD
-//        return propertiesOwned.remove(property.getId());
-        return null;
-=======
         return propertiesOwned.remove(property.getPosition());
->>>>>>> master
     }
 
     /****************************************************************************************************************
