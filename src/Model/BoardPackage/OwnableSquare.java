@@ -6,8 +6,8 @@ import Model.GamePackage.Player;
  * The OwnableSquare Class provides the framework for boardsqures that
  * are ownable. Allows for a universal list of ownable board squares.
  *
- * @author David Baas Dustin Ecker
- * @version 2/17/2018
+ * @author David Baas Dustin Ecker Dylan Kernohan
+ * @version 2/18/2018
  *
  ********************************************************************/
 public class OwnableSquare extends BoardSquare{
@@ -24,6 +24,9 @@ public class OwnableSquare extends BoardSquare{
     /**A Player variable to track what player owns this property*/
     protected Player owner;
 
+    /**An int to keep track of which group this ownableSquare is in*/
+    protected final int GROUP_NUMBER;
+
     /*****************************************************************
      * The default constructor initializes all of the variables.
      *
@@ -31,10 +34,11 @@ public class OwnableSquare extends BoardSquare{
      * @param PRICE the PRICE of the property
      * @param MORTGAGE_VAL The mortgage value of the property.
      ****************************************************************/
-    public OwnableSquare(String name,int position, int PRICE, int MORTGAGE_VAL) {
+    public OwnableSquare(String name, int position, int PRICE, int MORTGAGE_VAL, int GROUP_NUMBER){
         super(name,position);
         this.PRICE = PRICE;
         this.MORTGAGE_VAL = MORTGAGE_VAL;
+        this.GROUP_NUMBER = GROUP_NUMBER;
         isMortgaged = false;
         owner = null;
     }
@@ -98,5 +102,14 @@ public class OwnableSquare extends BoardSquare{
      *****************************************************************/
     public void setOwner(Player owner) {
         this.owner = owner;
+    }
+
+    /******************************************************************
+     * This method gets the group number of this ownableSquare.
+     *
+     * @return GROUP_NUMBER The group number for this ownableSquare
+     *****************************************************************/
+    public int getGROUP_NUMBER() {
+        return GROUP_NUMBER;
     }
 }
