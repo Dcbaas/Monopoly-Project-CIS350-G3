@@ -15,38 +15,40 @@ import java.util.stream.Stream;
  * Created by unclear on 2/5/18.
  */
 public class Board {
-    List<BoardSquare> squaresList = new ArrayList<>();
+    List<BoardSquare> squaresList;
 
     public Board(String fileName) {
+        squaresList = new ArrayList<>();
         //read file into stream, try-with-resources
         try (Stream<String> text = Files.lines(Paths.get(fileName))) {
             text.forEach(line -> {
                 Scanner scnr = new Scanner(line).useDelimiter("[,\r\n]+");
                 switch (scnr.nextInt()){
                     case 0:
-                        squaresList.add(new PropertySquare(scnr.next(),scnr.nextInt(),scnr.nextInt(),scnr.nextInt(),scnr.nextInt(),
+                        squaresList.add(new PropertySquare(scnr.next(),scnr.nextInt(),scnr.nextInt(),scnr.nextInt(),scnr.nextInt(),scnr.nextInt(),
                                 scnr.nextInt(),scnr.nextInt(),scnr.nextInt(),scnr.nextInt(),scnr.nextInt(),
                                 scnr.nextInt(),scnr.nextInt()));
                         break;
                     case 1:
-                        squaresList.add(new RailRoadSquare(scnr.next(),scnr.nextInt(),scnr.nextInt(),scnr.nextInt(),scnr.nextInt(),
+                        squaresList.add(new RailRoadSquare(scnr.next(),scnr.nextInt(),scnr.nextInt(),scnr.nextInt(),scnr.nextInt(),scnr.nextInt(),
                                 scnr.nextInt(),scnr.nextInt()));
                         break;
                     case 2:
-                        squaresList.add(new BoardSquare(scnr.next()) {
+                        squaresList.add(new BoardSquare(scnr.next(),scnr.nextInt()) {
                         });
                         break;
                     case 3:
-                        squaresList.add(new UtilitiesSquare(scnr.next(), scnr.nextInt(), scnr.nextInt()));
+                        squaresList.add(new UtilitiesSquare(scnr.next(),scnr.nextInt(), scnr.nextInt(), scnr.nextInt()));
                         break;
                     case 4:
-                        squaresList.add(new FreeParkingSquare(scnr.next());
+                        squaresList.add(new FreeParkingSquare(scnr.next()));
                         break;
                     case 5:
                         squaresList.add(new GoSquare(scnr.next(), scnr.nextInt()));
                         break;
                     case 6:
                         squaresList.add(new JailSquare(scnr.next()));
+                        break;
                     case 7:
                         squaresList.add(new GoToJailSquare(scnr.next()));
                         break;
@@ -76,7 +78,7 @@ public class Board {
 
     public ArrayList<OwnableSquare> getOwnableSquares() {
         // finds all BoardSquare classes and returns them as an ArrayList
-        return (ArrayList<OwnableSquare>)squaresList.stream().filter(boardSquare -> (boardSquare.getType() == 0) || boardSquare.getType() == 1 || boardSquare.getType() == 3).collect(Collectors.toCollection(ArrayList::new));
+      return squaresList.stream().filter(boardSquare -> (boardSquare.getType() == 0) || boardSquare.getType() == 1 || boardSquare.getType() == 3).map(boardSquare -> (OwnableSquare) boardSquare).collect(Collectors.toCollection(ArrayList::new));
     }
 
     public List<BoardSquare> getSquaresList() {
@@ -84,9 +86,8 @@ public class Board {
     }
 
     public void sendToJail(Player player) {
-        player.setInJail(0);
+//        player.setInJail(0);
         setPlayerPosition(player, 10);
     }
 }
 
-q

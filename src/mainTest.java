@@ -7,6 +7,6 @@ import Model.BoardPackage.Board;
 public class mainTest {
     public static void main(String[] args) {
         Board board = new Board(System.getenv("FILENAME"));
-        board.getProperties().forEach(property -> System.out.println(property.getName()));
+        board.getSquaresList().forEach(property -> System.out.println(property.getName()));
     }
 }
