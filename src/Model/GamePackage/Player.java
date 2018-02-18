@@ -28,8 +28,8 @@ public class Player {
 	/** Holds player's current wallet balance */
 	private int wallet;
 
-	/** ArrayList that holds player's owned properties */
-	private ArrayList<PropertySquare> propertiesOwned;
+	/** ArrayList that holds player's owned squares */
+	private ArrayList<OwnableSquare> propertiesOwned;
 
 	/** ArrayList that holds player's cards held */
 	private ArrayList<Card> cardsHeld;
@@ -64,7 +64,7 @@ public class Player {
 
 		isBankrupt = false;
 
-		propertiesOwned = new ArrayList<PropertySquare>();
+		propertiesOwned = new ArrayList<OwnableSquare>();
 		cardsHeld = new ArrayList<Card>();
 
 		inJail = -1;
@@ -131,7 +131,7 @@ public class Player {
 	 *
 	 * @return propertiesOwned Returns the ArrayList propertiesOwned.
 	 *****************************************************************/
-	public ArrayList<PropertySquare> getPropertiesOwned() {
+	public ArrayList<OwnableSquare> getPropertiesOwned() {
 		return propertiesOwned;
 	}
 
@@ -140,7 +140,7 @@ public class Player {
 	 *
 	 * @param propertiesOwned Sets the ArrayList propertiesOwned.
 	 *****************************************************************/
-	public void setPropertiesOwned(ArrayList<PropertySquare>
+	public void setPropertiesOwned(ArrayList<OwnableSquare>
 	propertiesOwned) {
 		this.propertiesOwned = propertiesOwned;
 	}
@@ -268,7 +268,7 @@ public class Player {
 	 * list.
      * @return
 	 *****************************************************************/
-	public OwnableSquare giveProperty(PropertySquare property) {
+	public OwnableSquare giveProperty(OwnableSquare property) {
 		return propertiesOwned.remove(propertiesOwned.indexOf(property));
 	}
 
@@ -279,7 +279,7 @@ public class Player {
 	 * @param property The property to be added to owned properties
 	 * list.
 	 *****************************************************************/
-	public void recieveProperty(PropertySquare property) {
+	public void recieveProperty(OwnableSquare property) {
 		propertiesOwned.add(property);
 	}
 
