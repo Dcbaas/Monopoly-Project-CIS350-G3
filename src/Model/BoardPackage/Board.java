@@ -151,8 +151,8 @@ public class Board {
      * @return
      *****************************************************************************************************/
     public List<OwnableSquare> getGroup(int groupId){
-        return squaresList.stream().filter(square -> square.getGROUP_NUMBER() == groupId)
-                .map(boardSquare -> (OwnableSquare) boardSquare ).collect(Collectors.toCollection(ArrayList::new));
+        return squaresList.stream().map(squaresList -> (OwnableSquare) squaresList)
+                .filter(ownableSquare -> ownableSquare.getGROUP_NUMBER() == groupId).collect(Collectors.toList());
     }
 }
 
