@@ -18,7 +18,7 @@ public class Deck {
     ArrayList<Card> deck;
 
     /**********************************************************************************
-     *  This constructor reads a textile and populates the deck with the specific set
+     *  This constructor reads a text file and populates the deck with the specific set
      *  of cards.
      *
      * @param fileName
