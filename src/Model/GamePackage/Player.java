@@ -266,9 +266,10 @@ public class Player {
 	 *
 	 * @param property The property to be removed from owned properties
 	 * list.
+     * @return
 	 *****************************************************************/
-	public void giveProperty(PropertySquare property) {
-		propertiesOwned.remove(property);
+	public OwnableSquare giveProperty(PropertySquare property) {
+		return propertiesOwned.remove(propertiesOwned.indexOf(property));
 	}
 
 	/******************************************************************
