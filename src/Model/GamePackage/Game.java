@@ -63,52 +63,13 @@ public class Game {
         }else{
             buyer.recieveProperty(bank.giveProperty(ownableSquare));
         }
-        buyer.pay(property.getPrice());
+        buyer.pay(ownableSquare.getPRICE());
     }
     public void movePlayer(Player player, int position) {
         //move player to the given position
         board.setPlayerPosition(player, position);
         player.setPosition(position);
-        //check for BoardSquare
-        /**
-         * PropertySquare = 0
-         * RailRoadSquare = 1
-         * DrawCard = 2
-         * UtilitiesSquare = 3
-         * FreeParking = 4
-         * GoSquare = 5
-         * JailSquare = 6
-         * GoToJailSquare = 7
-         */
-        switch (board.getLocationType(position)) {
-            case 0:
-                porpertySquareLogic(board.getProperty(position));
-                break;
-            case 1:
-                System.out.print("At RailroadSquare");
-                break;
-            case 2:
-                System.out.print("At Draw Card");
-                break;
-            case 3:
-                System.out.print("At UtilitiesSquare");
-                break;
-            case 4:
-                System.out.print("At FreeParking Square");
-                break;
-            case 5:
-                System.out.print("At GoSquare");
-                break;
-            case 6:
-                System.out.print("At JailSquare");
-                break;
-            case 7:
-                System.out.print("At GoToJailSquare");
-                break;
-            default:
-                System.out.println("default scenario");
-                break;
-        }
+
     }
     public void sellPorperty(PropertySquare property, Player buyer) {
         //TODO: finish body
@@ -160,6 +121,46 @@ public class Game {
         while (gameIsRunning) {
         }
     }
+
+    // Card Actions -------------------------------------
+
+    public void cardCollect(int amount){
+
+    }
+
+    public void cardMovePosition(int position){
+
+    }
+
+    public void cardMoveNearest(int typeID){
+
+    }
+
+    public void cardSetOwner(Player player){
+
+    }
+
+    public void cardMoveBack(int numSquares){
+
+    }
+
+    public void cardTax(Player player){
+
+    }
+
+    public void cardPayBank(int amount){
+
+    }
+
+    public void cardPayAllPlayers(int amount){
+
+    }
+
+    public void cardCollectFromPplayers(int amount){
+
+    }
+
+    
     //helper
     private void porpertySquareLogic(PropertySquare property) {
         if (property.getOwner() == null && property.getPrice() <= currentPlayer.getWallet()) {
