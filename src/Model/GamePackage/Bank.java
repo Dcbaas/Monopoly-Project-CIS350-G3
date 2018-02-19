@@ -45,7 +45,7 @@ public class Bank {
      ***************************************************************************************************************/
     public OwnableSquare giveProperty(OwnableSquare property) {
         //removes and returns the specific property.
-        return propertiesOwned.remove(property.getPOSITION());
+        return propertiesOwned.remove(propertiesOwned.indexOf(property));
     }
 
     /****************************************************************************************************************
