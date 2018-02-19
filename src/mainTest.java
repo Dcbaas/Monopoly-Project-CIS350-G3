@@ -1,4 +1,5 @@
 import Model.BoardPackage.Board;
+import Model.CardPackage.Deck;
 
 
 /**
@@ -17,5 +18,10 @@ public class mainTest {
         Board board = new Board(System.getenv("FILENAME"));
         board.getSquaresList().forEach(property -> System.out.println(property.getName()));
 
+        Deck chance = new Deck(System.getenv("CHANCE"),true);
+        chance.getDeck().forEach(card -> System.out.println(card.getCardDescription()));
+
+        Deck comunitychest = new Deck(System.getenv("COMUNITYCHEST"),true);
+        comunitychest.getDeck().forEach(card -> System.out.println(card.getCardDescription()));
     }
 }
