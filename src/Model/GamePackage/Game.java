@@ -254,7 +254,7 @@ public class Game {
      * @param buyer The player trying to buy
      * @return
      *********************************************************************/
-    public boolean buyProperty(OwnableSquare ownableSquare, Player buyer) {
+    public boolean buyOwnableSquare(OwnableSquare ownableSquare, Player buyer) {
         // Check is buyer has enough money
         if(buyer.getWallet() >= ownableSquare.getPRICE()) {
             //TODO: Should this method just be for buying a property that the bank owns? Use a separate method for trading (player to player buying/selling)
@@ -300,9 +300,20 @@ public class Game {
 
     }
 
-    public void sellPorperty(PropertySquare property, Player buyer) {
-        //TODO: finish body
-        //allow the player to sell a property from their list
+    /**********************************************************************
+     * One player sells one of their ownableSquares to another player
+     * @param ownableSquare The ownable square being sold
+     * @param buyer The player buying the ownable square
+     *********************************************************************/
+    public void sellOwnableSquare(OwnableSquare ownableSquare, Player buyer) {
+        // Check if buyer paid full amount
+        if( buyer.pay(ownableSquare.getPRICE()) == ownableSquare.getPRICE()){
+            // Buyer receives ownableSquare, Owner gives it.
+            buyer.recieveProperty(ownableSquare.getOwner().giveProperty(ownableSquare));
+        }
+        else{
+            // TODO: Call a function that handles when a buyer only has partial (if any) of the money during a trade
+        }
     }
 
     public void mortgageProperty(PropertySquare property) {
