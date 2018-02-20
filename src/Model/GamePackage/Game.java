@@ -1,6 +1,7 @@
 package Model.GamePackage;
 
 import Model.BoardPackage.OwnableSquare;
+import Model.CardPackage.Card;
 import Model.CardPackage.Deck;
 import Model.BoardPackage.PropertySquare;
 import Model.BoardPackage.Board;
@@ -218,8 +219,8 @@ public class Game {
      * @param player The player that needs to be removed
      **********************************************************************/
     public void removePlayer(Player player) {
-        // NOTE: We should consider removing players when they lose (go bankrupt)
         players.remove(player);
+
     }
 
     /**********************************************************************
@@ -332,17 +333,44 @@ public class Game {
         //give property to highest bidder
     }
 
-    public void drawCard() {
-        //TODO: finish body
-        //draw a card from the specific chest
-        System.out.println("Player draw card");
-        //give card to player
+    public void drawCard(Boolean deckType) {
+            //Checks for the deckType and gives the player a card from hte specific type of deck
+            currentPlayer.recieveCard((deckType)?chanceDeck.drawCard():comunityChestDeck.drawCard());
     }
 
-    public void useCard() {
-        //TODO: finish body
-        //display list of cards
-        System.out.println("Card Used");
+    public void useCard(Card cardToUse) {
+        //Retrieve the instructions from the card
+        int[] actions = cardToUse.getActions();
+
+
+        //Checks which instructions need to be performed
+        if (actions[0] != -1){
+            cardCollect(actions[0]);
+        }
+        if (actions[1] != -1){
+            cardMovePosition(actions[1]);
+        }
+        if (actions[2] != -1){
+            cardMoveNearest(actions[2]);
+        }
+        if (actions[3] != -1){
+            cardSetOwner(currentPlayer);
+        }
+        if (actions[4] != -1){
+            cardMoveBack(actions[4]);
+        }
+        if (actions[5] != -1){
+            cardTax(currentPlayer);
+        }
+        if (actions[6] != -1){
+            cardPayBank(actions[6]);
+        }
+        if (actions[7] != -1){
+            cardPayAllPlayers(actions[7]);
+        }
+        if (actions[8] != -1){
+            cardCollectFromPlayers(actions[8]);
+        }
     }
 
     public void collectFee(Player unfortunateSoul, Player fortunateSoul,int fee) {
@@ -356,22 +384,27 @@ public class Game {
             unfortunateSoul.pay(fee);
         }
         else{
-            System.out.println("should allow players to make deals or go bankrupt");
+            System.out.println("should allow players to make deals or go bankrupt");// TODO: implement this logic
         }
     }
 
     // Card Actions ====================================================================================================
 
     public void cardCollect(int amount){
-        //TODO: finish body
+        currentPlayer.receiveMoney(amount);
     }
 
     public void cardMovePosition(int position){
-        //TODO: finish body
+        board.setPlayerPosition(currentPlayer,position);
     }
 
     public void cardMoveNearest(int typeID){
-        //TODO: finish body
+        board.getLocationbyType(typeID).forEach(square -> {
+            int closestPosition = 40;
+            if(Math.abs(currentPlayer.getPosition() - square.getPOSITION()) < closestPosition){
+                closestPosition = square.getPOSITION();
+            }
+        });
     }
 
     public void cardSetOwner(Player player){
@@ -379,23 +412,45 @@ public class Game {
     }
 
     public void cardMoveBack(int numSquares){
-        //TODO: finish body
+        board.setPlayerPosition(currentPlayer, currentPlayer.getPosition() - numSquares);
     }
 
     public void cardTax(Player player){
-        //TODO: finish body
+        //TODO: I don't seee any card using this method, so I have to review this method
     }
 
     public void cardPayBank(int amount){
-        //TODO: finish body
+        currentPlayer.pay(amount);
     }
 
     public void cardPayAllPlayers(int amount){
-        //TODO: finish body
+        //Checks if the player can pay all player
+        if (currentPlayer.getWallet()  < amount * (players.size() - 1)){
+            players.stream().filter(player -> player != currentPlayer).forEach(player -> {
+                player.receiveMoney(currentPlayer.pay(amount));
+            });
+        }else {
+            //TODO:  NOTE: talk about this logic (when player can possibly cgo bankrupt
+            /*
+             * Maybe we could send a bankrupted method in here whe we
+             * check if the player is truly bankrupt or can still save
+             * themselves
+             */
+        }
     }
 
-    public void cardCollectFromPplayers(int amount){
-        //TODO: finish body
+    public void cardCollectFromPlayers(int amount){
+        players.stream().filter(player -> currentPlayer != player).forEach(player -> {
+            if(player.getWallet() < amount){
+                currentPlayer.receiveMoney(player.pay(amount));
+            }else{//TODO: NOTE talk about this logic (when player can possibly cgo bankrupt
+            /*
+             * Maybe we could send a bankrupted method in here whe we
+             * check if the player is truly bankrupt or can still save
+             * themselves
+             */
+            }
+        });
     }
 
 
