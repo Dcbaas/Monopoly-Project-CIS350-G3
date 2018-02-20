@@ -22,7 +22,7 @@ public class Deck {
      *  of cards.
      *
      * @param fileName
-     * @param cardType
+     * @param cardType True for Chance, False for Community Chest
      *********************************************************************************/
     public Deck(String fileName, boolean cardType) {
         //intializes the deck
