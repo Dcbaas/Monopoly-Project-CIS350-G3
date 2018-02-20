@@ -6,8 +6,6 @@ import Model.BoardPackage.PropertySquare;
 import Model.BoardPackage.Board;
 
 import java.util.ArrayList;
-import java.util.Scanner;
-
 
 /**********************************************************************
  * The Game class is responsible for almost all of the game logic.
@@ -274,10 +272,31 @@ public class Game {
         return false;
     }
 
-    public void movePlayer(Player player, int position) {
-        //move player to the given position
-        board.setPlayerPosition(player, position);
-        player.setPosition(position);
+    /**********************************************************************
+     * This method takes the die params and moves the player that many
+     * squares.
+     * @param player The player that is moving
+     * @param dieVal1 The value of die 1 after it is rolled
+     * @param dieVal2 The value of die 2 after it is rolled
+     *********************************************************************/
+    public void movePlayer(Player player, int dieVal1, int dieVal2) {
+        /*
+        NOTE: The assumption here is that the die will be rolled by the
+                view/controller with an animation and then the
+                view/controller will call this passing the die values
+              The other option is we call roll for both die here and the
+                view/controller simply call this after a "move" button is
+                clicked. Not a "roll" and die animation.
+         */
+        // Check if player will be passing GO square
+        if(player.getPosition() + (dieVal1 + dieVal2) > 39){
+            // New position = old position + dieVals - numberOfSquares
+            board.setPlayerPosition(player, (player.getPosition() + (dieVal1 + dieVal1)) - 40);
+            player.setPosition((player.getPosition() + (dieVal1 + dieVal1)) - 40);
+            // TODO: Handle what happens when the player passes go here
+        }
+        board.setPlayerPosition(player, player.getPosition() + (dieVal1 + dieVal1));
+        player.setPosition(player.getPosition() + (dieVal1 + dieVal1));
 
     }
 
