@@ -1,12 +1,17 @@
 package Model.GamePackage;
 
+import Model.BoardPackage.BoardSquare;
 import Model.BoardPackage.OwnableSquare;
 import Model.CardPackage.Card;
 import Model.CardPackage.Deck;
 import Model.BoardPackage.PropertySquare;
 import Model.BoardPackage.Board;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**********************************************************************
  * The Game class is responsible for almost all of the game logic.
@@ -338,7 +343,15 @@ public class Game {
             currentPlayer.recieveCard((deckType)?chanceDeck.drawCard():comunityChestDeck.drawCard());
     }
 
+
+    /**********************************************************************
+     * This method checks for the list of actions that the card has and
+     * performs the necessary actions.
+     *
+     * @param cardToUse
+     *********************************************************************/
     public void useCard(Card cardToUse) {
+
         //Retrieve the instructions from the card
         int[] actions = cardToUse.getActions();
 
@@ -354,7 +367,7 @@ public class Game {
             cardMoveNearest(actions[2]);
         }
         if (actions[3] != -1){
-            cardSetOwner(currentPlayer);
+            cardEscapeFromJail(currentPlayer);
         }
         if (actions[4] != -1){
             cardMoveBack(actions[4]);
@@ -373,6 +386,14 @@ public class Game {
         }
     }
 
+    /**********************************************************************
+     * This method collects a specific amount of money from a specific player
+     * and pays another player.
+     *
+     * @param unfortunateSoul
+     * @param fortunateSoul
+     * @param fee
+     *********************************************************************/
     public void collectFee(Player unfortunateSoul, Player fortunateSoul,int fee) {
         //Check if player can pay fee
         if (unfortunateSoul.getWallet() - fee >= 0 && fortunateSoul != null) {
@@ -390,33 +411,112 @@ public class Game {
 
     // Card Actions ====================================================================================================
 
+
+    /**********************************************************************
+     * Pays a player a specific amount of money.
+     *
+     * @param amount
+     *********************************************************************/
     public void cardCollect(int amount){
         currentPlayer.receiveMoney(amount);
     }
 
+
+    /**********************************************************************
+     * Moves a player to the given position
+     *
+     * @param position
+     *********************************************************************/
     public void cardMovePosition(int position){
         board.setPlayerPosition(currentPlayer,position);
+        currentPlayer.setPosition(position);
     }
 
+    /**********************************************************************
+     * Moves a player to the nearest position of the specific BoardSquare
+     * type.
+     *
+     * @param typeID
+     *********************************************************************/
     public void cardMoveNearest(int typeID){
-        board.getLocationbyType(typeID).forEach(square -> {
-            int closestPosition = 40;
-            if(Math.abs(currentPlayer.getPosition() - square.getPOSITION()) < closestPosition){
-                closestPosition = square.getPOSITION();
+        //Splits the board into two halves.
+        int midPoint = board.getSquaresList().size() / 2;
+
+        //Retrieves all the squares from the board.
+        List<BoardSquare> boardSquares = board.getSquaresList();
+
+        //Create two counters to count the distance from both paths.
+        int negativeMoves = 1, positiveMoves = 1;
+
+
+        //Creates two pointers that start right where the player is at.
+        int negativePointer = currentPlayer.getPosition() , positivePointer = currentPlayer.getPosition();
+
+        //The closest board square.
+        BoardSquare closestSquare = boardSquares.get(currentPlayer.getPosition());
+
+        //Checks lef and right side until finding the closest square.
+        while (negativeMoves <= midPoint && positiveMoves <= midPoint){
+
+            //Check if either pointer will go over the limits of the board
+            negativePointer = (negativePointer - 1 == 0)? board.getSquaresList().size() - 1: negativePointer;
+            positivePointer = (positivePointer + 1 == board.getSquaresList().size() - 1)? 0: positivePointer;
+
+
+            //Check if the negative pointer to see if the current location matches the desired square
+            if(boardSquares.get(negativePointer).getType() == typeID){
+                closestSquare = boardSquares.get(negativePointer);
+                break;
             }
-        });
+
+            //Check if the positive pointer to see if the current location matches the desired square
+            if(boardSquares.get(positivePointer).getType() == typeID){
+                closestSquare = boardSquares.get(positivePointer);
+                break;
+            }
+
+            //Increases the pointers
+            positivePointer ++;
+            negativePointer --;
+        }
+
+        //Moves the player to the nearest specific location.
+        board.setPlayerPosition(currentPlayer, closestSquare.getPOSITION());
+        currentPlayer.setPosition(closestSquare.getPOSITION());
+
+        //TODO: NOTE:is there more to this method ? do we have to check if the player landed on a typle owned by someone else?
     }
 
-    public void cardSetOwner(Player player){
-        //TODO: finish body
+    /**********************************************************************
+     * Sets a player inJail status to -1, so the player can scape jail
+     *
+     * @param player
+     *********************************************************************/
+    public void cardEscapeFromJail(Player player){
+        player.setInJail(-1);
+        //TODO:  NOTE: Do we need to allow the player to roll right away ?
     }
 
+    /**********************************************************************
+     * Moves a player back numSquares
+     *
+     * @param numSquares
+     *********************************************************************/
     public void cardMoveBack(int numSquares){
-        board.setPlayerPosition(currentPlayer, currentPlayer.getPosition() - numSquares);
+        //Checks if the number of steps that the player has to move back are beyond th Go square
+        int newPosition = (currentPlayer.getPosition() - numSquares > 0)?
+                currentPlayer.getPosition() - numSquares:
+                currentPlayer.getPosition() - numSquares + board.getSquaresList().size() -1;
+
+        //Set the player's new position
+        board.setPlayerPosition(currentPlayer,newPosition);
+        currentPlayer.setPosition(newPosition);
     }
 
     public void cardTax(Player player){
-        //TODO: I don't seee any card using this method, so I have to review this method
+        int amountDue = 0;
+
+       //TODO: finish this method
     }
 
     public void cardPayBank(int amount){
