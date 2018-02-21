@@ -345,4 +345,10 @@ public class Player {
     public boolean removeGroupOwned(int groupNumber){
         return groupsOwned.remove((Integer) groupNumber);
     }
+
+	public void recieveCard(Card card) {
+	}
+
+	public void receiveMoney(int amount) {
+	}
 }
