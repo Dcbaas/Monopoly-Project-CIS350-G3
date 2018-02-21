@@ -151,7 +151,7 @@ public class Board {
      * Returns a list of all the squares belonging to a single group.
      *
      * @param groupId The integer that represents a specific group of OwnableSquares
-     * @return A list of OwnableSquares that are in the grouping input. 
+     * @return A list of OwnableSquares that are in the grouping input.
      *****************************************************************************************************/
     public List<OwnableSquare> getGroup(int groupId){
         return squaresList.stream().map(squaresList -> (OwnableSquare) squaresList)
