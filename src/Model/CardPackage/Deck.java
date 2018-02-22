@@ -22,12 +22,9 @@ public class Deck {
      *  of cards.
      *
      * @param fileName
-     * @param cardType True for Chance, False for Community Chest
+     * @param cardType
      *********************************************************************************/
     public Deck(String fileName, boolean cardType) {
-        //intializes the deck
-        deck = new ArrayList<>();
-
         try (Stream<String> text = Files.lines(Paths.get(fileName))) {
 
             //Iterates thought every line in the stream
@@ -35,9 +32,10 @@ public class Deck {
                 //Defines and instantiates a Scanner to read through the each line
                 Scanner scanner = new Scanner(line).useDelimiter("[,\r\n]+");
 
-                deck.add(new Card(scanner.next(),cardType,new int[]{scanner.nextInt(),scanner.nextInt(),
-                        scanner.nextInt(),scanner.nextInt(),scanner.nextInt(),
-                        scanner.nextInt(),scanner.nextInt(),scanner.nextInt(),scanner.nextInt()}));
+                deck.add(new Card(scanner.next(),cardType,
+                        new int[]{scanner.nextInt(),scanner.nextInt(),scanner.nextInt(),
+                                scanner.nextInt(),scanner.nextInt(),scanner.nextInt(),
+                                scanner.nextInt(),scanner.nextInt(),scanner.nextInt()}));
             });
         }catch (IOException e) {
             e.printStackTrace();
@@ -68,21 +66,5 @@ public class Deck {
      *********************************************************************************/
     public void shufleDeck(){
         Collections.shuffle(deck);
-    }
-
-    /**
-     *
-     * @return
-     */
-    public ArrayList<Card> getDeck() {
-        return deck;
-    }
-
-    /**
-     *
-     * @param deck
-     */
-    public void setDeck(ArrayList<Card> deck) {
-        this.deck = deck;
     }
 }

@@ -120,9 +120,9 @@ public class Board {
      *****************************************************************************************************/
     public ArrayList<OwnableSquare> getOwnableSquares() {
         // finds all BoardSquare classes and returns them as an ArrayList
-      return squaresList.stream().filter(boardSquare ->
-              (boardSquare.getType() == 0) || boardSquare.getType() == 1 || boardSquare.getType() == 3)
-              .map(boardSquare -> (OwnableSquare) boardSquare).collect(Collectors.toCollection(ArrayList::new));
+        return squaresList.stream().filter(boardSquare ->
+                (boardSquare.getType() == 0) || boardSquare.getType() == 1 || boardSquare.getType() == 3)
+                .map(boardSquare -> (OwnableSquare) boardSquare).collect(Collectors.toCollection(ArrayList::new));
     }
 
     /******************************************************************************************************
@@ -154,11 +154,4 @@ public class Board {
         return squaresList.stream().map(squaresList -> (OwnableSquare) squaresList)
                 .filter(ownableSquare -> ownableSquare.getGROUP_NUMBER() == groupId).collect(Collectors.toList());
     }
-
-    public ArrayList<BoardSquare> getLocationByType(int typeID) {
-
-        return squaresList.stream().filter(boardSquare -> boardSquare.getType() == typeID).collect(Collectors.toCollection(ArrayList<BoardSquare>::new));
-    }
-
 }
-
