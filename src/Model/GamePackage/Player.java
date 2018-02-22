@@ -141,7 +141,7 @@ public class Player {
 	 * @param propertiesOwned Sets the ArrayList propertiesOwned.
 	 *****************************************************************/
 	public void setPropertiesOwned(ArrayList<OwnableSquare>
-										   propertiesOwned) {
+	propertiesOwned) {
 		this.propertiesOwned = propertiesOwned;
 	}
 
@@ -181,49 +181,49 @@ public class Player {
 		this.position = position;
 	}
 
-	/******************************************************************
-	 * This method gets an int that says if the player is in Jail or not.
-	 * -1 = not in jail
-	 * 0 - 3 = Number of turns in Jail
-	 * @return inJail An int that says if the player is in jail.
-	 * -1 = not in jail
-	 * 0 - 3 = Number of turns in Jail
-	 *****************************************************************/
-	public int getInJail() {
-		return inJail;
-	}
+    /******************************************************************
+     * This method gets an int that says if the player is in Jail or not.
+     * -1 = not in jail
+     * 0 - 3 = Number of turns in Jail
+     * @return inJail An int that says if the player is in jail.
+     * -1 = not in jail
+     * 0 - 3 = Number of turns in Jail
+     *****************************************************************/
+    public int getInJail() {
+        return inJail;
+    }
 
-	/******************************************************************
-	 * This method sets the int value saying if the player is in Jail.
-	 * -1 = not in jail
-	 * 0 - 3 = Number of turns in Jail
-	 * @param inJail An int that says if the player is in Jail
-	 *               -1 = not in jail
-	 *                0 - 3 = Number of turns in Jail
-	 ******************************************************************/
-	public void setInJail(int inJail) {
-		this.inJail = inJail;
-	}
+    /******************************************************************
+     * This method sets the int value saying if the player is in Jail.
+     * -1 = not in jail
+     * 0 - 3 = Number of turns in Jail
+     * @param inJail An int that says if the player is in Jail
+     *               -1 = not in jail
+     *                0 - 3 = Number of turns in Jail
+     ******************************************************************/
+    public void setInJail(int inJail) {
+        this.inJail = inJail;
+    }
 
-	/*****************************************************************
-	 * This method gets a list of all the groups of ownable squares
-	 * this player owns.
-	 * @return groupsOwned An array list of all the groups this
-	 * player owns.
-	 *****************************************************************/
-	public ArrayList<Integer> getGroupsOwned() {
-		return groupsOwned;
-	}
+    /*****************************************************************
+     * This method gets a list of all the groups of ownable squares
+     * this player owns.
+     * @return groupsOwned An array list of all the groups this
+     * player owns.
+     *****************************************************************/
+    public ArrayList<Integer> getGroupsOwned() {
+        return groupsOwned;
+    }
 
-	/******************************************************************
-	 * This method sets the list of groups the player owns.
-	 * @param groupsOwned An array list of groups the player owns.
-	 ******************************************************************/
-	public void setGroupsOwned(ArrayList<Integer> groupsOwned) {
-		this.groupsOwned = groupsOwned;
-	}
+    /******************************************************************
+     * This method sets the list of groups the player owns.
+     * @param groupsOwned An array list of groups the player owns.
+     ******************************************************************/
+    public void setGroupsOwned(ArrayList<Integer> groupsOwned) {
+        this.groupsOwned = groupsOwned;
+    }
 
-	/******************************************************************
+    /******************************************************************
 	 * Checks to make sure player has sufficient funds before
 	 * subtracting amount from wallet. If the player has sufficient
 	 * funds the method subtracts amount from wallet and returns the
@@ -266,7 +266,7 @@ public class Player {
 	 *
 	 * @param property The property to be removed from owned properties
 	 * list.
-	 * @return
+     * @return
 	 *****************************************************************/
 	public OwnableSquare giveProperty(OwnableSquare property) {
 		return propertiesOwned.remove(propertiesOwned.indexOf(property));
@@ -327,22 +327,28 @@ public class Player {
 		wallet += property.getHotelCost() / 2;
 	}
 
-	/******************************************************************
-	 * This method adds a group number to the ArrayList.
-	 *
-	 * @param groupNumber The group number being added
-	 *****************************************************************/
+    /******************************************************************
+     * This method adds a group number to the ArrayList.
+     *
+     * @param groupNumber The group number being added
+     *****************************************************************/
 	public boolean addGroupOwned(int groupNumber){
-		return groupsOwned.add((Integer) groupNumber);
+	    return groupsOwned.add((Integer) groupNumber);
+    }
+
+    /******************************************************************
+     * This method removes a group number from the ArrayList.
+     *
+     * @param groupNumber The group number being removed.
+     * @return
+     *****************************************************************/
+    public boolean removeGroupOwned(int groupNumber){
+        return groupsOwned.remove((Integer) groupNumber);
+    }
+
+	public void recieveCard(Card card) {
 	}
 
-	/******************************************************************
-	 * This method removes a group number from the ArrayList.
-	 *
-	 * @param groupNumber The group number being removed.
-	 * @return
-	 *****************************************************************/
-	public boolean removeGroupOwned(int groupNumber){
-		return groupsOwned.remove((Integer) groupNumber);
+	public void receiveMoney(int amount) {
 	}
 }
