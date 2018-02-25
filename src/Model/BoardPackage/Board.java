@@ -157,5 +157,11 @@ public class Board {
         return squaresList.stream().map(squaresList -> (OwnableSquare) squaresList)
                 .filter(ownableSquare -> ownableSquare.getGROUP_NUMBER() == groupId).collect(Collectors.toList());
     }
+
+    public ArrayList<BoardSquare> getLocationByType(int typeID) {
+
+        return squaresList.stream().filter(boardSquare -> boardSquare.getType() == typeID).collect(Collectors.toCollection(ArrayList<BoardSquare>::new));
+    }
+
 }
 
