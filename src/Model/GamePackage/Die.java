@@ -7,7 +7,8 @@ import java.util.Random;
  a die some methods to return the value of the die.
 
  @author Dylan Kernohan
- @version 2/11/2018
+ @since 2/11/2018
+ @version 2/21/2018
  *****************************************************************/
 public class Die {
 
@@ -23,7 +24,6 @@ public class Die {
     /*****************************************************************
      Set the die value
      @param value
-     @return none
      *****************************************************************/
     public void setValue(int value){
         this.value = value;
@@ -31,7 +31,7 @@ public class Die {
 
     /*****************************************************************
      Get the die value
-     @return value the value of the die
+     @return value The value of the die
      *****************************************************************/
     public int getValue(){
         return value;
@@ -39,7 +39,6 @@ public class Die {
 
     /*****************************************************************
      Generate a random number between 1 - 6 and assign it to the die
-     @return none
      *****************************************************************/
     public void roll() {
         // Generate a random number
