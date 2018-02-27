@@ -5,6 +5,7 @@ import Model.BoardPackage.PropertySquare;
 import Model.CardPackage.Card;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 /**********************************************************************
  * The Player class will keep track of each player's money, properties,
@@ -249,16 +250,6 @@ public class Player {
 		return amountPaid;
 	}
 
-	/******************************************************************
-	 * Mortgages the player's property and adds the mortgage value to
-	 * their wallet.
-	 *
-	 * @param property The property to be mortgaged.
-	 *****************************************************************/
-	public void mortgage(OwnableSquare property) {
-		wallet += property.getMORTGAGE_VAL();
-		property.setMortgaged(true);
-	}
 
 	/******************************************************************
 	 * Removes the property from the player's ArrayList of properties
@@ -347,8 +338,15 @@ public class Player {
     }
 
 	public void recieveCard(Card card) {
+		//TODO: finish body
 	}
 
 	public void receiveMoney(int amount) {
+		//TODO: finish body
+	}
+
+	public ArrayList<OwnableSquare> getOwnableProperties() {
+		//TODO: finish body
+		return null;
 	}
 }

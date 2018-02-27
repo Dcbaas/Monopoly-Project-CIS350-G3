@@ -1,15 +1,10 @@
 package Model.GamePackage;
 
-import Model.BoardPackage.BoardSquare;
-import Model.BoardPackage.OwnableSquare;
+import Model.BoardPackage.*;
 import Model.CardPackage.Card;
 import Model.CardPackage.Deck;
-import Model.BoardPackage.PropertySquare;
-import Model.BoardPackage.Board;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -242,15 +237,10 @@ public class Game {
     }
 
     /**********************************************************************
-     *
+     *  Shuffles the players =to emulate dies rolling fro turns
      *********************************************************************/
     public void setPlayerOrder(){
-        /*
-        TODO:
-            Not sure if this method should handle each player rolling and
-            reordering. Or if Controller/View should handle the rolls and
-            this method just redefine players list?
-         */
+        Collections.shuffle(players);
     }
 
     /**********************************************************************
@@ -260,13 +250,13 @@ public class Game {
      * @param buyer The player trying to buy
      * @return
      *********************************************************************/
-    public boolean buyOwnableSquare(OwnableSquare ownableSquare, Player buyer) {
+    public boolean buyOwnableSquare(OwnableSquare ownableSquare, Player buyer, int  price) {
         // Check is buyer has enough money
         if(buyer.getWallet() >= ownableSquare.getPRICE()) {
-            //TODO: Should this method just be for buying a property that the bank owns? Use a separate method for trading (player to player buying/selling)
             // Another player owns the property
             if (ownableSquare.getOwner() != null) {
                 buyer.recieveProperty(ownableSquare.getOwner().giveProperty(ownableSquare));
+                buyer.pay(price);
             }
             // The bank owns the property
             else {
@@ -299,7 +289,7 @@ public class Game {
             // New position = old position + dieVals - numberOfSquares
             board.setPlayerPosition(player, (player.getPosition() + (dieVal1 + dieVal1)) - 40);
             player.setPosition((player.getPosition() + (dieVal1 + dieVal1)) - 40);
-            // TODO: Handle what happens when the player passes go here
+            player.receiveMoney(200);
         }
         board.setPlayerPosition(player, player.getPosition() + (dieVal1 + dieVal1));
         player.setPosition(player.getPosition() + (dieVal1 + dieVal1));
@@ -322,25 +312,39 @@ public class Game {
         }
     }
 
-    public void mortgageProperty(PropertySquare property) {
-        //TODO: finish body
-        //Display the list of properties the player has.
+    /**********************************************************************
+     * Sets the given property to mortgaged and pays the owner the respective
+     * amount.
+     *
+     * @param property
+     *********************************************************************/
+    public void mortgageProperty(OwnableSquare property) {
+       property.setMortgaged(true);
+       property.getOwner().receiveMoney(property.getMORTGAGE_VAL());
     }
 
-    public void payMortgage(){
-        //TODO: finish body
-    }
+    /**********************************************************************
+     * This methods allows a player to the property mortgage and set the
+     * mortgage property to false and discount the money from the player's
+     * wallet.
+     *
+     * @param propertySquare
+     *********************************************************************/
+    public void payMortgage(PropertySquare propertySquare){
+       propertySquare.setMortgaged(false);
+       propertySquare.getOwner().pay((int)Math.ceil(propertySquare.getMORTGAGE_VAL() * 1.1));
+     }
 
-    public void auctionProperty() {
-        //TODO: finish body
-        // check for highest bidder
-        System.out.println("auction has commenced ");
-        //give property to highest bidder
-    }
 
+    /**********************************************************************
+     * This method will give the current player a card from the given deck
+     *
+     * @param deckType
+     *********************************************************************/
     public void drawCard(Boolean deckType) {
             //Checks for the deckType and gives the player a card from hte specific type of deck
-            currentPlayer.recieveCard((deckType)?chanceDeck.drawCard():comunityChestDeck.drawCard());
+            currentPlayer.recieveCard((deckType)?
+                    chanceDeck.drawCard():comunityChestDeck.drawCard());
     }
 
 
@@ -350,11 +354,10 @@ public class Game {
      *
      * @param cardToUse
      *********************************************************************/
-    public void useCard(Card cardToUse) {
+    public boolean useCard(Card cardToUse) {
 
-        //Retrieve the instructions from the card
+        // Retrieve the instructions from the card
         int[] actions = cardToUse.getActions();
-
 
         //Checks which instructions need to be performed
         if (actions[0] != -1){
@@ -373,17 +376,24 @@ public class Game {
             cardMoveBack(actions[4]);
         }
         if (actions[5] != -1){
-            cardTax(currentPlayer);
+            if (!cardTax(currentPlayer)){
+                return false;
+            }
         }
         if (actions[6] != -1){
             cardPayBank(actions[6]);
         }
         if (actions[7] != -1){
-            cardPayAllPlayers(actions[7]);
+            if (!cardPayAllPlayers(actions[7])){
+                return false;
+            }
         }
         if (actions[8] != -1){
-            cardCollectFromPlayers(actions[8]);
+            if (cardCollectFromPlayers(actions[8])){
+                return false;
+            }
         }
+        return true;
     }
 
     /**********************************************************************
@@ -484,7 +494,10 @@ public class Game {
         board.setPlayerPosition(currentPlayer, closestSquare.getPOSITION());
         currentPlayer.setPosition(closestSquare.getPOSITION());
 
-        //TODO: NOTE:is there more to this method ? do we have to check if the player landed on a typle owned by someone else?
+        if ((board.getLocationType(currentPlayer.getPosition()) == 1 ||  0 || 3)){
+            if (board.getOwnableSquare(currentPlayer.getPosition()).getOwner() != currentPlayer)
+                collectFee(currentPlayer, ); //TODO: finish this logic
+        }
     }
 
     /**********************************************************************
@@ -494,7 +507,7 @@ public class Game {
      *********************************************************************/
     public void cardEscapeFromJail(Player player){
         player.setInJail(-1);
-        //TODO:  NOTE: Do we need to allow the player to roll right away ?
+        //TODO:  NOTE: Do we need to allow the player to roll right away ? YES
     }
 
     /**********************************************************************
@@ -513,44 +526,58 @@ public class Game {
         currentPlayer.setPosition(newPosition);
     }
 
-    public void cardTax(Player player){
+    /**********************************************************************
+     * It collects a tax from a the given player. For every house the player
+     * owns, the player will pay 40$, and for every hotel the player owns,
+     * the player will pa 115$
+     *
+     * @param player
+     *********************************************************************/
+    public boolean cardTax(Player player){
         int amountDue = 0;
-
-       //TODO: finish this method
+        for (PropertySquare propertySquare : player.getOwnableProperties().stream()
+                .filter(property -> property.getType() == 0).map(property -> (PropertySquare) property)
+                .filter(propertySquare -> propertySquare.isHasHotel() || propertySquare.getNumHouses() > 0)
+                .collect(Collectors.toCollection(ArrayList<PropertySquare>::new))) {
+            amountDue += (propertySquare.isHasHotel())? 115: 40;
+        }
+        if (player.getWallet() >= amountDue) {
+            player.pay(amountDue);
+        }else{
+            return false;
+        }
+        return true;
     }
 
     public void cardPayBank(int amount){
         currentPlayer.pay(amount);
     }
 
-    public void cardPayAllPlayers(int amount){
+    public boolean cardPayAllPlayers(int amount){
         //Checks if the player can pay all player
         if (currentPlayer.getWallet()  < amount * (players.size() - 1)){
             players.stream().filter(player -> player != currentPlayer).forEach(player -> {
                 player.receiveMoney(currentPlayer.pay(amount));
             });
+            return true;
         }else {
-            //TODO:  NOTE: talk about this logic (when player can possibly cgo bankrupt
-            /*
-             * Maybe we could send a bankrupted method in here whe we
-             * check if the player is truly bankrupt or can still save
-             * themselves
-             */
+            return false;
         }
     }
 
-    public void cardCollectFromPlayers(int amount){
-        players.stream().filter(player -> currentPlayer != player).forEach(player -> {
-            if(player.getWallet() < amount){
-                currentPlayer.receiveMoney(player.pay(amount));
-            }else{//TODO: NOTE talk about this logic (when player can possibly cgo bankrupt
-            /*
-             * Maybe we could send a bankrupted method in here whe we
-             * check if the player is truly bankrupt or can still save
-             * themselves
-             */
+    public boolean cardCollectFromPlayers(int amount){
+        for (Player player : players) {
+            if (currentPlayer != player) {
+                if (player.getWallet() < amount) {
+                    currentPlayer.receiveMoney(player.pay(amount));
+                }
+                else {
+                    return false;
+                }
             }
-        });
+        }
+
+        return true;
     }
 
 
