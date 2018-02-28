@@ -20,7 +20,7 @@ public class DeckTest {
     Deck chanceDeck, communityDeck;
 
     /**********************************************************************************
-     * This restarts the decks before every test
+     * This resets the decks before every test
      ***********************************************************************************/
     @Before
     void setUp(){
@@ -29,7 +29,7 @@ public class DeckTest {
     }
 
     /**********************************************************************************
-     * Test the functionality of the Draw card method
+     * Test the functionality of the drawCard method
      ***********************************************************************************/
     @Test
     void drawCard() {
@@ -47,7 +47,7 @@ public class DeckTest {
 
 
     /**********************************************************************************
-     * Tests the fucntionality of the returnCard method
+     * Tests the functionality of the returnCard method
      ***********************************************************************************/
     @Test
     void returnCard() {
@@ -65,7 +65,7 @@ public class DeckTest {
 
 
     /**********************************************************************************
-     * Test the functionality of the sheufle deck method
+     * Test the functionality of the shuffleDeck method
      ***********************************************************************************/
     @Test
     void shufleDeck() {
@@ -89,7 +89,7 @@ public class DeckTest {
     }
 
     /**********************************************************************************
-     * test the fucntionality of the set Deck method
+     * Test the fucntionality of the setDeck method
      ***********************************************************************************/
     @Test
     void setDeck() {
