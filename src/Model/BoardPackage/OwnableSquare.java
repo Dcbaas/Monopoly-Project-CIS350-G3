@@ -10,7 +10,7 @@ import Model.GamePackage.Player;
  * @version 2/18/2018
  *
  ********************************************************************/
-public class OwnableSquare extends BoardSquare{
+public abstract class OwnableSquare extends BoardSquare{
 
     /**An int to hold the PRICE of the property*/
     protected final int PRICE;
@@ -26,6 +26,7 @@ public class OwnableSquare extends BoardSquare{
 
     /**An int to keep track of which group this ownableSquare is in*/
     protected final int GROUP_NUMBER;
+
 
     /*****************************************************************
      * The default constructor initializes all of the variables.
@@ -112,4 +113,5 @@ public class OwnableSquare extends BoardSquare{
     public int getGROUP_NUMBER() {
         return GROUP_NUMBER;
     }
+
 }

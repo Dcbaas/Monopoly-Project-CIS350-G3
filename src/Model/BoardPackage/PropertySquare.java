@@ -155,7 +155,6 @@ public class PropertySquare extends OwnableSquare{
      * if there is a hotel on the property or how many houses are on
      * the property.
      *****************************************************************/
-    //Todo: is this comment block right with regards to the return statements
     public int getCurrentRent(){
         if(hasHotel)
             return HOTEL_RENT;

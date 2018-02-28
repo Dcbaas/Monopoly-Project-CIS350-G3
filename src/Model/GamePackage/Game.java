@@ -1,18 +1,23 @@
 package Model.GamePackage;
 
-import Model.BoardPackage.*;
+import Model.BoardPackage.Board;
+import Model.BoardPackage.BoardSquare;
+import Model.BoardPackage.OwnableSquare;
+import Model.BoardPackage.PropertySquare;
 import Model.CardPackage.Card;
 import Model.CardPackage.Deck;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**********************************************************************
  * The Game class is responsible for almost all of the game logic.
  * Any action that goes on in the game is handled here.
  *
  * @author Dylan Kernohan
+ * @author Santiago Quiroga
  * @version 2/19/2018
  *********************************************************************/
 public class Game {
@@ -65,7 +70,7 @@ public class Game {
     // Getters and Setters for Game variables. Mainly used so the Controller can get info from game elements ===========
     /**********************************************************************
      * This method gets the Bank object
-     * @return
+     * @return Bank
      *********************************************************************/
     public Bank getBank() {
         return bank;
@@ -73,7 +78,7 @@ public class Game {
 
     /**********************************************************************
      * This method sets the Bank object.
-     * @param bank
+     * @param bank the bank inside the game class
      *********************************************************************/
     public void setBank(Bank bank) {
         this.bank = bank;
@@ -199,7 +204,7 @@ public class Game {
     /**********************************************************************
      * Rolls both die
      *********************************************************************/
-    public void rollDie() {
+    public void rollDies() {
         dieOne.roll();
         dieTwo.roll();
     }
@@ -308,7 +313,7 @@ public class Game {
             buyer.recieveProperty(ownableSquare.getOwner().giveProperty(ownableSquare));
         }
         else{
-            // TODO: Call a function that handles when a buyer only has partial (if any) of the money during a trade
+
         }
     }
 
@@ -403,8 +408,9 @@ public class Game {
      * @param unfortunateSoul
      * @param fortunateSoul
      * @param fee
+     * @return boolean
      *********************************************************************/
-    public void collectFee(Player unfortunateSoul, Player fortunateSoul,int fee) {
+    public boolean collectFee(Player unfortunateSoul, Player fortunateSoul,int fee) {
         //Check if player can pay fee
         if (unfortunateSoul.getWallet() - fee >= 0 && fortunateSoul != null) {
             //collect the given fee from player / bank
@@ -415,8 +421,10 @@ public class Game {
             unfortunateSoul.pay(fee);
         }
         else{
-            System.out.println("should allow players to make deals or go bankrupt");// TODO: implement this logic
+            return false;
         }
+
+        return true;
     }
 
     // Card Actions ====================================================================================================
@@ -493,11 +501,6 @@ public class Game {
         //Moves the player to the nearest specific location.
         board.setPlayerPosition(currentPlayer, closestSquare.getPOSITION());
         currentPlayer.setPosition(closestSquare.getPOSITION());
-
-        if ((board.getLocationType(currentPlayer.getPosition()) == 1 ||  0 || 3)){
-            if (board.getOwnableSquare(currentPlayer.getPosition()).getOwner() != currentPlayer)
-                collectFee(currentPlayer, ); //TODO: finish this logic
-        }
     }
 
     /**********************************************************************
@@ -507,7 +510,6 @@ public class Game {
      *********************************************************************/
     public void cardEscapeFromJail(Player player){
         player.setInJail(-1);
-        //TODO:  NOTE: Do we need to allow the player to roll right away ? YES
     }
 
     /**********************************************************************
