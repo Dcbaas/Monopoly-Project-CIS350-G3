@@ -5,7 +5,6 @@ import Model.BoardPackage.PropertySquare;
 import Model.CardPackage.Card;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 /**********************************************************************
  * The Player class will keep track of each player's money, properties,
@@ -65,11 +64,11 @@ public class Player {
 
 		isBankrupt = false;
 
-		propertiesOwned = new ArrayList<OwnableSquare>();
-		cardsHeld = new ArrayList<Card>();
+		propertiesOwned = new ArrayList<>();
+		cardsHeld = new ArrayList<>();
 
 		inJail = -1;
-		groupsOwned = new ArrayList<Integer>();
+		groupsOwned = new ArrayList<>();
 	}
 
 	/******************************************************************
@@ -123,7 +122,7 @@ public class Player {
 	 *
 	 * @param wallet Sets the int wallet.
 	 *****************************************************************/
-	public void setWallet(int wallet) {
+	void setWallet(int wallet) {
 		this.wallet = wallet;
 	}
 
@@ -202,7 +201,7 @@ public class Player {
      *               -1 = not in jail
      *                0 - 3 = Number of turns in Jail
      ******************************************************************/
-    public void setInJail(int inJail) {
+	public void setInJail(int inJail) {
         this.inJail = inJail;
     }
 
@@ -236,7 +235,7 @@ public class Player {
 	 * @return amountPaid The amount of money that was paid by player.
 	 *****************************************************************/
 	public int pay(int amount) {
-		int amountPaid = 0;
+		int amountPaid;
 
 		if(wallet >= amount) {
 			wallet -= amount;
@@ -257,7 +256,7 @@ public class Player {
 	 *
 	 * @param property The property to be removed from owned properties
 	 * list.
-     * @return
+     * @return the property the player is givig away.
 	 *****************************************************************/
 	public OwnableSquare giveProperty(OwnableSquare property) {
 		return propertiesOwned.remove(propertiesOwned.indexOf(property));
@@ -323,30 +322,44 @@ public class Player {
      *
      * @param groupNumber The group number being added
      *****************************************************************/
-	public boolean addGroupOwned(int groupNumber){
-	    return groupsOwned.add((Integer) groupNumber);
+	 public boolean addGroupOwned(int groupNumber){
+	    return groupsOwned.add(groupNumber);
     }
 
     /******************************************************************
      * This method removes a group number from the ArrayList.
      *
      * @param groupNumber The group number being removed.
-     * @return
+     * @return weather the action was succesfull or not.
      *****************************************************************/
     public boolean removeGroupOwned(int groupNumber){
         return groupsOwned.remove((Integer) groupNumber);
     }
 
+
+	/******************************************************************
+	 * Allows a player to receive a card from an external source, and
+	 * adds the card to the Deck of cards held
+	 *
+	 * @param card the card given to the player
+	 *****************************************************************/
 	public void recieveCard(Card card) {
-		//TODO: finish body
+		cardsHeld.add(card);
 	}
 
+	/******************************************************************
+	 * Allows the player to receive money, and adds it to the wallet.
+	 * @param amount the amount of money the player receives
+	 *****************************************************************/
 	public void receiveMoney(int amount) {
-		//TODO: finish body
+		wallet += amount;
 	}
 
+	/******************************************************************
+	 * returns all Ownable squares from the player.
+	 * @return the list of Ownable squares.
+	 *****************************************************************/
 	public ArrayList<OwnableSquare> getOwnableProperties() {
-		//TODO: finish body
-		return null;
+		return propertiesOwned;
 	}
 }
