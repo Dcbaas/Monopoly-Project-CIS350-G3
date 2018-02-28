@@ -86,7 +86,7 @@ public class Game {
 
     /**********************************************************************
      * This method gets the arraylist of players playing the game
-     * @return
+     * @return  the ArrayList of players
      *********************************************************************/
     public ArrayList<Player> getPlayers() {
         return players;
@@ -94,7 +94,7 @@ public class Game {
 
     /**********************************************************************
      * This method sets the arraylist of players playing the game
-     * @param players
+     * @param players the new ArrayList of player in their respective order
      *********************************************************************/
     public void setPlayers(ArrayList<Player> players) {
         this.players = players;
@@ -102,7 +102,7 @@ public class Game {
 
     /**********************************************************************
      * This method gets Die 1 for the Game
-     * @return
+     * @return the dieOne Object
      *********************************************************************/
     public Die getDieOne() {
         return dieOne;
@@ -110,7 +110,7 @@ public class Game {
 
     /**********************************************************************
      * This method sets Die 1 for the Game
-     * @param dieOne
+     * @param dieOne the new dieOne Object
      *********************************************************************/
     public void setDieOne(Die dieOne) {
         this.dieOne = dieOne;
@@ -118,7 +118,7 @@ public class Game {
 
     /**********************************************************************
      * This method gets Die 2 for the Game
-     * @return
+     * @return The dieTwo Object
      *********************************************************************/
     public Die getDieTwo() {
         return dieTwo;
@@ -126,7 +126,7 @@ public class Game {
 
     /**********************************************************************
      * This method sets Die 2 for the Game
-     * @param dieTwo
+     * @param dieTwo the new dieTwo Object
      *********************************************************************/
     public void setDieTwo(Die dieTwo) {
         this.dieTwo = dieTwo;
@@ -134,7 +134,7 @@ public class Game {
 
     /**********************************************************************
      * This method gets the Game board
-     * @return
+     * @return the Bard Object
      *********************************************************************/
     public Board getBoard() {
         return board;
@@ -142,7 +142,7 @@ public class Game {
 
     /**********************************************************************
      * This method sets the Game board
-     * @param board
+     * @param board the new Board Object
      *********************************************************************/
     public void setBoard(Board board) {
         this.board = board;
@@ -150,7 +150,7 @@ public class Game {
 
     /**********************************************************************
      * This method gets Game's the community chest deck
-     * @return
+     * @return the comunity chest Deck Object
      *********************************************************************/
     public Deck getComunityChestDeck() {
         return comunityChestDeck;
@@ -158,7 +158,7 @@ public class Game {
 
     /**********************************************************************
      * This method sets the Game's community chest deck
-     * @param comunityChestDeck
+     * @param comunityChestDeck the new community chest Deck Object.
      *********************************************************************/
     public void setComunityChestDeck(Deck comunityChestDeck) {
         this.comunityChestDeck = comunityChestDeck;
@@ -166,7 +166,7 @@ public class Game {
 
     /**********************************************************************
      * This method gets the Game's chance deck
-     * @return
+     * @return the chance Deck Object
      *********************************************************************/
     public Deck getChanceDeck() {
         return chanceDeck;
@@ -174,7 +174,7 @@ public class Game {
 
     /**********************************************************************
      * This method sets the Game's chance deck
-     * @param chanceDeck
+     * @param chanceDeck the new cheance Deck Object
      *********************************************************************/
     public void setChanceDeck(Deck chanceDeck) {
         this.chanceDeck = chanceDeck;
@@ -183,7 +183,7 @@ public class Game {
     /**********************************************************************
      * This method gets the Game's current player
      * (The player whos turn it is)
-     * @return
+     * @return The current Player
      *********************************************************************/
     public Player getCurrentPlayer() {
         return currentPlayer;
@@ -192,7 +192,7 @@ public class Game {
     /**********************************************************************
      * This method sets the Game's current player
      * (The player whos turn it is)
-     * @param currentPlayer
+     * @param currentPlayer the new current Player
      *********************************************************************/
     public void setCurrentPlayer(Player currentPlayer) {
         this.currentPlayer = currentPlayer;
@@ -253,7 +253,7 @@ public class Game {
      * has enough money. False if they do not.
      * @param ownableSquare The ownable square the player wants to buy
      * @param buyer The player trying to buy
-     * @return
+     * @return wetherthe action was able to be completed succesfully or not
      *********************************************************************/
     public boolean buyOwnableSquare(OwnableSquare ownableSquare, Player buyer, int  price) {
         // Check is buyer has enough money
@@ -296,6 +296,8 @@ public class Game {
             player.setPosition((player.getPosition() + (dieVal1 + dieVal1)) - 40);
             player.receiveMoney(200);
         }
+
+        //Sets the player position
         board.setPlayerPosition(player, player.getPosition() + (dieVal1 + dieVal1));
         player.setPosition(player.getPosition() + (dieVal1 + dieVal1));
 
@@ -305,23 +307,25 @@ public class Game {
      * One player sells one of their ownableSquares to another player
      * @param ownableSquare The ownable square being sold
      * @param buyer The player buying the ownable square
+     * @return whether the action was able to be completed )
      *********************************************************************/
-    public void sellOwnableSquare(OwnableSquare ownableSquare, Player buyer) {
+    public boolean sellOwnableSquare(OwnableSquare ownableSquare, Player buyer) {
         // Check if buyer paid full amount
         if( buyer.pay(ownableSquare.getPRICE()) == ownableSquare.getPRICE()){
             // Buyer receives ownableSquare, Owner gives it.
             buyer.recieveProperty(ownableSquare.getOwner().giveProperty(ownableSquare));
         }
         else{
-
+            return false;
         }
+        return true;
     }
 
     /**********************************************************************
      * Sets the given property to mortgaged and pays the owner the respective
      * amount.
      *
-     * @param property
+     * @param property the property that is about to be mortgaged
      *********************************************************************/
     public void mortgageProperty(OwnableSquare property) {
        property.setMortgaged(true);
@@ -333,7 +337,7 @@ public class Game {
      * mortgage property to false and discount the money from the player's
      * wallet.
      *
-     * @param propertySquare
+     * @param propertySquare the property that the mortgage is being lifted.
      *********************************************************************/
     public void payMortgage(PropertySquare propertySquare){
        propertySquare.setMortgaged(false);
@@ -343,8 +347,9 @@ public class Game {
 
     /**********************************************************************
      * This method will give the current player a card from the given deck
-     *
-     * @param deckType
+     * true = chance
+     * false = community
+     * @param deckType true or false acording to the decktype
      *********************************************************************/
     public void drawCard(Boolean deckType) {
             //Checks for the deckType and gives the player a card from hte specific type of deck
@@ -357,9 +362,10 @@ public class Game {
      * This method checks for the list of actions that the card has and
      * performs the necessary actions.
      *
-     * @param cardToUse
+     * @param cardToUse the card that is going to be used
      *********************************************************************/
     public boolean useCard(Card cardToUse) {
+        boolean actionSuccess = true;
 
         // Retrieve the instructions from the card
         int[] actions = cardToUse.getActions();
@@ -380,35 +386,29 @@ public class Game {
         if (actions[4] != -1){
             cardMoveBack(actions[4]);
         }
-        if (actions[5] != -1){
-            if (!cardTax(currentPlayer)){
-                return false;
-            }
+        if (actions[5] != -1) {
+            actionSuccess = !(actionSuccess && !cardTax(currentPlayer)) && actionSuccess;
         }
         if (actions[6] != -1){
-            cardPayBank(actions[6]);
+            actionSuccess = !(actionSuccess && !cardPayBank(actions[6])) && actionSuccess;
         }
         if (actions[7] != -1){
-            if (!cardPayAllPlayers(actions[7])){
-                return false;
-            }
+            actionSuccess = !(actionSuccess && !cardPayAllPlayers(actions[7])) && actionSuccess;
         }
         if (actions[8] != -1){
-            if (cardCollectFromPlayers(actions[8])){
-                return false;
-            }
+            actionSuccess = !(actionSuccess && !cardCollectFromPlayers(actions[8])) && actionSuccess;
         }
-        return true;
+        return actionSuccess;
     }
 
     /**********************************************************************
      * This method collects a specific amount of money from a specific player
      * and pays another player.
      *
-     * @param unfortunateSoul
-     * @param fortunateSoul
-     * @param fee
-     * @return boolean
+     * @param unfortunateSoul the player that has to pay the fee
+     * @param fortunateSoul the player that is collecting the fee
+     * @param fee the amount to be paid
+     * @return boolean whether the action was fully proceed
      *********************************************************************/
     public boolean collectFee(Player unfortunateSoul, Player fortunateSoul,int fee) {
         //Check if player can pay fee
@@ -433,9 +433,9 @@ public class Game {
     /**********************************************************************
      * Pays a player a specific amount of money.
      *
-     * @param amount
+     * @param amount the amount of money the player will collect
      *********************************************************************/
-    public void cardCollect(int amount){
+    private void cardCollect(int amount){
         currentPlayer.receiveMoney(amount);
     }
 
@@ -443,9 +443,9 @@ public class Game {
     /**********************************************************************
      * Moves a player to the given position
      *
-     * @param position
+     * @param position the position the player will be moved to
      *********************************************************************/
-    public void cardMovePosition(int position){
+    private void cardMovePosition(int position){
         board.setPlayerPosition(currentPlayer,position);
         currentPlayer.setPosition(position);
     }
@@ -454,9 +454,10 @@ public class Game {
      * Moves a player to the nearest position of the specific BoardSquare
      * type.
      *
-     * @param typeID
+     * @param typeID the type of the BoardSquare that the player has to be
+     *               moved to
      *********************************************************************/
-    public void cardMoveNearest(int typeID){
+    private void cardMoveNearest(int typeID){
         //Splits the board into two halves.
         int midPoint = board.getSquaresList().size() / 2;
 
@@ -506,18 +507,18 @@ public class Game {
     /**********************************************************************
      * Sets a player inJail status to -1, so the player can scape jail
      *
-     * @param player
+     * @param player the player that is scaping from jail
      *********************************************************************/
-    public void cardEscapeFromJail(Player player){
+    private void cardEscapeFromJail(Player player){
         player.setInJail(-1);
     }
 
     /**********************************************************************
      * Moves a player back numSquares
      *
-     * @param numSquares
+     * @param numSquares the amount of squares the player is moving back
      *********************************************************************/
-    public void cardMoveBack(int numSquares){
+    private void cardMoveBack(int numSquares){
         //Checks if the number of steps that the player has to move back are beyond th Go square
         int newPosition = (currentPlayer.getPosition() - numSquares > 0)?
                 currentPlayer.getPosition() - numSquares:
@@ -533,50 +534,79 @@ public class Game {
      * owns, the player will pay 40$, and for every hotel the player owns,
      * the player will pa 115$
      *
-     * @param player
+     * @param player the player that is being taxed.
      *********************************************************************/
-    public boolean cardTax(Player player){
+    private boolean cardTax(Player player){
         int amountDue = 0;
+
+        //goes through all properties that have a house or a hotel and calculates the amount due
         for (PropertySquare propertySquare : player.getOwnableProperties().stream()
                 .filter(property -> property.getType() == 0).map(property -> (PropertySquare) property)
                 .filter(propertySquare -> propertySquare.isHasHotel() || propertySquare.getNumHouses() > 0)
                 .collect(Collectors.toCollection(ArrayList<PropertySquare>::new))) {
             amountDue += (propertySquare.isHasHotel())? 115: 40;
         }
+
+        //Checks if the player will be able to pay the fee
         if (player.getWallet() >= amountDue) {
             player.pay(amountDue);
         }else{
             return false;
         }
+
         return true;
     }
 
-    public void cardPayBank(int amount){
-        currentPlayer.pay(amount);
+    /**********************************************************************
+     * This actions collect a specific amount of money fro the player
+     * if the player cannot pay the full amount then the method will return
+     * false
+     * @param amount The amount of money tha player will have to pay.
+     * @return whether the player was able to pay the bank or not.
+     *********************************************************************/
+    private boolean cardPayBank(int amount){
+        //Checks if the player can pay the amount due.
+        if (currentPlayer.getWallet() >= amount ) {
+            currentPlayer.pay(amount);
+            return true;
+        }
+
+        return false;
     }
 
-    public boolean cardPayAllPlayers(int amount){
+    /**********************************************************************
+     * This actions enforces that a player pays every palyer an specific
+     * amount of money. If the player doesn't have the money to pay every player,
+     * then the method will return false.
+     * @param amount the amount the palyer has to pay each player
+     * @return whether the action was able to be completed or not
+     *********************************************************************/
+    private boolean cardPayAllPlayers(int amount){
         //Checks if the player can pay all player
         if (currentPlayer.getWallet()  < amount * (players.size() - 1)){
-            players.stream().filter(player -> player != currentPlayer).forEach(player -> {
-                player.receiveMoney(currentPlayer.pay(amount));
-            });
+            players.stream().filter(player -> player != currentPlayer).forEach(player ->
+                    player.receiveMoney(currentPlayer.pay(amount)));
             return true;
         }else {
             return false;
         }
     }
 
-    public boolean cardCollectFromPlayers(int amount){
-        for (Player player : players) {
-            if (currentPlayer != player) {
-                if (player.getWallet() < amount) {
+    /**********************************************************************
+     * This actions will collect the given amount from each player, if a player
+     * cannot pay the specific amount the method will return false.
+     * @param amount the amount each player has to pay the current player
+     * @return whether the actions was able to be completed
+     *********************************************************************/
+    private boolean cardCollectFromPlayers(int amount){
+        //Goes through the list of other players
+        for (Player player : players.stream().filter(player -> player != currentPlayer).collect(Collectors.toCollection(ArrayList<Player>::new)) ) {
+                //checks if the given player will be able to pay the given amount.
+                if (player.getWallet() >= amount) {
                     currentPlayer.receiveMoney(player.pay(amount));
-                }
-                else {
+                } else {
                     return false;
                 }
-            }
         }
 
         return true;
