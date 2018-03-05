@@ -204,7 +204,7 @@ public class Game {
     /**********************************************************************
      * Rolls both die
      *********************************************************************/
-    public void rollDies() {
+    public void rollDice() {
         dieOne.roll();
         dieTwo.roll();
     }
@@ -363,6 +363,7 @@ public class Game {
      * performs the necessary actions.
      *
      * @param cardToUse the card that is going to be used
+     * @return true if action was success, false if it was not.
      *********************************************************************/
     public boolean useCard(Card cardToUse) {
         boolean actionSuccess = true;
@@ -505,9 +506,9 @@ public class Game {
     }
 
     /**********************************************************************
-     * Sets a player inJail status to -1, so the player can scape jail
+     * Sets a player inJail status to -1, so the player can escape jail
      *
-     * @param player the player that is scaping from jail
+     * @param player the player that is escaping from jail
      *********************************************************************/
     private void cardEscapeFromJail(Player player){
         player.setInJail(-1);
