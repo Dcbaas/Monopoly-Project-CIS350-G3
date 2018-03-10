@@ -4,8 +4,7 @@ package Model.GamePackage;
 
 import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.Assert.*;
 
 /*****************************************************************
  JUnit tests for the Die Class
@@ -18,7 +17,7 @@ public class DieTest {
     Die die = new Die();
 
     /*****************************************************************
-     Test the setValue method
+     * Test the setValue method
      *****************************************************************/
     @Test
     public void setValueTest(){
@@ -27,7 +26,7 @@ public class DieTest {
     }
 
     /*****************************************************************
-     Tests the getValue method
+     * Tests the getValue method
      *****************************************************************/
     @Test
     public void getValueTest(){
@@ -37,7 +36,7 @@ public class DieTest {
     }
 
     /*****************************************************************
-     Tests the roll method
+     * Tests the roll method
      *****************************************************************/
     @Test
     public void rollTest(){
