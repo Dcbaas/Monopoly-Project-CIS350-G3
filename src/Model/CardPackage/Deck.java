@@ -15,7 +15,7 @@ import java.util.stream.Stream;
  *********************************************************************************/
 public class Deck {
     /** A list with all the cards */
-    ArrayList<Card> deck;
+    private ArrayList<Card> deck;
 
     /**********************************************************************************
      *  This constructor reads a text file and populates the deck with the specific set
@@ -45,7 +45,7 @@ public class Deck {
     }
 
     /**********************************************************************************
-     * Returns the card ontop of the deck
+     * Returns the card on top of the deck
      *
      * @return
      **********************************************************************************/
