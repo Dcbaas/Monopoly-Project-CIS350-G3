@@ -11,29 +11,29 @@ package Model.BoardPackage;
 public class GoSquare extends BoardSquare{
 
     /**A integer to money paid out per cycle of the board*/
-    private final int payoutAmount;
+    private final int PAYOUT_AMOUNT;
 
     /*****************************************************************
      * The constructor creates a GoSquare allowing for the payout
      * amount to be set on initialization.
      * @param name The name of the GoSquare (from BoardSquare)
-     * @param payoutAmount the amount of money paid out per
+     * @param PAYYOUT_AMOUNT the amount of money paid out per
      *                     board cycle.
      ****************************************************************/
-    public GoSquare(String name, int payoutAmount) {
+    public GoSquare(String name, int PAYOUT_AMOUNT) {
         super(name,0);
 
         type = 5;
-        this.payoutAmount = payoutAmount;
+        this.PAYOUT_AMOUNT = PAYOUT_AMOUNT;
     }
 
     /*****************************************************************
-     * The getPayoutAmount method returns how much money is paid out
+     * The getPAYYOUT_AMOUNT method returns how much money is paid out
      * per board cycle.
-     * @return payoutAmount the amount of money paid out per board
+     * @return PAYYOUT_AMOUNT the amount of money paid out per board
      * cycle.
      ****************************************************************/
-    public int getPayoutAmount() {
-        return payoutAmount;
+    public int getPAYOUT_AMOUNT() {
+        return PAYOUT_AMOUNT;
     }
 }
