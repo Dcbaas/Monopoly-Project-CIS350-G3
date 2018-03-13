@@ -543,7 +543,7 @@ public class Game {
         //goes through all properties that have a house or a hotel and calculates the amount due
         for (PropertySquare propertySquare : player.getOwnableProperties().stream()
                 .filter(property -> property.getType() == 0).map(property -> (PropertySquare) property)
-                .filter(propertySquare -> propertySquare.isHasHotel() || propertySquare.getNumHouses() > 0)
+                .filter(lambdaPropertySquare -> lambdaPropertySquare.isHasHotel() || lambdaPropertySquare.getNumHouses() > 0)
                 .collect(Collectors.toCollection(ArrayList<PropertySquare>::new))) {
             amountDue += (propertySquare.isHasHotel())? 115: 40;
         }
@@ -601,7 +601,7 @@ public class Game {
      *********************************************************************/
     private boolean cardCollectFromPlayers(int amount){
         //Goes through the list of other players
-        for (Player player : players.stream().filter(player -> player != currentPlayer).collect(Collectors.toCollection(ArrayList<Player>::new)) ) {
+        for (Player player : players.stream().filter(lambdaPlayer -> lambdaPlayer != currentPlayer).collect(Collectors.toCollection(ArrayList<Player>::new)) ) {
                 //checks if the given player will be able to pay the given amount.
                 if (player.getWallet() >= amount) {
                     currentPlayer.receiveMoney(player.pay(amount));
