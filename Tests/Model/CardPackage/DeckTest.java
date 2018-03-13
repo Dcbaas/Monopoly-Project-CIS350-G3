@@ -24,8 +24,8 @@ public class DeckTest {
      ***********************************************************************************/
     @Before
     public void setUp(){
-        chanceDeck = new Deck("C:\\Users\\David\\IdeaProjects\\MonopolyPrj\\res\\chance.txt",true);
-        communityDeck = new Deck("C:\\Users\\David\\IdeaProjects\\MonopolyPrj\\res\\community.txt",false);
+        chanceDeck = new Deck("res/chance.txt",true);
+        communityDeck = new Deck("res/community.txt",false);
     }
 
     /**********************************************************************************
