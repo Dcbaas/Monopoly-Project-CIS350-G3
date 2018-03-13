@@ -24,8 +24,8 @@ public class DeckTest {
      ***********************************************************************************/
     @Before
     public void setUp(){
-        chanceDeck = new Deck(System.getenv("CHANCE_FILE"),true);
-        communityDeck = new Deck(System.getenv("COMMUNITY_FILE"),false);
+        chanceDeck = new Deck("C:\\Users\\David\\IdeaProjects\\MonopolyPrj\\res\\chance.txt",true);
+        communityDeck = new Deck("C:\\Users\\David\\IdeaProjects\\MonopolyPrj\\res\\community.txt",false);
     }
 
     /**********************************************************************************
