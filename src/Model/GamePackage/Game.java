@@ -613,5 +613,19 @@ public class Game {
         return true;
     }
 
+    /**********************************************************************
+     * This method checks if the sqaure passed in is ownable
+     *
+     * @param boardSquare The square being checked
+     *********************************************************************/
+    private OwnableSquare checkIfOwnable(BoardSquare boardSquare){
+        if(board.getOwnableSquares().contains(boardSquare)){
+            return (OwnableSquare) boardSquare;
+        }
+        else{
+            return null;
+        }
+    }
+
 
 }

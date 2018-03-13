@@ -46,7 +46,7 @@ public class GameTextController {
     public void commands(String command){
 
         //TODO: Add validation to prevent player from rolling twice per turn. Not sure where this will go yet
-        if(command.equals("roll")){
+        if(command.equalsIgnoreCase("roll")){
             game.rollDice();
             int diceSum = game.getDieOne().getValue() + game.getDieTwo().getValue();
             game.movePlayer(game.getCurrentPlayer(), game.getDieOne().getValue(), game.getDieTwo().getValue());
@@ -68,6 +68,10 @@ public class GameTextController {
             }
 
             view.printLocation(diceSum,locationName, locationOwner);
+        }
+
+        if(command.equalsIgnoreCase("buy")){
+
         }
 
         return;
