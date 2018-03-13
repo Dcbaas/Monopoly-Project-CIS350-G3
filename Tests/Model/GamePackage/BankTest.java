@@ -1,6 +1,7 @@
 package Model.GamePackage;
 
 import Model.BoardPackage.OwnableSquare;
+import Model.BoardPackage.PropertySquare;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -15,8 +16,9 @@ import static org.junit.Assert.*;
  *****************************************************************/
 public class BankTest {
 
-    OwnableSquare ownableSquare = new OwnableSquare("GVSU", 3, 100, 200, 3);
-    ArrayList<OwnableSquare> properties = new ArrayList<OwnableSquare>(){{add(ownableSquare);}};
+    PropertySquare propertySquare = new PropertySquare("GVSU", 5, 200, 400,
+            100, 200, 300, 400, 500,
+            600, 2, 100, 500, 2);    ArrayList<OwnableSquare> properties = new ArrayList<OwnableSquare>(){{add(propertySquare);}};
     Bank bank = new Bank(properties);
 
     /*****************************************************************
@@ -33,7 +35,7 @@ public class BankTest {
      *****************************************************************/
     @Test
     public void receivePropertyTest() {
-        bank.receiveProperty(ownableSquare);
+        bank.receiveProperty(propertySquare);
         assertTrue(bank.getPropertiesOwned().get(0).getName().equals("GVSU"));
     }
 
@@ -119,7 +121,7 @@ public class BankTest {
      *****************************************************************/
     @Test
     public void getPropertiesOwnedTest() {
-        assertEquals(ownableSquare, bank.getPropertiesOwned().get(0));
+        assertEquals(propertySquare, bank.getPropertiesOwned().get(0));
     }
 
     /*****************************************************************
@@ -127,10 +129,10 @@ public class BankTest {
      *****************************************************************/
     @Test
     public void setPropertiesOwnedTest() {
-        ArrayList<OwnableSquare> properties = new ArrayList<OwnableSquare>(){{add(ownableSquare);add(ownableSquare);}};
+        ArrayList<OwnableSquare> properties = new ArrayList<OwnableSquare>(){{add(propertySquare);add(propertySquare);}};
         bank.setPropertiesOwned(properties);
-        assertEquals(ownableSquare, bank.getPropertiesOwned().get(0));
-        assertEquals(ownableSquare, bank.getPropertiesOwned().get(1));
+        assertEquals(propertySquare, bank.getPropertiesOwned().get(0));
+        assertEquals(propertySquare, bank.getPropertiesOwned().get(1));
     }
 
     /*****************************************************************
@@ -146,9 +148,9 @@ public class BankTest {
      *****************************************************************/
     @Test
     public void setPropertiesMortgagedTest() {
-        ArrayList<OwnableSquare> properties = new ArrayList<OwnableSquare>(){{add(ownableSquare);add(ownableSquare);}};
+        ArrayList<OwnableSquare> properties = new ArrayList<OwnableSquare>(){{add(propertySquare);add(propertySquare);}};
         bank.setPropertiesMortgaged(properties);
-        assertEquals(ownableSquare, bank.getPropertiesMortgaged().get(0));
-        assertEquals(ownableSquare, bank.getPropertiesMortgaged().get(1));
+        assertEquals(propertySquare, bank.getPropertiesMortgaged().get(0));
+        assertEquals(propertySquare, bank.getPropertiesMortgaged().get(1));
     }
 }

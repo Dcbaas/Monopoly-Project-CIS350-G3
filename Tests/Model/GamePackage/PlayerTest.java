@@ -84,9 +84,11 @@ public class PlayerTest {
      *****************************************************************/
     @Test
     public void setPropertiesOwnedTest() {
-        OwnableSquare square = new OwnableSquare("GVSU", 20, 5000, 100, 1);
+        PropertySquare propertySquare = new PropertySquare("GVSU", 5, 200, 400,
+                100, 200, 300, 400, 500,
+                600, 2, 100, 500, 2);
         ArrayList<OwnableSquare> tmp = new ArrayList<>();
-        tmp.add(square);
+        tmp.add(propertySquare);
         player.setPropertiesOwned(tmp);
         assertEquals("GVSU", tmp.get(0).getName());
     }
@@ -189,29 +191,16 @@ public class PlayerTest {
     }
 
     /*****************************************************************
-     * Test the mortgage method
-     *****************************************************************/
-    @Test
-    public void mortgageTest() {
-        OwnableSquare square = new OwnableSquare("GVSU", 20, 5000, 100, 1);
-        player.setWallet(0);
-        assertFalse("Square should not be mortaged yet", square.isMortgaged());
-        player.mortgage(square);
-        assertTrue("Square shouldbe mortgaged", square.isMortgaged());
-        assertEquals("Player should have 100 in wallet", 100, player.getWallet());
-
-    }
-
-    /*****************************************************************
      * Test the giveProperty method
      *****************************************************************/
     @Test
     public void givePropertyTest() {
-        OwnableSquare square = new OwnableSquare("GVSU", 20, 5000, 100, 1);
-        ArrayList<OwnableSquare> tmp = new ArrayList<>();
-        tmp.add(square);
+        PropertySquare propertySquare = new PropertySquare("GVSU", 5, 200, 400,
+                100, 200, 300, 400, 500,
+                600, 2, 100, 500, 2);        ArrayList<OwnableSquare> tmp = new ArrayList<>();
+        tmp.add(propertySquare);
         player.setPropertiesOwned(tmp);
-        player.giveProperty(square);
+        player.giveProperty(propertySquare);
         assertTrue("PropertiesOwned should be empty", player.getPropertiesOwned().size() == 0);
     }
 
@@ -220,9 +209,10 @@ public class PlayerTest {
      *****************************************************************/
     @Test
     public void recievePropertyTest() {
-        OwnableSquare square = new OwnableSquare("GVSU", 20, 5000, 100, 1);
-        player.setPropertiesOwned(new ArrayList<>());
-        player.recieveProperty(square);
+        PropertySquare propertySquare = new PropertySquare("GVSU", 5, 200, 400,
+                100, 200, 300, 400, 500,
+                600, 2, 100, 500, 2);        player.setPropertiesOwned(new ArrayList<>());
+        player.recieveProperty(propertySquare);
         assertTrue("PropertiesOwned should have one property", player.getPropertiesOwned().size() == 1);
 
     }

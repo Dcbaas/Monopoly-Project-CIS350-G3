@@ -16,14 +16,16 @@ import static org.junit.Assert.*;
  *****************************************************************/
 public class BoardSquareTest {
 
-    OwnableSquare ownableSquare = new OwnableSquare("GVSU", 3, 100, 200, 5);
+    PropertySquare propertySquare = new PropertySquare("GVSU", 5, 200, 400,
+            100, 200, 300, 400, 500,
+            600, 2, 100, 500, 2);
 
     /*****************************************************************
      * Test the getName method
      *****************************************************************/
     @Test
     public void getNameTest() {
-        assertTrue(ownableSquare.getName().equals("GVSU"));
+        assertTrue(propertySquare.getName().equals("GVSU"));
     }
 
     /*****************************************************************
@@ -31,8 +33,8 @@ public class BoardSquareTest {
      *****************************************************************/
     @Test
     public void setNameTest() {
-        ownableSquare.setName("Allendale");
-        assertTrue(ownableSquare.getName().equals("Allendale"));
+        propertySquare.setName("Allendale");
+        assertTrue(propertySquare.getName().equals("Allendale"));
 
     }
 
@@ -42,7 +44,7 @@ public class BoardSquareTest {
     @Test
     public void getOccupiedByTest() {
         ArrayList<Player> players= new ArrayList<Player>();
-        assertEquals(players, ownableSquare.getOccupiedBy());
+        assertEquals(players, propertySquare.getOccupiedBy());
     }
 
     /*****************************************************************
@@ -52,8 +54,8 @@ public class BoardSquareTest {
     public void setOccupiedByTest() {
         Player player = new Player("Dylan", "The Top hat", 1500);
         ArrayList<Player> players = new ArrayList<Player>(){{add(player);}};
-        ownableSquare.setOccupiedBy(players);
-        assertEquals(player, ownableSquare.getOccupiedBy().get(0));
+        propertySquare.setOccupiedBy(players);
+        assertEquals(player, propertySquare.getOccupiedBy().get(0));
     }
 
     /*****************************************************************
@@ -62,8 +64,8 @@ public class BoardSquareTest {
     @Test
     public void addPlayerTest() {
         Player player = new Player("Dylan", "The Top hat", 1500);
-        ownableSquare.addPlayer(player);
-        assertEquals(player, ownableSquare.getOccupiedBy().get(0));
+        propertySquare.addPlayer(player);
+        assertEquals(player, propertySquare.getOccupiedBy().get(0));
 
     }
 
@@ -74,9 +76,9 @@ public class BoardSquareTest {
     public void removePlayerTest() {
         Player player = new Player("Dylan", "The Top hat", 1500);
         ArrayList<Player> players = new ArrayList<Player>(){{add(player);}};
-        ownableSquare.setOccupiedBy(players);
-        ownableSquare.removePlayer(player);
-        assertEquals(new ArrayList<Player>(), ownableSquare.getOccupiedBy());
+        propertySquare.setOccupiedBy(players);
+        propertySquare.removePlayer(player);
+        assertEquals(new ArrayList<Player>(), propertySquare.getOccupiedBy());
     }
 
     /*****************************************************************
@@ -84,7 +86,7 @@ public class BoardSquareTest {
      *****************************************************************/
     @Test
     public void getPOSITIONTest() {
-        assertEquals(3, ownableSquare.getPOSITION());
+        assertEquals(5, propertySquare.getPOSITION());
     }
 
     /*****************************************************************
@@ -92,7 +94,7 @@ public class BoardSquareTest {
      *****************************************************************/
     @Test
     public void getTypeTest() {
-        assertEquals(2, ownableSquare.getType());
+        assertEquals(0, propertySquare.getType());
     }
 
     /*****************************************************************
@@ -100,7 +102,7 @@ public class BoardSquareTest {
      *****************************************************************/
     @Test
     public void setTypeTest() {
-        ownableSquare.setType(3);
-        assertEquals(3, ownableSquare.getType());
+        propertySquare.setType(3);
+        assertEquals(3, propertySquare.getType());
     }
 }

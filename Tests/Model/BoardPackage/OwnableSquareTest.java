@@ -13,14 +13,16 @@ import static org.junit.Assert.*;
  *****************************************************************/
 public class OwnableSquareTest {
 
-    OwnableSquare ownableSquare = new OwnableSquare("OwnMe", 2, 100, 400, 2);
+    PropertySquare propertySquare = new PropertySquare("GVSU", 5, 200, 400,
+            100, 200, 300, 400, 500,
+            600, 2, 100, 500, 2);
 
     /*****************************************************************
      * Test the getPRICE method
      *****************************************************************/
     @Test
     public void getPRICE() {
-        assertEquals(100, ownableSquare.getPRICE());
+        assertEquals(200, propertySquare.getPRICE());
     }
 
     /*****************************************************************
@@ -28,7 +30,7 @@ public class OwnableSquareTest {
      *****************************************************************/
     @Test
     public void getMORTGAGE_VAL() {
-        assertEquals(400, ownableSquare.getMORTGAGE_VAL());
+        assertEquals(400, propertySquare.getMORTGAGE_VAL());
     }
 
     /*****************************************************************
@@ -36,7 +38,7 @@ public class OwnableSquareTest {
      *****************************************************************/
     @Test
     public void isMortgaged() {
-        assertFalse(ownableSquare.isMortgaged);
+        assertFalse(propertySquare.isMortgaged);
     }
 
     /*****************************************************************
@@ -44,8 +46,8 @@ public class OwnableSquareTest {
      *****************************************************************/
     @Test
     public void setMortgaged() {
-        ownableSquare.setMortgaged(true);
-        assertTrue(ownableSquare.isMortgaged);
+        propertySquare.setMortgaged(true);
+        assertTrue(propertySquare.isMortgaged);
     }
 
     /*****************************************************************
@@ -53,7 +55,7 @@ public class OwnableSquareTest {
      *****************************************************************/
     @Test
     public void getOwner() {
-        assertNull(ownableSquare.getOwner());
+        assertNull(propertySquare.getOwner());
     }
 
     /*****************************************************************
@@ -62,8 +64,8 @@ public class OwnableSquareTest {
     @Test
     public void setOwner() {
         Player player = new Player("Dylan", "The Top Hat", 1500);
-        ownableSquare.setOwner(player);
-        assertTrue(ownableSquare.getOwner().getDisplayName().equals("Dylan"));
+        propertySquare.setOwner(player);
+        assertTrue(propertySquare.getOwner().getDisplayName().equals("Dylan"));
     }
 
     /*****************************************************************
@@ -71,6 +73,6 @@ public class OwnableSquareTest {
      *****************************************************************/
     @Test
     public void getGROUP_NUMBER() {
-        assertEquals(2, ownableSquare.getGROUP_NUMBER());
+        assertEquals(2, propertySquare.getGROUP_NUMBER());
     }
 }
