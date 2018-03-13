@@ -17,14 +17,10 @@ public class MonopolyGame {
         GameTextController controller = new GameTextController(game, view);
 
         boolean quit = false;
-        Scanner scanner = new Scanner(System.in);
+
 
         while(!quit){
-            // Prompt user for command
-            System.out.print(">> ");
-            String command = scanner.nextLine();
-
-            controller.commands(command);
+            controller.commands(view.getCommand());
         }
 
     }
