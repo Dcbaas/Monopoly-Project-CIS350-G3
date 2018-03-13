@@ -9,11 +9,11 @@ import View.GameTextView;
  * @version 3/12/2018
  *********************************************************************/
 public class MonopolyGame {
-    public static void main(){
+    public static void main(String[] args){
         Game game = new Game("res/board.txt", "res/community.txt", "res/chance.txt");
         GameTextView view = new GameTextView();
         GameTextController controller = new GameTextController(game, view);
 
-        controller.main();
+        controller.commands();
     }
 }

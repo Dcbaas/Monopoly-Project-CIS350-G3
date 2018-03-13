@@ -20,14 +20,38 @@ public class GameTextController {
     GameTextView view;
     Scanner scanner = new Scanner(System.in);
 
+    /**********************************************************************
+     * The constructor that builds a game controller with a Game and View
+     *
+     * @author Dylan Kernohan
+     * @param game The Game object
+     * @param view The view object
+     * @version 3/12/2018
+     *********************************************************************/
     public GameTextController(Game game, GameTextView view) {
         this.game = game;
         this.view = view;
     }
 
-    public void main(){
-        System.out.print("Enter command: ");
-        String command = scanner.nextLine();
-        System.out.println(command);
+    /**********************************************************************
+     * This method prompts the user for commands and calls game function
+     *
+     * @author Dylan Kernohan
+     * @version 3/12/2018
+     *********************************************************************/
+    public void commands(){
+        boolean quit = false;
+        while(!quit) {
+
+            // Prompt user for command
+            System.out.print(">> ");
+            String command = scanner.nextLine();
+
+            // Check if command is quit. If so, exit command loop
+            if(command.equals("quit") || command.equals("Quit")){
+                quit = true;
+            }
+        }
+        return;
     }
 }
