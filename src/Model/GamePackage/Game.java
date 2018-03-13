@@ -292,15 +292,15 @@ public class Game {
         // Check if player will be passing GO square
         if(player.getPosition() + (dieVal1 + dieVal2) > 39){
             // New position = old position + dieVals - numberOfSquares
-            board.setPlayerPosition(player, (player.getPosition() + (dieVal1 + dieVal1)) - 40);
-            player.setPosition((player.getPosition() + (dieVal1 + dieVal1)) - 40);
+            board.setPlayerPosition(player, (player.getPosition() + (dieVal1 + dieVal2)) - 40);
+            player.setPosition((player.getPosition() + (dieVal1 + dieVal2)) - 40);
             player.receiveMoney(200);
         }
-
-        //Sets the player position
-        board.setPlayerPosition(player, player.getPosition() + (dieVal1 + dieVal1));
-        player.setPosition(player.getPosition() + (dieVal1 + dieVal1));
-
+        else{
+            //Sets the player position
+            board.setPlayerPosition(player, player.getPosition() + (dieVal1 + dieVal2));
+            player.setPosition(player.getPosition() + (dieVal1 + dieVal2));
+        }
     }
 
     /**********************************************************************
