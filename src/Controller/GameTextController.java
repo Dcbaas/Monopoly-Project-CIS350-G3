@@ -18,7 +18,6 @@ import static java.lang.System.out;
 public class GameTextController {
     Game game;
     GameTextView view;
-    Scanner scanner = new Scanner(System.in);
 
     /**********************************************************************
      * The constructor that builds a game controller with a Game and View
@@ -33,25 +32,29 @@ public class GameTextController {
         this.view = view;
     }
 
+
+//    public void setup(){
+//        // Prompt user for number of players
+//        System.out.print("How many players are playing?\n>>");
+//
+//        for(int i = 0; i <= num; i++){
+//
+//        }
+//    }
     /**********************************************************************
-     * This method prompts the user for commands and calls game function
+     * This method calls Game function based on command passed in
      *
      * @author Dylan Kernohan
+     * @param command The command the user entered.
      * @version 3/12/2018
      *********************************************************************/
-    public void commands(){
-        boolean quit = false;
-        while(!quit) {
+    public void commands(String command){
 
-            // Prompt user for command
-            System.out.print(">> ");
-            String command = scanner.nextLine();
+        if(command.equals("roll")){
 
-            // Check if command is quit. If so, exit command loop
-            if(command.equals("quit") || command.equals("Quit")){
-                quit = true;
-            }
+            view.printLocation(5, "Square", "Dylan");
         }
+
         return;
     }
 }

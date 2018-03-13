@@ -2,6 +2,8 @@ import Controller.GameTextController;
 import Model.GamePackage.Game;
 import View.GameTextView;
 
+import java.util.Scanner;
+
 /**********************************************************************
  * This is the class that is ran and holds the main
  *
@@ -14,6 +16,16 @@ public class MonopolyGame {
         GameTextView view = new GameTextView();
         GameTextController controller = new GameTextController(game, view);
 
-        controller.commands();
+        boolean quit = false;
+        Scanner scanner = new Scanner(System.in);
+
+        while(!quit){
+            // Prompt user for command
+            System.out.print(">> ");
+            String command = scanner.nextLine();
+
+            controller.commands(command);
+        }
+
     }
 }
