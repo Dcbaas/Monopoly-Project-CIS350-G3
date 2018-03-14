@@ -187,12 +187,19 @@ public class GameTextController {
    * This methof performs all the logic for the list command.
    *********************************************************************/
   private void list() {
+
+    view.printPlayerWallet(game.getCurrentPlayer().getWallet());
     //Stores the all the ownable squares in a local variable.
     ArrayList<OwnableSquare> ownableSquareArrayList = game.getCurrentPlayer().getPropertiesOwned();
 
     //Iterates through all the ownable squares and  prints their name.
-    for (int i = 0; i < ownableSquareArrayList.size(); i++) {
-      view.printOwnedSquares(ownableSquareArrayList.get(i).getName(), i);
+    if(ownableSquareArrayList.size() == 0){
+      view.printOwnedSquares("None", 0);
+    }
+    else {
+      for (int i = 0; i < ownableSquareArrayList.size(); i++) {
+        view.printOwnedSquares(ownableSquareArrayList.get(i).getName(), i);
+      }
     }
   }
 
