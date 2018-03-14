@@ -99,6 +99,23 @@ public class GameTextController {
     }
   }
 
+  public void possibleActions(){
+    ArrayList<String> actions = new ArrayList<>();
+    actions.add("'list' - Show player money and properties owned.");
+    if(!canRoll) {
+      actions.add("'done' - Ends Player's turn.");
+    }
+    if(canRoll){
+      actions.add("'roll' - Player rolls and moves");
+    }
+    if(canBuy){
+      actions.add("'buy' - Player tries to buy the property they are on.");
+    }
+    for(int i = 0; i < actions.size(); i++){
+      view.printPossibleActions(actions.get(i), i);
+    }
+  }
+
 //helpers
 
   /**********************************************************************
