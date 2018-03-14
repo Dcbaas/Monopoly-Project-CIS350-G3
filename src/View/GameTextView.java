@@ -131,14 +131,15 @@ public class GameTextView {
    *
    * @param name The name of the property to print
    *********************************************************************/
-  public void printOwnedSquares(String name, int counter){
-    if(counter < 1) {
+  public void printOwnedSquares(String name, int counter) {
+    if (counter < 1) {
       System.out.println("------------------------------------------------------");
       System.out.printf("You own:\n\t%s\n", name);
-    }
-    else{
+    } else {
       System.out.printf("\t%s\n", name);
     }
+  }
+
   /*********************************************************************
    * This method prints the current value of booth dies.
    * @param dieOne
@@ -146,5 +147,16 @@ public class GameTextView {
    ********************************************************************/
   public void printDies(int dieOne, int dieTwo) {
     System.out.printf("die 1: %d die 2: %d\n", dieOne, dieTwo);
+  }
+
+  /**
+   * this method reports when a property cannot be bought
+   */
+  public void printCannotBuy() {
+    System.out.println("This property cannot be bought at the moment.");
+  }
+
+  public void notAValidCommand() {
+    System.out.println("You enter an unknown command");
   }
 }

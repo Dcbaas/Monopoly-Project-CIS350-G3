@@ -163,11 +163,7 @@ public class Board {
    * @return A list of OwnableSquares that are in the grouping input.
    *****************************************************************************************************/
   public List<OwnableSquare> getGroup(int groupId) {
-<<<<<<< HEAD
     return getOwnableSquares().stream()
-=======
-    return squaresList.stream().map(squaresList -> (OwnableSquare) squaresList)
->>>>>>> master
         .filter(ownableSquare -> ownableSquare.getGROUP_NUMBER() == groupId)
         .collect(Collectors.toList());
   }
@@ -179,4 +175,3 @@ public class Board {
   }
 
 }
-

@@ -270,17 +270,10 @@ public class Game {
    *********************************************************************/
   public boolean buyOwnableSquare(OwnableSquare ownableSquare, Player buyer, int price) {
     // Check is buyer has enough money
-    if (buyer.getWallet() >= ownableSquare.getPRICE()) {
-      // Another player owns the property
-      if (ownableSquare.getOwner() != null) {
-        buyer.recieveProperty(ownableSquare.getOwner().giveProperty(ownableSquare));
-        buyer.pay(price);
-      }
-      // The bank owns the property
-      else {
-        buyer.recieveProperty(bank.giveProperty(ownableSquare));
-      }
+    if (buyer.getWallet() >= ownableSquare.getPRICE() && ownableSquare.getOwner() == null) {
+      buyer.recieveProperty(bank.giveProperty(ownableSquare));
       buyer.pay(ownableSquare.getPRICE());
+      ownableSquare.setOwner(buyer);
       return true;
     }
     return false;
