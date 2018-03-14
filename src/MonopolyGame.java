@@ -38,6 +38,7 @@ public class MonopolyGame {
       view.printCurrentPlayer(game.getCurrentPlayer().getDisplayName());
 
       // Prompt user for command
+      controller.possibleActions();
       String command = view.getCommand();
       if (command.equalsIgnoreCase("quit")) {
         quit = true;

@@ -99,6 +99,23 @@ public class GameTextController {
     }
   }
 
+  public void possibleActions(){
+    ArrayList<String> actions = new ArrayList<>();
+    actions.add("'list' - Show player money and properties owned.");
+    if(!canRoll) {
+      actions.add("'done' - Ends Player's turn.");
+    }
+    if(canRoll){
+      actions.add("'roll' - Player rolls and moves");
+    }
+    if(canBuy){
+      actions.add("'buy' - Player tries to buy the property they are on.");
+    }
+    for(int i = 0; i < actions.size(); i++){
+      view.printPossibleActions(actions.get(i), i);
+    }
+  }
+
 //helpers
 
   /**********************************************************************
@@ -178,12 +195,19 @@ public class GameTextController {
    * This method performs all the logic for the list command.
    *********************************************************************/
   private void list() {
+
+    view.printPlayerWallet(game.getCurrentPlayer().getWallet());
     //Stores the all the ownable squares in a local variable.
     ArrayList<OwnableSquare> ownableSquareArrayList = game.getCurrentPlayer().getPropertiesOwned();
 
     //Iterates through all the ownable squares and  prints their name.
-    for (int i = 0; i < ownableSquareArrayList.size(); i++) {
-      view.printOwnedSquares(ownableSquareArrayList.get(i).getName(), i);
+    if(ownableSquareArrayList.size() == 0){
+      view.printOwnedSquares("None", 0);
+    }
+    else {
+      for (int i = 0; i < ownableSquareArrayList.size(); i++) {
+        view.printOwnedSquares(ownableSquareArrayList.get(i).getName(), i);
+      }
     }
   }
 
