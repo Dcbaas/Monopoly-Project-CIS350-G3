@@ -1,10 +1,9 @@
 package Controller;
 
-import java.lang.*;
-
 import Model.BoardPackage.OwnableSquare;
 import Model.GamePackage.Game;
 import View.GameTextView;
+import java.util.ArrayList;
 
 /**********************************************************************
  * The text based controller for monopoly
@@ -13,63 +12,97 @@ import View.GameTextView;
  * @version 3/12/2018
  *********************************************************************/
 public class GameTextController {
-    Game game;
-    GameTextView view;
 
-    /**********************************************************************
-     * The constructor that builds a game controller with a Game and View
-     *
-     * @param game The Game object
-     * @param view The view object
-     *********************************************************************/
-    public GameTextController(Game game, GameTextView view) {
-        this.game = game;
-        this.view = view;
+  Game game;
+  GameTextView view;
+
+  /**********************************************************************
+   * The constructor that builds a game controller with a Game and View
+   *
+   * @param game The Game object
+   * @param view The view object
+   *********************************************************************/
+  public GameTextController(Game game, GameTextView view) {
+    this.game = game;
+    this.view = view;
+  }
+
+  /**********************************************************************
+   * This method takes info from the view calls the games add players method
+   *
+   * @param num The number of players passed from the view
+   *********************************************************************/
+  public void addPlayers(int num) {
+    for (int i = 0; i < num; i++) {
+      game.addPlayer(view.getPlayerName(i + 1), view.getPlayerToken(i + 1));
     }
+  }
 
-    /**********************************************************************
-     * This method takes info from the view calls the games add players method
-     *
-     * @param num The number of players passed from the view
-     *********************************************************************/
-    public void addPlayers(int num){
-        for(int i = 0; i < num; i++){
-            game.addPlayer(view.getPlayerName(i + 1), view.getPlayerToken(i + 1));
+  /**********************************************************************
+   * This method calls Game function based on command passed in
+   *
+   * @param command The command the user entered.
+   *********************************************************************/
+  public void commands(String command) {
+
+    //TODO: Add validation to prevent player from rolling twice per turn. Not sure where this will go yet
+    if (command.equalsIgnoreCase("roll")) {
+      game.rollDice();
+      int diceSum = game.getDieOne().getValue() + game.getDieTwo().getValue();
+      game.movePlayer(game.getCurrentPlayer(), game.getDieOne().getValue(),
+          game.getDieTwo().getValue());
+
+      String locationName = game.getBoard().getSquaresList()
+          .get(game.getCurrentPlayer().getPosition()).getName();
+      String locationOwner = "N/A";
+      //Figure out if current location is ownable square. If so, find owner name
+      if (game.getBoard().getSquaresList().get(game.getCurrentPlayer().getPosition()).getType() == 0
+          ||
+          game.getBoard().getSquaresList().get(game.getCurrentPlayer().getPosition()).getType() == 1
+          ||
+          game.getBoard().getSquaresList().get(game.getCurrentPlayer().getPosition()).getType() == 3
+          ) {
+        // Check if the owner is null (Bank)
+        if (((OwnableSquare) game.getBoard().getSquaresList()
+            .get(game.getCurrentPlayer().getPosition())).getOwner() != null) {
+          locationOwner = ((OwnableSquare) game.getBoard().getSquaresList()
+              .get(game.getCurrentPlayer().getPosition())).getOwner().getDisplayName();
+        } else {
+          locationOwner = "Bank";
         }
+      }
+
+      view.printLocation(diceSum, locationName, locationOwner);
     }
 
-    /**********************************************************************
-     * This method calls Game function based on command passed in
-     *
-     * @param command The command the user entered.
-     *********************************************************************/
-    public void commands(String command){
-
-        //TODO: Add validation to prevent player from rolling twice per turn. Not sure where this will go yet
-        if(command.equals("roll")){
-            game.rollDice();
-            int diceSum = game.getDieOne().getValue() + game.getDieTwo().getValue();
-            game.movePlayer(game.getCurrentPlayer(), game.getDieOne().getValue(), game.getDieTwo().getValue());
-
-            String locationName = game.getBoard().getSquaresList().get(game.getCurrentPlayer().getPosition()).getName();
-            String locationOwner = "N/A";
-            //Figure out if current location is ownable square. If so, find owner name
-            if(game.getBoard().getSquaresList().get(game.getCurrentPlayer().getPosition()).getType() == 0 ||
-                    game.getBoard().getSquaresList().get(game.getCurrentPlayer().getPosition()).getType() == 1 ||
-                    game.getBoard().getSquaresList().get(game.getCurrentPlayer().getPosition()).getType() == 3
-                    ){
-                // Check if the owner is null (Bank)
-                if(((OwnableSquare) game.getBoard().getSquaresList().get(game.getCurrentPlayer().getPosition())).getOwner() != null){
-                    locationOwner = ((OwnableSquare) game.getBoard().getSquaresList().get(game.getCurrentPlayer().getPosition())).getOwner().getDisplayName();
-                }
-                else{
-                    locationOwner = "Bank";
-                }
-            }
-
-            view.printLocation(diceSum,locationName, locationOwner);
+    if (command.equalsIgnoreCase("buy")) {
+      // Check if current location is ownable and can be bought.
+      if (game.checkIfOwnable(game.getCurrentPlayerLocation()) != null) {
+        // Call buyOwnable, check if it was successful or not
+        if (game.buyOwnableSquare((OwnableSquare) game.getCurrentPlayerLocation(),
+            game.getCurrentPlayer(),
+            ((OwnableSquare) game.getCurrentPlayerLocation()).getPRICE())) {
+          // Player had enough money
+          view.printBuySuccessful(game.getCurrentPlayerLocation().getName());
+        } else {
+          // Player did not have enough money
+          view.printBuyFail();
         }
-
-        return;
+      } else {
+        // This aciton could not be performed.
+        view.printActionError();
+      }
     }
+
+    // Get a list of all properties the player owns
+    if(command.equalsIgnoreCase("list")){
+      ArrayList<OwnableSquare> ownableSquareArrayList = game.getCurrentPlayer().getPropertiesOwned();
+
+      for(int i = 0; i < ownableSquareArrayList.size(); i++){
+        view.printOwnedSquares(ownableSquareArrayList.get(i).getName(), i);
+      }
+    }
+
+    return;
+  }
 }
