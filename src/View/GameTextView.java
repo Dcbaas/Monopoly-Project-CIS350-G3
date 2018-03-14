@@ -97,5 +97,14 @@ public class GameTextView {
     System.out.println("------------------------------------------------------");
   }
 
+  /**********************************************************************
+   * This method prints action not allowed error
+   *********************************************************************/
+  public void printActionError(){
+    System.out.println("------------------------------------------------------");
+    System.out.printf("You cannot perform that action right now.");
+    System.out.println("------------------------------------------------------")
+  }
 
+  
 }
