@@ -133,8 +133,7 @@ public class GameTextView {
    *********************************************************************/
   public void printOwnedSquares(String name, int counter) {
     if (counter < 1) {
-      System.out.println("------------------------------------------------------");
-      System.out.printf("You own:\n\t%s\n", name);
+      System.out.printf("Properties owned:\n\t%s\n", name);
     } else {
       System.out.printf("\t%s\n", name);
     }
@@ -158,5 +157,10 @@ public class GameTextView {
 
   public void notAValidCommand() {
     System.out.println("You enter an unknown command");
+  }
+
+  public void printPlayerWallet(int amount){
+    System.out.println("------------------------------------------------------");
+    System.out.printf("Wallet: $%d\n\n", amount);
   }
 }
