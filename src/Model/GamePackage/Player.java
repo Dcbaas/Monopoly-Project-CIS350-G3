@@ -3,7 +3,6 @@ package Model.GamePackage;
 import Model.BoardPackage.OwnableSquare;
 import Model.BoardPackage.PropertySquare;
 import Model.CardPackage.Card;
-
 import java.util.ArrayList;
 
 /**********************************************************************
@@ -16,350 +15,365 @@ import java.util.ArrayList;
  *********************************************************************/
 public class Player {
 
-	/** Player's name */
-	private final String DISPLAY_NAME;
+  /**
+   * Player's name
+   */
+  private final String DISPLAY_NAME;
 
-	/** Player's token */
-	private final String TOKEN;
+  /**
+   * Player's token
+   */
+  private final String TOKEN;
 
-	/** Tells if player is bankrupt */
-	private boolean isBankrupt;
+  /**
+   * Tells if player is bankrupt
+   */
+  private boolean isBankrupt;
 
-	/** Holds player's current wallet balance */
-	private int wallet;
+  /**
+   * Holds player's current wallet balance
+   */
+  private int wallet;
 
-	/** ArrayList that holds player's owned squares */
-	private ArrayList<OwnableSquare> propertiesOwned;
+  /**
+   * ArrayList that holds player's owned squares
+   */
+  private ArrayList<OwnableSquare> propertiesOwned;
 
-	/** ArrayList that holds player's cards held */
-	private ArrayList<Card> cardsHeld;
+  /**
+   * ArrayList that holds player's cards held
+   */
+  private ArrayList<Card> cardsHeld;
 
-	/**An integer to represent the players positon on the board.*/
-	private int position;
+  /**
+   * An integer to represent the players positon on the board.
+   */
+  private int position;
 
-	/**An int that tells if they player is in Jail, and for how many turns.
-	 * -1 = not in Jail
-	 * 0 - 3 = Number of turns in Jail
-	 */
-	private int inJail;
+  /**
+   * An int that tells if they player is in Jail, and for how many turns.
+   * -1 = not in Jail
+   * 0 - 3 = Number of turns in Jail
+   */
+  private int inJail;
 
-	/**An array list that keeps tracks of which groups of ownableSqaures
-	 * the player owns.
-	 */
-	private ArrayList<Integer> groupsOwned;
+  /**
+   * An array list that keeps tracks of which groups of ownableSqaures
+   * the player owns.
+   */
+  private ArrayList<Integer> groupsOwned;
 
-	/******************************************************************
-	 * Constructor method for Player class.
-	 *
-	 * @param displayName Sets the player's name.
-	 * @param token Sets the player's chosen token.
-	 * @param wallet Sets the player's starting wallet value.
-	 *****************************************************************/
-	public Player(String displayName, String token, int wallet) {
-		DISPLAY_NAME = displayName;
-		TOKEN = token;
-		this.wallet = wallet;
+  /******************************************************************
+   * Constructor method for Player class.
+   *
+   * @param displayName Sets the player's name.
+   * @param token Sets the player's chosen token.
+   * @param wallet Sets the player's starting wallet value.
+   *****************************************************************/
+  public Player(String displayName, String token, int wallet) {
+    DISPLAY_NAME = displayName;
+    TOKEN = token;
+    this.wallet = wallet;
 
-		position = 0;
+    position = 0;
 
-		isBankrupt = false;
+    isBankrupt = false;
 
-		propertiesOwned = new ArrayList<>();
-		cardsHeld = new ArrayList<>();
+    propertiesOwned = new ArrayList<>();
+    cardsHeld = new ArrayList<>();
 
-		inJail = -1;
-		groupsOwned = new ArrayList<>();
-	}
+    inJail = -1;
+    groupsOwned = new ArrayList<>();
+  }
 
-	/******************************************************************
-	 * Getter method for displayName variable.
-	 *
-	 * @return displayName Returns the String displayName.
-	 *****************************************************************/
-	public String getDisplayName() {
-		return DISPLAY_NAME;
-	}
+  /******************************************************************
+   * Getter method for displayName variable.
+   *
+   * @return displayName Returns the String displayName.
+   *****************************************************************/
+  public String getDisplayName() {
+    return DISPLAY_NAME;
+  }
 
-	/******************************************************************
-	 * Getter method for token variable.
-	 *
-	 * @return token Returns the String token.
-	 *****************************************************************/
-	public String getToken() {
-		return TOKEN;
-	}
+  /******************************************************************
+   * Getter method for token variable.
+   *
+   * @return token Returns the String token.
+   *****************************************************************/
+  public String getToken() {
+    return TOKEN;
+  }
 
 
-	/******************************************************************
-	 * Getter method for isBankrupt variable.
-	 *
-	 * @return isBankrupt Returns the boolean isBankrupt.
-	 *****************************************************************/
-	public boolean isBankrupt() {
-		return isBankrupt;
-	}
+  /******************************************************************
+   * Getter method for isBankrupt variable.
+   *
+   * @return isBankrupt Returns the boolean isBankrupt.
+   *****************************************************************/
+  public boolean isBankrupt() {
+    return isBankrupt;
+  }
 
-	/******************************************************************
-	 * Setter method for isBankrupt variable.
-	 *
-	 * @param isBankrupt Sets the boolean isBankrupt.
-	 *****************************************************************/
-	public void setBankrupt(boolean isBankrupt) {
-		this.isBankrupt = isBankrupt;
-	}
+  /******************************************************************
+   * Setter method for isBankrupt variable.
+   *
+   * @param isBankrupt Sets the boolean isBankrupt.
+   *****************************************************************/
+  public void setBankrupt(boolean isBankrupt) {
+    this.isBankrupt = isBankrupt;
+  }
 
-	/******************************************************************
-	 * Getter method for wallet variable.
-	 *
-	 * @return wallet Returns the int wallet.
-	 *****************************************************************/
-	public int getWallet() {
-		return wallet;
-	}
+  /******************************************************************
+   * Getter method for wallet variable.
+   *
+   * @return wallet Returns the int wallet.
+   *****************************************************************/
+  public int getWallet() {
+    return wallet;
+  }
 
-	/******************************************************************
-	 * Setter method for wallet variable.
-	 *
-	 * @param wallet Sets the int wallet.
-	 *****************************************************************/
-	void setWallet(int wallet) {
-		this.wallet = wallet;
-	}
+  /******************************************************************
+   * Setter method for wallet variable.
+   *
+   * @param wallet Sets the int wallet.
+   *****************************************************************/
+  void setWallet(int wallet) {
+    this.wallet = wallet;
+  }
 
-	/******************************************************************
-	 * Getter method for propertiesOwned ArrayList.
-	 *
-	 * @return propertiesOwned Returns the ArrayList propertiesOwned.
-	 *****************************************************************/
-	public ArrayList<OwnableSquare> getPropertiesOwned() {
-		return propertiesOwned;
-	}
+  /******************************************************************
+   * Getter method for propertiesOwned ArrayList.
+   *
+   * @return propertiesOwned Returns the ArrayList propertiesOwned.
+   *****************************************************************/
+  public ArrayList<OwnableSquare> getPropertiesOwned() {
+    return propertiesOwned;
+  }
 
-	/******************************************************************
-	 * Setter method for propertiesOwned ArrayList.
-	 *
-	 * @param propertiesOwned Sets the ArrayList propertiesOwned.
-	 *****************************************************************/
-	public void setPropertiesOwned(ArrayList<OwnableSquare>
-	propertiesOwned) {
-		this.propertiesOwned = propertiesOwned;
-	}
+  /******************************************************************
+   * Setter method for propertiesOwned ArrayList.
+   *
+   * @param propertiesOwned Sets the ArrayList propertiesOwned.
+   *****************************************************************/
+  public void setPropertiesOwned(ArrayList<OwnableSquare>
+      propertiesOwned) {
+    this.propertiesOwned = propertiesOwned;
+  }
 
-	/******************************************************************
-	 * Getter method for cardsHeld ArrayList.
-	 *
-	 * @return cardsHeld Returns the ArrayList cardsHeld.
-	 *****************************************************************/
-	public ArrayList<Card> getCardsHeld() {
-		return cardsHeld;
-	}
+  /******************************************************************
+   * Getter method for cardsHeld ArrayList.
+   *
+   * @return cardsHeld Returns the ArrayList cardsHeld.
+   *****************************************************************/
+  public ArrayList<Card> getCardsHeld() {
+    return cardsHeld;
+  }
 
-	/******************************************************************
-	 * Setter method for cardsHeld ArrayList.
-	 *
-	 * @param cardsHeld Sets the ArrayList cardsHeld.
-	 *****************************************************************/
-	public void setCardsHeld(ArrayList<Card> cardsHeld) {
-		this.cardsHeld = cardsHeld;
-	}
+  /******************************************************************
+   * Setter method for cardsHeld ArrayList.
+   *
+   * @param cardsHeld Sets the ArrayList cardsHeld.
+   *****************************************************************/
+  public void setCardsHeld(ArrayList<Card> cardsHeld) {
+    this.cardsHeld = cardsHeld;
+  }
 
-	/******************************************************************
-	 * The getPosition method returns the current position of the player.
-	 * @return position the current position of the player.
-	 *****************************************************************/
-	public int getPosition() {
-		return position;
-	}
+  /******************************************************************
+   * The getPosition method returns the current position of the player.
+   * @return position the current position of the player.
+   *****************************************************************/
+  public int getPosition() {
+    return position;
+  }
 
-	/******************************************************************
-	 * The setPosition method sets the postion of the player on the
-	 * board
-	 * @param position the positon the boaad the player is being sent
-	 *                 to.
-	 *****************************************************************/
-	public void setPosition(int position) {
-		this.position = position;
-	}
+  /******************************************************************
+   * The setPosition method sets the postion of the player on the
+   * board
+   * @param position the positon the boaad the player is being sent
+   *                 to.
+   *****************************************************************/
+  public void setPosition(int position) {
+    this.position = position;
+  }
 
-    /******************************************************************
-     * This method gets an int that says if the player is in Jail or not.
-     * -1 = not in jail
-     * 0 - 3 = Number of turns in Jail
-     * @return inJail An int that says if the player is in jail.
-     * -1 = not in jail
-     * 0 - 3 = Number of turns in Jail
-     *****************************************************************/
-    public int getInJail() {
-        return inJail;
+  /******************************************************************
+   * This method gets an int that says if the player is in Jail or not.
+   * -1 = not in jail
+   * 0 - 3 = Number of turns in Jail
+   * @return inJail An int that says if the player is in jail.
+   * -1 = not in jail
+   * 0 - 3 = Number of turns in Jail
+   *****************************************************************/
+  public int getInJail() {
+    return inJail;
+  }
+
+  /******************************************************************
+   * This method sets the int value saying if the player is in Jail.
+   * -1 = not in jail
+   * 0 - 3 = Number of turns in Jail
+   * @param inJail An int that says if the player is in Jail
+   *               -1 = not in jail
+   *                0 - 3 = Number of turns in Jail
+   ******************************************************************/
+  public void setInJail(int inJail) {
+    this.inJail = inJail;
+  }
+
+  /*****************************************************************
+   * This method gets a list of all the groups of ownable squares
+   * this player owns.
+   * @return groupsOwned An array list of all the groups this
+   * player owns.
+   *****************************************************************/
+  public ArrayList<Integer> getGroupsOwned() {
+    return groupsOwned;
+  }
+
+  /******************************************************************
+   * This method sets the list of groups the player owns.
+   * @param groupsOwned An array list of groups the player owns.
+   ******************************************************************/
+  public void setGroupsOwned(ArrayList<Integer> groupsOwned) {
+    this.groupsOwned = groupsOwned;
+  }
+
+  /******************************************************************
+   * Checks to make sure player has sufficient funds before
+   * subtracting amount from wallet. If the player has sufficient
+   * funds the method subtracts amount from wallet and returns the
+   * amount paid. If player doesn't have sufficient funds he method
+   * subtracts what is able to be paid from wallet and returns the
+   * amount that has been paid.
+   *
+   * @param amount The amount of money requested from player.
+   * @return amountPaid The amount of money that was paid by player.
+   *****************************************************************/
+  public int pay(int amount) {
+    int amountPaid;
+
+    if (wallet >= amount) {
+      wallet -= amount;
+      amountPaid = amount;
+    } else {
+      amountPaid = wallet;
+      wallet -= amountPaid;
     }
 
-    /******************************************************************
-     * This method sets the int value saying if the player is in Jail.
-     * -1 = not in jail
-     * 0 - 3 = Number of turns in Jail
-     * @param inJail An int that says if the player is in Jail
-     *               -1 = not in jail
-     *                0 - 3 = Number of turns in Jail
-     ******************************************************************/
-	public void setInJail(int inJail) {
-        this.inJail = inJail;
-    }
-
-    /*****************************************************************
-     * This method gets a list of all the groups of ownable squares
-     * this player owns.
-     * @return groupsOwned An array list of all the groups this
-     * player owns.
-     *****************************************************************/
-    public ArrayList<Integer> getGroupsOwned() {
-        return groupsOwned;
-    }
-
-    /******************************************************************
-     * This method sets the list of groups the player owns.
-     * @param groupsOwned An array list of groups the player owns.
-     ******************************************************************/
-    public void setGroupsOwned(ArrayList<Integer> groupsOwned) {
-        this.groupsOwned = groupsOwned;
-    }
-
-    /******************************************************************
-	 * Checks to make sure player has sufficient funds before
-	 * subtracting amount from wallet. If the player has sufficient
-	 * funds the method subtracts amount from wallet and returns the
-	 * amount paid. If player doesn't have sufficient funds he method
-	 * subtracts what is able to be paid from wallet and returns the
-	 * amount that has been paid.
-	 *
-	 * @param amount The amount of money requested from player.
-	 * @return amountPaid The amount of money that was paid by player.
-	 *****************************************************************/
-	public int pay(int amount) {
-		int amountPaid;
-
-		if(wallet >= amount) {
-			wallet -= amount;
-			amountPaid = amount;
-		}
-		else {
-			amountPaid = wallet;
-			wallet -= amountPaid;
-		}
-
-		return amountPaid;
-	}
+    return amountPaid;
+  }
 
 
-	/******************************************************************
-	 * Removes the property from the player's ArrayList of properties
-	 * owned.
-	 *
-	 * @param property The property to be removed from owned properties
-	 * list.
-     * @return the property the player is givig away.
-	 *****************************************************************/
-	public OwnableSquare giveProperty(OwnableSquare property) {
-		return propertiesOwned.remove(propertiesOwned.indexOf(property));
-	}
+  /******************************************************************
+   * Removes the property from the player's ArrayList of properties
+   * owned.
+   *
+   * @param property The property to be removed from owned properties
+   * list.
+   * @return the property the player is givig away.
+   *****************************************************************/
+  public OwnableSquare giveProperty(OwnableSquare property) {
+    return propertiesOwned.remove(propertiesOwned.indexOf(property));
+  }
 
-	/******************************************************************
-	 * Adds the property to the player's ArrayList of properties
-	 * owned.
-	 *
-	 * @param property The property to be added to owned properties
-	 * list.
-	 *****************************************************************/
-	public void recieveProperty(OwnableSquare property) {
-		propertiesOwned.add(property);
-	}
+  /******************************************************************
+   * Adds the property to the player's ArrayList of properties
+   * owned.
+   *
+   * @param property The property to be added to owned properties
+   * list.
+   *****************************************************************/
+  public void recieveProperty(OwnableSquare property) {
+    propertiesOwned.add(property);
+  }
 
-	/******************************************************************
-	 * Builds a house on the property from the players ArrayList of
-	 * properties owned.
-	 *
-	 * @param property The property that the house will be built on.
-	 *****************************************************************/
-	public void buildHouse(PropertySquare property) {
-		property.setNumHouses(property.getNumHouses() + 1);
-		wallet -= property.getHouseCost();
-	}
+  /******************************************************************
+   * Builds a house on the property from the players ArrayList of
+   * properties owned.
+   *
+   * @param property The property that the house will be built on.
+   *****************************************************************/
+  public void buildHouse(PropertySquare property) {
+    property.setNumHouses(property.getNumHouses() + 1);
+    wallet -= property.getHouseCost();
+  }
 
-	/******************************************************************
-	 * Builds a hotel on the property from the players ArrayList of
-	 * properties owned.
-	 *
-	 * @param property The property that the hotel will be built on.
-	 *****************************************************************/
-	public void buildHotel(PropertySquare property) {
-		property.setHasHotel(true);
-		wallet -= property.getHotelCost();
-	}
+  /******************************************************************
+   * Builds a hotel on the property from the players ArrayList of
+   * properties owned.
+   *
+   * @param property The property that the hotel will be built on.
+   *****************************************************************/
+  public void buildHotel(PropertySquare property) {
+    property.setHasHotel(true);
+    wallet -= property.getHotelCost();
+  }
 
-	/******************************************************************
-	 * Sells a house on the property from the players ArrayList of
-	 * properties owned.
-	 *
-	 * @param property The property that the house will be sold from.
-	 *****************************************************************/
-	public void sellHouse(PropertySquare property) {
-		property.setNumHouses(property.getNumHouses() - 1);
-		wallet += property.getHouseCost() / 2;
-	}
+  /******************************************************************
+   * Sells a house on the property from the players ArrayList of
+   * properties owned.
+   *
+   * @param property The property that the house will be sold from.
+   *****************************************************************/
+  public void sellHouse(PropertySquare property) {
+    property.setNumHouses(property.getNumHouses() - 1);
+    wallet += property.getHouseCost() / 2;
+  }
 
-	/******************************************************************
-	 * Sells a hotel on the property from the players ArrayList of
-	 * properties owned.
-	 *
-	 * @param property The property that the hotel will be sold from.
-	 *****************************************************************/
-	public void sellHotel(PropertySquare property) {
-		property.setHasHotel(false);
-		wallet += property.getHotelCost() / 2;
-	}
+  /******************************************************************
+   * Sells a hotel on the property from the players ArrayList of
+   * properties owned.
+   *
+   * @param property The property that the hotel will be sold from.
+   *****************************************************************/
+  public void sellHotel(PropertySquare property) {
+    property.setHasHotel(false);
+    wallet += property.getHotelCost() / 2;
+  }
 
-    /******************************************************************
-     * This method adds a group number to the ArrayList.
-     *
-     * @param groupNumber The group number being added
-     *****************************************************************/
-	 public boolean addGroupOwned(int groupNumber){
-	    return groupsOwned.add(groupNumber);
-    }
+  /******************************************************************
+   * This method adds a group number to the ArrayList.
+   *
+   * @param groupNumber The group number being added
+   *****************************************************************/
+  public boolean addGroupOwned(int groupNumber) {
+    return groupsOwned.add(groupNumber);
+  }
 
-    /******************************************************************
-     * This method removes a group number from the ArrayList.
-     *
-     * @param groupNumber The group number being removed.
-     * @return weather the action was succesfull or not.
-     *****************************************************************/
-    public boolean removeGroupOwned(int groupNumber){
-        return groupsOwned.remove((Integer) groupNumber);
-    }
+  /******************************************************************
+   * This method removes a group number from the ArrayList.
+   *
+   * @param groupNumber The group number being removed.
+   * @return weather the action was succesfull or not.
+   *****************************************************************/
+  public boolean removeGroupOwned(int groupNumber) {
+    return groupsOwned.remove((Integer) groupNumber);
+  }
 
 
-	/******************************************************************
-	 * Allows a player to receive a card from an external source, and
-	 * adds the card to the Deck of cards held
-	 *
-	 * @param card the card given to the player
-	 *****************************************************************/
-	public void recieveCard(Card card) {
-		cardsHeld.add(card);
-	}
+  /******************************************************************
+   * Allows a player to receive a card from an external source, and
+   * adds the card to the Deck of cards held
+   *
+   * @param card the card given to the player
+   *****************************************************************/
+  public void recieveCard(Card card) {
+    cardsHeld.add(card);
+  }
 
-	/******************************************************************
-	 * Allows the player to receive money, and adds it to the wallet.
-	 * @param amount the amount of money the player receives
-	 *****************************************************************/
-	public void receiveMoney(int amount) {
-		wallet += amount;
-	}
+  /******************************************************************
+   * Allows the player to receive money, and adds it to the wallet.
+   * @param amount the amount of money the player receives
+   *****************************************************************/
+  public void receiveMoney(int amount) {
+    wallet += amount;
+  }
 
-	/******************************************************************
-	 * returns all Ownable squares from the player.
-	 * @return the list of Ownable squares.
-	 *****************************************************************/
-	public ArrayList<OwnableSquare> getOwnableProperties() {
-		return propertiesOwned;
-	}
+  /******************************************************************
+   * returns all Ownable squares from the player.
+   * @return the list of Ownable squares.
+   *****************************************************************/
+  public ArrayList<OwnableSquare> getOwnableProperties() {
+    return propertiesOwned;
+  }
 }
