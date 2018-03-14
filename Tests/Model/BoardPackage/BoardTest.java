@@ -104,8 +104,8 @@ public class BoardTest {
      *****************************************************************/
     @Test
     public void getGroupTest() {
-        assertTrue(board.getGroup(1).get(0).equals("Old Kent Road"));
-        assertTrue(board.getGroup(1).get(1).getName().equals("Whitechapel"));
+        assertTrue(board.getGroup(1).get(0).getName().equals("Old Kent Road"));
+        assertTrue(board.getGroup(1).get(1).getName().equals("Whitechapel Road"));
 
     }
 }

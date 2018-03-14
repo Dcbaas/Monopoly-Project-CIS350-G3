@@ -13,7 +13,7 @@ public class MonopolyGame {
   public static void main(String[] args) {
     Game game = new Game("res/board.txt", "res/community.txt", "res/chance.txt");
     GameTextView view = new GameTextView();
-    GameTextController controller = new GameTextController(game, view);
+    GameTextController controller = new GameTextController(game, view, true, true);
 
     boolean quit = false;
 
@@ -39,10 +39,9 @@ public class MonopolyGame {
 
       // Prompt user for command
       String command = view.getCommand();
-      if (command.equals("quit") || command.equals("Quit")) {
+      if (command.equalsIgnoreCase("quit")) {
         quit = true;
       }
-      //TODO: Add validation to prevent player from rolling twice per turn. Not sure where this will go yet (Either here or in controller)
       controller.commands(command);
 
       //TODO: Add logic to switch player turns.

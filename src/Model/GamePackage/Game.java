@@ -270,17 +270,10 @@ public class Game {
    *********************************************************************/
   public boolean buyOwnableSquare(OwnableSquare ownableSquare, Player buyer, int price) {
     // Check is buyer has enough money
-    if (buyer.getWallet() >= ownableSquare.getPRICE()) {
-      // Another player owns the property
-      if (ownableSquare.getOwner() != null) {
-        buyer.recieveProperty(ownableSquare.getOwner().giveProperty(ownableSquare));
-        buyer.pay(price);
-      }
-      // The bank owns the property
-      else {
-        buyer.recieveProperty(bank.giveProperty(ownableSquare));
-      }
+    if (buyer.getWallet() >= ownableSquare.getPRICE() && ownableSquare.getOwner() == null) {
+      buyer.recieveProperty(bank.giveProperty(ownableSquare));
       buyer.pay(ownableSquare.getPRICE());
+      ownableSquare.setOwner(buyer);
       return true;
     }
     return false;
@@ -554,8 +547,10 @@ public class Game {
     //goes through all properties that have a house or a hotel and calculates the amount due
     for (PropertySquare propertySquare : player.getOwnableProperties().stream()
         .filter(property -> property.getType() == 0).map(property -> (PropertySquare) property)
+
         .filter(lambdaPropertySquare -> lambdaPropertySquare.isHasHotel()
             || lambdaPropertySquare.getNumHouses() > 0)
+
         .collect(Collectors.toCollection(ArrayList<PropertySquare>::new))) {
       amountDue += (propertySquare.isHasHotel()) ? 115 : 40;
     }
@@ -614,6 +609,7 @@ public class Game {
   private boolean cardCollectFromPlayers(int amount) {
     //Goes through the list of other players
     for (Player player : players.stream().filter(lambdaPlayer -> lambdaPlayer != currentPlayer)
+
         .collect(Collectors.toCollection(ArrayList<Player>::new))) {
       //checks if the given player will be able to pay the given amount.
       if (player.getWallet() >= amount) {
@@ -627,6 +623,23 @@ public class Game {
   }
 
   /**********************************************************************
+   * Returns true if the current value on dieOne equals the current
+   * value of dieTwo.
+   *
+   * @return Whether both dies match or not.
+   *********************************************************************/
+  public boolean rolledPair() {
+    return dieTwo.value == dieOne.value;
+  }
+
+  /**********************************************************************
+   * Sends the current player to jail/
+   *********************************************************************/
+  public void sendPlayerToJail() {
+    board.sendToJail(currentPlayer);
+  }
+
+  /*********************************************************************
    * This method checks if the sqaure passed in is ownable
    *
    * @param boardSquare The square being checked
@@ -648,6 +661,5 @@ public class Game {
   public BoardSquare getCurrentPlayerLocation() {
     return board.getSquaresList().get(currentPlayer.getPosition());
   }
-
 
 }
