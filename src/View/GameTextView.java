@@ -82,7 +82,6 @@ public class GameTextView {
     System.out
         .printf("You rolled: %d\nYou are at location: %s\nOwner of this location: %s\n", num, name,
             owner);
-    System.out.println("------------------------------------------------------");
 
   }
 
@@ -94,7 +93,6 @@ public class GameTextView {
   public void printCurrentPlayer(String name) {
     System.out.println("------------------------------------------------------");
     System.out.printf("%s's turn.\n", name);
-    System.out.println("------------------------------------------------------");
   }
 
   /**********************************************************************
@@ -103,7 +101,6 @@ public class GameTextView {
   public void printActionError() {
     System.out.println("------------------------------------------------------");
     System.out.printf("You cannot perform that action right now.\n");
-    System.out.println("------------------------------------------------------");
   }
 
   /**********************************************************************
@@ -114,7 +111,6 @@ public class GameTextView {
   public void printBuySuccessful(String name) {
     System.out.println("------------------------------------------------------");
     System.out.printf("You bought %s.\n", name);
-    System.out.println("------------------------------------------------------");
   }
 
   /**********************************************************************
@@ -123,7 +119,6 @@ public class GameTextView {
   public void printBuyFail() {
     System.out.println("------------------------------------------------------");
     System.out.printf("You do not have enough money to buy this property\n");
-    System.out.println("------------------------------------------------------");
   }
 
   /**********************************************************************
@@ -162,5 +157,15 @@ public class GameTextView {
   public void printPlayerWallet(int amount){
     System.out.println("------------------------------------------------------");
     System.out.printf("Wallet: $%d\n\n", amount);
+  }
+
+  public void printPossibleActions(String action, int counter){
+    if (counter < 1) {
+      System.out.println("------------------------------------------------------");
+      System.out.printf("You can use these actions:\n\t%s\n", action);
+    } else {
+      System.out.printf("\t%s\n", action);
+    }
+
   }
 }
