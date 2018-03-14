@@ -97,6 +97,48 @@ public class GameTextView {
     System.out.println("------------------------------------------------------");
   }
 
+  /**********************************************************************
+   * This method prints action not allowed error
+   *********************************************************************/
+  public void printActionError() {
+    System.out.println("------------------------------------------------------");
+    System.out.printf("You cannot perform that action right now.\n");
+    System.out.println("------------------------------------------------------");
+  }
+
+  /**********************************************************************
+   * This method prints square bought successful
+   *
+   * @param name The name of the square that was bought
+   *********************************************************************/
+  public void printBuySuccessful(String name) {
+    System.out.println("------------------------------------------------------");
+    System.out.printf("You bought %s.\n", name);
+    System.out.println("------------------------------------------------------");
+  }
+
+  /**********************************************************************
+   * This method prints square could not be bought
+   *********************************************************************/
+  public void printBuyFail() {
+    System.out.println("------------------------------------------------------");
+    System.out.printf("You do not have enough money to buy this property\n");
+    System.out.println("------------------------------------------------------");
+  }
+
+  /**********************************************************************
+   * This method prints all the properties the player owns
+   *
+   * @param name The name of the property to print
+   *********************************************************************/
+  public void printOwnedSquares(String name, int counter){
+    if(counter < 1) {
+      System.out.println("------------------------------------------------------");
+      System.out.printf("You own:\n\t%s\n", name);
+    }
+    else{
+      System.out.printf("\t%s\n", name);
+    }
   /*********************************************************************
    * This method prints the current value of booth dies.
    * @param dieOne

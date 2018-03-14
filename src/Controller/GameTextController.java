@@ -3,6 +3,7 @@ package Controller;
 import Model.BoardPackage.OwnableSquare;
 import Model.GamePackage.Game;
 import View.GameTextView;
+import java.util.ArrayList;
 
 /**********************************************************************
  * The text based controller for monopoly
@@ -51,6 +52,14 @@ public class GameTextController {
       game.sendPlayerToJail();
       view.printDies(game.getDieOne().getValue(), game.getDieTwo().getValue());
     }
+  }
+
+  /**********************************************************************
+   * This method calls Game function based on command passed in
+   *
+   * @param command The command the user entered.
+   *********************************************************************/
+  public void commands(String command) {
 
     //TODO: Add validation to prevent player from rolling twice per turn. Not sure where this will go yet
     if (command.equals("roll") && canRoll) {
@@ -88,6 +97,33 @@ public class GameTextController {
       }
 
       view.printLocation(diceSum, locationName, locationOwner);
+    }
+    if (command.equalsIgnoreCase("buy")) {
+      // Check if current location is ownable and can be bought.
+      if (game.checkIfOwnable(game.getCurrentPlayerLocation()) != null) {
+        // Call buyOwnable, check if it was successful or not
+        if (game.buyOwnableSquare((OwnableSquare) game.getCurrentPlayerLocation(),
+            game.getCurrentPlayer(),
+            ((OwnableSquare) game.getCurrentPlayerLocation()).getPRICE())) {
+          // Player had enough money
+          view.printBuySuccessful(game.getCurrentPlayerLocation().getName());
+        } else {
+          // Player did not have enough money
+          view.printBuyFail();
+        }
+      } else {
+        // This aciton could not be performed.
+        view.printActionError();
+      }
+    }
+
+    // Get a list of all properties the player owns
+    if(command.equalsIgnoreCase("list")){
+      ArrayList<OwnableSquare> ownableSquareArrayList = game.getCurrentPlayer().getPropertiesOwned();
+
+      for(int i = 0; i < ownableSquareArrayList.size(); i++){
+        view.printOwnedSquares(ownableSquareArrayList.get(i).getName(), i);
+      }
     }
 
     //Checks if the player can re roll the dice and increses the amount of pairs rolled.

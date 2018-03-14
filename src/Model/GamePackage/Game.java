@@ -554,7 +554,10 @@ public class Game {
     //goes through all properties that have a house or a hotel and calculates the amount due
     for (PropertySquare propertySquare : player.getOwnableProperties().stream()
         .filter(property -> property.getType() == 0).map(property -> (PropertySquare) property)
-        .filter(propertySquare -> propertySquare.isHasHotel() || propertySquare.getNumHouses() > 0)
+
+        .filter(lambdaPropertySquare -> lambdaPropertySquare.isHasHotel()
+            || lambdaPropertySquare.getNumHouses() > 0)
+
         .collect(Collectors.toCollection(ArrayList<PropertySquare>::new))) {
       amountDue += (propertySquare.isHasHotel()) ? 115 : 40;
     }
@@ -612,7 +615,8 @@ public class Game {
    *********************************************************************/
   private boolean cardCollectFromPlayers(int amount) {
     //Goes through the list of other players
-    for (Player player : players.stream().filter(player -> player != currentPlayer)
+    for (Player player : players.stream().filter(lambdaPlayer -> lambdaPlayer != currentPlayer)
+
         .collect(Collectors.toCollection(ArrayList<Player>::new))) {
       //checks if the given player will be able to pay the given amount.
       if (player.getWallet() >= amount) {
@@ -641,4 +645,27 @@ public class Game {
   public void sendPlayerToJail() {
     board.sendToJail(currentPlayer);
   }
+  /*********************************************************************
+   * This method checks if the sqaure passed in is ownable
+   *
+   * @param boardSquare The square being checked
+   * @return The ownableSqure if it is ownable. Null if it is not
+   *********************************************************************/
+  public OwnableSquare checkIfOwnable(BoardSquare boardSquare) {
+    if (board.getOwnableSquares().contains(boardSquare)) {
+      return (OwnableSquare) boardSquare;
+    } else {
+      return null;
+    }
+  }
+
+  /**********************************************************************
+   * This method gets the current players location
+   *
+   * @return The current players location
+   *********************************************************************/
+  public BoardSquare getCurrentPlayerLocation() {
+    return board.getSquaresList().get(currentPlayer.getPosition());
+  }
+
 }
