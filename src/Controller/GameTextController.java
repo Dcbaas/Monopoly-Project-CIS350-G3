@@ -19,7 +19,7 @@ public class GameTextController {
   private boolean canRoll;
   private boolean canBuy;
 
-  /**********************************************************************
+  /**********************************************************************git
    * The constructor that builds a game controller with a Game and View
    *
    * @param game The Game object
@@ -131,6 +131,9 @@ private void roll(){
 }
 
 private void buy(){
+  //TODO:if a player lands in a square that is owned by another player, it should have a
+  // different message when trying to buy it
+
   // Check if current location is ownable and can be bought.
   if (game.checkIfOwnable(game.getCurrentPlayerLocation()) != null && !canRoll) {
     canBuy = false;
