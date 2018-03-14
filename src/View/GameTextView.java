@@ -159,4 +159,8 @@ public class GameTextView {
   public void notAValidCommand() {
     System.out.println("You enter an unknown command");
   }
+
+  public void printTaxCollected(int tax) {
+    System.out.println("You paid "+  tax + " in fees/rent");
+  }
 }
