@@ -76,16 +76,20 @@ public class GameTextController {
       case "list":
         list();
         break;
+      case "done":
+          if(!canRoll) {
+            nextPlayer();
+          }else{
+            view.printActionError();
+          }
+          break;
       default:
         view.notAValidCommand();
 
     }
 
     if (!canRoll && !canBuy) {
-      game.nextTurn();
-      numPairs = 0;
-      canRoll = true;
-      canBuy = true;
+     nextPlayer();
     }
   }
 
@@ -156,6 +160,13 @@ public class GameTextController {
     for (int i = 0; i < ownableSquareArrayList.size(); i++) {
       view.printOwnedSquares(ownableSquareArrayList.get(i).getName(), i);
     }
+  }
+
+  private void nextPlayer(){
+    game.nextTurn();
+    numPairs = 0;
+    canRoll = true;
+    canBuy = true;
   }
 }
 
