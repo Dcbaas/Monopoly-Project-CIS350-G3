@@ -8,6 +8,7 @@ import java.util.ArrayList;
 /**********************************************************************
  * The text based controller for monopoly
  *
+ * @author Santiago Quiroga
  * @author Dylan Kernohan
  * @version 3/12/2018
  *********************************************************************/
@@ -33,7 +34,7 @@ public class GameTextController {
   }
 
   /**********************************************************************
-   * This method takes info from the view calls the games add players method
+   * This method takes info from the view calls the games add players method.
    *
    * @param num The number of players passed from the view
    *********************************************************************/
@@ -44,20 +45,24 @@ public class GameTextController {
   }
 
   /**********************************************************************
-   * This method calls Game function based on command passed in
+   * This method calls Game function based on command passed in.
    *
    * @param command The command the user entered.
    *********************************************************************/
   public void commands(String command) {
 
-    //TODO: test for triple pairs logic and also handle skiping the switch in those scenarios.
+    //Checks if the player has rolled pairs three times in a row
     if (numPairs == 3) {
       canRoll = false;
       canBuy = false;
       game.sendPlayerToJail();
       view.printDies(game.getDieOne().getValue(), game.getDieTwo().getValue());
+      nextPlayer();
+      return;
     }
 
+
+    //Checks which command the player used
     switch (command.toLowerCase()) {
       case "roll":
         if (canRoll) {
@@ -77,24 +82,28 @@ public class GameTextController {
         list();
         break;
       case "done":
-          if(!canRoll) {
-            nextPlayer();
-          }else{
-            view.printActionError();
-          }
-          break;
+        if (!canRoll) {
+          nextPlayer();
+        } else {
+          view.printActionError();
+        }
+        break;
       default:
         view.notAValidCommand();
 
     }
 
+    //Checks if the player has any actions left
     if (!canRoll && !canBuy) {
-     nextPlayer();
+      nextPlayer();
     }
   }
 
 //helpers
 
+  /**********************************************************************
+   * This method performs all the logic for the roll command.
+   *********************************************************************/
   private void roll() {
     game.rollDice();
     view.printDies(game.getDieOne().getValue(), game.getDieTwo().getValue());
@@ -131,6 +140,9 @@ public class GameTextController {
     view.printLocation(diceSum, locationName, locationOwner);
   }
 
+  /**********************************************************************
+   * This method performs all the logic for the buy command.
+   *********************************************************************/
   private void buy() {
     //TODO:if a player lands in a square that is owned by another player, it should have a
     // different message when trying to buy it
@@ -154,15 +166,23 @@ public class GameTextController {
     }
   }
 
+  /**********************************************************************
+   * This methof performs all the logic for the list command.
+   *********************************************************************/
   private void list() {
+    //Stores the all the ownable squares in a local variable.
     ArrayList<OwnableSquare> ownableSquareArrayList = game.getCurrentPlayer().getPropertiesOwned();
 
+    //Iterates through all the ownable squares and  prints their name.
     for (int i = 0; i < ownableSquareArrayList.size(); i++) {
       view.printOwnedSquares(ownableSquareArrayList.get(i).getName(), i);
     }
   }
 
-  private void nextPlayer(){
+  /**********************************************************************
+   * this method changes player's and resets all available commands.
+   *********************************************************************/
+  private void nextPlayer() {
     game.nextTurn();
     numPairs = 0;
     canRoll = true;
