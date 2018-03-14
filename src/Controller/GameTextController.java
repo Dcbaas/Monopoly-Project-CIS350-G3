@@ -3,6 +3,7 @@ package Controller;
 import Model.BoardPackage.OwnableSquare;
 import Model.GamePackage.Game;
 import View.GameTextView;
+import java.util.ArrayList;
 
 /**********************************************************************
  * The text based controller for monopoly
@@ -93,7 +94,14 @@ public class GameTextController {
       }
     }
 
-    
+    // Get a list of all properties the player owns
+    if(command.equalsIgnoreCase("list")){
+      ArrayList<OwnableSquare> ownableSquareArrayList = game.getCurrentPlayer().getPropertiesOwned();
+
+      for(int i = 0; i < ownableSquareArrayList.size(); i++){
+        view.printOwnedSquares(ownableSquareArrayList.get(i).getName(), i);
+      }
+    }
 
     return;
   }

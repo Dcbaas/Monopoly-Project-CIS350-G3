@@ -126,5 +126,18 @@ public class GameTextView {
     System.out.println("------------------------------------------------------");
   }
 
-
+  /**********************************************************************
+   * This method prints all the properties the player owns
+   *
+   * @param name The name of the property to print
+   *********************************************************************/
+  public void printOwnedSquares(String name, int counter){
+    if(counter < 1) {
+      System.out.println("------------------------------------------------------");
+      System.out.printf("You own:\n\t%s\n", name);
+    }
+    else{
+      System.out.printf("\t%s\n", name);
+    }
+  }
 }
