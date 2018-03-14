@@ -12,41 +12,43 @@ import java.util.Random;
  *****************************************************************/
 public class Die {
 
-    /** current value of the die */
-    int value;
+  /**
+   * current value of the die
+   */
+  int value;
 
-    /*****************************************************************
-     Default constructor
-     *****************************************************************/
-    public Die( ) {
-    }
+  /*****************************************************************
+   Default constructor
+   *****************************************************************/
+  public Die() {
+  }
 
-    /*****************************************************************
-     Set the die value
-     @param value
-     *****************************************************************/
-    public void setValue(int value){
-        this.value = value;
-    }
+  /*****************************************************************
+   Get the die value
+   @return value The value of the die
+   *****************************************************************/
+  public int getValue() {
+    return value;
+  }
 
-    /*****************************************************************
-     Get the die value
-     @return value The value of the die
-     *****************************************************************/
-    public int getValue(){
-        return value;
-    }
+  /*****************************************************************
+   Set the die value
+   @param value
+   *****************************************************************/
+  public void setValue(int value) {
+    this.value = value;
+  }
 
-    /*****************************************************************
-     Generate a random number between 1 - 6 and assign it to the die
-     *****************************************************************/
-    public void roll() {
-        // Generate a random number
-        Random random = new Random();
+  /*****************************************************************
+   Generate a random number between 1 - 6 and assign it to the die
+   *****************************************************************/
+  public void roll() {
+    // Generate a random number
+    Random random = new Random();
 
-        // Assign random number to value
-        value = random.nextInt(6) + 1;
+    // Assign random number to value
+    value = random.nextInt(6) + 1;
 
-       
-    }
+
+  }
 }

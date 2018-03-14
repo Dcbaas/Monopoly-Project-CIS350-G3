@@ -11,14 +11,14 @@ package Model.BoardPackage;
 public class GoToJailSquare extends BoardSquare {
 
 
-    /*****************************************************************
-     * Constructor instantiates the variables and sets the name of the
-     * GoToJailSquare to what is input as a parameter.
-     *
-     * @param name String that will be the name of the GoToJailSquare.
-     ****************************************************************/
-    public GoToJailSquare(String name) {
-        super(name,30);
-        type = 7;
-    }
+  /*****************************************************************
+   * Constructor instantiates the variables and sets the name of the
+   * GoToJailSquare to what is input as a parameter.
+   *
+   * @param name String that will be the name of the GoToJailSquare.
+   ****************************************************************/
+  public GoToJailSquare(String name) {
+    super(name, 30);
+    type = 7;
+  }
 }
