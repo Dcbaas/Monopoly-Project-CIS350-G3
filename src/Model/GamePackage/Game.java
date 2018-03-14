@@ -638,6 +638,7 @@ public class Game {
   public void sendPlayerToJail() {
     board.sendToJail(currentPlayer);
   }
+
   /*********************************************************************
    * This method checks if the sqaure passed in is ownable
    *

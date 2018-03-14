@@ -58,26 +58,26 @@ public class GameTextController {
       view.printDies(game.getDieOne().getValue(), game.getDieTwo().getValue());
     }
 
-    switch(command.toLowerCase()){
+    switch (command.toLowerCase()) {
       case "roll":
-              if(canRoll){
-                roll();
-              }else {
-                view.printActionError();
-              }
-              break;
+        if (canRoll) {
+          roll();
+        } else {
+          view.printActionError();
+        }
+        break;
       case "buy":
-            if(canBuy){
-              buy();
-            }else {
-              view.printActionError();
-            }
-            break;
-      case"list":
-            list();
-            break;
+        if (canBuy) {
+          buy();
+        } else {
+          view.printActionError();
+        }
+        break;
+      case "list":
+        list();
+        break;
       default:
-            view.notAValidCommand();
+        view.notAValidCommand();
 
     }
 
@@ -93,73 +93,72 @@ public class GameTextController {
 
 //helpers
 
-private void roll(){
-  game.rollDice();
-  view.printDies(game.getDieOne().getValue(), game.getDieTwo().getValue());
-  if (game.rolledPair()){
-    numPairs++;
-  }else{
-    canRoll = false;
+  private void roll() {
+    game.rollDice();
+    view.printDies(game.getDieOne().getValue(), game.getDieTwo().getValue());
+    if (game.rolledPair()) {
+      numPairs++;
+    } else {
+      canRoll = false;
+    }
+
+    int diceSum = game.getDieOne().getValue() + game.getDieTwo().getValue();
+    game.movePlayer(game.getCurrentPlayer(), game.getDieOne().getValue(),
+        game.getDieTwo().getValue());
+
+    String locationName = game.getBoard().getSquaresList()
+        .get(game.getCurrentPlayer().getPosition()).getName();
+    String locationOwner = "N/A";
+    //Figure out if current location is ownable square. If so, find owner name
+    if (game.getBoard().getSquaresList().get(game.getCurrentPlayer().getPosition()).getType() == 0
+        ||
+        game.getBoard().getSquaresList().get(game.getCurrentPlayer().getPosition()).getType() == 1
+        ||
+        game.getBoard().getSquaresList().get(game.getCurrentPlayer().getPosition()).getType() == 3
+        ) {
+      // Check if the owner is null (Bank)
+      if (((OwnableSquare) game.getBoard().getSquaresList()
+          .get(game.getCurrentPlayer().getPosition())).getOwner() != null) {
+        locationOwner = ((OwnableSquare) game.getBoard().getSquaresList()
+            .get(game.getCurrentPlayer().getPosition())).getOwner().getDisplayName();
+      } else {
+        locationOwner = "Bank";
+      }
+    }
+
+    view.printLocation(diceSum, locationName, locationOwner);
   }
 
+  private void buy() {
+    //TODO:if a player lands in a square that is owned by another player, it should have a
+    // different message when trying to buy it
 
-  int diceSum = game.getDieOne().getValue() + game.getDieTwo().getValue();
-  game.movePlayer(game.getCurrentPlayer(), game.getDieOne().getValue(),
-      game.getDieTwo().getValue());
-
-  String locationName = game.getBoard().getSquaresList()
-      .get(game.getCurrentPlayer().getPosition()).getName();
-  String locationOwner = "N/A";
-  //Figure out if current location is ownable square. If so, find owner name
-  if (game.getBoard().getSquaresList().get(game.getCurrentPlayer().getPosition()).getType() == 0
-      ||
-      game.getBoard().getSquaresList().get(game.getCurrentPlayer().getPosition()).getType() == 1
-      ||
-      game.getBoard().getSquaresList().get(game.getCurrentPlayer().getPosition()).getType() == 3
-      ) {
-    // Check if the owner is null (Bank)
-    if (((OwnableSquare) game.getBoard().getSquaresList()
-        .get(game.getCurrentPlayer().getPosition())).getOwner() != null) {
-      locationOwner = ((OwnableSquare) game.getBoard().getSquaresList()
-          .get(game.getCurrentPlayer().getPosition())).getOwner().getDisplayName();
+    // Check if current location is ownable and can be bought.
+    if (game.checkIfOwnable(game.getCurrentPlayerLocation()) != null && !canRoll) {
+      canBuy = false;
+      // Call buyOwnable, check if it was successful or not
+      if (game.buyOwnableSquare((OwnableSquare) game.getCurrentPlayerLocation(),
+          game.getCurrentPlayer(),
+          ((OwnableSquare) game.getCurrentPlayerLocation()).getPRICE())) {
+        // Player had enough money
+        view.printBuySuccessful(game.getCurrentPlayerLocation().getName());
+      } else {
+        // Player did not have enough money
+        view.printBuyFail();
+      }
     } else {
-      locationOwner = "Bank";
+      // This aciton could not be performed.
+      view.printCannotBuy();
     }
   }
 
-  view.printLocation(diceSum, locationName, locationOwner);
-}
+  private void list() {
+    ArrayList<OwnableSquare> ownableSquareArrayList = game.getCurrentPlayer().getPropertiesOwned();
 
-private void buy(){
-  //TODO:if a player lands in a square that is owned by another player, it should have a
-  // different message when trying to buy it
-
-  // Check if current location is ownable and can be bought.
-  if (game.checkIfOwnable(game.getCurrentPlayerLocation()) != null && !canRoll) {
-    canBuy = false;
-    // Call buyOwnable, check if it was successful or not
-    if (game.buyOwnableSquare((OwnableSquare) game.getCurrentPlayerLocation(),
-        game.getCurrentPlayer(),
-        ((OwnableSquare) game.getCurrentPlayerLocation()).getPRICE())) {
-      // Player had enough money
-      view.printBuySuccessful(game.getCurrentPlayerLocation().getName());
-    } else {
-      // Player did not have enough money
-      view.printBuyFail();
+    for (int i = 0; i < ownableSquareArrayList.size(); i++) {
+      view.printOwnedSquares(ownableSquareArrayList.get(i).getName(), i);
     }
-  } else {
-    // This aciton could not be performed.
-    view.printCannotBuy();
   }
-}
-
-private void list(){
-  ArrayList<OwnableSquare> ownableSquareArrayList = game.getCurrentPlayer().getPropertiesOwned();
-
-  for(int i = 0; i < ownableSquareArrayList.size(); i++){
-    view.printOwnedSquares(ownableSquareArrayList.get(i).getName(), i);
-  }
-}
 }
 
 
