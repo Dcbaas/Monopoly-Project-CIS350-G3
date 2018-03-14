@@ -13,8 +13,8 @@ import java.util.ArrayList;
  *********************************************************************/
 public class GameTextController {
 
-  Game game;
-  GameTextView view;
+  private Game game;
+  private GameTextView view;
   private int numPairs;
   private boolean canRoll;
   private boolean canBuy;
@@ -87,8 +87,6 @@ public class GameTextController {
       canRoll = true;
       canBuy = true;
     }
-
-    return;
   }
 
 //helpers
