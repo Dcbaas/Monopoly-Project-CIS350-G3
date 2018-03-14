@@ -100,11 +100,31 @@ public class GameTextView {
   /**********************************************************************
    * This method prints action not allowed error
    *********************************************************************/
-  public void printActionError(){
+  public void printActionError() {
     System.out.println("------------------------------------------------------");
-    System.out.printf("You cannot perform that action right now.");
-    System.out.println("------------------------------------------------------")
+    System.out.printf("You cannot perform that action right now.\n");
+    System.out.println("------------------------------------------------------");
   }
 
-  
+  /**********************************************************************
+   * This method prints square bought successful
+   *
+   * @param name The name of the square that was bought
+   *********************************************************************/
+  public void printBuySuccessful(String name) {
+    System.out.println("------------------------------------------------------");
+    System.out.printf("You bought %s.\n", name);
+    System.out.println("------------------------------------------------------");
+  }
+
+  /**********************************************************************
+   * This method prints square could not be bought
+   *********************************************************************/
+  public void printBuyFail() {
+    System.out.println("------------------------------------------------------");
+    System.out.printf("You do not have enough money to buy this property\n");
+    System.out.println("------------------------------------------------------");
+  }
+
+
 }

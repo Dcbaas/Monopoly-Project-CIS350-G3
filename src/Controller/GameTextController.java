@@ -77,11 +77,23 @@ public class GameTextController {
     if (command.equalsIgnoreCase("buy")) {
       // Check if current location is ownable and can be bought.
       if (game.checkIfOwnable(game.getCurrentPlayerLocation()) != null) {
-        game.buyOwnableSquare((OwnableSquare) game.getCurrentPlayerLocation(),
+        // Call buyOwnable, check if it was successful or not
+        if (game.buyOwnableSquare((OwnableSquare) game.getCurrentPlayerLocation(),
             game.getCurrentPlayer(),
-            ((OwnableSquare) game.getCurrentPlayerLocation()).getPRICE());
+            ((OwnableSquare) game.getCurrentPlayerLocation()).getPRICE())) {
+          // Player had enough money
+          view.printBuySuccessful(game.getCurrentPlayerLocation().getName());
+        } else {
+          // Player did not have enough money
+          view.printBuyFail();
+        }
+      } else {
+        // This aciton could not be performed.
+        view.printActionError();
       }
     }
+
+    
 
     return;
   }
