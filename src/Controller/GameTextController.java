@@ -136,7 +136,7 @@ public class GameTextController {
         locationOwner = "Bank";
       }
 
-      if (!locationOwner.contains(game.getCurrentPlayer().getDisplayName()) && !canRoll c){
+      if (!locationOwner.contains(game.getCurrentPlayer().getDisplayName()) && !canRoll){
         tax();
       }
     }
