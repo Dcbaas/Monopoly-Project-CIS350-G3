@@ -63,7 +63,6 @@ public class GameTextController {
       return;
     }
 
-
     //Checks which command the player used
     switch (command.toLowerCase()) {
       case "roll":
@@ -107,22 +106,24 @@ public class GameTextController {
     }
   }
 
-  public void possibleActions(){
+  public void possibleActions() {
     ArrayList<String> actions = new ArrayList<>();
     actions.add("'list' - Show player money and properties owned.");
-    actions.add("'house' - Shows list and prompts user for a property they want to build a house on");
-    actions.add("'hotel' - Shows list and prompts user for a property they want to build a hotel on");
+    actions
+        .add("'house' - Shows list and prompts user for a property they want to build a house on");
+    actions
+        .add("'hotel' - Shows list and prompts user for a property they want to build a hotel on");
 
-    if(!canRoll) {
+    if (!canRoll) {
       actions.add("'done' - Ends Player's turn.");
     }
-    if(canRoll){
+    if (canRoll) {
       actions.add("'roll' - Player rolls and moves");
     }
-    if(canBuy){
+    if (canBuy) {
       actions.add("'buy' - Player tries to buy the property they are on.");
     }
-    for(int i = 0; i < actions.size(); i++){
+    for (int i = 0; i < actions.size(); i++) {
       view.printPossibleActions(actions.get(i), i);
     }
   }
@@ -163,7 +164,7 @@ public class GameTextController {
         locationOwner = "Bank";
       }
 
-      if (!locationOwner.contains(game.getCurrentPlayer().getDisplayName()) && !canRoll){
+      if (!locationOwner.contains(game.getCurrentPlayer().getDisplayName()) && !canRoll) {
         tax();
       }
     }
@@ -197,7 +198,7 @@ public class GameTextController {
     }
   }
 
-  private void tax(){
+  private void tax() {
     view.printTaxCollected(game.collectFee());
   }
 
@@ -211,10 +212,9 @@ public class GameTextController {
     ArrayList<OwnableSquare> ownableSquareArrayList = game.getCurrentPlayer().getPropertiesOwned();
 
     //Iterates through all the ownable squares and  prints their name.
-    if(ownableSquareArrayList.size() == 0){
+    if (ownableSquareArrayList.size() == 0) {
       view.printOwnedSquares("None", 0);
-    }
-    else {
+    } else {
       for (int i = 0; i < ownableSquareArrayList.size(); i++) {
         view.printOwnedSquares(ownableSquareArrayList.get(i).getName(), i);
       }
@@ -234,63 +234,58 @@ public class GameTextController {
   /**********************************************************************
    * This method builds a house on a property
    *********************************************************************/
-  private void buildHouse(){
+  private void buildHouse() {
     // Show the user all owned properties and prompt for which prop to build on
     list();
     String propertyName = view.getPropertyToBuildOn();
 
     // Get the actual propertySqaure
     PropertySquare property = null;
-    for(BoardSquare square : game.getBoard().getSquaresList()){
-      if(square.getName().equalsIgnoreCase(propertyName)){
+    for (BoardSquare square : game.getBoard().getSquaresList()) {
+      if (square.getName().equalsIgnoreCase(propertyName)) {
         property = (PropertySquare) square;
       }
     }
 
     // Check if the bank has at least one house
-    if(game.getBank().getNumHouses() >= 1){
+    if (game.getBank().getNumHouses() >= 1) {
       // Check that the player owns the group for desired property
-      if(game.getCurrentPlayer().getGroupsOwned().size() > 0 && game.getCurrentPlayer().getGroupsOwned().contains(property.getGROUP_NUMBER())){
+      if (game.getCurrentPlayer().getGroupsOwned().size() > 0 && game.getCurrentPlayer()
+          .getGroupsOwned().contains(property.getGROUP_NUMBER())) {
         // Check if the property has a hotel
-          if(property.isHasHotel() == false){
-              // Check if property has 4 houses
-              if(property.getNumHouses() < 4){
-                  // Check that all other properties in group are not less than 1 house different
-                  // If you want to build the second house on a property, all other props in that group need to have at least 1 house
-                  if(checkHouseCount(property) == true){
-                      // Check that player has enough money
-                      if(game.getCurrentPlayer().getWallet() >= property.getHouseCost()){
-                          //add one house to the desired property
-                          property.setNumHouses(property.getNumHouses() + 1);
+        if (property.isHasHotel() == false) {
+          // Check if property has 4 houses
+          if (property.getNumHouses() < 4) {
+            // Check that all other properties in group are not less than 1 house different
+            // If you want to build the second house on a property, all other props in that group need to have at least 1 house
+            if (checkHouseCount(property) == true) {
+              // Check that player has enough money
+              if (game.getCurrentPlayer().getWallet() >= property.getHouseCost()) {
+                //add one house to the desired property
+                property.setNumHouses(property.getNumHouses() + 1);
 
-                          //remove one house from bank
-                          game.getBank().setNumHouses(game.getBank().getNumHouses() - 1);
+                //remove one house from bank
+                game.getBank().setNumHouses(game.getBank().getNumHouses() - 1);
 
-                          // Print build success
-                          view.printBuildSuccessful("House", property.getName());
-                      }
-                      else {
-                          view.printBuyFail();
-                      }
-                  }
-                  else{
-                      view.printHouseCountsError();
-                  }
+                // Print build success
+                view.printBuildSuccessful("House", property.getName());
+              } else {
+                view.printBuyFail();
               }
-              else{
-                  view.printPropertyMaxHouse();
-              }
+            } else {
+              view.printHouseCountsError();
+            }
+          } else {
+            view.printPropertyMaxHouse();
           }
-          else{
-              view.printPropertyHasHotel();
-          }
+        } else {
+          view.printPropertyHasHotel();
+        }
 
-      }
-      else{
+      } else {
         view.printDoesNotOwnMonopoly();
       }
-    }
-    else{
+    } else {
       view.printBankOutOfHouses();
     }
 
@@ -299,106 +294,105 @@ public class GameTextController {
   /**********************************************************************
    * This method builds a hotel on a property
    *********************************************************************/
-  private void buildHotel(){
+  private void buildHotel() {
     // Show the user all owned properties and prompt for which prop to build on
     list();
     String propertyName = view.getPropertyToBuildOn();
 
     // Get the actual propertySqaure
     PropertySquare property = null;
-    for(BoardSquare square : game.getBoard().getSquaresList()){
-      if(square.getName().equalsIgnoreCase(propertyName)){
+    for (BoardSquare square : game.getBoard().getSquaresList()) {
+      if (square.getName().equalsIgnoreCase(propertyName)) {
         property = (PropertySquare) square;
       }
     }
 
-      // Check if bank has at least one hotel
-    if(game.getBank().getNumHotels() >= 1){
+    // Check if bank has at least one hotel
+    if (game.getBank().getNumHotels() >= 1) {
       // Check that the player owns the group for desired property
-      if(game.getCurrentPlayer().getGroupsOwned().size() > 0 && game.getCurrentPlayer().getGroupsOwned().contains(property.getGROUP_NUMBER())) {
-          // Check that the property does not have a hotel already
-          if (property.isHasHotel() == false) {
-              // Check that the property has 4 houses
-              if (property.getNumHouses() == 4) {
-                  // Check that all other properties in group are not less than 1 house different
-                  // If you want to build the second house on a property, all other props in that group need to have at least 1 house
-                  boolean isHouseCountEven = true;
-                  for (BoardSquare square : game.getBoard().getSquaresList()) {
-                      // Only keep checking if isHouseCunt is true. If false, no point to keep going
-                      if (isHouseCountEven == true) {
-                          // Make sure its a propertySquare
-                          if (square.getType() == 0) {
-                              PropertySquare propertySquare = (PropertySquare) square;
-                              // Check if property is in same group
-                              if (propertySquare.getGROUP_NUMBER() == property.getGROUP_NUMBER()) {
-                                  // Make sure num houses is not less desired prop num houses - 1
-                                  if (propertySquare.getNumHouses() < 3 && propertySquare.isHasHotel() == false) {
-                                      isHouseCountEven = false;
-                                  }
-                              }
-                          }
-                      }
+      if (game.getCurrentPlayer().getGroupsOwned().size() > 0 && game.getCurrentPlayer()
+          .getGroupsOwned().contains(property.getGROUP_NUMBER())) {
+        // Check that the property does not have a hotel already
+        if (property.isHasHotel() == false) {
+          // Check that the property has 4 houses
+          if (property.getNumHouses() == 4) {
+            // Check that all other properties in group are not less than 1 house different
+            // If you want to build the second house on a property, all other props in that group need to have at least 1 house
+            boolean isHouseCountEven = true;
+            for (BoardSquare square : game.getBoard().getSquaresList()) {
+              // Only keep checking if isHouseCunt is true. If false, no point to keep going
+              if (isHouseCountEven == true) {
+                // Make sure its a propertySquare
+                if (square.getType() == 0) {
+                  PropertySquare propertySquare = (PropertySquare) square;
+                  // Check if property is in same group
+                  if (propertySquare.getGROUP_NUMBER() == property.getGROUP_NUMBER()) {
+                    // Make sure num houses is not less desired prop num houses - 1
+                    if (propertySquare.getNumHouses() < 3 && propertySquare.isHasHotel() == false) {
+                      isHouseCountEven = false;
+                    }
                   }
-                  if (isHouseCountEven == true) {
-                      // Check that player has enough money
-                      if (game.getCurrentPlayer().getWallet() >= property.getHotelCost()) {
-                          // Add one hotel to the desired property (set hasHotel to true)
-                          property.setHasHotel(true);
-                          // remove 4 houses from the desired property
-                          property.setNumHouses(property.getNumHouses() - 4);
-                          // remove one hotel from the bank
-                          game.getBank().setNumHotels(game.getBank().getNumHotels() - 1);
-                          // add 4 houses to the bank
-                          game.getBank().setNumHouses(game.getBank().getNumHouses() + 4);
-
-                          // Print build success
-                          view.printBuildSuccessful("Hotel", property.getName());
-                      } else {
-                          view.printBuyFail();
-                      }
-                  } else {
-                      view.printHouseCountsError();
-                  }
-
-              } else {
-                  view.printNumHouseError();
+                }
               }
+            }
+            if (isHouseCountEven == true) {
+              // Check that player has enough money
+              if (game.getCurrentPlayer().getWallet() >= property.getHotelCost()) {
+                // Add one hotel to the desired property (set hasHotel to true)
+                property.setHasHotel(true);
+                // remove 4 houses from the desired property
+                property.setNumHouses(property.getNumHouses() - 4);
+                // remove one hotel from the bank
+                game.getBank().setNumHotels(game.getBank().getNumHotels() - 1);
+                // add 4 houses to the bank
+                game.getBank().setNumHouses(game.getBank().getNumHouses() + 4);
+
+                // Print build success
+                view.printBuildSuccessful("Hotel", property.getName());
+              } else {
+                view.printBuyFail();
+              }
+            } else {
+              view.printHouseCountsError();
+            }
+
           } else {
-              view.printPropertyHasHotel();
+            view.printNumHouseError();
           }
-      }
-      else{
+        } else {
+          view.printPropertyHasHotel();
+        }
+      } else {
         view.printDoesNotOwnMonopoly();
       }
-    }
-    else{
+    } else {
       view.printBankOutOfHotels();
     }
   }
 
-    /**********************************************************************
-     * This method is used in buildHouse and buildHotel to check if the
-     * property has even house counts across the group.
-     *********************************************************************/
-  private boolean checkHouseCount(PropertySquare property){
-      boolean isHouseCountEven = true;
-      for(BoardSquare square : game.getBoard().getSquaresList()){
-          // Only keep checking if isHouseCunt is true. If false, no point to keep going
-          if(isHouseCountEven == true) {
-              // Make sure its a propertySquare
-              if (square.getType() == 0) {
-                  PropertySquare propertySquare = (PropertySquare) square;
-                  // Check if property is in same group
-                  if (propertySquare.getGROUP_NUMBER() == property.getGROUP_NUMBER()) {
-                      // Make sure num houses is not less desired prop num houses - 1
-                      if (propertySquare.getNumHouses() <= property.getNumHouses() - 1) {
-                          isHouseCountEven = false;
-                      }
-                  }
-              }
+  /**********************************************************************
+   * This method is used in buildHouse and buildHotel to check if the
+   * property has even house counts across the group.
+   *********************************************************************/
+  private boolean checkHouseCount(PropertySquare property) {
+    boolean isHouseCountEven = true;
+    for (BoardSquare square : game.getBoard().getSquaresList()) {
+      // Only keep checking if isHouseCunt is true. If false, no point to keep going
+      if (isHouseCountEven == true) {
+        // Make sure its a propertySquare
+        if (square.getType() == 0) {
+          PropertySquare propertySquare = (PropertySquare) square;
+          // Check if property is in same group
+          if (propertySquare.getGROUP_NUMBER() == property.getGROUP_NUMBER()) {
+            // Make sure num houses is not less desired prop num houses - 1
+            if (propertySquare.getNumHouses() <= property.getNumHouses() - 1) {
+              isHouseCountEven = false;
+            }
           }
+        }
       }
-      return isHouseCountEven;
+    }
+    return isHouseCountEven;
   }
 
 }
