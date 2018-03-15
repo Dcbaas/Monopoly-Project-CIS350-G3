@@ -4,11 +4,14 @@ import Model.BoardPackage.Board;
 import Model.BoardPackage.BoardSquare;
 import Model.BoardPackage.OwnableSquare;
 import Model.BoardPackage.PropertySquare;
+import Model.BoardPackage.RailRoadSquare;
+import Model.BoardPackage.UtilitiesSquare;
 import Model.CardPackage.Card;
 import Model.CardPackage.Deck;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 /**********************************************************************
@@ -662,4 +665,44 @@ public class Game {
     return board.getSquaresList().get(currentPlayer.getPosition());
   }
 
+  public int collectFee() {
+    Random random = new Random();
+
+    int rent = 0;
+
+
+    switch(board.getOwnableSquare(currentPlayer.getPosition()).getType()){
+
+      case 0:
+        PropertySquare ownableSquare = (PropertySquare) board.getOwnableSquare(currentPlayer.getPosition());
+        rent = ownableSquare.getCurrentRent();
+        collectFee(currentPlayer,ownableSquare.getOwner(), rent);
+        break;
+      case 1:
+
+        RailRoadSquare railRoadSquare =(RailRoadSquare) board.getOwnableSquare(currentPlayer.getPosition());
+
+        switch(currentPlayer.getNumPropertiesOwnedByType(1)){
+          case 1:
+            rent = railRoadSquare.getBASE_RENT();
+            break;
+          case 2:
+            rent = railRoadSquare.getTWO_RENT();
+            break;
+          case 3:
+            rent = railRoadSquare.getTHREE_RENT();
+            break;
+          case 4:
+            rent = railRoadSquare.getFOUR_RENT();
+        }
+        collectFee(currentPlayer, railRoadSquare.getOwner(), rent);
+      case 3:
+        UtilitiesSquare utilitiesSquare =(UtilitiesSquare) board.getOwnableSquare(currentPlayer.getPosition());
+        rent = (currentPlayer.getNumPropertiesOwnedByType(3)  > 1)? utilitiesSquare.getRentOne(random.nextInt(6) + 1): utilitiesSquare.getRentTwo(random.nextInt(6) + 1);
+        collectFee(currentPlayer,utilitiesSquare.getOwner(), rent);
+
+
+  }
+    return rent;
+}
 }

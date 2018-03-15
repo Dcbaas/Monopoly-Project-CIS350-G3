@@ -154,6 +154,10 @@ public class GameTextView {
     System.out.println("You enter an unknown command");
   }
 
+  public void printTaxCollected(int tax) {
+    System.out.println("You paid " + tax + " in fees/rent");
+  }
+
   public void printPlayerWallet(int amount){
     System.out.println("------------------------------------------------------");
     System.out.printf("Wallet: $%d\n\n", amount);

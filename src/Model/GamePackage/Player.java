@@ -376,4 +376,16 @@ public class Player {
   public ArrayList<OwnableSquare> getOwnableProperties() {
     return propertiesOwned;
   }
+
+  public int getNumPropertiesOwnedByType(int typeId) {
+    int count = 0;
+
+    for (OwnableSquare onableSquare: propertiesOwned) {
+      if (typeId == onableSquare.getType()){
+        count++;
+      }
+    }
+
+    return count;
+  }
 }

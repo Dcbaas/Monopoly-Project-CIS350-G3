@@ -152,6 +152,10 @@ public class GameTextController {
       } else {
         locationOwner = "Bank";
       }
+
+      if (!locationOwner.contains(game.getCurrentPlayer().getDisplayName()) && !canRoll){
+        tax();
+      }
     }
 
     view.printLocation(diceSum, locationName, locationOwner);
@@ -178,13 +182,17 @@ public class GameTextController {
         view.printBuyFail();
       }
     } else {
-      // This aciton could not be performed.
+      // This action could not be performed.
       view.printCannotBuy();
     }
   }
 
+  private void tax(){
+    view.printTaxCollected(game.collectFee());
+  }
+
   /**********************************************************************
-   * This methof performs all the logic for the list command.
+   * This method performs all the logic for the list command.
    *********************************************************************/
   private void list() {
 
