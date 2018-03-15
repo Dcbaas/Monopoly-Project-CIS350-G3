@@ -211,4 +211,47 @@ public class GameTextView {
     System.out.printf("The bank is out of houses\n");
   }
 
+  /**********************************************************************
+   * This method prints that the bank is out of hotels
+   *********************************************************************/
+  public void printBankOutOfHotels(){
+    System.out.println("------------------------------------------------------");
+    System.out.printf("The bank is out of hotels\n");
+  }
+
+  /**********************************************************************
+   * This method prints that the property does not have 4 houses on it yet.
+   *********************************************************************/
+  public void printNumHouseError(){
+    System.out.println("------------------------------------------------------");
+    System.out.printf("Cannot build a Hotel. This property does not have 4 houses yet.\n");
+  }
+
+  /**********************************************************************
+   * This method prints that the house/hotel build was successful
+   *
+   * @param building The type of building that was built. House or Hotel
+   * @param propertyName The name of the property the building was built on
+   *********************************************************************/
+  public void printBuildSuccessful(String building, String propertyName){
+    System.out.println("------------------------------------------------------");
+    System.out.printf("%s was successfully built on %s.\n", building, propertyName);
+  }
+
+  /**********************************************************************
+   * This method prints that the property has 4 houses
+   *********************************************************************/
+  public void printPropertyMaxHouse(){
+    System.out.println("------------------------------------------------------");
+    System.out.printf("Property already has 4 houses. Build a hotel here.\n");
+  }
+
+  /**********************************************************************
+   * This method prints that the property has a hotel
+   *********************************************************************/
+  public void printPropertyHasHotel(){
+    System.out.println("------------------------------------------------------");
+    System.out.printf("This property has a hotel.\n");
+  }
+
 }
