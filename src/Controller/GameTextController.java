@@ -1,6 +1,8 @@
 package Controller;
 
+import Model.BoardPackage.BoardSquare;
 import Model.BoardPackage.OwnableSquare;
+import Model.BoardPackage.PropertySquare;
 import Model.GamePackage.Game;
 import View.GameTextView;
 import java.util.ArrayList;
@@ -81,6 +83,12 @@ public class GameTextController {
       case "list":
         list();
         break;
+      case "house":
+        buildHouse();
+        break;
+      case "hotel":
+        buildHotel();
+        break;
       case "done":
         if (!canRoll) {
           nextPlayer();
@@ -102,6 +110,9 @@ public class GameTextController {
   public void possibleActions(){
     ArrayList<String> actions = new ArrayList<>();
     actions.add("'list' - Show player money and properties owned.");
+    actions.add("'house' - Shows list and prompts user for a property they want to build a house on");
+    actions.add("'hotel' - Shows list and prompts user for a property they want to build a hotel on");
+
     if(!canRoll) {
       actions.add("'done' - Ends Player's turn.");
     }
@@ -220,6 +231,94 @@ public class GameTextController {
     canRoll = true;
     canBuy = true;
   }
+
+  /**********************************************************************
+   * This method builds a house on a property
+   *********************************************************************/
+  private void buildHouse(){
+    // Show the user all owned properties and prompt for which prop to build on
+    list();
+    String propertyName = view.getPropertyToBuildOn();
+
+    // Get the actual propertySqaure
+    PropertySquare property = null;
+    for(BoardSquare square : game.getBoard().getSquaresList()){
+      if(square.getName().equalsIgnoreCase(propertyName)){
+        property = (PropertySquare) square;
+      }
+    }
+
+    // Check if the bank has at least one house
+    if(game.getBank().getNumHouses() >= 1){
+      // Check that the player owns the group for desired property
+      if(game.getCurrentPlayer().getGroupsOwned().size() > 0 && game.getCurrentPlayer().getGroupsOwned().contains(property.getGROUP_NUMBER())){
+        // Check that all other properties in group are not less than 1 house different
+        // If you want to build the second house on a property, all other props in that group need to have at least 1 house
+        boolean isHouseCountEven = true;
+        for(BoardSquare square : game.getBoard().getSquaresList()){
+          // Only keep checking if isHouseCunt is true. If false, no point to keep going
+          if(isHouseCountEven == true) {
+            // Make sure its a propertySquare
+            if (square.getType() == 0) {
+              PropertySquare propertySquare = (PropertySquare) square;
+              // Check if property is in same group
+              if (propertySquare.getGROUP_NUMBER() == property.getGROUP_NUMBER()) {
+                // Make sure num houses is not less desired prop num houses - 1
+                if (propertySquare.getNumHouses() <= property.getNumHouses() - 1) {
+                  isHouseCountEven = false;
+                }
+              }
+            }
+          }
+        }
+        if(isHouseCountEven == true){
+          // Check that player has enough money
+          if(game.getCurrentPlayer().getWallet() >= property.getHouseCost()){
+            //add one house to the desired property
+            property.setNumHouses(property.getNumHouses() + 1);
+
+            //remove one house from bank
+            game.getBank().setNumHouses(game.getBank().getNumHouses() - 1);
+          }
+          else {
+            view.printBuyFail();
+          }
+        }
+        else{
+          view.printHouseCountsError();
+        }
+      }
+      else{
+        view.printDoesNotOwnMonopoly();
+      }
+    }
+    else{
+      view.printBankOutOfHouses();
+    }
+
+  }
+
+  /**********************************************************************
+   * This method builds a hotel on a property
+   *********************************************************************/
+  private void buildHotel(){
+    // Check if bank has at least one hotel
+
+    // Check that player owns the group for the desired property
+
+    // Check that the property has 4 houses
+
+    // Check that all other properties have at least 3 houses
+
+    // Add one hotel to the desired property
+
+    // remove 4 houses from the desired property
+
+    // remove one hotel from the bank
+
+    // add 4 houses to the bank
+  }
+
 }
 
 

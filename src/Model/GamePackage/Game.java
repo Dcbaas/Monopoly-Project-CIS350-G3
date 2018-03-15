@@ -277,6 +277,25 @@ public class Game {
       buyer.recieveProperty(bank.giveProperty(ownableSquare));
       buyer.pay(ownableSquare.getPRICE());
       ownableSquare.setOwner(buyer);
+
+      int groupCounter = 0;
+      // Check if player now owns group and set it
+      for(OwnableSquare square : currentPlayer.getPropertiesOwned()){
+        if(square.getGROUP_NUMBER() == ownableSquare.getGROUP_NUMBER()){
+          groupCounter++;
+        }
+      }
+
+      if(ownableSquare.getGROUP_NUMBER() == 1 || ownableSquare.getGROUP_NUMBER() == 8){
+        if(groupCounter == 2){
+          currentPlayer.addGroupOwned(ownableSquare.getGROUP_NUMBER());
+        }
+      }
+      else{
+        if(groupCounter == 3){
+          currentPlayer.addGroupOwned(ownableSquare.getGROUP_NUMBER());
+        }
+      }
       return true;
     }
     return false;

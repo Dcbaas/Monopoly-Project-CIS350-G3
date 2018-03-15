@@ -118,7 +118,7 @@ public class GameTextView {
    *********************************************************************/
   public void printBuyFail() {
     System.out.println("------------------------------------------------------");
-    System.out.printf("You do not have enough money to buy this property\n");
+    System.out.printf("You do not have enough money to buy this\n");
   }
 
   /**********************************************************************
@@ -172,4 +172,43 @@ public class GameTextView {
     }
 
   }
+
+  /**********************************************************************
+   * This method prompts the user for the property they want to build on
+   *
+   * return The name of the property they want to build on
+   *********************************************************************/
+  public String getPropertyToBuildOn() {
+    // Prompt user for property
+    System.out.print("Which property do you want to build on: ");
+    String propertyName = scanner.nextLine();
+
+    return propertyName;
+  }
+
+  /**********************************************************************
+   * This method prints that the house counts are not even
+   *********************************************************************/
+  public void printHouseCountsError(){
+    System.out.println("------------------------------------------------------");
+    System.out.printf("\nHouse counts across this group are not even. Try building on a different property in this group first.\n");
+
+  }
+
+  /**********************************************************************
+   * This method prints that the player does not own the monopoly
+   *********************************************************************/
+  public void printDoesNotOwnMonopoly(){
+    System.out.println("------------------------------------------------------");
+    System.out.printf("You do not own this monopoly\n");
+  }
+
+  /**********************************************************************
+   * This method prints that the bank is out of houses
+   *********************************************************************/
+  public void printBankOutOfHouses(){
+    System.out.println("------------------------------------------------------");
+    System.out.printf("The bank is out of houses\n");
+  }
+
 }
