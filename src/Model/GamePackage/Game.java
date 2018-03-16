@@ -277,6 +277,24 @@ public class Game {
       buyer.recieveProperty(bank.giveProperty(ownableSquare));
       buyer.pay(ownableSquare.getPRICE());
       ownableSquare.setOwner(buyer);
+
+      int groupCounter = 0;
+      // Check if player now owns group and set it
+      for (OwnableSquare square : currentPlayer.getPropertiesOwned()) {
+        if (square.getGROUP_NUMBER() == ownableSquare.getGROUP_NUMBER()) {
+          groupCounter++;
+        }
+      }
+
+      if (ownableSquare.getGROUP_NUMBER() == 1 || ownableSquare.getGROUP_NUMBER() == 8) {
+        if (groupCounter == 2) {
+          currentPlayer.addGroupOwned(ownableSquare.getGROUP_NUMBER());
+        }
+      } else {
+        if (groupCounter == 3) {
+          currentPlayer.addGroupOwned(ownableSquare.getGROUP_NUMBER());
+        }
+      }
       return true;
     }
     return false;
@@ -670,19 +688,20 @@ public class Game {
 
     int rent = 0;
 
-
-    switch(board.getOwnableSquare(currentPlayer.getPosition()).getType()){
+    switch (board.getOwnableSquare(currentPlayer.getPosition()).getType()) {
 
       case 0:
-        PropertySquare ownableSquare = (PropertySquare) board.getOwnableSquare(currentPlayer.getPosition());
+        PropertySquare ownableSquare = (PropertySquare) board
+            .getOwnableSquare(currentPlayer.getPosition());
         rent = ownableSquare.getCurrentRent();
-        collectFee(currentPlayer,ownableSquare.getOwner(), rent);
+        collectFee(currentPlayer, ownableSquare.getOwner(), rent);
         break;
       case 1:
 
-        RailRoadSquare railRoadSquare =(RailRoadSquare) board.getOwnableSquare(currentPlayer.getPosition());
+        RailRoadSquare railRoadSquare = (RailRoadSquare) board
+            .getOwnableSquare(currentPlayer.getPosition());
 
-        switch(currentPlayer.getNumPropertiesOwnedByType(1)){
+        switch (currentPlayer.getNumPropertiesOwnedByType(1)) {
           case 1:
             rent = railRoadSquare.getBASE_RENT();
             break;
@@ -697,12 +716,14 @@ public class Game {
         }
         collectFee(currentPlayer, railRoadSquare.getOwner(), rent);
       case 3:
-        UtilitiesSquare utilitiesSquare =(UtilitiesSquare) board.getOwnableSquare(currentPlayer.getPosition());
-        rent = (currentPlayer.getNumPropertiesOwnedByType(3)  > 1)? utilitiesSquare.getRentOne(random.nextInt(6) + 1): utilitiesSquare.getRentTwo(random.nextInt(6) + 1);
-        collectFee(currentPlayer,utilitiesSquare.getOwner(), rent);
+        UtilitiesSquare utilitiesSquare = (UtilitiesSquare) board
+            .getOwnableSquare(currentPlayer.getPosition());
+        rent = (currentPlayer.getNumPropertiesOwnedByType(3) > 1) ? utilitiesSquare
+            .getRentOne(random.nextInt(6) + 1) : utilitiesSquare.getRentTwo(random.nextInt(6) + 1);
+        collectFee(currentPlayer, utilitiesSquare.getOwner(), rent);
 
 
-  }
+    }
     return rent;
-}
+  }
 }

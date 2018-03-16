@@ -380,8 +380,8 @@ public class Player {
   public int getNumPropertiesOwnedByType(int typeId) {
     int count = 0;
 
-    for (OwnableSquare onableSquare: propertiesOwned) {
-      if (typeId == onableSquare.getType()){
+    for (OwnableSquare onableSquare : propertiesOwned) {
+      if (typeId == onableSquare.getType()) {
         count++;
       }
     }

@@ -118,7 +118,7 @@ public class GameTextView {
    *********************************************************************/
   public void printBuyFail() {
     System.out.println("------------------------------------------------------");
-    System.out.printf("You do not have enough money to buy this property\n");
+    System.out.printf("You do not have enough money to buy this\n");
   }
 
   /**********************************************************************
@@ -158,12 +158,12 @@ public class GameTextView {
     System.out.println("You paid " + tax + " in fees/rent");
   }
 
-  public void printPlayerWallet(int amount){
+  public void printPlayerWallet(int amount) {
     System.out.println("------------------------------------------------------");
     System.out.printf("Wallet: $%d\n\n", amount);
   }
 
-  public void printPossibleActions(String action, int counter){
+  public void printPossibleActions(String action, int counter) {
     if (counter < 1) {
       System.out.println("------------------------------------------------------");
       System.out.printf("You can use these actions:\n\t%s\n", action);
@@ -172,4 +172,87 @@ public class GameTextView {
     }
 
   }
+
+  /**********************************************************************
+   * This method prompts the user for the property they want to build on
+   *
+   * return The name of the property they want to build on
+   *********************************************************************/
+  public String getPropertyToBuildOn() {
+    // Prompt user for property
+    System.out.print("Which property do you want to build on: ");
+    String propertyName = scanner.nextLine();
+
+    return propertyName;
+  }
+
+  /**********************************************************************
+   * This method prints that the house counts are not even
+   *********************************************************************/
+  public void printHouseCountsError() {
+    System.out.println("------------------------------------------------------");
+    System.out.printf(
+        "\nHouse counts across this group are not even. Try building on a different property in this group first.\n");
+
+  }
+
+  /**********************************************************************
+   * This method prints that the player does not own the monopoly
+   *********************************************************************/
+  public void printDoesNotOwnMonopoly() {
+    System.out.println("------------------------------------------------------");
+    System.out.printf("You do not own this monopoly\n");
+  }
+
+  /**********************************************************************
+   * This method prints that the bank is out of houses
+   *********************************************************************/
+  public void printBankOutOfHouses() {
+    System.out.println("------------------------------------------------------");
+    System.out.printf("The bank is out of houses\n");
+  }
+
+  /**********************************************************************
+   * This method prints that the bank is out of hotels
+   *********************************************************************/
+  public void printBankOutOfHotels() {
+    System.out.println("------------------------------------------------------");
+    System.out.printf("The bank is out of hotels\n");
+  }
+
+  /**********************************************************************
+   * This method prints that the property does not have 4 houses on it yet.
+   *********************************************************************/
+  public void printNumHouseError() {
+    System.out.println("------------------------------------------------------");
+    System.out.printf("Cannot build a Hotel. This property does not have 4 houses yet.\n");
+  }
+
+  /**********************************************************************
+   * This method prints that the house/hotel build was successful
+   *
+   * @param building The type of building that was built. House or Hotel
+   * @param propertyName The name of the property the building was built on
+   *********************************************************************/
+  public void printBuildSuccessful(String building, String propertyName) {
+    System.out.println("------------------------------------------------------");
+    System.out.printf("%s was successfully built on %s.\n", building, propertyName);
+  }
+
+  /**********************************************************************
+   * This method prints that the property has 4 houses
+   *********************************************************************/
+  public void printPropertyMaxHouse() {
+    System.out.println("------------------------------------------------------");
+    System.out.printf("Property already has 4 houses. Build a hotel here.\n");
+  }
+
+  /**********************************************************************
+   * This method prints that the property has a hotel
+   *********************************************************************/
+  public void printPropertyHasHotel() {
+    System.out.println("------------------------------------------------------");
+    System.out.printf("This property has a hotel.\n");
+  }
+
 }

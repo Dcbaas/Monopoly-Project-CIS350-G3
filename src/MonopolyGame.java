@@ -45,7 +45,6 @@ public class MonopolyGame {
       }
       controller.commands(command);
 
-      //TODO: Add logic to switch player turns.
     }
 
   }
