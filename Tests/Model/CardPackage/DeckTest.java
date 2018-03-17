@@ -23,16 +23,16 @@ public class DeckTest {
      * This resets the decks before every test
      ***********************************************************************************/
     @Before
-    void setUp(){
-        chanceDeck = new Deck(System.getenv("CHANCE_FILE"),true);
-        communityDeck = new Deck(System.getenv("COMMUNITY_FILE"),false);
+    public void setUp(){
+        chanceDeck = new Deck("res/chance.txt",true);
+        communityDeck = new Deck("res/community.txt",false);
     }
 
     /**********************************************************************************
      * Test the functionality of the drawCard method
      ***********************************************************************************/
     @Test
-    void drawCard() {
+    public void drawCard() {
         Card drawnCard;
         int beforeSize = chanceDeck.getDeck().size();
 
@@ -50,7 +50,7 @@ public class DeckTest {
      * Tests the functionality of the returnCard method
      ***********************************************************************************/
     @Test
-    void returnCard() {
+    public void returnCard() {
         Card drawnCard = communityDeck.drawCard();
         int beforeSize = communityDeck.getDeck().size();
 
@@ -68,7 +68,7 @@ public class DeckTest {
      * Test the functionality of the shuffleDeck method
      ***********************************************************************************/
     @Test
-    void shufleDeck() {
+    public void shufleDeck() {
         Random random = new Random();
         int randomCardIndex = random.nextInt(chanceDeck.getDeck().size());
         Card randomCard;
@@ -83,7 +83,7 @@ public class DeckTest {
      * Test the functionality of the getDeck method
      ***********************************************************************************/
     @Test
-    void getDeck() {
+    public void getDeck() {
         assertNotNull(communityDeck.getDeck());
         assertNotNull(chanceDeck.getDeck());
     }
@@ -92,7 +92,7 @@ public class DeckTest {
      * Test the fucntionality of the setDeck method
      ***********************************************************************************/
     @Test
-    void setDeck() {
+    public void setDeck() {
         ArrayList<Card> testDeck = new ArrayList<>();
 
         for (int index = 0; index < 10 ; index ++ ){
