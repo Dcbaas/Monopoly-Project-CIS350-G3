@@ -186,6 +186,6 @@ public class Board {
    *********************************************************************/
   public boolean isSquareOwnable(int position) {
     int type = squaresList.get(position).getType();
-     return (type == 0 || type == 1 || type == 3)? true: false;
+    return (type == 0 || type == 1 || type == 3) ? true : false;
   }
 }

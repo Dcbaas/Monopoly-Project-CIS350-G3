@@ -739,11 +739,14 @@ public class Game {
    *********************************************************************/
   public boolean shouldPlayerBeTaxed() {
     //Checks if the player is at an OwnableSquare
-    if (board.isSquareOwnable(currentPlayer.getPosition() )){
+    if (board.isSquareOwnable(currentPlayer.getPosition())) {
       //Checks if the bank owns the square
       if (board.getOwnableSquare(currentPlayer.getPosition()).getOwner() != null)
-        //Checks if the current player is the owner of the square he is standing at.
-      return !board.getOwnableSquare(currentPlayer.getPosition()).getOwner().equals(currentPlayer);
+      //Checks if the current player is the owner of the square he is standing at.
+      {
+        return !board.getOwnableSquare(currentPlayer.getPosition()).getOwner()
+            .equals(currentPlayer);
+      }
     }
 
     return false;
