@@ -10,7 +10,8 @@ import java.util.ArrayList;
  * variables.
  *
  * @author David Baas
- * @version 2/11/2018
+ * @since 2/11/2018
+ * @version 3/17/2018
  *********************************************************************/
 public abstract class BoardSquare {
 
