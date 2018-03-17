@@ -683,6 +683,10 @@ public class Game {
     return board.getSquaresList().get(currentPlayer.getPosition());
   }
 
+  /**********************************************************************
+   * this method collect the correct amount form the currentPlayer
+   * @return the amount the player was taxed
+   *********************************************************************/
   public int collectFee() {
     Random random = new Random();
 
@@ -725,5 +729,26 @@ public class Game {
 
     }
     return rent;
+  }
+
+  /**********************************************************************
+   * This method checks whether the current player should be taxed by
+   * checking its current position and its owner. If the current position
+   * is owned by the bank (null), then the player should not be taxex.
+   * @return Whether the player should be taxed
+   *********************************************************************/
+  public boolean shouldPlayerBeTaxed() {
+    //Checks if the player is at an OwnableSquare
+    if (board.isSquareOwnable(currentPlayer.getPosition())) {
+      //Checks if the bank owns the square
+      if (board.getOwnableSquare(currentPlayer.getPosition()).getOwner() != null)
+      //Checks if the current player is the owner of the square he is standing at.
+      {
+        return !board.getOwnableSquare(currentPlayer.getPosition()).getOwner()
+            .equals(currentPlayer);
+      }
+    }
+
+    return false;
   }
 }
