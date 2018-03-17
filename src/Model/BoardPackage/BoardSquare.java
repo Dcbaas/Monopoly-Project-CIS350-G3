@@ -10,7 +10,8 @@ import java.util.ArrayList;
  * variables.
  *
  * @author David Baas
- * @version 2/11/2018
+ * @since 2/11/2018
+ * @version 3/17/2018
  *********************************************************************/
 public abstract class BoardSquare {
 
@@ -38,10 +39,13 @@ public abstract class BoardSquare {
   protected int type;
 
   /*****************************************************************
-   * Constructor instantiates the variables and sets the name of the
-   * BoardSquare to what is input as a parameter.
+   * Constructor instantiates the variables sets what position the
+   * BoardSquare is on the board and sets the name of the BoardSquare
+   * to what is input as a parameter.
    *
    * @param name String that will be the name of the BoardSquare.
+   * @param position the position on the board where this
+   * BoardSquare is placed.
    ****************************************************************/
   public BoardSquare(String name, int position) {
     this.name = name;

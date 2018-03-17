@@ -9,26 +9,29 @@ import java.util.Collections;
 import java.util.Scanner;
 import java.util.stream.Stream;
 
-/**********************************************************************************
- * This class represents a deck
+/**********************************************************************
+ * The Deck class is a data structure class which contains a deck of
+ * cards.
  *
  * @author Santiago Quirgoa
- * @version 2/18/2018
- *********************************************************************************/
+ * @since 2/18/2018
+ * @version 3/17/2018
+ *********************************************************************/
 public class Deck {
 
   /**
-   * A list with all the cards
+   * An ArrayList list with all the cards.
    */
   private ArrayList<Card> deck;
 
-  /**********************************************************************************
-   *  This constructor reads a text file and populates the deck with the specific set
-   *  of cards.
+  /********************************************************************
+   *  This constructor reads a text file and populates the deck with the
+   *  specific set of cards.
    *
-   * @param fileName
-   * @param cardType True for Chance, False for Community Chest
-   *********************************************************************************/
+   * @param fileName the name of the File being used to create the
+   * deck.
+   * @param cardType True for Chance, False for Community Chest.
+   *******************************************************************/
   public Deck(String fileName, boolean cardType) {
     //intializes the deck
     deck = new ArrayList<>();
@@ -40,53 +43,55 @@ public class Deck {
         //Defines and instantiates a Scanner to read through the each line
         Scanner scanner = new Scanner(line).useDelimiter("[,\r\n]+");
 
-        deck.add(new Card(scanner.next(), cardType, new int[]{scanner.nextInt(), scanner.nextInt(),
-            scanner.nextInt(), scanner.nextInt(), scanner.nextInt(),
-            scanner.nextInt(), scanner.nextInt(), scanner.nextInt(), scanner.nextInt()}));
+        deck.add(new Card(scanner.next(), cardType,
+            new int[]{scanner.nextInt(), scanner.nextInt(),
+                scanner.nextInt(), scanner.nextInt(), scanner.nextInt(),
+                scanner.nextInt(), scanner.nextInt(), scanner.nextInt(),
+                scanner.nextInt()}));
       });
     } catch (IOException e) {
       e.printStackTrace();
     }
   }
 
-  /**********************************************************************************
-   * Returns the card on top of the deck
+  /********************************************************************
+   * Returns the card on top of the deck.
    *
-   * @return
-   **********************************************************************************/
+   * @return the Card drawn from the top of the deck.
+   *******************************************************************/
   public Card drawCard() {
     return deck.remove(0);
   }
 
-  /**********************************************************************************
-   *  Adds the given card to back to the deck
+  /********************************************************************
+   *  Adds the given card to back to the deck.
    *
-   * @param card
-   * @return
-   *********************************************************************************/
+   * @param card The card being returned to the bottom of the deck.
+   * @return True if the card was returned; False otherwise.
+   *******************************************************************/
   public boolean returnCard(Card card) {
     return deck.add(card);
   }
 
-  /**********************************************************************************
-   * Shuffles the ArrayList to a speudorandom state.
-   *********************************************************************************/
-  public void shufleDeck() {
+  /********************************************************************
+   * Shuffles the ArrayList to a pseudo random state.
+   *******************************************************************/
+  public void shuffleDeck() {
     Collections.shuffle(deck);
   }
 
-  /**
-   *
-   * @return
-   */
+  /********************************************************************
+   * Get the entire ArrayList that is the deck of cards.
+   * @return deck The entire deck of cards.
+   *******************************************************************/
   public ArrayList<Card> getDeck() {
     return deck;
   }
 
-  /**
-   *
-   * @param deck
-   */
+  /********************************************************************
+   * Set the deck of cards to the input parameter
+   * @param deck The deck that this deck is being set to.
+   *******************************************************************/
   public void setDeck(ArrayList<Card> deck) {
     this.deck = deck;
   }

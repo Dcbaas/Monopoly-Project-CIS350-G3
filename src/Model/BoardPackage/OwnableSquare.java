@@ -7,7 +7,8 @@ import Model.GamePackage.Player;
  * are ownable. Allows for a universal list of ownable board squares.
  *
  * @author David Baas Dustin Ecker Dylan Kernohan
- * @version 2/18/2018
+ * @since 2/18/2018
+ * @version 3/17/2018
  *
  ********************************************************************/
 public abstract class OwnableSquare extends BoardSquare {
@@ -39,8 +40,11 @@ public abstract class OwnableSquare extends BoardSquare {
    * The default constructor initializes all of the variables.
    *
    * @param name the name of the PropertySquare
+   * @param position the position of this OwnableSquare on the board.
    * @param PRICE the PRICE of the property
    * @param MORTGAGE_VAL The mortgage value of the property.
+   * @param GROUP_NUMBER The Ownable group this OwnableSquare
+   * belongs to.
    ****************************************************************/
   public OwnableSquare(String name, int position, int PRICE, int MORTGAGE_VAL, int GROUP_NUMBER) {
     super(name, position);

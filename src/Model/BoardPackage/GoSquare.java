@@ -6,7 +6,8 @@ package Model.BoardPackage;
  * the player who moved by collects money from the Bank.
  *
  * @author David Baas
- * @version 2/15/2018
+ * @since 2/15/2018
+ * @version 3/17/2018
  ********************************************************************/
 public class GoSquare extends BoardSquare {
 
@@ -19,7 +20,7 @@ public class GoSquare extends BoardSquare {
    * The constructor creates a GoSquare allowing for the payout
    * amount to be set on initialization.
    * @param name The name of the GoSquare (from BoardSquare)
-   * @param PAYYOUT_AMOUNT the amount of money paid out per
+   * @param PAYOUT_AMOUNT the amount of money paid out per
    *                     board cycle.
    ****************************************************************/
   public GoSquare(String name, int PAYOUT_AMOUNT) {
@@ -30,9 +31,9 @@ public class GoSquare extends BoardSquare {
   }
 
   /*****************************************************************
-   * The getPAYYOUT_AMOUNT method returns how much money is paid out
+   * The getPAYOUT_AMOUNT method returns how much money is paid out
    * per board cycle.
-   * @return PAYYOUT_AMOUNT the amount of money paid out per board
+   * @return PAYOUT_AMOUNT the amount of money paid out per board
    * cycle.
    ****************************************************************/
   public int getPAYOUT_AMOUNT() {

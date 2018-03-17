@@ -75,7 +75,7 @@ public class DeckTest {
 
         //Checks if the Deck is shuffled
         randomCard = chanceDeck.getDeck().get(randomCardIndex);
-        chanceDeck.shufleDeck();
+        chanceDeck.shuffleDeck();
         assertFalse( "The deck did not get shuffled",chanceDeck.getDeck().get(randomCardIndex).equals(randomCard));
     }
 
