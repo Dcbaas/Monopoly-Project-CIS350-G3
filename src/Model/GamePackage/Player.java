@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author Dustin Ecker Dylan Kernohan
  * @since 2/16/2018
- * @version 2/18/2018
+ * @version 3/17/2018
  *********************************************************************/
 public class Player {
 
