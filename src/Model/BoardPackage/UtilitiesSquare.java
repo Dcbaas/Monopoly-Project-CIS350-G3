@@ -8,7 +8,7 @@ package Model.BoardPackage;
  *
  * @author Dustin Ecker David Baas
  * @since 2/16/2017
- * @version 2/17/2018
+ * @version 3/17/2018
  *********************************************************************/
 public class UtilitiesSquare extends OwnableSquare {
 
@@ -16,12 +16,16 @@ public class UtilitiesSquare extends OwnableSquare {
    * The constructor creates a UtilitiesSquare and sets all the
    * attributes related to it.
    * @param name The name of the UtilitiesSquare.
+   * @param position The position that this UtilitiesSquare is placed
+   * on the board.
    * @param price The price to purchase this property.
    * @param mortgageValue The value returned from mortgaging this
    * property.
+   * @param groupNumber the grouping number this UtilitiesSquare
+   * belongs to.
    *****************************************************************/
-  public UtilitiesSquare(String name, int postion, int price, int mortgageValue, int groupNumber) {
-    super(name, postion, price, mortgageValue, groupNumber);
+  public UtilitiesSquare(String name, int position, int price, int mortgageValue, int groupNumber) {
+    super(name, position, price, mortgageValue, groupNumber);
     type = 3;
 
   }
@@ -30,6 +34,7 @@ public class UtilitiesSquare extends OwnableSquare {
    * Method returns the rent cost of owning one UtilitiesSquare
    * property.
    *
+   * @param diceRoll The sum rolled on a pair of die.
    * @return rent Returns the diceRoll value multiplied by 4;
    *****************************************************************/
   public int getRentOne(int diceRoll) {
@@ -40,6 +45,7 @@ public class UtilitiesSquare extends OwnableSquare {
    * Method returns the rent cost of owning two UtilitiesSquare
    * properties.
    *
+   * @param diceRoll The sum rolled on a pair of die. 
    * @return rent Returns the diceRoll value multiplied by 10;
    *****************************************************************/
   public int getRentTwo(int diceRoll) {
