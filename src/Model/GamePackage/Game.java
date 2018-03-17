@@ -726,4 +726,12 @@ public class Game {
     }
     return rent;
   }
+
+  public boolean shouldPlayerBeTaxed() {
+    if (board.isSquareOwnable(currentPlayer.getPosition() )){
+      if (board.getOwnableSquare(currentPlayer.getPosition()).getOwner() != null)
+      return !board.getOwnableSquare(currentPlayer.getPosition()).getOwner().equals(currentPlayer);
+    }
+    return false;
+  }
 }

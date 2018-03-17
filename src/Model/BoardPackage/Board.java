@@ -174,4 +174,8 @@ public class Board {
         .collect(Collectors.toCollection(ArrayList<BoardSquare>::new));
   }
 
+  public boolean isSquareOwnable(int position) {
+    int type = squaresList.get(position).getType();
+     return (type == 0 || type == 1 || type == 3)? true: false;
+  }
 }
