@@ -8,7 +8,7 @@ package Model.BoardPackage;
  *
  * @author David Baas
  * @since 2/12/2018
- * @version 2/17/2018
+ * @version 3/17/2018
  ********************************************************************/
 public class PropertySquare extends OwnableSquare {
 
@@ -62,6 +62,8 @@ public class PropertySquare extends OwnableSquare {
    * The constructor creates a Property and sets all the attributes
    * related to the property.
    * @param name the name of the PropertySquare
+   * @param position the position on the board this Property square is
+   * placed.
    * @param price the PRICE of the property
    * @param mortgageValue The mortgage value of the property.
    * @param baseRent The rent cost of the property.
@@ -73,14 +75,16 @@ public class PropertySquare extends OwnableSquare {
    * @param numHouses The number of houses on the property.
    * @param houseCost The cost of adding a house to the property.
    * @param hotelCost The cost of adding a hotel to the property.
+   * @param groupNumber The property group this PropertySquare
+   * belongs to.
    *****************************************************************/
-  public PropertySquare(String name, int postion, int price, int mortgageValue,
+  public PropertySquare(String name, int position, int price, int mortgageValue,
       int baseRent, int oneHouseRent,
       int twoHouseRent, int threeHouseRent,
       int fourHouseRent, int hotelRent,
       int numHouses, int houseCost,
       int hotelCost, int groupNumber) {
-    super(name, postion, price, mortgageValue, groupNumber);
+    super(name, position, price, mortgageValue, groupNumber);
 
     type = 0;
 
@@ -99,7 +103,7 @@ public class PropertySquare extends OwnableSquare {
   }
 
   /******************************************************************
-   * The getBaseRent method returns the cost of rent for this property
+   * The getBaseRent method returns the cost of rent for this property.
    *
    * @return BASE_RENT the base rent of the property.
    *****************************************************************/
