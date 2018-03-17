@@ -10,13 +10,14 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-/******************************************************************************************************
- * This class represents the monopoly game board, it's main purpose is to handle player movement.
+/**********************************************************************
+ * This class represents the monopoly game board, it's main purpose
+ * is to handle player movement.
  *
  * @author Santiago Quiroga David Baas
  * @since 2/18/2018
  * @version 2/21/2018
- *****************************************************************************************************/
+ **********************************************************************/
 public class Board {
 
   /**
@@ -24,14 +25,17 @@ public class Board {
    */
   List<BoardSquare> squaresList;
 
-  /******************************************************************************************************
-   * This constructor takes a txt file and creates a board according to the specifications.
+  /**********************************************************************
+   * This constructor takes a txt file and creates a board according
+   * to the specifications.
+   *
    * file format:
    *  [Type],[Name],[Constructor parameters]
    *
-   * @param fileName The name of the file which will be used to generate the board.
+   * @param fileName The name of the file which will be used to
+   *                 generate the board.
    * @throws IOException if there is a problem reading the file.
-   *****************************************************************************************************/
+   **********************************************************************/
   public Board(String fileName) {
     //Instantiates the squares list
     squaresList = new ArrayList<>();
@@ -90,45 +94,45 @@ public class Board {
     }
   }
 
-  /******************************************************************************************************
+  /**********************************************************************
    * Returns the location type of a BoardSquare object based on its position.
    *
    * @param position The location of the BoardSquare with relation to the whole Board.
    * @return The integer type of BoardSquare that is at the input position.
-   *****************************************************************************************************/
+   **********************************************************************/
   public int getLocationType(int position) {
     return squaresList.get(position).getType();
   }
 
-  /******************************************************************************************************
+  /**********************************************************************
    *  Returns an OwnableSquare based on its position.
    *
    * @param position The loction of an OwnableSquare with relation to the whole Board.
    * @return An OwnableSquare instance that is the position input.
-   *****************************************************************************************************/
+   **********************************************************************/
   //TODO: Do we want to throw a custom exception when a boardsquare that isn't ownable is accessed using this method?
   public OwnableSquare getOwnableSquare(int position) {
     return (OwnableSquare) squaresList.get(position);
   }
 
 
-  /******************************************************************************************************
+  /***********************************************************************
    *  Moves a player to the given position.
    *
    * @param player The Player being moved on the board.
    * @param position The location where they are being moved to.
-   *****************************************************************************************************/
+   **********************************************************************/
   public void setPlayerPosition(Player player, int position) {
     squaresList.get(player.getPosition()).removePlayer(player);
     squaresList.get(position).addPlayer(player);
   }
 
 
-  /******************************************************************************************************
+  /**********************************************************************
    *  Returns a list of all  OwnableSquares in the board
    *
    * @return A list of all OwnableSquares on this Board.
-   *****************************************************************************************************/
+   *********************************************************************/
   public ArrayList<OwnableSquare> getOwnableSquares() {
     // finds all BoardSquare classes and returns them as an ArrayList
     return squaresList.stream().filter(boardSquare ->
@@ -137,31 +141,31 @@ public class Board {
         .collect(Collectors.toCollection(ArrayList::new));
   }
 
-  /******************************************************************************************************
+  /**********************************************************************
    *  Return the list of BoardSquares on this Board.
    *
    * @return squareList The list of all BoardSquares on this Board.
-   *****************************************************************************************************/
+   **********************************************************************/
   public List<BoardSquare> getSquaresList() {
     return squaresList;
   }
 
-  /******************************************************************************************************
+  /**********************************************************************
    *  Moves a player to the jail square
    *
    * @param player The Player being sent to jail.
-   *****************************************************************************************************/
+   *********************************************************************/
   public void sendToJail(Player player) {
     setPlayerPosition(player, 10);
   }
 
 
-  /******************************************************************************************************
+  /**********************************************************************
    * Returns a list of all the squares belonging to a single group.
    *
    * @param groupId The integer that represents a specific group of OwnableSquares
    * @return A list of OwnableSquares that are in the grouping input.
-   *****************************************************************************************************/
+   *********************************************************************/
   public List<OwnableSquare> getGroup(int groupId) {
     return getOwnableSquares().stream()
         .filter(ownableSquare -> ownableSquare.getGROUP_NUMBER() == groupId)
@@ -174,6 +178,12 @@ public class Board {
         .collect(Collectors.toCollection(ArrayList<BoardSquare>::new));
   }
 
+
+  /**********************************************************************
+   * Checks if the square at the given position is an OwnableSquare.
+   * @param position the board position
+   * @return whether the giv en position is related to an OwnableSquare
+   *********************************************************************/
   public boolean isSquareOwnable(int position) {
     int type = squaresList.get(position).getType();
      return (type == 0 || type == 1 || type == 3)? true: false;
