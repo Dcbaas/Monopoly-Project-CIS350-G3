@@ -45,7 +45,7 @@ public class UtilitiesSquare extends OwnableSquare {
    * Method returns the rent cost of owning two UtilitiesSquare
    * properties.
    *
-   * @param diceRoll The sum rolled on a pair of die. 
+   * @param diceRoll The sum rolled on a pair of die.
    * @return rent Returns the diceRoll value multiplied by 10;
    *****************************************************************/
   public int getRentTwo(int diceRoll) {

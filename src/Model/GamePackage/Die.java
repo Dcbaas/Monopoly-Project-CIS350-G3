@@ -8,7 +8,7 @@ import java.util.Random;
 
  @author Dylan Kernohan
  @since 2/11/2018
- @version 2/21/2018
+ @version 3/17/2018
  *****************************************************************/
 public class Die {
 
@@ -33,7 +33,7 @@ public class Die {
 
   /*****************************************************************
    Set the die value
-   @param value
+   @param value the int value this Die is being set to.
    *****************************************************************/
   public void setValue(int value) {
     this.value = value;
