@@ -6,6 +6,7 @@ import Model.BoardPackage.PropertySquare;
 import Model.GamePackage.Game;
 import View.GameTextView;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 /**********************************************************************
  * The text based controller for monopoly
@@ -95,6 +96,13 @@ public class GameTextController {
           view.printActionError();
         }
         break;
+      case "mortgage":
+          if(!game.getCurrentPlayer().getPropertiesOwned().isEmpty()){
+            mortgage();
+          }else{
+            view.printActionError();
+          }
+          break;
       default:
         view.notAValidCommand();
 
@@ -105,6 +113,86 @@ public class GameTextController {
       nextPlayer();
     }
   }
+
+  private void mortgage() {
+    OwnableSquare property;
+    int propertyId = 0;
+    Boolean run = true;
+    String command;
+
+    while (run){
+      view.MortgageInit();
+      view.displayProperties(game.getCurrentPlayer());
+      command = view.getCommand();
+
+      if(command.equalsIgnoreCase("done")){
+        run = false;
+        continue;
+      }
+
+      try{
+       propertyId = Integer.parseUnsignedInt(command);
+      }
+        catch(NumberFormatException e){
+          view.printActionError();
+          continue;
+        }
+     property = game.getBoard().getOwnableSquare(game.getCurrentPlayer().getPropertiesOwned()
+         .get(propertyId).getPOSITION());
+    if (game.getCurrentPlayer().getPropertiesOwned().contains(property.getGROUP_NUMBER())){
+        ArrayList<PropertySquare> group = (ArrayList<PropertySquare>) game.getBoard()
+            .getGroup(property.getGROUP_NUMBER())
+            .stream().map(ownableSquare -> (PropertySquare)ownableSquare);
+
+        group = group.stream()
+            .filter(groupProperty -> groupProperty.getNumHouses() > 0 || groupProperty.isHasHotel()).collect(
+            Collectors.toCollection(ArrayList<PropertySquare>::new));
+
+        if (!group.isEmpty()){
+          view.printSellBuilding();
+          boolean answered = false;
+          while(!answered){
+            command = view.getCommand();
+              if(command.equalsIgnoreCase("done")){
+                run = false;
+                break;
+              }
+            if(command.equalsIgnoreCase("yes") || command.equalsIgnoreCase("no")) {
+              answered = true;
+              if (command.equalsIgnoreCase("yes")) {
+                sellBuildings(group);
+                game.getCurrentPlayer().removeGroupOwned(group.get(0).getGROUP_NUMBER());
+                group = null;
+              }
+            }
+          }
+          if (group == null){
+            property.setMortgaged(true);
+            game.getCurrentPlayer().receiveMoney(property.getMORTGAGE_VAL());
+            view.printMortgagedProperty(property);
+          }else{
+            view.printMustSellBuildings();
+          }
+        }
+    }else{
+      property.setMortgaged(true);
+      game.getCurrentPlayer().receiveMoney(property.getMORTGAGE_VAL());
+      view.printMortgagedProperty(property);
+    }
+
+    }
+  }
+
+  private void sellBuildings(ArrayList<PropertySquare> group) {
+    int payout = 0;
+    for (PropertySquare property: group) {
+      payout +=(property.isHasHotel())?   (property.getHotelCost() / 2) :property.getNumHouses() * (property.getHouseCost() / 2);
+      property.setNumHouses(0);
+      property.setHasHotel(false);
+    }
+    game.getCurrentPlayer().receiveMoney(payout);
+  }
+
 
   public void possibleActions() {
     ArrayList<String> actions = new ArrayList<>();

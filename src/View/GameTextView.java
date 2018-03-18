@@ -1,5 +1,9 @@
 package View;
 
+import Model.BoardPackage.OwnableSquare;
+import Model.BoardPackage.PropertySquare;
+import Model.GamePackage.Player;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**********************************************************************
@@ -252,7 +256,36 @@ public class GameTextView {
    *********************************************************************/
   public void printPropertyHasHotel() {
     System.out.println("------------------------------------------------------");
-    System.out.printf("This property has a hotel.\n");
+    System.out.println("This property has a hotel.");
   }
 
+  public void MortgageInit() {
+    System.out.println("######################################################");
+    System.out.println("Type The Id of the property you would like to mortgage");
+    System.out.println("          or type done to exit action.");
+  }
+
+  public void displayProperties(Player player) {
+    for (OwnableSquare property: player.getPropertiesOwned()) {
+      System.out.printf("[%n] %s" + ((player.getPropertiesOwned()
+          .indexOf(property) % 3 ==0 )? "\n":" | ")
+          , player.getPropertiesOwned().indexOf(property), property.getName());
+    }
+    System.out.println();
+  }
+
+  public void printSellBuilding() {
+    System.out.println("Would you like to sell all building for the group matching the ");
+    System.out.println("property that is going to be mortgaged ? (YES/NO)");
+    System.out.println("     or type  done to stop action");
+  }
+
+  public void printMortgagedProperty(OwnableSquare property) {
+    System.out.printf("%s was mortgaged for %n\n", property.getName(), property.getMORTGAGE_VAL());
+  }
+
+  public void printMustSellBuildings() {
+    System.out.println("In order to mortgage the property, you must sell all the buildings");
+    System.out.println("for all properties in that group");
+  }
 }
