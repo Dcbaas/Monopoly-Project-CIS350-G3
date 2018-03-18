@@ -1,20 +1,19 @@
 package View;
 
 import Model.BoardPackage.OwnableSquare;
-import Model.BoardPackage.PropertySquare;
 import Model.GamePackage.Player;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 /**********************************************************************
  * The text based view for monopoly
  *
  * @author Dylan Kernohan
+ * @author Santiago Quiroga
  * @version 3/12/2018
  *********************************************************************/
 public class GameTextView {
-
-  Scanner scanner = new Scanner(System.in);
+  /** user input scanner **/
+  private Scanner scanner = new Scanner(System.in);
 
   /**********************************************************************
    * This method prompts the user for a command used to play the game.
@@ -259,31 +258,60 @@ public class GameTextView {
     System.out.println("This property has a hotel.");
   }
 
+  /**********************************************************************
+   * this method prompts the player with the basic statement
+   * for mortgage
+   *********************************************************************/
   public void MortgageInit() {
     System.out.println("######################################################");
     System.out.println("Type The Id of the property you would like to mortgage");
     System.out.println("          or type done to exit action.");
   }
 
+
+  /**********************************************************************
+   * This method iterates through all the properties the player owns
+   * and creates a property id for each of them
+   * @param player the player whose properties should be displayed
+   *********************************************************************/
   public void displayProperties(Player player) {
+    //Iterates through the playe's properties
     for (OwnableSquare property: player.getPropertiesOwned()) {
+
+      //Prints the property id and the name of the property
+      // every three properties it creates a new line
       System.out.printf("[%n] %s" + ((player.getPropertiesOwned()
           .indexOf(property) % 3 ==0 )? "\n":" | ")
           , player.getPropertiesOwned().indexOf(property), property.getName());
     }
+
     System.out.println();
   }
 
+  /**********************************************************************
+   * This method prints the initial sell buildings logic and set
+   * of commands available
+   *********************************************************************/
   public void printSellBuilding() {
     System.out.println("Would you like to sell all building for the group matching the ");
     System.out.println("property that is going to be mortgaged ? (YES/NO)");
     System.out.println("     or type  done to stop action");
   }
 
+
+  /**********************************************************************
+   *This method print the value of the property was mortgaged for
+   * and the name of the property.
+   * @param property the property that was mrotgaged
+   *********************************************************************/
   public void printMortgagedProperty(OwnableSquare property) {
     System.out.printf("%s was mortgaged for %n\n", property.getName(), property.getMORTGAGE_VAL());
   }
 
+  /**********************************************************************
+   * This method prompts the user to meet the group building rule
+   * before being able to mortgage a property
+   *********************************************************************/
   public void printMustSellBuildings() {
     System.out.println("In order to mortgage the property, you must sell all the buildings");
     System.out.println("for all properties in that group");
