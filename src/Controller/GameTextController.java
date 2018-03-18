@@ -22,6 +22,7 @@ public class GameTextController {
   private int numPairs;
   private boolean canRoll;
   private boolean canBuy;
+  private boolean canMortgage;
 
   /**********************************************************************git
    * The constructor that builds a game controller with a Game and View
@@ -29,11 +30,12 @@ public class GameTextController {
    * @param game The Game object
    * @param view The view object
    *********************************************************************/
-  public GameTextController(Game game, GameTextView view, boolean canRoll, boolean canBuy) {
+  public GameTextController(Game game, GameTextView view, boolean canRoll, boolean canBuy, boolean canMortgage) {
     this.game = game;
     this.view = view;
     this.canRoll = canRoll;
     this.canBuy = canBuy;
+    this.canMortgage = canMortgage;
   }
 
   /**********************************************************************
@@ -97,7 +99,7 @@ public class GameTextController {
         }
         break;
       case "mortgage":
-        if (!game.getCurrentPlayer().getPropertiesOwned().isEmpty()) {
+        if (canMortgage) {
           mortgage();
         } else {
           view.printActionError();
@@ -250,6 +252,9 @@ public class GameTextController {
     if (canBuy) {
       actions.add("'buy' - Player tries to buy the property they are on.");
     }
+    if (canMortgage) {
+      actions.add("'mortgage' - Player mortgages properties owned");
+    }
     for (int i = 0; i < actions.size(); i++) {
       view.printPossibleActions(actions.get(i), i);
     }
@@ -379,6 +384,7 @@ public class GameTextController {
    *********************************************************************/
   private void nextPlayer() {
     game.nextTurn();
+    canMortgage = !game.getCurrentPlayer().getPropertiesOwned().isEmpty();
     numPairs = 0;
     canRoll = true;
     canBuy = true;
