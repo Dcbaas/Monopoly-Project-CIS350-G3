@@ -12,7 +12,10 @@ import java.util.Scanner;
  * @version 3/12/2018
  *********************************************************************/
 public class GameTextView {
-  /** user input scanner **/
+
+  /**
+   * user input scanner
+   **/
   private Scanner scanner = new Scanner(System.in);
 
   /**********************************************************************
@@ -276,12 +279,12 @@ public class GameTextView {
    *********************************************************************/
   public void displayProperties(Player player) {
     //Iterates through the playe's properties
-    for (OwnableSquare property: player.getPropertiesOwned()) {
+    for (OwnableSquare property : player.getPropertiesOwned()) {
 
       //Prints the property id and the name of the property
       // every three properties it creates a new line
       System.out.printf("[%n] %s" + ((player.getPropertiesOwned()
-          .indexOf(property) % 3 ==0 )? "\n":" | ")
+              .indexOf(property) % 3 == 0) ? "\n" : " | ")
           , player.getPropertiesOwned().indexOf(property), property.getName());
     }
 

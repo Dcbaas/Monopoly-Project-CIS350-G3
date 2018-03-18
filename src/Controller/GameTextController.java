@@ -97,12 +97,12 @@ public class GameTextController {
         }
         break;
       case "mortgage":
-          if(!game.getCurrentPlayer().getPropertiesOwned().isEmpty()){
-            mortgage();
-          }else{
-            view.printActionError();
-          }
-          break;
+        if (!game.getCurrentPlayer().getPropertiesOwned().isEmpty()) {
+          mortgage();
+        } else {
+          view.printActionError();
+        }
+        break;
       default:
         view.notAValidCommand();
 
@@ -135,65 +135,65 @@ public class GameTextController {
     String command;
 
     //Starts the mortgage loop
-    while (run){
+    while (run) {
       //Propts the user and intakes a command
       view.MortgageInit();
       view.displayProperties(game.getCurrentPlayer());
       command = view.getCommand();
 
       //Checks if the user wants to exite the mortgage loop
-      if(command.equalsIgnoreCase("done")){
+      if (command.equalsIgnoreCase("done")) {
         run = false;
         break;
       }
 
       //If the player doesn't enter a valid number he well re start the loop
-      try{
-       propertyId = Integer.parseUnsignedInt(command);
+      try {
+        propertyId = Integer.parseUnsignedInt(command);
+      } catch (NumberFormatException e) {
+        view.printActionError();
+        continue;
       }
-        catch(NumberFormatException e){
-          view.printActionError();
-          continue;
-        }
 
-     //find the property the player Owns from the board
-     property = game.getBoard().getOwnableSquare(game.getCurrentPlayer().getPropertiesOwned()
-         .get(propertyId).getPOSITION());
+      //find the property the player Owns from the board
+      property = game.getBoard().getOwnableSquare(game.getCurrentPlayer().getPropertiesOwned()
+          .get(propertyId).getPOSITION());
 
-    //Checks if the player owns the group of properties
-    if (game.getCurrentPlayer().getPropertiesOwned().contains(property.getGROUP_NUMBER())){
+      //Checks if the player owns the group of properties
+      if (game.getCurrentPlayer().getPropertiesOwned().contains(property.getGROUP_NUMBER())) {
         //The array of the specific group of properties the player owns
         ArrayList<PropertySquare> group = (ArrayList<PropertySquare>) game.getBoard()
             .getGroup(property.getGROUP_NUMBER())
-            .stream().map(ownableSquare -> (PropertySquare)ownableSquare);
+            .stream().map(ownableSquare -> (PropertySquare) ownableSquare);
 
         //Filters the propertiues in the group that  have buildings
         group = group.stream()
-            .filter(groupProperty -> groupProperty.getNumHouses() > 0 || groupProperty.isHasHotel()).collect(
-            Collectors.toCollection(ArrayList<PropertySquare>::new));
+            .filter(groupProperty -> groupProperty.getNumHouses() > 0 || groupProperty.isHasHotel())
+            .collect(
+                Collectors.toCollection(ArrayList<PropertySquare>::new));
 
         //Checks if the player did have building in any property of the group
-        if (!group.isEmpty()){
+        if (!group.isEmpty()) {
 
           //starts the sell buildings loop
           boolean answered = false;
 
           //Sell buildings loop
-          while(!answered){
+          while (!answered) {
             //Prompts the user and reads a command
             view.printSellBuilding();
             command = view.getCommand();
 
-              //Checks if the user would like to exit out of the mortgage loop
-              if(command.equalsIgnoreCase("done")){
-                run = false;
-                break;
-              }
+            //Checks if the user would like to exit out of the mortgage loop
+            if (command.equalsIgnoreCase("done")) {
+              run = false;
+              break;
+            }
 
-              //Checks for a response command
-            if(command.equalsIgnoreCase("yes") || command.equalsIgnoreCase("no")) {
-                //stops the sell buildings loop
-                answered = true;
+            //Checks for a response command
+            if (command.equalsIgnoreCase("yes") || command.equalsIgnoreCase("no")) {
+              //stops the sell buildings loop
+              answered = true;
 
               //Checks if the user does want to sell all buildings
               if (command.equalsIgnoreCase("yes")) {
@@ -202,29 +202,29 @@ public class GameTextController {
                 game.getCurrentPlayer().removeGroupOwned(group.get(0).getGROUP_NUMBER());
                 group = null;
               }
-            }else{
-                view.printActionError();
+            } else {
+              view.printActionError();
             }
           }
 
           //Checks whether player completed all requirements for the property to be mortgaged
-          if (group == null){
+          if (group == null) {
             //mortgages decired property and pays player the corresponding value
             property.setMortgaged(true);
             game.getCurrentPlayer().receiveMoney(property.getMORTGAGE_VAL());
 
             //prompts the player
             view.printMortgagedProperty(property);
-          }else{
+          } else {
             view.printMustSellBuildings();
           }
         }
-    }else{
+      } else {
 
-      property.setMortgaged(true);
-      game.getCurrentPlayer().receiveMoney(property.getMORTGAGE_VAL());
-      view.printMortgagedProperty(property);
-    }
+        property.setMortgaged(true);
+        game.getCurrentPlayer().receiveMoney(property.getMORTGAGE_VAL());
+        view.printMortgagedProperty(property);
+      }
 
     }
   }
@@ -269,9 +269,10 @@ public class GameTextController {
     int payout = 0;
 
     //Iterates trhough each property in the group
-    for (PropertySquare property: group) {
+    for (PropertySquare property : group) {
       //Adds the corresponding valuebased on the building cost and amount.
-      payout +=(property.isHasHotel())?   (property.getHotelCost() / 2) :property.getNumHouses() * (property.getHouseCost() / 2);
+      payout += (property.isHasHotel()) ? (property.getHotelCost() / 2)
+          : property.getNumHouses() * (property.getHouseCost() / 2);
 
       //sets all values to zero/false
       property.setNumHouses(0);
