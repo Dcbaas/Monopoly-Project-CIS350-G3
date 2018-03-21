@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author Dustin Ecker Dylan Kernohan
  * @since 2/16/2018
- * @version 2/18/2018
+ * @version 3/17/2018
  *********************************************************************/
 public class Player {
 
@@ -335,6 +335,7 @@ public class Player {
    * This method adds a group number to the ArrayList.
    *
    * @param groupNumber The group number being added
+   * @return true if the groupsOwned list is updated; false otherwise.
    *****************************************************************/
   public boolean addGroupOwned(int groupNumber) {
     return groupsOwned.add(groupNumber);

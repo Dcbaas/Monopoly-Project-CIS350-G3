@@ -6,6 +6,7 @@ import Model.BoardPackage.PropertySquare;
 import Model.GamePackage.Game;
 import View.GameTextView;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 /**********************************************************************
  * The text based controller for monopoly
@@ -21,6 +22,7 @@ public class GameTextController {
   private int numPairs;
   private boolean canRoll;
   private boolean canBuy;
+  private boolean canMortgage;
 
   /**********************************************************************git
    * The constructor that builds a game controller with a Game and View
@@ -28,11 +30,12 @@ public class GameTextController {
    * @param game The Game object
    * @param view The view object
    *********************************************************************/
-  public GameTextController(Game game, GameTextView view, boolean canRoll, boolean canBuy) {
+  public GameTextController(Game game, GameTextView view, boolean canRoll, boolean canBuy, boolean canMortgage) {
     this.game = game;
     this.view = view;
     this.canRoll = canRoll;
     this.canBuy = canBuy;
+    this.canMortgage = canMortgage;
   }
 
   /**********************************************************************
@@ -95,6 +98,13 @@ public class GameTextController {
           view.printActionError();
         }
         break;
+      case "mortgage":
+        if (canMortgage) {
+          mortgage();
+        } else {
+          view.printActionError();
+        }
+        break;
       default:
         view.notAValidCommand();
 
@@ -106,6 +116,125 @@ public class GameTextController {
     }
   }
 
+  /**********************************************************************
+   * This method allows the player to mortgage properties.
+   * If the player owns a group where some of the properties
+   * have houses or hotels, then the player will be asked to
+   * sell all building before being able to mortgage the desired
+   * property.
+   *********************************************************************/
+  private void mortgage() {
+    //The variable that will hold the property in question
+    OwnableSquare property;
+
+    //The variable with the property id
+    int propertyId = 0;
+
+    //This variable will make sure the player has a chance to mortgage as many properties as desired
+    Boolean run = true;
+
+    //This property will hold the player command
+    String command;
+
+    //Starts the mortgage loop
+    while (run) {
+      //Propts the user and intakes a command
+      view.MortgageInit();
+      view.displayProperties(game.getCurrentPlayer());
+      command = view.getCommand();
+
+      //Checks if the user wants to exite the mortgage loop
+      if (command.equalsIgnoreCase("done")) {
+        run = false;
+        break;
+      }
+
+      //If the player doesn't enter a valid number he well re start the loop
+      try {
+        propertyId = Integer.parseUnsignedInt(command);
+      } catch (NumberFormatException e) {
+        view.printActionError();
+        continue;
+      }
+
+      //find the property the player Owns from the board
+      property = game.getBoard().getOwnableSquare(game.getCurrentPlayer().getPropertiesOwned()
+          .get(propertyId).getPOSITION());
+
+      //Checks if the player owns the group of properties
+      if (game.getCurrentPlayer().getPropertiesOwned().contains(property.getGROUP_NUMBER())) {
+        //The array of the specific group of properties the player owns
+        ArrayList<PropertySquare> group = (ArrayList<PropertySquare>) game.getBoard()
+            .getGroup(property.getGROUP_NUMBER())
+            .stream().map(ownableSquare -> (PropertySquare) ownableSquare);
+
+        //Filters the propertiues in the group that  have buildings
+        group = group.stream()
+            .filter(groupProperty -> groupProperty.getNumHouses() > 0 || groupProperty.isHasHotel())
+            .collect(
+                Collectors.toCollection(ArrayList<PropertySquare>::new));
+
+        //Checks if the player did have building in any property of the group
+        if (!group.isEmpty()) {
+
+          //starts the sell buildings loop
+          boolean answered = false;
+
+          //Sell buildings loop
+          while (!answered) {
+            //Prompts the user and reads a command
+            view.printSellBuilding();
+            command = view.getCommand();
+
+            //Checks if the user would like to exit out of the mortgage loop
+            if (command.equalsIgnoreCase("done")) {
+              run = false;
+              break;
+            }
+
+            //Checks for a response command
+            if (command.equalsIgnoreCase("yes") || command.equalsIgnoreCase("no")) {
+              //stops the sell buildings loop
+              answered = true;
+
+              //Checks if the user does want to sell all buildings
+              if (command.equalsIgnoreCase("yes")) {
+                //Sells all buildings and removes the group from the player's owned list
+                sellBuildings(group);
+                game.getCurrentPlayer().removeGroupOwned(group.get(0).getGROUP_NUMBER());
+                group = null;
+              }
+            } else {
+              view.printActionError();
+            }
+          }
+
+          //Checks whether player completed all requirements for the property to be mortgaged
+          if (group == null) {
+            //mortgages decired property and pays player the corresponding value
+            property.setMortgaged(true);
+            game.getCurrentPlayer().receiveMoney(property.getMORTGAGE_VAL());
+
+            //prompts the player
+            view.printMortgagedProperty(property);
+          } else {
+            view.printMustSellBuildings();
+          }
+        }
+      } else {
+
+        property.setMortgaged(true);
+        game.getCurrentPlayer().receiveMoney(property.getMORTGAGE_VAL());
+        view.printMortgagedProperty(property);
+      }
+
+    }
+  }
+
+
+  /**********************************************************************
+   * Returns all current possible actions for the current player
+   *********************************************************************/
   public void possibleActions() {
     ArrayList<String> actions = new ArrayList<>();
     actions.add("'list' - Show player money and properties owned.");
@@ -123,12 +252,41 @@ public class GameTextController {
     if (canBuy) {
       actions.add("'buy' - Player tries to buy the property they are on.");
     }
+    if (canMortgage) {
+      actions.add("'mortgage' - Player mortgages properties owned");
+    }
     for (int i = 0; i < actions.size(); i++) {
       view.printPossibleActions(actions.get(i), i);
     }
   }
 
 //helpers
+
+  /**********************************************************************
+   * Sells all the buildings of a given group and pays the player
+   * the corresponding amount.
+   *
+   * @param group the list of PropertySquares the player has houses at
+   *********************************************************************/
+  private void sellBuildings(ArrayList<PropertySquare> group) {
+    //Keeps track of the total amount the player will earn after selling
+    //all buildings
+    int payout = 0;
+
+    //Iterates trhough each property in the group
+    for (PropertySquare property : group) {
+      //Adds the corresponding valuebased on the building cost and amount.
+      payout += (property.isHasHotel()) ? (property.getHotelCost() / 2)
+          : property.getNumHouses() * (property.getHouseCost() / 2);
+
+      //sets all values to zero/false
+      property.setNumHouses(0);
+      property.setHasHotel(false);
+    }
+
+    //Pays the player the corresponding amount.
+    game.getCurrentPlayer().receiveMoney(payout);
+  }
 
   /**********************************************************************
    * This method performs all the logic for the roll command.
@@ -226,6 +384,7 @@ public class GameTextController {
    *********************************************************************/
   private void nextPlayer() {
     game.nextTurn();
+    canMortgage = !game.getCurrentPlayer().getPropertiesOwned().isEmpty();
     numPairs = 0;
     canRoll = true;
     canBuy = true;
