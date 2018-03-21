@@ -1,6 +1,7 @@
 package View;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;
@@ -41,7 +42,10 @@ public class HousingPanel extends JPanel {
 
     houseImg = ImageIO.read(new File("res/MonopolyHouse.png"));
     //Todo: Create a hotel Img and instantiate.
-    setBackground(color);
+    setLayout(null);
+    setBackground(Color.CYAN);
+    //setPreferredSize(new Dimension(150,100));
+    //setVisible(true);
   }
 
   /*******************************************************************
@@ -70,7 +74,7 @@ public class HousingPanel extends JPanel {
   public void paintComponent(Graphics g) {
     switch (houseCounter) {
       case 1:
-        g.drawImage(houseImg,0,0,null);
+        g.drawImage(houseImg,0,0,50,30,null);
         break;
       case 2:
         g.drawImage(houseImg,0,0,null);
