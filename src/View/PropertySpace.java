@@ -26,8 +26,6 @@ public class PropertySpace extends JPanel {
     add(housingPanel,BorderLayout.NORTH);
     add(this.name, BorderLayout.CENTER);
     add(this.price, BorderLayout.SOUTH);
-    setPreferredSize(new Dimension(150,300));
-
   }
 
 }

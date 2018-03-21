@@ -3,6 +3,7 @@ package View;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
@@ -42,10 +43,8 @@ public class HousingPanel extends JPanel {
 
     houseImg = ImageIO.read(new File("res/MonopolyHouse.png"));
     //Todo: Create a hotel Img and instantiate.
-    setLayout(null);
+    setOpaque(true);
     setBackground(Color.CYAN);
-    //setPreferredSize(new Dimension(150,100));
-    //setVisible(true);
   }
 
   /*******************************************************************
@@ -72,6 +71,7 @@ public class HousingPanel extends JPanel {
    ******************************************************************/
   @Override
   public void paintComponent(Graphics g) {
+    super.paintComponent(g);
     switch (houseCounter) {
       case 1:
         g.drawImage(houseImg,0,0,50,30,null);
@@ -95,5 +95,10 @@ public class HousingPanel extends JPanel {
         break;
       default:
     }
+  }
+
+  @Override
+  public Dimension getPreferredSize(){
+    return new Dimension(200,100);
   }
 }

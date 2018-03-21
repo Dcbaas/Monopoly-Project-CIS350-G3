@@ -15,7 +15,7 @@ public class PropertySpaceTest {
     frame.setSize(200,400);
 
     PropertySpace space = new PropertySpace(Color.CYAN,"Parrot Town", 500);
-    frame.setLayout(new FlowLayout());
+   // frame.setLayout(new FlowLayout());
     frame.getContentPane().add(space);
     frame.setVisible(true);
   }
