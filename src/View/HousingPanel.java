@@ -1,10 +1,6 @@
 package View;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.GridBagLayout;
-import java.awt.Image;
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -42,9 +38,9 @@ public class HousingPanel extends JPanel {
     houseCounter = 0;
 
     houseImg = ImageIO.read(new File("res/MonopolyHouse.png"));
-    //Todo: Create a hotel Img and instantiate.
+    hotelImg = ImageIO.read(new File("res/MonopolyHotel.png"));
     setOpaque(true);
-    setBackground(Color.CYAN);
+    setBackground(color);
   }
 
   /*******************************************************************
@@ -61,7 +57,14 @@ public class HousingPanel extends JPanel {
    * @param houseCounter the number of houses on this panel.
    ******************************************************************/
   public void setHouses(int houseCounter) {
-    this.houseCounter = houseCounter;
+    if(houseCounter > 5)
+      this.houseCounter = 5;
+    else if(houseCounter < 0)
+      this.houseCounter = 0;
+    else
+      this.houseCounter = houseCounter;
+    repaint();
+    revalidate();
   }
 
   /*******************************************************************
@@ -74,39 +77,55 @@ public class HousingPanel extends JPanel {
     super.paintComponent(g);
     switch (houseCounter) {
       case 1:
-        g.drawImage(houseImg,0,0,50,30,null);
+        g.drawImage(houseImg,10,20,40,50,null);
         break;
       case 2:
-        g.drawImage(houseImg,0,0,null);
-        g.drawImage(houseImg,0,25,null);
+        g.drawImage(houseImg,10,20,40,50,null);
+        g.drawImage(houseImg,50,20,40,50,null);
         break;
       case 3:
-        g.drawImage(houseImg,0,0,null);
-        g.drawImage(houseImg,0,25,null);
-        g.drawImage(houseImg,0,50,null);
+        g.drawImage(houseImg,10,20,40,50,null);
+        g.drawImage(houseImg,50,20,40,50,null);
+        g.drawImage(houseImg,90,20,40,50,null);
         break;
       case 4:
-        g.drawImage(houseImg,0,0,null);
-        g.drawImage(houseImg,0,25,null);
-        g.drawImage(houseImg,0,50,null);
-        g.drawImage(houseImg,0,75,null);
+        g.drawImage(houseImg,10,20,40,50,null);
+        g.drawImage(houseImg,50,20,40,50,null);
+        g.drawImage(houseImg,90,20,40,50,null);
+        g.drawImage(houseImg,130,20,40,50,null);
         break;
       case 5:
+        g.drawImage(hotelImg,70,30,50,40,null);
         break;
       default:
     }
   }
 
+  /********************************************************************
+   * The getPreferredSize method is used to Lock the size of the Panel
+   * to the correct size.
+   * @return The dimensions of the housing panel.
+   *******************************************************************/
   @Override
   public Dimension getPreferredSize(){
     return new Dimension(200,100);
   }
 
+  /********************************************************************
+   * The getMinimumSize method refers to the getPreferredSize method
+   * to lock the size of the panel.
+   * @return getPreferredSize the dimensions of the housingPanel.
+   *******************************************************************/
   @Override
   public Dimension getMinimumSize() {
     return getPreferredSize();
   }
 
+  /********************************************************************
+   * The getMaximumSize method refers to the getPreferredSize method
+   * to lock the size of the panel.
+   * @return getPreferredSize the dimensions of the housingPanel.
+   *******************************************************************/
   @Override
   public Dimension getMaximumSize(){
     return getPreferredSize();
