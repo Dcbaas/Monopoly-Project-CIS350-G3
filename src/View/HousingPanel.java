@@ -101,4 +101,14 @@ public class HousingPanel extends JPanel {
   public Dimension getPreferredSize(){
     return new Dimension(200,100);
   }
+
+  @Override
+  public Dimension getMinimumSize() {
+    return getPreferredSize();
+  }
+
+  @Override
+  public Dimension getMaximumSize(){
+    return getPreferredSize();
+  }
 }

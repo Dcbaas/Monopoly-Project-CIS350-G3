@@ -12,7 +12,7 @@ public class PropertySpaceTest {
   public static void main(String[] args) throws IOException {
     JFrame frame = new JFrame("Tile Test");
     frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-    frame.setSize(200,400);
+    frame.setSize(210,410);
 
     PropertySpace space = new PropertySpace(Color.CYAN,"Parrot Town", 500);
    // frame.setLayout(new FlowLayout());
