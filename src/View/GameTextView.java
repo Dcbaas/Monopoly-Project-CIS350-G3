@@ -55,7 +55,7 @@ public class GameTextView {
   public String getPlayerName(int num) {
     //TODO: Add validation to prevent anything other than desired characters entered.
     System.out.println("------------------------------------------------------");
-    System.out.printf("What is Player %d's name?\n>>", num);
+    System.out.printf("What is Player %d's name?%n>>", num);
     String playerName = scanner.nextLine();
 
     return playerName;
@@ -70,7 +70,7 @@ public class GameTextView {
   public String getPlayerToken(int num) {
     //TODO: Add validation to prevent anything other than desired characters entered.
 
-    System.out.printf("What is Player %d's token?\n>>", num);
+    System.out.printf("What is Player %d's token?%n>>", num);
     String playerToken = scanner.nextLine();
 
     return playerToken;
@@ -86,7 +86,7 @@ public class GameTextView {
   public void printLocation(int num, String name, String owner) {
     System.out.println("------------------------------------------------------");
     System.out
-        .printf("You rolled: %d\nYou are at location: %s\nOwner of this location: %s\n", num, name,
+        .printf("You rolled: %d%nYou are at location: %s%nOwner of this location: %s%n", num, name,
             owner);
 
   }
@@ -98,7 +98,7 @@ public class GameTextView {
    *********************************************************************/
   public void printCurrentPlayer(String name) {
     System.out.println("------------------------------------------------------");
-    System.out.printf("%s's turn.\n", name);
+    System.out.printf("%s's turn.%n", name);
   }
 
   /**********************************************************************
@@ -106,7 +106,7 @@ public class GameTextView {
    *********************************************************************/
   public void printActionError() {
     System.out.println("------------------------------------------------------");
-    System.out.printf("You cannot perform that action right now.\n");
+    System.out.printf("You cannot perform that action right now.%n");
   }
 
   /**********************************************************************
@@ -116,7 +116,7 @@ public class GameTextView {
    *********************************************************************/
   public void printBuySuccessful(String name) {
     System.out.println("------------------------------------------------------");
-    System.out.printf("You bought %s.\n", name);
+    System.out.printf("You bought %s.%n", name);
   }
 
   /**********************************************************************
@@ -124,7 +124,7 @@ public class GameTextView {
    *********************************************************************/
   public void printBuyFail() {
     System.out.println("------------------------------------------------------");
-    System.out.printf("You do not have enough money to buy this\n");
+    System.out.printf("You do not have enough money to buy this%n");
   }
 
   /**********************************************************************
@@ -134,9 +134,9 @@ public class GameTextView {
    *********************************************************************/
   public void printOwnedSquares(String name, int counter) {
     if (counter < 1) {
-      System.out.printf("Properties owned:\n\t%s\n", name);
+      System.out.printf("Properties owned:%n\t%s%n", name);
     } else {
-      System.out.printf("\t%s\n", name);
+      System.out.printf("\t%s%n", name);
     }
   }
 
@@ -146,7 +146,7 @@ public class GameTextView {
    * @param dieTwo
    ********************************************************************/
   public void printDies(int dieOne, int dieTwo) {
-    System.out.printf("die 1: %d die 2: %d\n", dieOne, dieTwo);
+    System.out.printf("die 1: %d die 2: %d%n", dieOne, dieTwo);
   }
 
   /**
@@ -166,15 +166,15 @@ public class GameTextView {
 
   public void printPlayerWallet(int amount) {
     System.out.println("------------------------------------------------------");
-    System.out.printf("Wallet: $%d\n\n", amount);
+    System.out.printf("Wallet: $%d%n%n", amount);
   }
 
   public void printPossibleActions(String action, int counter) {
     if (counter < 1) {
       System.out.println("------------------------------------------------------");
-      System.out.printf("You can use these actions:\n\t%s\n", action);
+      System.out.printf("You can use these actions:%n\t%s%n", action);
     } else {
-      System.out.printf("\t%s\n", action);
+      System.out.printf("\t%s%n", action);
     }
 
   }
@@ -198,7 +198,7 @@ public class GameTextView {
   public void printHouseCountsError() {
     System.out.println("------------------------------------------------------");
     System.out.printf(
-        "\nHouse counts across this group are not even. Try building on a different property in this group first.\n");
+        "%nHouse counts across this group are not even. Try building on a different property in this group first.%n");
 
   }
 
@@ -207,7 +207,7 @@ public class GameTextView {
    *********************************************************************/
   public void printDoesNotOwnMonopoly() {
     System.out.println("------------------------------------------------------");
-    System.out.printf("You do not own this monopoly\n");
+    System.out.printf("You do not own this monopoly%n");
   }
 
   /**********************************************************************
@@ -215,7 +215,7 @@ public class GameTextView {
    *********************************************************************/
   public void printBankOutOfHouses() {
     System.out.println("------------------------------------------------------");
-    System.out.printf("The bank is out of houses\n");
+    System.out.printf("The bank is out of houses%n");
   }
 
   /**********************************************************************
@@ -223,7 +223,7 @@ public class GameTextView {
    *********************************************************************/
   public void printBankOutOfHotels() {
     System.out.println("------------------------------------------------------");
-    System.out.printf("The bank is out of hotels\n");
+    System.out.printf("The bank is out of hotels%n");
   }
 
   /**********************************************************************
@@ -231,7 +231,7 @@ public class GameTextView {
    *********************************************************************/
   public void printNumHouseError() {
     System.out.println("------------------------------------------------------");
-    System.out.printf("Cannot build a Hotel. This property does not have 4 houses yet.\n");
+    System.out.printf("Cannot build a Hotel. This property does not have 4 houses yet.%n");
   }
 
   /**********************************************************************
@@ -242,7 +242,7 @@ public class GameTextView {
    *********************************************************************/
   public void printBuildSuccessful(String building, String propertyName) {
     System.out.println("------------------------------------------------------");
-    System.out.printf("%s was successfully built on %s.\n", building, propertyName);
+    System.out.printf("%s was successfully built on %s.%n", building, propertyName);
   }
 
   /**********************************************************************
@@ -250,7 +250,7 @@ public class GameTextView {
    *********************************************************************/
   public void printPropertyMaxHouse() {
     System.out.println("------------------------------------------------------");
-    System.out.printf("Property already has 4 houses. Build a hotel here.\n");
+    System.out.printf("Property already has 4 houses. Build a hotel here.%n");
   }
 
   /**********************************************************************
@@ -284,7 +284,7 @@ public class GameTextView {
       //Prints the property id and the name of the property
       // every three properties it creates a new line
       System.out.printf("[%n] %s" + ((player.getPropertiesOwned()
-              .indexOf(property) % 3 == 0) ? "\n" : " | ")
+              .indexOf(property) % 3 == 0) ? "%n" : " | ")
           , player.getPropertiesOwned().indexOf(property), property.getName());
     }
 
@@ -308,7 +308,7 @@ public class GameTextView {
    * @param property the property that was mrotgaged
    *********************************************************************/
   public void printMortgagedProperty(OwnableSquare property) {
-    System.out.printf("%s was mortgaged for %n\n", property.getName(), property.getMORTGAGE_VAL());
+    System.out.printf("%s was mortgaged for %d%n", property.getName(), property.getMORTGAGE_VAL());
   }
 
   /**********************************************************************
