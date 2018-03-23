@@ -15,6 +15,8 @@ import java.io.IOException;
  *********************************************************************/
 public class PropertySpace extends JPanel {
 
+  public static final int WIDTH = 200;
+  public static final int HEIGHT = 400;
   /**A Label for the name of the property*/
   private JLabel name;
 
@@ -23,6 +25,11 @@ public class PropertySpace extends JPanel {
 
   /**A Housing panel for drawing houses */
   private HousingPanel housingPanel;
+
+  /**Enum position types for depending where on the board this property
+   * space is.
+   */
+  enum Position{TOP, BOTTOM, LEFT, RIGHT};
 
 
   /********************************************************************
@@ -33,13 +40,13 @@ public class PropertySpace extends JPanel {
    * @param price The price of the property.
    * @throws IOException If the images for the HousingPanel don't load.
    *******************************************************************/
-  public PropertySpace(Color c,String name, int price) throws IOException{
+  public PropertySpace(Color c,String name, int price, Position position) throws IOException{
     this.name = new JLabel(name);
     this.price = new JLabel(""+price);
     housingPanel = new HousingPanel(c);
 
     setTextAlignment();
-    createPanel();
+    createBotPanel();
   }
 
   /*******************************************************************
@@ -74,7 +81,7 @@ public class PropertySpace extends JPanel {
    * JComponents into the correct positions to resemble a Monopoly
    * space.
    *******************************************************************/
-  private void createPanel() {
+  private void createBotPanel() {
     setLayout(new GridBagLayout());
     GridBagConstraints g = new GridBagConstraints();
 
@@ -106,7 +113,7 @@ public class PropertySpace extends JPanel {
    *******************************************************************/
   @Override
   public Dimension getPreferredSize() {
-    return new Dimension(200,400);
+    return new Dimension(WIDTH, HEIGHT);
   }
 
   /********************************************************************
@@ -136,4 +143,5 @@ public class PropertySpace extends JPanel {
     g2d.rotate(Math.PI / 2);
     super.paintComponent(g);
   }
+
 }
