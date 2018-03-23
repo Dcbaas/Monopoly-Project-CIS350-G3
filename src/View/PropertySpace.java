@@ -24,8 +24,9 @@ public class PropertySpace extends JPanel {
   /**A Housing panel for drawing houses */
   private HousingPanel housingPanel;
 
+
   /********************************************************************
-   * The construtor initializes all of the variables and sets the
+   * The constructor initializes all of the variables and sets the
    * color of the property.
    * @param c The color of the property.
    * @param name The name of the property.
@@ -126,5 +127,13 @@ public class PropertySpace extends JPanel {
   @Override
   public Dimension getMaximumSize(){
     return getPreferredSize();
+  }
+
+  @Override
+  public void paintComponent(Graphics g){
+    Graphics2D g2d = (Graphics2D) g;
+
+    g2d.rotate(Math.PI / 2);
+    super.paintComponent(g);
   }
 }
