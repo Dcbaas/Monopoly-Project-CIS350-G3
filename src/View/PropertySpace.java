@@ -138,7 +138,7 @@ public class PropertySpace extends JPanel {
   }
 
   /********************************************************************
-   * The createBotPanel method is a private method that places the
+   * The createTopPanel method is a private method that places the
    * JComponents into the correct positions to resemble a Monopoly
    * space on the top part of the board.
    *******************************************************************/
@@ -166,10 +166,32 @@ public class PropertySpace extends JPanel {
     add(housingPanel, g);
   }
 
+  /********************************************************************
+   * The createLeftPanel method is a private method that places the
+   * JComponents into the correct positions to resemble a Monopoly
+   * space on the left part of the board.
+   *******************************************************************/
   private void createLeftPanel() {
     GridBagConstraints g = new GridBagConstraints();
+    g.gridx = 0;
+    g.gridy = 0;
+    g.gridwidth = 2;
+    g.weightx = 2;
+    g.anchor = g.NORTH;
+    add(name,g);
 
+    g = new GridBagConstraints();
+    g.gridx = 0;
+    g.gridy = 2;
+    g.anchor = g.SOUTH;
+    add(price, g);
 
+    g = new GridBagConstraints();
+    g.gridx = 1;
+    g.gridy = 2;
+    g.gridheight = 2;
+    g.weighty = 2;
+    add(housingPanel, g);
   }
 
   private void createRightPanel() {
