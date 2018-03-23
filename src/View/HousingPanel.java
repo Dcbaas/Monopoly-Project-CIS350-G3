@@ -13,9 +13,14 @@ import javax.swing.JPanel;
  * placed on a board square.
  *
  * @author David Baas
- * @version 3/21/2018
+ * @since  3/21/2018
+ * @version 3/23/2018
  *********************************************************************/
 public class HousingPanel extends JPanel {
+
+  private static final int WIDTH = 200;
+  private static final int HEIGHT = 100;
+  private final boolean VERTICAL;
 
   /**An integer to track how many houses are on the tile.*/
   private int houseCounter;
@@ -26,6 +31,7 @@ public class HousingPanel extends JPanel {
   /**A static Image to track an image of a Monopoly hotel.*/
   private static Image hotelImg;
 
+
    /*******************************************************************
     * The constructor creates the images and sets the hotels to zero as
     * well as sets the background of the panel depending on what
@@ -34,11 +40,13 @@ public class HousingPanel extends JPanel {
     * @throws IOException If there is a failure loading either housing
     * image.
     ******************************************************************/
-  public HousingPanel(Color color) throws IOException {
+  public HousingPanel(Color color,boolean vertical) throws IOException {
     houseCounter = 0;
 
     houseImg = ImageIO.read(new File("res/MonopolyHouse.png"));
     hotelImg = ImageIO.read(new File("res/MonopolyHotel.png"));
+
+    VERTICAL = vertical;
     setOpaque(true);
     setBackground(color);
   }
@@ -75,6 +83,13 @@ public class HousingPanel extends JPanel {
   @Override
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
+    if(VERTICAL)
+      drawVertical(g);
+    else
+      drawHorizontal(g);
+  }
+
+  private void drawHorizontal(Graphics g) {
     switch (houseCounter) {
       case 1:
         g.drawImage(houseImg,10,20,40,50,null);
@@ -101,6 +116,10 @@ public class HousingPanel extends JPanel {
     }
   }
 
+  private void drawVertical(Graphics g){
+
+  }
+
   /********************************************************************
    * The getPreferredSize method is used to Lock the size of the Panel
    * to the correct size.
@@ -108,7 +127,7 @@ public class HousingPanel extends JPanel {
    *******************************************************************/
   @Override
   public Dimension getPreferredSize(){
-    return new Dimension(200,100);
+    return new Dimension(WIDTH, HEIGHT);
   }
 
   /********************************************************************

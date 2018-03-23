@@ -1,6 +1,7 @@
 package Veiw;
 
 import View.PropertySpace;
+import View.PropertySpace.Position;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.io.IOException;
@@ -20,7 +21,7 @@ public class PropertySpaceTest {
     frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     frame.setSize(250,450);
 
-    PropertySpace space = new PropertySpace(Color.CYAN,"Parrot Town", 500);
+    PropertySpace space = new PropertySpace(Color.CYAN,"Parrot Town", 500, Position.BOTTOM);
 
     JPanel buttonPanel = new JPanel();
     JButton inc = new JButton("Inc");

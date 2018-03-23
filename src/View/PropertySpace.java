@@ -1,8 +1,13 @@
 package View;
 
-import java.awt.*;
-import javax.swing.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.io.IOException;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 /**********************************************************************
  * The PropertySpace class is an extensions of the JPanel and creates
@@ -15,22 +20,25 @@ import java.io.IOException;
  *********************************************************************/
 public class PropertySpace extends JPanel {
 
-  public static final int WIDTH = 200;
-  public static final int HEIGHT = 400;
-  /**A Label for the name of the property*/
+  private static final int WIDTH = 200;
+  private static final int HEIGHT = 400;
+
+  //I wanted this to be final but Java didn't like it.
+  private Dimension dimensions;
+  /**
+   * A Label for the name of the property
+   */
   private JLabel name;
 
-  /**A label for the price of the property*/
+  /**
+   * A label for the price of the property
+   */
   private JLabel price;
 
-  /**A Housing panel for drawing houses */
-  private HousingPanel housingPanel;
-
-  /**Enum position types for depending where on the board this property
-   * space is.
+  /**
+   * A Housing panel for drawing houses
    */
-  enum Position{TOP, BOTTOM, LEFT, RIGHT};
-
+  private HousingPanel housingPanel;
 
   /********************************************************************
    * The constructor initializes all of the variables and sets the
@@ -40,13 +48,37 @@ public class PropertySpace extends JPanel {
    * @param price The price of the property.
    * @throws IOException If the images for the HousingPanel don't load.
    *******************************************************************/
-  public PropertySpace(Color c,String name, int price, Position position) throws IOException{
+  public PropertySpace(Color c, String name, int price, Position position) throws IOException {
     this.name = new JLabel(name);
-    this.price = new JLabel(""+price);
-    housingPanel = new HousingPanel(c);
+    this.price = new JLabel("" + price);
+    housingPanel = new HousingPanel(c, false);
 
     setTextAlignment();
-    createBotPanel();
+    setLayout(new GridBagLayout());
+
+
+    switch (position) {
+      case BOTTOM:
+        housingPanel = new HousingPanel(c, false);
+        createBotPanel();
+        dimensions = new Dimension(WIDTH, HEIGHT);
+        break;
+      case TOP:
+        housingPanel = new HousingPanel(c, false);
+        createTopPanel();
+        dimensions = new Dimension(WIDTH, HEIGHT);
+        break;
+      case LEFT:
+        housingPanel = new HousingPanel(c, true);
+        createLeftPanel();
+        dimensions = new Dimension(HEIGHT, WIDTH);
+        break;
+      case RIGHT:
+      default:
+        housingPanel = new HousingPanel(c, true);
+        createRightPanel();
+        dimensions = new Dimension(HEIGHT, WIDTH);
+    }
   }
 
   /*******************************************************************
@@ -70,40 +102,80 @@ public class PropertySpace extends JPanel {
    * The setTextAlignment method is a private method that aligns the
    * text of the Labels to the center of the panel.
    *******************************************************************/
-  private void setTextAlignment(){
+  private void setTextAlignment() {
     name.setHorizontalTextPosition(SwingConstants.CENTER);
     price.setHorizontalTextPosition(SwingConstants.CENTER);
     price.setVerticalAlignment(SwingConstants.BOTTOM);
   }
 
   /********************************************************************
-   * The createPanel method is a private method that places the
+   * The createBotPanel method is a private method that places the
    * JComponents into the correct positions to resemble a Monopoly
-   * space.
+   * space on the bottom part of the board.
    *******************************************************************/
   private void createBotPanel() {
-    setLayout(new GridBagLayout());
-    GridBagConstraints g = new GridBagConstraints();
 
+    GridBagConstraints g = new GridBagConstraints();
     g.gridx = 0;
     g.gridy = 0;
     g.weightx = 2;
     g.gridheight = 2;
-    add(housingPanel,g);
+    add(housingPanel, g);
 
     g = new GridBagConstraints();
     g.gridx = 0;
     g.gridy = 2;
-    g.gridheight = 3;
+    g.gridheight = 2;
+    g.weighty = 2;
+    g.anchor = g.NORTH;
+    add(name, g);
+
+    g = new GridBagConstraints();
+    g.gridx = 0;
+    g.gridy = 4;
+    g.anchor = g.SOUTH;
+    add(price, g);
+  }
+
+  /********************************************************************
+   * The createBotPanel method is a private method that places the
+   * JComponents into the correct positions to resemble a Monopoly
+   * space on the top part of the board.
+   *******************************************************************/
+  private void createTopPanel() {
+
+    GridBagConstraints g = new GridBagConstraints();
+    g.gridx = 0;
+    g.gridy = 0;
+    g.gridheight = 2;
     g.weighty = 2;
     g.anchor = g.NORTH;
     add(name,g);
 
     g = new GridBagConstraints();
     g.gridx = 0;
-    g.gridy = 5;
+    g.gridy = 3;
     g.anchor = g.SOUTH;
-    add(price,g);
+    add(price, g);
+
+    g = new GridBagConstraints();
+    g.gridx = 0;
+    g.gridy = 4;
+    g.weightx = 2;
+    g.gridheight = 2;
+    add(housingPanel, g);
+  }
+
+  private void createLeftPanel() {
+    GridBagConstraints g = new GridBagConstraints();
+
+
+  }
+
+  private void createRightPanel() {
+    GridBagConstraints g = new GridBagConstraints();
+
+
   }
 
   /********************************************************************
@@ -122,7 +194,7 @@ public class PropertySpace extends JPanel {
    * @return getPrefferedSize the dimensions of the BoardSpace
    *******************************************************************/
   @Override
-  public Dimension getMinimumSize(){
+  public Dimension getMinimumSize() {
     return getPreferredSize();
   }
 
@@ -132,16 +204,23 @@ public class PropertySpace extends JPanel {
    * @return getPreferredSize the dimensions of the BoardSpace
    *******************************************************************/
   @Override
-  public Dimension getMaximumSize(){
+  public Dimension getMaximumSize() {
     return getPreferredSize();
   }
 
-  @Override
-  public void paintComponent(Graphics g){
-    Graphics2D g2d = (Graphics2D) g;
-
-    g2d.rotate(Math.PI / 2);
-    super.paintComponent(g);
+  /**
+   * Enum position types for depending where on the board this property space is.
+   */
+  public enum Position {
+    TOP, BOTTOM, LEFT, RIGHT
   }
+
+//  @Override
+//  public void paintComponent(Graphics g){
+//    Graphics2D g2d = (Graphics2D) g;
+//
+//    g2d.rotate(Math.PI / 2);
+//    super.paintComponent(g);
+//  }
 
 }
