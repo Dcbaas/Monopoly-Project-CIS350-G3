@@ -27,7 +27,7 @@ public class PropertySpace extends JPanel {
   private static final int WIDTH = 200;
 
   /**
-   * A final int to track the height of a space
+   * A final int to track the height of a space.
    */
   private static final int HEIGHT = 400;
 
@@ -38,17 +38,17 @@ public class PropertySpace extends JPanel {
   private Dimension dimensions;
 
   /**
-   * A Label for the name of the property
+   * A Label for the name of the property.
    */
   private JLabel name;
 
   /**
-   * A label for the price of the property
+   * A label for the price of the property.
    */
   private JLabel price;
 
   /**
-   * A Housing panel for drawing houses
+   * A Housing panel for drawing houses.
    */
   private HousingPanel housingPanel;
 

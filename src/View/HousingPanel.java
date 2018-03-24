@@ -42,7 +42,7 @@ public class HousingPanel extends JPanel {
   private static Image hotelImg;
 
   /**
-   * A final boolean to track if the housing panel is vertical
+   * A final boolean to track if the housing panel is vertical.
    */
   private final boolean VERTICAL;
 
