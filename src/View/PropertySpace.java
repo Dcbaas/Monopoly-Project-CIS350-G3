@@ -126,13 +126,13 @@ public class PropertySpace extends JPanel {
     g.gridy = 2;
     g.gridheight = 2;
     g.weighty = 2;
-    g.anchor = g.NORTH;
+    g.anchor = GridBagConstraints.NORTH;
     add(name, g);
 
     g = new GridBagConstraints();
     g.gridx = 0;
     g.gridy = 4;
-    g.anchor = g.SOUTH;
+    g.anchor = GridBagConstraints.SOUTH;
     add(price, g);
   }
 
@@ -148,13 +148,13 @@ public class PropertySpace extends JPanel {
     g.gridy = 0;
     g.gridheight = 2;
     g.weighty = 2;
-    g.anchor = g.NORTH;
+    g.anchor = GridBagConstraints.NORTH;
     add(name, g);
 
     g = new GridBagConstraints();
     g.gridx = 0;
     g.gridy = 3;
-    g.anchor = g.SOUTH;
+    g.anchor = GridBagConstraints.SOUTH;
     add(price, g);
 
     g = new GridBagConstraints();
@@ -176,13 +176,15 @@ public class PropertySpace extends JPanel {
     g.gridy = 0;
     g.gridwidth = 2;
     g.weightx = 2;
-    g.anchor = g.NORTH;
+    g.gridheight = 2;
+    g.weighty = 1;
+    g.anchor = GridBagConstraints.NORTHWEST;
     add(name, g);
 
     g = new GridBagConstraints();
     g.gridx = 0;
-    g.gridy = 2;
-    g.anchor = g.SOUTH;
+    g.gridy = 3;
+    g.anchor = GridBagConstraints.SOUTH;
     add(price, g);
 
     g = new GridBagConstraints();
@@ -193,6 +195,11 @@ public class PropertySpace extends JPanel {
     add(housingPanel, g);
   }
 
+  /********************************************************************
+   * The createRightPanel method is a private method that places the
+   * JComponents into the correct positions to resemble a Monopoly
+   * space on the right part of the board.
+   *******************************************************************/
   private void createRightPanel() {
     GridBagConstraints g = new GridBagConstraints();
     g.gridx = 0;
@@ -206,14 +213,15 @@ public class PropertySpace extends JPanel {
     g.gridy = 0;
     g.gridwidth = 2;
     g.weightx = 2;
-    g.anchor = g.NORTH;
+    g.anchor = GridBagConstraints.NORTHEAST;
     add(name, g);
 
     g = new GridBagConstraints();
     //Todo: do we want to pair up these statements together like this? Make it easier to read?
+    //ToDo: BUG: The price tag for the Right Label won't anchor to the right place.
     g.gridx = 1;
     g.gridy = 2;
-    g.anchor = g.SOUTH;
+    g.anchor = GridBagConstraints.EAST;
     add(price, g);
   }
 
@@ -253,13 +261,4 @@ public class PropertySpace extends JPanel {
   public enum Position {
     TOP, BOTTOM, LEFT, RIGHT
   }
-
-//  @Override
-//  public void paintComponent(Graphics g){
-//    Graphics2D g2d = (Graphics2D) g;
-//
-//    g2d.rotate(Math.PI / 2);
-//    super.paintComponent(g);
-//  }
-
 }
