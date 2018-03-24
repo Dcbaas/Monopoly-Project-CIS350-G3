@@ -56,7 +56,6 @@ public class PropertySpace extends JPanel {
     setTextAlignment();
     setLayout(new GridBagLayout());
 
-
     switch (position) {
       case BOTTOM:
         housingPanel = new HousingPanel(c, false);
@@ -150,7 +149,7 @@ public class PropertySpace extends JPanel {
     g.gridheight = 2;
     g.weighty = 2;
     g.anchor = g.NORTH;
-    add(name,g);
+    add(name, g);
 
     g = new GridBagConstraints();
     g.gridx = 0;
@@ -178,7 +177,7 @@ public class PropertySpace extends JPanel {
     g.gridwidth = 2;
     g.weightx = 2;
     g.anchor = g.NORTH;
-    add(name,g);
+    add(name, g);
 
     g = new GridBagConstraints();
     g.gridx = 0;
@@ -196,8 +195,26 @@ public class PropertySpace extends JPanel {
 
   private void createRightPanel() {
     GridBagConstraints g = new GridBagConstraints();
+    g.gridx = 0;
+    g.gridy = 0;
+    g.gridheight = 2;
+    g.weighty = 2;
+    add(housingPanel, g);
 
+    g = new GridBagConstraints();
+    g.gridx = 1;
+    g.gridy = 0;
+    g.gridwidth = 2;
+    g.weightx = 2;
+    g.anchor = g.NORTH;
+    add(name, g);
 
+    g = new GridBagConstraints();
+    //Todo: do we want to pair up these statements together like this? Make it easier to read?
+    g.gridx = 1;
+    g.gridy = 2;
+    g.anchor = g.SOUTH;
+    add(price, g);
   }
 
   /********************************************************************
@@ -207,7 +224,7 @@ public class PropertySpace extends JPanel {
    *******************************************************************/
   @Override
   public Dimension getPreferredSize() {
-    return new Dimension(WIDTH, HEIGHT);
+    return dimensions;
   }
 
   /********************************************************************

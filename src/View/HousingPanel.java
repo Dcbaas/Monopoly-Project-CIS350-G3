@@ -1,6 +1,9 @@
 package View;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -13,34 +16,37 @@ import javax.swing.JPanel;
  * placed on a board square.
  *
  * @author David Baas
- * @since  3/21/2018
+ * @since 3/21/2018
  * @version 3/23/2018
  *********************************************************************/
 public class HousingPanel extends JPanel {
 
   private static final int WIDTH = 200;
   private static final int HEIGHT = 100;
+  /**
+   * A static Image to track an image of a Monopoly house.
+   */
+  private static Image houseImg;
+  /**
+   * A static Image to track an image of a Monopoly hotel.
+   */
+  private static Image hotelImg;
   private final boolean VERTICAL;
-
-  /**An integer to track how many houses are on the tile.*/
+  /**
+   * An integer to track how many houses are on the tile.
+   */
   private int houseCounter;
 
-  /**A static Image to track an image of a Monopoly house.*/
-  private static Image houseImg;
 
-  /**A static Image to track an image of a Monopoly hotel.*/
-  private static Image hotelImg;
-
-
-   /*******************************************************************
-    * The constructor creates the images and sets the hotels to zero as
-    * well as sets the background of the panel depending on what
-    * grouping the parent property belongs to.
-    * @param color the Color this HousingPanel will be set to.
-    * @throws IOException If there is a failure loading either housing
-    * image.
-    ******************************************************************/
-  public HousingPanel(Color color,boolean vertical) throws IOException {
+  /*******************************************************************
+   * The constructor creates the images and sets the hotels to zero as
+   * well as sets the background of the panel depending on what
+   * grouping the parent property belongs to.
+   * @param color the Color this HousingPanel will be set to.
+   * @throws IOException If there is a failure loading either housing
+   * image.
+   ******************************************************************/
+  public HousingPanel(Color color, boolean vertical) throws IOException {
     houseCounter = 0;
 
     houseImg = ImageIO.read(new File("res/MonopolyHouse.png"));
@@ -65,12 +71,13 @@ public class HousingPanel extends JPanel {
    * @param houseCounter the number of houses on this panel.
    ******************************************************************/
   public void setHouses(int houseCounter) {
-    if(houseCounter > 5)
+    if (houseCounter > 5) {
       this.houseCounter = 5;
-    else if(houseCounter < 0)
+    } else if (houseCounter < 0) {
       this.houseCounter = 0;
-    else
+    } else {
       this.houseCounter = houseCounter;
+    }
     repaint();
     revalidate();
   }
@@ -83,41 +90,65 @@ public class HousingPanel extends JPanel {
   @Override
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
-    if(VERTICAL)
+    if (VERTICAL) {
       drawVertical(g);
-    else
+    } else {
       drawHorizontal(g);
+    }
   }
 
   private void drawHorizontal(Graphics g) {
     switch (houseCounter) {
       case 1:
-        g.drawImage(houseImg,10,20,40,50,null);
+        g.drawImage(houseImg, 10, 20, 40, 50, null);
         break;
       case 2:
-        g.drawImage(houseImg,10,20,40,50,null);
-        g.drawImage(houseImg,50,20,40,50,null);
+        g.drawImage(houseImg, 10, 20, 40, 50, null);
+        g.drawImage(houseImg, 50, 20, 40, 50, null);
         break;
       case 3:
-        g.drawImage(houseImg,10,20,40,50,null);
-        g.drawImage(houseImg,50,20,40,50,null);
-        g.drawImage(houseImg,90,20,40,50,null);
+        g.drawImage(houseImg, 10, 20, 40, 50, null);
+        g.drawImage(houseImg, 50, 20, 40, 50, null);
+        g.drawImage(houseImg, 90, 20, 40, 50, null);
         break;
       case 4:
-        g.drawImage(houseImg,10,20,40,50,null);
-        g.drawImage(houseImg,50,20,40,50,null);
-        g.drawImage(houseImg,90,20,40,50,null);
-        g.drawImage(houseImg,130,20,40,50,null);
+        g.drawImage(houseImg, 10, 20, 40, 50, null);
+        g.drawImage(houseImg, 50, 20, 40, 50, null);
+        g.drawImage(houseImg, 90, 20, 40, 50, null);
+        g.drawImage(houseImg, 130, 20, 40, 50, null);
         break;
       case 5:
-        g.drawImage(hotelImg,70,30,50,40,null);
+        g.drawImage(hotelImg, 70, 30, 50, 40, null);
         break;
       default:
     }
   }
 
-  private void drawVertical(Graphics g){
-
+  private void drawVertical(Graphics g) {
+    switch (houseCounter) {
+      case 1:
+        g.drawImage(houseImg, 20, 10, 40, 50, null);
+        break;
+      case 2:
+        g.drawImage(houseImg, 20, 10, 40, 50, null);
+        g.drawImage(houseImg, 20, 50, 40, 50, null);
+        break;
+      case 3:
+        g.drawImage(houseImg, 20, 10, 40, 50, null);
+        g.drawImage(houseImg, 20, 50, 40, 50, null);
+        g.drawImage(houseImg, 20, 90, 40, 50, null);
+        break;
+      case 4:
+        g.drawImage(houseImg, 20, 10, 40, 50, null);
+        g.drawImage(houseImg, 20, 50, 40, 50, null);
+        g.drawImage(houseImg, 20, 90, 40, 50, null);
+        g.drawImage(houseImg, 20, 130, 40, 50, null);
+        break;
+      case 5:
+        g.drawImage(hotelImg, 30, 70, 50, 40, null);
+        break;
+      default:
+    }
   }
 
   /********************************************************************
@@ -126,7 +157,10 @@ public class HousingPanel extends JPanel {
    * @return The dimensions of the housing panel.
    *******************************************************************/
   @Override
-  public Dimension getPreferredSize(){
+  public Dimension getPreferredSize() {
+    if (VERTICAL) {
+      return new Dimension(HEIGHT, WIDTH);
+    }
     return new Dimension(WIDTH, HEIGHT);
   }
 
@@ -146,7 +180,7 @@ public class HousingPanel extends JPanel {
    * @return getPreferredSize the dimensions of the housingPanel.
    *******************************************************************/
   @Override
-  public Dimension getMaximumSize(){
+  public Dimension getMaximumSize() {
     return getPreferredSize();
   }
 }
