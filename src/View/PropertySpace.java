@@ -16,15 +16,27 @@ import javax.swing.SwingConstants;
  * as how many houses are on the space.
  *
  * @author David Baas
- * @version 2/21/2018
+ * @since 2/21/2018
+ * @version 2/23/2018
  *********************************************************************/
 public class PropertySpace extends JPanel {
 
+  /**
+   * A final int to track the width of a space.
+   */
   private static final int WIDTH = 200;
+
+  /**
+   * A final int to track the height of a space
+   */
   private static final int HEIGHT = 400;
 
   //I wanted this to be final but Java didn't like it.
+  /**
+   * A Dimension to store the dimensions of the space.
+   */
   private Dimension dimensions;
+
   /**
    * A Label for the name of the property
    */

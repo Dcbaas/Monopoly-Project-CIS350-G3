@@ -17,26 +17,39 @@ import javax.swing.JPanel;
  *
  * @author David Baas
  * @since 3/21/2018
- * @version 3/23/2018
+ * @version 3/24/2018
  *********************************************************************/
 public class HousingPanel extends JPanel {
 
+  /**
+   * A final int to track the width of a housing panel.
+   */
   private static final int WIDTH = 200;
+
+  /**
+   * A final int to track the height of a housing panel.
+   */
   private static final int HEIGHT = 100;
+
   /**
    * A static Image to track an image of a Monopoly house.
    */
   private static Image houseImg;
+
   /**
    * A static Image to track an image of a Monopoly hotel.
    */
   private static Image hotelImg;
+
+  /**
+   * A final boolean to track if the housing panel is vertical
+   */
   private final boolean VERTICAL;
+
   /**
    * An integer to track how many houses are on the tile.
    */
   private int houseCounter;
-
 
   /*******************************************************************
    * The constructor creates the images and sets the hotels to zero as
@@ -97,6 +110,10 @@ public class HousingPanel extends JPanel {
     }
   }
 
+  /*******************************************************************
+   * The drawHorizontal method draws the houses horizontally for the
+   * paint component.
+   ******************************************************************/
   private void drawHorizontal(Graphics g) {
     switch (houseCounter) {
       case 1:
@@ -124,6 +141,10 @@ public class HousingPanel extends JPanel {
     }
   }
 
+  /*******************************************************************
+   * The drawHorizontal method draws the houses vertically for the
+   * paint component.
+   ******************************************************************/
   private void drawVertical(Graphics g) {
     switch (houseCounter) {
       case 1:
