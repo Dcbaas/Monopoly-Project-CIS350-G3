@@ -1,6 +1,5 @@
 package View;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
@@ -9,12 +8,8 @@ import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
-import javax.swing.WindowConstants;
 
 /**********************************************************************
  * The RailRoadSpace creates a space that resembles a RR space on the
@@ -25,18 +20,56 @@ import javax.swing.WindowConstants;
  *********************************************************************/
 public class RailRoadSpace extends JPanel {
 
-  public static final int WIDTH = 200;
-  public static final int HEIGHT = 400;
-  private Image railRoadImg;
+  /**
+   * A final int to size the locomotive image.
+   */
+  public static final int IMG_SIZE = 150;
 
+  /**
+   * private int houseCounter; A final int to track the width of a housing panel.
+   */
+  private static final int WIDTH = 200;
+  /**
+   * A final int to track the height of a housing panel.
+   */
+  private static final int HEIGHT = 100;
+  /**
+   * An image of the Monopoly Locomotive.
+   */
+
+  private static Image railRoadImg;
+
+  /**
+   * A JLabel to display the name.
+   */
   private JLabel name;
 
+  /**
+   * A JLabel for the price.
+   */
   private JLabel price;
 
+  /**
+   * A boolean to track if this is a horizontal RR.
+   */
   private boolean horizontal;
 
+  /**
+   * A Dimension to scale the size of the RRSpace.
+   */
   private Dimension dimension;
 
+
+  /********************************************************************
+   * The constrctor creates and initializes all of the variables. It
+   * formats the panel based off of if the horizontal flag is set to
+   * true.
+   * @param horizontal flag to determine if this space will be oriented
+   * horizontal.
+   * @param name The name of the RR this RRSpace represents.
+   * @throws IOException If there is a problem loading the RR locomotive
+   * image.
+   *******************************************************************/
   public RailRoadSpace(boolean horizontal, String name) throws IOException {
     this.name = new JLabel(name);
     price = new JLabel("$200");
@@ -51,22 +84,20 @@ public class RailRoadSpace extends JPanel {
     }
 
     setLayout(new GridBagLayout());
-
     drawSpace();
 
   }
 
+  /********************************************************************
+   * The drawSpace method is a private method that positions the
+   * JLabels correctly on the panel.
+   *******************************************************************/
   private void drawSpace() {
-//    add(name,BorderLayout.NORTH);
-//    //add(railRoadImg);
-//
-//    add(price, BorderLayout.SOUTH);
     GridBagConstraints g = new GridBagConstraints();
     g.gridx = 0;
     g.gridy = 0;
     g.weighty = 1;
     g.anchor = GridBagConstraints.NORTH;
-
     add(name, g);
 
     g = new GridBagConstraints();
@@ -76,13 +107,16 @@ public class RailRoadSpace extends JPanel {
     add(price, g);
   }
 
-
+  /********************************************************************
+   * The paint Component paints the image onto the screen.
+   * @param g The Graphics component.
+   *******************************************************************/
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
     if (!horizontal) {
-      g.drawImage(railRoadImg, 10, 100, 150, 150, null);
+      g.drawImage(railRoadImg, 10, 100, IMG_SIZE, IMG_SIZE, null);
     } else {
-      g.drawImage(railRoadImg, 100, 10, 150, 150, null);
+      g.drawImage(railRoadImg, 100, 10, IMG_SIZE, IMG_SIZE, null);
     }
 
   }
@@ -94,13 +128,13 @@ public class RailRoadSpace extends JPanel {
    *******************************************************************/
   @Override
   public Dimension getPreferredSize() {
-    return new Dimension(WIDTH, HEIGHT);
+    return dimension;
   }
 
   /********************************************************************
    * The getMinimumSize method refers to the getPreferredSize method
    * to lock the size of the panel.
-   * @return getPrefferedSize the dimensions of the BoardSpace
+   * @return getPreferredSize the dimensions of the BoardSpace
    *******************************************************************/
   @Override
   public Dimension getMinimumSize() {
