@@ -1,6 +1,7 @@
 package Veiw;
 
 import View.PropertySpace;
+import View.PropertySpace.Position;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.io.IOException;
@@ -13,23 +14,30 @@ import javax.swing.WindowConstants;
  * This is a demo class for the group. It is not intended to be a concrete
  * test class.
  *********************************************************************/
-public class PropertySpaceTest {
+@Deprecated
+public class PropertySpaceDemo {
 
   public static void main(String[] args) throws IOException {
     JFrame frame = new JFrame("Tile Test");
     frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-    frame.setSize(250,450);
+    frame.setSize(250, 450);
 
-    PropertySpace space = new PropertySpace(Color.CYAN,"Parrot Town", 500);
+    PropertySpace space = new PropertySpace(Color.CYAN, "Parrot Town", 500, Position.RIGHT);
 
     JPanel buttonPanel = new JPanel();
     JButton inc = new JButton("Inc");
     JButton dec = new JButton("Dec");
     JButton quit = new JButton("Quit");
 
-    inc.addActionListener(e ->{ space.setHouses(space.getHouses() + 1);});
-    dec.addActionListener(e -> {space.setHouses(space.getHouses() - 1);});
-    quit.addActionListener(e -> {System.exit(0);});
+    inc.addActionListener(e -> {
+      space.setHouses(space.getHouses() + 1);
+    });
+    dec.addActionListener(e -> {
+      space.setHouses(space.getHouses() - 1);
+    });
+    quit.addActionListener(e -> {
+      System.exit(0);
+    });
 
     frame.setLayout(new BorderLayout());
     frame.add(space, BorderLayout.NORTH);
