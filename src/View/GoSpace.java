@@ -8,20 +8,43 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
+/**********************************************************************
+ * The GoSpace class creates a JPanel that resembles a Go Square from
+ * the game of Monopoly.
+ *
+ * @author David Baas
+ * @version 3/26/2018
+ *********************************************************************/
 public class GoSpace extends JPanel {
 
-
+  /**
+   * A static int constant to track the length of an edge in the square.
+   */
   private static final int LENGTH = 400;
 
+  /**
+   * An image to hold the image of the Go icon.
+   */
   private static Image goImg;
 
+
+  /********************************************************************
+   * The constructor initializes the image.
+   *
+   * @throws IOException If there is an error in loading the image.
+   *******************************************************************/
   public GoSpace() throws IOException {
     goImg = ImageIO.read(new File("res/goImg.gif"));
   }
 
+  /*******************************************************************
+   * The paintComponent draws the Go Image onto the JPanel.
+   *
+   * @param g Graphics component of this panel.
+   ******************************************************************/
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
-    g.drawImage(goImg, 0, 0, 400, 400, null);
+    g.drawImage(goImg, 0, 0, LENGTH, LENGTH, null);
   }
 
   /********************************************************************
