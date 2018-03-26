@@ -16,9 +16,9 @@ import javax.swing.JPanel;
 
 public class GameView extends JFrame implements ActionListener {
 	private JFrame frame;
-	private JPanel gamePanel;
-	private JPanel sideBar;
-	private JPanel bottomBar;
+	private BoardPanel boardPanel;
+	private SidePanel sidePanel;
+	private BottomPanel bottomPanel;
 	
 	private GridBagConstraints c;
 	
@@ -29,9 +29,9 @@ public class GameView extends JFrame implements ActionListener {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//frame.setUndecorated(true);
 		
-		gamePanel = new GamePanel();
-		sideBar = new SideBar();
-		bottomBar = new BottomBar();
+		boardPanel = new BoardPanel();
+		sidePanel = new SidePanel();
+		bottomPanel = new BottomPanel();
 		
 		c = new GridBagConstraints();
 		
@@ -39,19 +39,19 @@ public class GameView extends JFrame implements ActionListener {
 		c.gridy = 0;
 		c.gridheight = 1;
 		c.gridwidth = 1;
-		frame.add(gamePanel, c);
+		frame.add(boardPanel, c);
 		
 		c.gridx = 1;
 		c.gridy = 0;
 		c.gridheight = 2;
 		c.gridwidth = 1;
-		frame.add(sideBar, c);
+		frame.add(sidePanel, c);
 		
 		c.gridx = 0;
 		c.gridy = 1;
 		c.gridheight = 1;
 		c.gridwidth = 1;
-		frame.add(bottomBar, c);
+		frame.add(bottomPanel, c);
 		
 		frame.pack();
 		frame.setLocationRelativeTo(null);

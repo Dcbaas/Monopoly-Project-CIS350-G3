@@ -5,7 +5,7 @@ import java.awt.FlowLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class BottomBar extends JPanel {
+public class BottomPanel extends JPanel {
 	
 	private JButton menu;
 	private JButton build;
@@ -13,7 +13,7 @@ public class BottomBar extends JPanel {
 	private JButton mortgage;
 	private JButton trade;
 	
-	public BottomBar() {
+	public BottomPanel() {
 		setLayout(new FlowLayout());
 		setSize(700, 100);
 		

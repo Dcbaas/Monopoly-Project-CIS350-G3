@@ -9,11 +9,11 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-public class GamePanel extends JPanel {
+public class BoardPanel extends JPanel {
 	
 	private BufferedImage board;
 
-	public GamePanel() {
+	public BoardPanel() {
 		setLayout(new GridBagLayout());
 		setSize(200, 600);
 		
