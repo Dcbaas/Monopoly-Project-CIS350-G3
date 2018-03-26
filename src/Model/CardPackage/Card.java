@@ -37,7 +37,27 @@ public class Card {
       int actions[]) {
     CARD_DESCRIPTION = cardDescription;
     CARD_TYPE = cardType;
-    ACTIONS = actions;
+
+
+
+    ACTIONS = getNewPointers(actions);
+  }
+
+  /******************************************************************
+   * This method helps to return a user with different internal
+   * pointers to prevent fiving the user the internal representation
+   * of the object through an mutable object.
+   * access to the in
+   * @param list
+   * @return
+   *****************************************************************/
+  private int[] getNewPointers(int[] list) {
+    int [] tempList = new int[list.length];
+    for (int index = 0; index < list.length; ++index) {
+      tempList[index] =  Integer.valueOf(list[index]);
+    }
+
+    return tempList;
   }
 
   /******************************************************************
@@ -64,6 +84,6 @@ public class Card {
    * @return ACTIONS Returns the actions the card will perform.
    *****************************************************************/
   public int[] getActions() {
-    return ACTIONS;
+    return getNewPointers(ACTIONS);
   }
 }
