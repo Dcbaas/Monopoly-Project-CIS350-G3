@@ -6,20 +6,46 @@ import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.WindowConstants;
 
+/**********************************************************************
+ * The CardSpace class creates a JPanel that displays the icons of a
+ * Chance or Community Chest spaces on the Board of Monopoly.
+ *
+ * @author David Baas
+ * @version 3/25/2018
+ *********************************************************************/
 public class CardSpace extends JPanel {
 
-  private boolean horizontal;
-
-  private Image cardImg;
-
+  /**
+   * A static final int to track the width of the tile.
+   */
   private static final int WIDTH = 200;
 
+  /**
+   * A static final int to track the height of the tile.
+   */
   private static final int HEIGHT = 400;
 
+  /**
+   * A boolean to track of this CardSpace is horizontal.
+   */
+  private boolean horizontal;
+
+  /**
+   * An Image to diplay a chance or CC icon.
+   */
+  private Image cardImg;
+
+  /********************************************************************
+   * The constructor creates a CardSpace tile and initializes what
+   * image is displayed.
+   * @param horizontal Boolean for if the CardSpace is horizontal.
+   * @param chance Boolean for if this CardSpace is a Chance or CC
+   * space.
+   * @throws IOException if there is a problem loading the image
+   * files.
+   *******************************************************************/
   public CardSpace(boolean horizontal, boolean chance) throws IOException {
 
     if (chance) {
@@ -31,6 +57,11 @@ public class CardSpace extends JPanel {
     this.horizontal = horizontal;
   }
 
+  /********************************************************************
+   * The paint Component draws the image on the screen for the Tile.
+   *
+   * @param g The Graphics component drawing the image.
+   *******************************************************************/
   //ToDo Draw the horizontal view better.
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
@@ -40,7 +71,7 @@ public class CardSpace extends JPanel {
   /********************************************************************
    * The getPreferredSize method is used to Lock the size of the Panel
    * to the correct size.
-   * @return The dimensions of the board space.
+   * @return The dimensions of the CardSpace
    *******************************************************************/
   @Override
   public Dimension getPreferredSize() {
@@ -53,7 +84,7 @@ public class CardSpace extends JPanel {
   /********************************************************************
    * The getMinimumSize method refers to the getPreferredSize method
    * to lock the size of the panel.
-   * @return getPreferredSize the dimensions of the BoardSpace
+   * @return getPreferredSize the dimensions of the CardSpace
    *******************************************************************/
   @Override
   public Dimension getMinimumSize() {
@@ -63,7 +94,7 @@ public class CardSpace extends JPanel {
   /********************************************************************
    * The getMaximumSize method refers to the getPreferredSize method
    * to lock the size of the panel.
-   * @return getPreferredSize the dimensions of the BoardSpace
+   * @return getPreferredSize the dimensions of the CardSpace
    *******************************************************************/
   @Override
   public Dimension getMaximumSize() {
