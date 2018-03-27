@@ -17,7 +17,7 @@ public class CenterImage extends JPanel {
   }
 
   public void paintComponent(Graphics g) {
-    g.drawImage(monopolyLogo, 0, 0, 1800, 1800, null);
+    g.drawImage(monopolyLogo, 0, 0, 900, 900, null);
   }
 
 

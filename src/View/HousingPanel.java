@@ -21,15 +21,17 @@ import javax.swing.JPanel;
  *********************************************************************/
 public class HousingPanel extends JPanel {
 
+  public static final int HOUSE_H = 25;
   /**
    * A final int to track the width of a housing panel.
    */
-  private static final int WIDTH = 200;
+  private static final int WIDTH = 100;
 
   /**
    * A final int to track the height of a housing panel.
    */
-  private static final int HEIGHT = 100;
+  private static final int HEIGHT = 50;
+  public static final int HOUSE_W = 20;
 
   /**
    * A static Image to track an image of a Monopoly house.
@@ -112,30 +114,30 @@ public class HousingPanel extends JPanel {
 
   /*******************************************************************
    * The drawHorizontal method draws the houses horizontally for the
-   * paint component.
+   * paint component.H
    ******************************************************************/
   private void drawHorizontal(Graphics g) {
     switch (houseCounter) {
       case 1:
-        g.drawImage(houseImg, 10, 20, 40, 50, null);
+        g.drawImage(houseImg, 10, 20, HOUSE_W, HOUSE_H, null);
         break;
       case 2:
-        g.drawImage(houseImg, 10, 20, 40, 50, null);
-        g.drawImage(houseImg, 50, 20, 40, 50, null);
+        g.drawImage(houseImg, 10, 20, HOUSE_W, HOUSE_H, null);
+        g.drawImage(houseImg, 50, 20, HOUSE_W, HOUSE_H, null);
         break;
       case 3:
-        g.drawImage(houseImg, 10, 20, 40, 50, null);
-        g.drawImage(houseImg, 50, 20, 40, 50, null);
-        g.drawImage(houseImg, 90, 20, 40, 50, null);
+        g.drawImage(houseImg, 10, 20, HOUSE_W, HOUSE_H, null);
+        g.drawImage(houseImg, 50, 20, HOUSE_W, HOUSE_H, null);
+        g.drawImage(houseImg, 90, 20, HOUSE_W, HOUSE_H, null);
         break;
       case 4:
-        g.drawImage(houseImg, 10, 20, 40, 50, null);
-        g.drawImage(houseImg, 50, 20, 40, 50, null);
-        g.drawImage(houseImg, 90, 20, 40, 50, null);
-        g.drawImage(houseImg, 130, 20, 40, 50, null);
+        g.drawImage(houseImg, 10, 20, HOUSE_W, HOUSE_H, null);
+        g.drawImage(houseImg, 50, 20, HOUSE_W, HOUSE_H, null);
+        g.drawImage(houseImg, 90, 20, HOUSE_W, HOUSE_H, null);
+        g.drawImage(houseImg, 130, 20, HOUSE_W, HOUSE_H, null);
         break;
       case 5:
-        g.drawImage(hotelImg, 70, 30, 50, 40, null);
+        g.drawImage(hotelImg, 70, 30, 50, HOUSE_H, null);
         break;
       default:
     }
@@ -148,25 +150,25 @@ public class HousingPanel extends JPanel {
   private void drawVertical(Graphics g) {
     switch (houseCounter) {
       case 1:
-        g.drawImage(houseImg, 20, 10, 40, 50, null);
+        g.drawImage(houseImg, 20, 10, HOUSE_W, HOUSE_H, null);
         break;
       case 2:
-        g.drawImage(houseImg, 20, 10, 40, 50, null);
-        g.drawImage(houseImg, 20, 50, 40, 50, null);
+        g.drawImage(houseImg, 20, 10, HOUSE_W, HOUSE_H, null);
+        g.drawImage(houseImg, 20, 50, HOUSE_W, HOUSE_H, null);
         break;
       case 3:
-        g.drawImage(houseImg, 20, 10, 40, 50, null);
-        g.drawImage(houseImg, 20, 50, 40, 50, null);
-        g.drawImage(houseImg, 20, 90, 40, 50, null);
+        g.drawImage(houseImg, 20, 10, HOUSE_W, HOUSE_H, null);
+        g.drawImage(houseImg, 20, 50, HOUSE_W, HOUSE_H, null);
+        g.drawImage(houseImg, 20, 90, HOUSE_W, HOUSE_H, null);
         break;
       case 4:
-        g.drawImage(houseImg, 20, 10, 40, 50, null);
-        g.drawImage(houseImg, 20, 50, 40, 50, null);
-        g.drawImage(houseImg, 20, 90, 40, 50, null);
-        g.drawImage(houseImg, 20, 130, 40, 50, null);
+        g.drawImage(houseImg, 20, 10, HOUSE_W, HOUSE_H, null);
+        g.drawImage(houseImg, 20, 50, HOUSE_W, HOUSE_H, null);
+        g.drawImage(houseImg, 20, 90, HOUSE_W, HOUSE_H, null);
+        g.drawImage(houseImg, 20, 130, HOUSE_W, HOUSE_H, null);
         break;
       case 5:
-        g.drawImage(hotelImg, 30, 70, 50, 40, null);
+        g.drawImage(hotelImg, 30, 70, HOUSE_W, HOUSE_H, null);
         break;
       default:
     }

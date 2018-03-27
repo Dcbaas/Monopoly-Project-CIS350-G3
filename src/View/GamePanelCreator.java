@@ -32,7 +32,7 @@ public class GamePanelCreator extends JPanel {
 
   @Override
   public Dimension getMinimumSize() {
-    return new Dimension(2400, 2400);
+    return new Dimension(1200, 1200);
   }
 
   private void loadSpaces() throws IOException {
@@ -95,27 +95,31 @@ public class GamePanelCreator extends JPanel {
 //    g = new GridBagConstraints();
 //    coordinateSelector(g,2,0);
     //Add Top
-    for (int x = -1; x < 11; ++x) {
+    for (int x = -1; x < 10; ++x) {
       g = new GridBagConstraints();
       coordinateSelector(g, x, 0);
+      g.anchor = GridBagConstraints.NORTH;
       add(spaces[20 + x], g);
     }
 
-    for (int y = 0; y < 11; ++y) {
+    for (int y = 0; y < 10; ++y) {
       g = new GridBagConstraints();
       coordinateSelector(g, 1, y);
+      g.anchor = GridBagConstraints.WEST;
       add(spaces[20 - y], g);
     }
 
-    for (int y = -1; y < 11; ++y) {
+    for (int y = -1; y < 10; ++y) {
       g = new GridBagConstraints();
       coordinateSelector(g, 10, y);
+      g.anchor = GridBagConstraints.EAST;
       add(spaces[30 + y], g);
     }
 
-    for (int x = -1; x < 11; ++x) {
+    for (int x = -1; x < 10; ++x) {
       g = new GridBagConstraints();
       coordinateSelector(g, x, 10);
+      g.anchor = GridBagConstraints.SOUTH;
       add(spaces[10 - x], g);
     }
 
@@ -126,6 +130,7 @@ public class GamePanelCreator extends JPanel {
     g.gridwidth = 8;
     g.weighty = 8;
     g.weightx = 8;
+    g.anchor = GridBagConstraints.CENTER;
     add(centerImage, g);
 
   }
@@ -135,10 +140,18 @@ public class GamePanelCreator extends JPanel {
     g.gridy = y;
   }
 
-//  public static void main(String[] args){
-//    JFrame frame = new JFrame("HOLY SHITE");
-//
-//    frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-//
-//  }
+  public static void main(String[] args) {
+    JFrame frame = new JFrame("HOLY SHITE");
+
+    frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+    frame.setSize(2400, 2400);
+
+    GamePanelCreator game = new GamePanelCreator();
+    frame.add(game);
+
+    frame.setVisible(true);
+
+
+  }
 }

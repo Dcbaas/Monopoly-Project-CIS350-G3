@@ -20,7 +20,7 @@ public class GoToJailSpace extends JPanel {
 	/**
 	 * A static int constant to track the length of an edge in the square.
 	 */
-	private static final int LENGTH = 400;
+	private static final int LENGTH = 200;
 
 	/**
 	 * An image to hold the image of the Go To Jail icon.

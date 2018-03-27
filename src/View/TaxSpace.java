@@ -18,12 +18,12 @@ public class TaxSpace extends JPanel {
   /**
    * A final int to track the width of a space.
    */
-  private static final int WIDTH = 200;
+  private static final int WIDTH = 100;
 
   /**
    * A final int to track the height of a space.
    */
-  private static final int HEIGHT = 400;
+  private static final int HEIGHT = 200;
 
   /**
    * An array of infomation strings for taxInfo.

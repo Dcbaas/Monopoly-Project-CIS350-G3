@@ -20,12 +20,12 @@ public class CardSpace extends JPanel {
   /**
    * A static final int to track the width of the tile.
    */
-  private static final int WIDTH = 200;
+  private static final int WIDTH = 100;
 
   /**
    * A static final int to track the height of the tile.
    */
-  private static final int HEIGHT = 400;
+  private static final int HEIGHT = 200;
 
   /**
    * A boolean to track of this CardSpace is horizontal.
