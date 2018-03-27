@@ -364,7 +364,7 @@ public class Game {
    *
    * @param propertySquare the property that the mortgage is being lifted.
    *********************************************************************/
-  public void payMortgage(PropertySquare propertySquare) {
+  public void payMortgage(OwnableSquare propertySquare) {
     propertySquare.setMortgaged(false);
     propertySquare.getOwner().pay((int) Math.ceil(propertySquare.getMORTGAGE_VAL() * 1.1));
   }
