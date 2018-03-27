@@ -11,6 +11,13 @@ import javax.imageio.ImageIO;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+/**********************************************************************
+ * The Utilities Space draws a JPanel that resembles one of the
+ * utilities squares from the Board of Monopoly.
+ *
+ * @author David Baas
+ * @version 2/26/2018
+ *********************************************************************/
 public class UtilitiesSpace extends JPanel {
 
   /**
@@ -22,17 +29,39 @@ public class UtilitiesSpace extends JPanel {
    * A final int to track the height of a space.
    */
   private static final int HEIGHT = 400;
+  
+  /**
+   * A static final JLabel for the price of the utility.
+   */
+  private static final JLabel price = new JLabel("$150");
 
-  private static Image utilitiesImg;
+  /**
+   * An Image for the icon of the utility.
+   */
+  private Image utilitiesImg;
 
+  /**
+   * A JLabel for the name of the utility.
+   */
   private JLabel name;
 
-  private static JLabel price = new JLabel("$150");
-
+  /**
+   * A Dimension to track the dimensions of the utility.
+   */
   private Dimension dimension;
 
+  /**
+   * A boolean to track weather the utility is a Water Works or The Electric company.
+   */
   private boolean waterworks;
 
+
+  /********************************************************************
+   * The constructor creates a UtilitySpace dpendent on what value is
+   * set for the waterworks variable.
+   * @param waterworks The type of utility this UtilitiesSpace will be.
+   * @throws IOException If there is a problem loading the file.
+   *******************************************************************/
   public UtilitiesSpace(boolean waterworks) throws IOException {
     this.waterworks = waterworks;
 
@@ -50,6 +79,10 @@ public class UtilitiesSpace extends JPanel {
     drawLabels();
   }
 
+  /********************************************************************
+   * The drawLabels method is a private method that draws the
+   * labels onto the JPanel.
+   *******************************************************************/
   private void drawLabels() {
     GridBagConstraints g = new GridBagConstraints();
     g.gridx = 0;
@@ -65,6 +98,10 @@ public class UtilitiesSpace extends JPanel {
     add(price, g);
   }
 
+  /********************************************************************
+   * The paintComponent draws the utility icon onto the JPanel.
+   * @param g The Graphics component being drawn.
+   *******************************************************************/
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
     if (waterworks) {
