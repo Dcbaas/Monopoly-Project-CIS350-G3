@@ -32,7 +32,7 @@ public class GamePanelCreator extends JPanel {
 
   @Override
   public Dimension getMinimumSize() {
-    return new Dimension(1200, 1200);
+    return new Dimension(600, 600);
   }
 
   private void loadSpaces() throws IOException {
@@ -145,7 +145,7 @@ public class GamePanelCreator extends JPanel {
 
     frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-    frame.setSize(2400, 2400);
+    frame.setSize(600, 600);
 
     GamePanelCreator game = new GamePanelCreator();
     frame.add(game);

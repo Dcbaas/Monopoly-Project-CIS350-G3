@@ -21,17 +21,17 @@ import javax.swing.JPanel;
  *********************************************************************/
 public class HousingPanel extends JPanel {
 
-  public static final int HOUSE_H = 25;
+  public static final int HOUSE_H = 13;
   /**
    * A final int to track the width of a housing panel.
    */
-  private static final int WIDTH = 100;
+  private static final int WIDTH = 50;
 
   /**
    * A final int to track the height of a housing panel.
    */
-  private static final int HEIGHT = 50;
-  public static final int HOUSE_W = 20;
+  private static final int HEIGHT = 25;
+  public static final int HOUSE_W = 10;
 
   /**
    * A static Image to track an image of a Monopoly house.

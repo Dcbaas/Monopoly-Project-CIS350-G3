@@ -20,7 +20,7 @@ public class GoSpace extends JPanel {
   /**
    * A static int constant to track the length of an edge in the square.
    */
-  private static final int LENGTH = 200;
+  private static final int LENGTH = 100;
 
   /**
    * An image to hold the image of the Go icon.

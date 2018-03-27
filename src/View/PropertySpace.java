@@ -24,12 +24,12 @@ public class PropertySpace extends JPanel {
   /**
    * A final int to track the width of a space.
    */
-  private static final int WIDTH = 100;
+  private static final int WIDTH = 50;
 
   /**
    * A final int to track the height of a space.
    */
-  private static final int HEIGHT = 200;
+  private static final int HEIGHT = 100;
 
   //I wanted this to be final but Java didn't like it.
   /**

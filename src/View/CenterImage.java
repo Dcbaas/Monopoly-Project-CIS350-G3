@@ -23,6 +23,6 @@ public class CenterImage extends JPanel {
 
   @Override
   public Dimension getMinimumSize() {
-    return new Dimension(1800, 1800);
+    return new Dimension(900, 900);
   }
 }

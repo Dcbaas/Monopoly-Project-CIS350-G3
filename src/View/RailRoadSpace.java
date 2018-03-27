@@ -23,16 +23,16 @@ public class RailRoadSpace extends JPanel {
   /**
    * A final int to size the locomotive image.
    */
-  public static final int IMG_SIZE = 150;
+  public static final int IMG_SIZE = 35;
 
   /**
    * private int houseCounter; A final int to track the width of a housing panel.
    */
-  private static final int WIDTH = 100;
+  private static final int WIDTH = 50;
   /**
    * A final int to track the height of a housing panel.
    */
-  private static final int HEIGHT = 200;
+  private static final int HEIGHT = 100;
   /**
    * An image of the Monopoly Locomotive.
    */
