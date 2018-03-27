@@ -42,10 +42,12 @@ public class UtilitiesSpace extends JPanel {
       name = new JLabel("Water Works");
     } else {
       dimension = new Dimension(HEIGHT, WIDTH);
+      //Todo: Find a Better image.
       utilitiesImg = ImageIO.read(new File("res/electricCompany.jpg"));
       name = new JLabel("Electric Company");
     }
     setLayout(new GridBagLayout());
+    drawLabels();
   }
 
   private void drawLabels() {
@@ -66,11 +68,39 @@ public class UtilitiesSpace extends JPanel {
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
     if (waterworks) {
-      g.drawImage(utilitiesImg, 20, 50, 100, 100, null);
+      g.drawImage(utilitiesImg, 130, 30, 110, 110, null);
     } else {
-      g.drawImage(utilitiesImg, 20, 30, 80, 130, null);
+      g.drawImage(utilitiesImg, 25, 40, 130, 250, null);
     }
   }
 
+  /********************************************************************
+   * The getPreferredSize method is used to Lock the size of the Panel
+   * to the correct size.
+   * @return The dimensions of the UtilitiesSpace.
+   *******************************************************************/
+  @Override
+  public Dimension getPreferredSize() {
+    return dimension;
+  }
 
+  /********************************************************************
+   * The getMinimumSize method refers to the getPreferredSize method
+   * to lock the size of the panel.
+   * @return getPreferredSize the dimensions of the UtilitiesSpace.
+   *******************************************************************/
+  @Override
+  public Dimension getMinimumSize() {
+    return getPreferredSize();
+  }
+
+  /********************************************************************
+   * The getMaximumSize method refers to the getPreferredSize method
+   * to lock the size of the panel.
+   * @return getPreferredSize the dimensions of the UtilitiesSpace.
+   *******************************************************************/
+  @Override
+  public Dimension getMaximumSize() {
+    return getPreferredSize();
+  }
 }
