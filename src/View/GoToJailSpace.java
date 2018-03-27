@@ -9,47 +9,47 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 /**********************************************************************
- * The FreeParkingSpace class creates a JPanel that resembles a Free
- * Parking Square from the game of Monopoly.
+ * The GoToJailSpace class creates a JPanel that resembles a Go To Jail
+ * Square from the game of Monopoly.
  *
  * @author Dustin Ecker
  * @version 3/26/2018
  *********************************************************************/
-public class FreeParkingSpace extends JPanel {
-
+public class GoToJailSpace extends JPanel {
+	
 	/**
 	 * A static int constant to track the length of an edge in the square.
 	 */
 	private static final int LENGTH = 400;
 
 	/**
-	 * An image to hold the image of the Free Parking icon.
+	 * An image to hold the image of the Go To Jail icon.
 	 */
-	private static Image freeParkingImg;
-
+	private static Image goToJailImg;
+	
 	/********************************************************************
 	 * The constructor initializes the image.
 	 *
 	 * @throws IOException If there is an error in loading the image.
 	 *******************************************************************/
-	public FreeParkingSpace() throws IOException {
-		freeParkingImg = ImageIO.read(new File("res/freeParkingImg.png"));
+	public GoToJailSpace() throws IOException {
+		goToJailImg = ImageIO.read(new File("res/goToJailImg.png"));
 	}
-
+	
 	/********************************************************************
-	 * The paintComponent draws Free Parking image onto the JPanel.
+	 * The paintComponent draws Go To Jail image onto the JPanel.
 	 *
 	 * @param g Graphics component of this panel.
 	 ********************************************************************/
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		g.drawImage(freeParkingImg, 0, 0, LENGTH, LENGTH, null);
+		g.drawImage(goToJailImg, 0, 0, LENGTH, LENGTH, null);
 	}
 
 	/********************************************************************
 	 * The getPreferredSize method is used to Lock the size of the Panel
 	 * to the correct size.
-	 * @return The dimensions of the FreeParkingSquare.
+	 * @return The dimensions of the GoToJailSquare.
 	 *******************************************************************/
 	@Override
 	public Dimension getPreferredSize() {
@@ -59,7 +59,7 @@ public class FreeParkingSpace extends JPanel {
 	/********************************************************************
 	 * The getMinimumSize method refers to the getPreferredSize method
 	 * to lock the size of the panel.
-	 * @return getPreferredSize the dimensions of the FreeParkingSquare.
+	 * @return getPreferredSize the dimensions of the GoToJailSquare.
 	 *******************************************************************/
 	@Override
 	public Dimension getMinimumSize() {
@@ -69,7 +69,7 @@ public class FreeParkingSpace extends JPanel {
 	/********************************************************************
 	 * The getMaximumSize method refers to the getPreferredSize method
 	 * to lock the size of the panel.
-	 * @return getPreferredSize the dimensions of the FreeParkingSquare.
+	 * @return getPreferredSize the dimensions of the GoToJailSquare.
 	 *******************************************************************/
 	@Override
 	public Dimension getMaximumSize() {
