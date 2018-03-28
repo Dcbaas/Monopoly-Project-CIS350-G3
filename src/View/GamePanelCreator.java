@@ -86,22 +86,22 @@ public class GamePanelCreator extends JPanel {
   private void drawSpaces() {
     GridBagConstraints g;
 
-//    for (int x = 0; x < 10; ++x) {
-//      g = new GridBagConstraints();
-//      coordinateSelector(g, x, 0);
-//      //g.anchor = GridBagConstraints.NORTH;
-//      System.out.println(20 + x);
-//      add(spaces[20 + x], g);
-//    }
+    for (int x = 0; x < 10; ++x) {
+      g = new GridBagConstraints();
+      coordinateSelector(g, x, 0);
+      //g.anchor = GridBagConstraints.NORTH;
+      System.out.println(20 + x);
+      add(spaces[20 + x], g);
+    }
 
-//    for (int y = 1; y < 11; ++y) {
-//      g = new GridBagConstraints();
-//      coordinateSelector(g, 1, y);
-//     // g.anchor = GridBagConstraints.WEST;
-//      System.out.println(20 + y);
-//      add(spaces[20 - y], g);
-//    }
-//
+    for (int y = 1; y < 11; ++y) {
+      g = new GridBagConstraints();
+      coordinateSelector(g, 1, y);
+      g.anchor = GridBagConstraints.WEST;
+      System.out.println(20 + y);
+      add(spaces[20 - y], g);
+    }
+
     for (int y = 0; y < 10; ++y) {
       g = new GridBagConstraints();
       coordinateSelector(g, 10, y);
@@ -109,14 +109,14 @@ public class GamePanelCreator extends JPanel {
       System.out.println(30 + y);
       add(spaces[30 + y], g);
     }
-//
-//    for (int x = -1; x < 11; ++x) {
-//      g = new GridBagConstraints();
-//      coordinateSelector(g, x, 10);
-//      //g.anchor = GridBagConstraints.SOUTH;
-//      System.out.println(10 - x);
-//      add(spaces[10 - x], g);
-//    }
+
+    for (int x = 0; x < 11; ++x) {
+      g = new GridBagConstraints();
+      coordinateSelector(g, x, 10);
+      //g.anchor = GridBagConstraints.SOUTH;
+      System.out.println(10 - x);
+      add(spaces[10 - x], g);
+    }
 
     g = new GridBagConstraints();
     g.gridx = 1;
