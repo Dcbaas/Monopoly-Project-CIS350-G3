@@ -72,7 +72,12 @@ public class CardSpace extends JPanel {
   //ToDo Draw the horizontal view better.
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
-    g.drawImage(cardImg, 30, 50, 130, 180, null);
+    if (horizontal) {
+      g.drawImage(cardImg, 30, 0, 50, 50, null);
+    } else {
+      g.drawImage(cardImg, 0, 30, 50, 50, null);
+    }
+
   }
 
   /********************************************************************

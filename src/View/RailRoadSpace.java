@@ -121,7 +121,7 @@ public class RailRoadSpace extends JPanel {
     if (!horizontal) {
       g.drawImage(railRoadImg, 0, 20, IMG_SIZE, IMG_SIZE, null);
     } else {
-      g.drawImage(railRoadImg, 0, 0, IMG_SIZE, IMG_SIZE, null);
+      g.drawImage(railRoadImg, 20, 0, IMG_SIZE, IMG_SIZE, null);
     }
 
   }
