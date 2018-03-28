@@ -1,12 +1,15 @@
 package View;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
 
 /**********************************************************************
  * The CardSpace class creates a JPanel that displays the icons of a
@@ -20,12 +23,12 @@ public class CardSpace extends JPanel {
   /**
    * A static final int to track the width of the tile.
    */
-  private static final int WIDTH = 200;
+  private static final int WIDTH = 50;
 
   /**
    * A static final int to track the height of the tile.
    */
-  private static final int HEIGHT = 400;
+  private static final int HEIGHT = 100;
 
   /**
    * A boolean to track of this CardSpace is horizontal.
@@ -55,6 +58,10 @@ public class CardSpace extends JPanel {
     }
 
     this.horizontal = horizontal;
+
+    Border blackLine = BorderFactory.createLineBorder(Color.BLACK);
+    setBorder(blackLine);
+
   }
 
   /********************************************************************
@@ -65,7 +72,12 @@ public class CardSpace extends JPanel {
   //ToDo Draw the horizontal view better.
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
-    g.drawImage(cardImg, 30, 50, 130, 180, null);
+    if (horizontal) {
+      g.drawImage(cardImg, 30, 0, 50, 50, null);
+    } else {
+      g.drawImage(cardImg, 0, 30, 50, 50, null);
+    }
+
   }
 
   /********************************************************************
