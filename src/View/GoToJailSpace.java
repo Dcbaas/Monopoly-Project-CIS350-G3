@@ -16,7 +16,7 @@ import javax.swing.JPanel;
  * @version 3/26/2018
  *********************************************************************/
 public class GoToJailSpace extends JPanel {
-	
+
 	/**
 	 * A static int constant to track the length of an edge in the square.
 	 */
@@ -26,7 +26,7 @@ public class GoToJailSpace extends JPanel {
 	 * An image to hold the image of the Go To Jail icon.
 	 */
 	private static Image goToJailImg;
-	
+
 	/********************************************************************
 	 * The constructor initializes the image.
 	 *
@@ -35,7 +35,7 @@ public class GoToJailSpace extends JPanel {
 	public GoToJailSpace() throws IOException {
 		goToJailImg = ImageIO.read(new File("res/goToJailImg.png"));
 	}
-	
+
 	/********************************************************************
 	 * The paintComponent draws Go To Jail image onto the JPanel.
 	 *

@@ -6,17 +6,33 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.io.IOException;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.WindowConstants;
 
-public class GamePanelCreator extends JPanel {
+/********************************************************************
+ * The GamePanel Class creates a JPanel that contains all of the
+ * individual spaces that are a Monopoly Board.
+ *
+ * @author David Baas
+ * @version 3/27/2018
+ *******************************************************************/
+public class GamePanel extends JPanel {
 
+  /**
+   * An array of JPanels for all of the spaces of the board. A regular array was chosen because of
+   * the static item size.
+   */
   private JPanel[] spaces;
+
+  /**
+   * A CenterImage panel to display the image in the center of the board.
+   */
   private CenterImage centerImage;
 
-
-  public GamePanelCreator() {
+  /********************************************************************
+   * Constructor initializes all of the instance variables and draws
+   * the panel in the correct orientation.
+   *******************************************************************/
+  public GamePanel() {
     spaces = new JPanel[40];
     try {
       loadSpaces();
@@ -27,7 +43,6 @@ public class GamePanelCreator extends JPanel {
 
     setLayout(new GridBagLayout());
     drawSpaces();
-
   }
 
   @Override
@@ -35,6 +50,11 @@ public class GamePanelCreator extends JPanel {
     return new Dimension(600, 600);
   }
 
+  /********************************************************************
+   * Loads all of the spaces from the standard American Monopoly Board.
+   * @throws IOException if there is an problem loading any of the
+   * assets for the board spaces.
+   *******************************************************************/
   private void loadSpaces() throws IOException {
     spaces[0] = new GoSpace();
     spaces[1] = new PropertySpace(new Color(128, 0, 128), "Meiteranian Ave.", 60, Position.BOTTOM);
@@ -83,18 +103,21 @@ public class GamePanelCreator extends JPanel {
 
   }
 
+  /********************************************************************
+   * Draws the spaces in order onto the panel. For loops were uses as it
+   * reduced on the amount of lines that were needed to generate the
+   * board.
+   *******************************************************************/
   private void drawSpaces() {
     GridBagConstraints g;
 
-    for (int x = 0; x < 10; ++x) {
+    for (int x = 0; x < 11; ++x) {
       g = new GridBagConstraints();
       coordinateSelector(g, x, 0);
-      //g.anchor = GridBagConstraints.NORTH;
-      System.out.println(20 + x);
       add(spaces[20 + x], g);
     }
 
-    for (int y = 1; y < 11; ++y) {
+    for (int y = 1; y < 10; ++y) {
       g = new GridBagConstraints();
       coordinateSelector(g, 1, y);
       g.anchor = GridBagConstraints.WEST;
@@ -105,48 +128,35 @@ public class GamePanelCreator extends JPanel {
     for (int y = 0; y < 10; ++y) {
       g = new GridBagConstraints();
       coordinateSelector(g, 10, y);
-      //g.anchor = GridBagConstraints.EAST;
-      System.out.println(30 + y);
+
       add(spaces[30 + y], g);
     }
 
     for (int x = 0; x < 11; ++x) {
       g = new GridBagConstraints();
       coordinateSelector(g, x, 10);
-      //g.anchor = GridBagConstraints.SOUTH;
-      System.out.println(10 - x);
       add(spaces[10 - x], g);
     }
 
     g = new GridBagConstraints();
     g.gridx = 1;
     g.gridy = 1;
-    g.gridheight = 8;
-    g.gridwidth = 8;
-    g.weighty = 8;
-    g.weightx = 8;
+    g.gridheight = 9;
+    g.gridwidth = 9;
+    g.weighty = 9;
+    g.weightx = 9;
     // g.anchor = GridBagConstraints.CENTER;
     add(centerImage, g);
 
   }
 
+  /********************************************************************
+   * With GridBag Coordinates being used often, the
+   * coordinateSelector was used to cut down on repeated coordinate
+   * changes in the drawSpaces class.
+   *******************************************************************/
   private void coordinateSelector(GridBagConstraints g, int x, int y) {
     g.gridx = x;
     g.gridy = y;
-  }
-
-  public static void main(String[] args) {
-    JFrame frame = new JFrame("PARROT");
-
-    frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
-    frame.setSize(600, 600);
-
-    GamePanelCreator game = new GamePanelCreator();
-    frame.add(game);
-
-    frame.setVisible(true);
-
-
   }
 }

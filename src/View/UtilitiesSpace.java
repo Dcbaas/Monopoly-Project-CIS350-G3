@@ -3,7 +3,6 @@ package View;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.io.File;
@@ -32,7 +31,7 @@ public class UtilitiesSpace extends JPanel {
    * A final int to track the height of a space.
    */
   private static final int HEIGHT = 100;
-  
+
   /**
    * A static final JLabel for the price of the utility.
    */
