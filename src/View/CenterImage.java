@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 
 public class CenterImage extends JPanel {
 
+  public static final int WIDTH = 450;
   private static Image monopolyLogo;
 
   public CenterImage() throws IOException {
@@ -17,12 +18,12 @@ public class CenterImage extends JPanel {
   }
 
   public void paintComponent(Graphics g) {
-    g.drawImage(monopolyLogo, 0, 0, 900, 900, null);
+    g.drawImage(monopolyLogo, 0, 0, WIDTH, WIDTH, null);
   }
 
 
   @Override
   public Dimension getMinimumSize() {
-    return new Dimension(900, 900);
+    return new Dimension(WIDTH, WIDTH);
   }
 }

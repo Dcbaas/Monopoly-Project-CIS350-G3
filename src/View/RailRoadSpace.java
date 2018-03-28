@@ -1,5 +1,6 @@
 package View;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
@@ -8,8 +9,10 @@ import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
 
 /**********************************************************************
  * The RailRoadSpace creates a space that resembles a RR space on the
@@ -23,7 +26,7 @@ public class RailRoadSpace extends JPanel {
   /**
    * A final int to size the locomotive image.
    */
-  public static final int IMG_SIZE = 35;
+  public static final int IMG_SIZE = 50;
 
   /**
    * private int houseCounter; A final int to track the width of a housing panel.
@@ -71,8 +74,8 @@ public class RailRoadSpace extends JPanel {
    * image.
    *******************************************************************/
   public RailRoadSpace(boolean horizontal, String name) throws IOException {
-    this.name = new JLabel(name);
-    price = new JLabel("$200");
+//    this.name = new JLabel(name);
+//    price = new JLabel("$200");
     railRoadImg = ImageIO.read(new File("res/Monopoly RR.jpg"));
 
     dimension = new Dimension(WIDTH, HEIGHT);
@@ -84,7 +87,9 @@ public class RailRoadSpace extends JPanel {
     }
 
     setLayout(new GridBagLayout());
-    drawSpace();
+    //drawSpace();
+    Border blackLine = BorderFactory.createLineBorder(Color.BLACK);
+    setBorder(blackLine);
 
   }
 
@@ -92,20 +97,20 @@ public class RailRoadSpace extends JPanel {
    * The drawSpace method is a private method that positions the
    * JLabels correctly on the panel.
    *******************************************************************/
-  private void drawSpace() {
-    GridBagConstraints g = new GridBagConstraints();
-    g.gridx = 0;
-    g.gridy = 0;
-    g.weighty = 1;
-    g.anchor = GridBagConstraints.NORTH;
-    add(name, g);
-
-    g = new GridBagConstraints();
-    g.gridx = 0;
-    g.gridy = 2;
-    g.anchor = GridBagConstraints.SOUTH;
-    add(price, g);
-  }
+//  private void drawSpace() {
+//    GridBagConstraints g = new GridBagConstraints();
+//    g.gridx = 0;
+//    g.gridy = 0;
+//    g.weighty = 1;
+//    g.anchor = GridBagConstraints.NORTH;
+//    add(name, g);
+//
+//    g = new GridBagConstraints();
+//    g.gridx = 0;
+//    g.gridy = 2;
+//    g.anchor = GridBagConstraints.SOUTH;
+//    add(price, g);
+//  }
 
   /********************************************************************
    * The paint Component paints the image onto the screen.
@@ -114,9 +119,9 @@ public class RailRoadSpace extends JPanel {
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
     if (!horizontal) {
-      g.drawImage(railRoadImg, 10, 100, IMG_SIZE, IMG_SIZE, null);
+      g.drawImage(railRoadImg, 0, 20, IMG_SIZE, IMG_SIZE, null);
     } else {
-      g.drawImage(railRoadImg, 100, 10, IMG_SIZE, IMG_SIZE, null);
+      g.drawImage(railRoadImg, 0, 0, IMG_SIZE, IMG_SIZE, null);
     }
 
   }

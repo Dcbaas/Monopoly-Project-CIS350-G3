@@ -60,7 +60,7 @@ public class GamePanelCreator extends JPanel {
     spaces[20] = new FreeParkingSpace();
 
     spaces[21] = new PropertySpace(Color.RED, "Kentucky Ave", 220, Position.TOP);
-    spaces[22] = new CardSpace(true, true);
+    spaces[22] = new CardSpace(false, true);
     spaces[23] = new PropertySpace(Color.RED, "Indiana Ave", 220, Position.TOP);
     spaces[24] = new PropertySpace(Color.RED, "Illinois Ave", 240, Position.TOP);
     spaces[25] = new RailRoadSpace(false, "B & O Railroad");
@@ -85,43 +85,38 @@ public class GamePanelCreator extends JPanel {
 
   private void drawSpaces() {
     GridBagConstraints g;
-//    coordinateSelector(g,0,0);
-//    add(spaces[20],g);
-//
-//    g = new GridBagConstraints();
-//    coordinateSelector(g,1,0);
-//    add(spaces[21],g);
-//
-//    g = new GridBagConstraints();
-//    coordinateSelector(g,2,0);
-    //Add Top
-    for (int x = -1; x < 10; ++x) {
+
+    for (int x = 0; x < 10; ++x) {
       g = new GridBagConstraints();
       coordinateSelector(g, x, 0);
-      g.anchor = GridBagConstraints.NORTH;
+      //g.anchor = GridBagConstraints.NORTH;
+      System.out.println(20 + x);
       add(spaces[20 + x], g);
     }
 
-    for (int y = 0; y < 10; ++y) {
-      g = new GridBagConstraints();
-      coordinateSelector(g, 1, y);
-      g.anchor = GridBagConstraints.WEST;
-      add(spaces[20 - y], g);
-    }
-
-    for (int y = -1; y < 10; ++y) {
-      g = new GridBagConstraints();
-      coordinateSelector(g, 10, y);
-      g.anchor = GridBagConstraints.EAST;
-      add(spaces[30 + y], g);
-    }
-
-    for (int x = -1; x < 10; ++x) {
-      g = new GridBagConstraints();
-      coordinateSelector(g, x, 10);
-      g.anchor = GridBagConstraints.SOUTH;
-      add(spaces[10 - x], g);
-    }
+//    for (int y = 0; y < 10; ++y) {
+//      g = new GridBagConstraints();
+//      coordinateSelector(g, 1, y);
+//     // g.anchor = GridBagConstraints.WEST;
+//      System.out.println(20 + y);
+//      add(spaces[20 - y], g);
+//    }
+//
+//    for (int y = -1; y < 10; ++y) {
+//      g = new GridBagConstraints();
+//      coordinateSelector(g, 10, y);
+//      //g.anchor = GridBagConstraints.EAST;
+//      System.out.println(30 + y);
+//      add(spaces[30 + y], g);
+//    }
+//
+//    for (int x = -1; x < 11; ++x) {
+//      g = new GridBagConstraints();
+//      coordinateSelector(g, x, 10);
+//      //g.anchor = GridBagConstraints.SOUTH;
+//      System.out.println(10 - x);
+//      add(spaces[10 - x], g);
+//    }
 
     g = new GridBagConstraints();
     g.gridx = 1;
@@ -130,7 +125,7 @@ public class GamePanelCreator extends JPanel {
     g.gridwidth = 8;
     g.weighty = 8;
     g.weightx = 8;
-    g.anchor = GridBagConstraints.CENTER;
+    // g.anchor = GridBagConstraints.CENTER;
     add(centerImage, g);
 
   }
@@ -141,7 +136,7 @@ public class GamePanelCreator extends JPanel {
   }
 
   public static void main(String[] args) {
-    JFrame frame = new JFrame("HOLY SHITE");
+    JFrame frame = new JFrame("PARROT");
 
     frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 

@@ -1,5 +1,6 @@
 package View;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
@@ -8,8 +9,10 @@ import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
 
 /**********************************************************************
  * The Utilities Space draws a JPanel that resembles one of the
@@ -76,7 +79,8 @@ public class UtilitiesSpace extends JPanel {
       name = new JLabel("Electric Company");
     }
     setLayout(new GridBagLayout());
-    drawLabels();
+    Border blackLine = BorderFactory.createLineBorder(Color.BLACK);
+    setBorder(blackLine);
   }
 
   /********************************************************************
@@ -84,18 +88,18 @@ public class UtilitiesSpace extends JPanel {
    * labels onto the JPanel.
    *******************************************************************/
   private void drawLabels() {
-    GridBagConstraints g = new GridBagConstraints();
-    g.gridx = 0;
-    g.gridy = 0;
-    g.anchor = GridBagConstraints.NORTH;
-    g.weighty = 2;
-    add(name, g);
-
-    g = new GridBagConstraints();
-    g.gridx = 0;
-    g.gridy = 2;
-    g.anchor = GridBagConstraints.SOUTH;
-    add(price, g);
+//    GridBagConstraints g = new GridBagConstraints();
+//    g.gridx = 0;
+//    g.gridy = 0;
+//    g.anchor = GridBagConstraints.NORTH;
+//    g.weighty = 2;
+//    add(name, g);
+//
+//    g = new GridBagConstraints();
+//    g.gridx = 0;
+//    g.gridy = 2;
+//    g.anchor = GridBagConstraints.SOUTH;
+//    add(price, g);
   }
 
   /********************************************************************
@@ -105,9 +109,9 @@ public class UtilitiesSpace extends JPanel {
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
     if (waterworks) {
-      g.drawImage(utilitiesImg, 130, 30, 110, 110, null);
+      g.drawImage(utilitiesImg, 0, 20, 50, 50, null);
     } else {
-      g.drawImage(utilitiesImg, 25, 40, 130, 250, null);
+      g.drawImage(utilitiesImg, 0, 0, 50, 50, null);
     }
   }
 

@@ -1,12 +1,15 @@
 package View;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
 
 /**********************************************************************
  * The CardSpace class creates a JPanel that displays the icons of a
@@ -25,7 +28,7 @@ public class CardSpace extends JPanel {
   /**
    * A static final int to track the height of the tile.
    */
-  private static final int HEIGHT = 50;
+  private static final int HEIGHT = 100;
 
   /**
    * A boolean to track of this CardSpace is horizontal.
@@ -55,6 +58,10 @@ public class CardSpace extends JPanel {
     }
 
     this.horizontal = horizontal;
+
+    Border blackLine = BorderFactory.createLineBorder(Color.BLACK);
+    setBorder(blackLine);
+
   }
 
   /********************************************************************
