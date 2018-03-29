@@ -598,6 +598,9 @@ public class GameTextController {
                 || game.getBoard().getSquaresList().get(game.getCurrentPlayer().getPosition()).getName().equals("COMMUNITY CHEST"))){
             canDraw = true;
         }
+        else{
+            canDraw = false;
+        }
     }
 
 }
