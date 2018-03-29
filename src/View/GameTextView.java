@@ -322,6 +322,6 @@ public class GameTextView {
 
   public void printCardUse(String card){
     System.out.println("------------------------------------------------------");
-    System.out.printf("You drew:%n\t%s", card);
+    System.out.printf("You drew:%n\t%s%n", card);
   }
 }
