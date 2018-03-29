@@ -378,8 +378,20 @@ public class Game {
    *********************************************************************/
   public void drawCard(Boolean deckType) {
     //Checks for the deckType and gives the player a card from hte specific type of deck
-    currentPlayer.recieveCard((deckType) ?
-        chanceDeck.drawCard() : comunityChestDeck.drawCard());
+      Card card;
+      if(deckType == true){
+          card = chanceDeck.drawCard();
+      }
+      else{
+          card = comunityChestDeck.drawCard();
+      }
+
+    if(card.getCardDescription().equals("Get out of Jail Free Card")){
+          currentPlayer.recieveCard(card);
+    }
+    else{
+          useCard(card);
+    }
   }
 
 
