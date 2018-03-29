@@ -3,6 +3,7 @@ package Controller;
 import Model.BoardPackage.BoardSquare;
 import Model.BoardPackage.OwnableSquare;
 import Model.BoardPackage.PropertySquare;
+import Model.CardPackage.Card;
 import Model.GamePackage.Game;
 import View.GameTextView;
 import java.util.ArrayList;
@@ -369,15 +370,18 @@ public class GameTextController {
    * This method performs all the logic for the draw command
    *********************************************************************/
   private void draw(){
+      Card card = null;
     // Determine which deck to draw from
     String deckType = game.getBoard().getSquaresList().get(game.getCurrentPlayer().getPosition()).getName();
 
     if(deckType.equals("COMMUNITY CHEST")){
-      game.drawCard(false);
+      card = game.drawCard(false);
     }
     else if(deckType.equals("CHANCE")){
-      game.drawCard(true);
+      card = game.drawCard(true);
     }
+
+    view.printCardUse(card.getCardDescription());
   }
 
   private void tax() {
