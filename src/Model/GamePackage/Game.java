@@ -393,9 +393,14 @@ public class Game {
     }
     else{
           useCard(card);
-
+          //Return card to deck after it was used.
+        if(deckType == true){
+            chanceDeck.returnCard(card);
+        }
+        else{
+            comunityChestDeck.returnCard(card);
+        }
     }
-
     return card;
   }
 
