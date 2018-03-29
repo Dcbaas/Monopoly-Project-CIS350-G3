@@ -388,6 +388,7 @@ public class GameTextController {
     }
 
     view.printCardUse(card.getCardDescription());
+    canDraw = false;
   }
 
   private void tax() {
