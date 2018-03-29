@@ -375,9 +375,10 @@ public class Game {
    * true = chance
    * false = community
    * @param deckType true or false acording to the decktype
+   * @return The card that was drawn
    *********************************************************************/
-  public void drawCard(Boolean deckType) {
-    //Checks for the deckType and gives the player a card from hte specific type of deck
+  public Card drawCard(Boolean deckType) {
+    //Checks for the deckType
       Card card;
       if(deckType == true){
           card = chanceDeck.drawCard();
@@ -386,12 +387,16 @@ public class Game {
           card = comunityChestDeck.drawCard();
       }
 
+      // Gives player "get out of jail free" card, uses all others right away.
     if(card.getCardDescription().equals("Get out of Jail Free Card")){
           currentPlayer.recieveCard(card);
     }
     else{
           useCard(card);
+
     }
+
+    return card;
   }
 
 
