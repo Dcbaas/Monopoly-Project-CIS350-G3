@@ -23,6 +23,7 @@ public class GameTextController {
   private boolean canRoll;
   private boolean canBuy;
   private boolean canMortgage;
+  private boolean canDraw;
 
   /**********************************************************************git
    * The constructor that builds a game controller with a Game and View
@@ -30,12 +31,13 @@ public class GameTextController {
    * @param game The Game object
    * @param view The view object
    *********************************************************************/
-  public GameTextController(Game game, GameTextView view, boolean canRoll, boolean canBuy, boolean canMortgage) {
+  public GameTextController(Game game, GameTextView view, boolean canRoll, boolean canBuy, boolean canMortgage, boolean canDraw) {
     this.game = game;
     this.view = view;
     this.canRoll = canRoll;
     this.canBuy = canBuy;
     this.canMortgage = canMortgage;
+    this.canDraw = canDraw;
   }
 
   /**********************************************************************
@@ -101,6 +103,13 @@ public class GameTextController {
       case "mortgage":
         if (canMortgage) {
           mortgage();
+        } else {
+          view.printActionError();
+        }
+        break;
+      case "draw":
+        if (canDraw) {
+          draw();
         } else {
           view.printActionError();
         }
@@ -353,6 +362,21 @@ public class GameTextController {
     } else {
       // This action could not be performed.
       view.printCannotBuy();
+    }
+  }
+
+  /**********************************************************************
+   * This method performs all the logic for the draw command
+   *********************************************************************/
+  private void draw(){
+    // Determine which deck to draw from
+    String deckType = game.getBoard().getSquaresList().get(game.getCurrentPlayer().getPosition()).getName();
+
+    if(deckType.equals("COMMUNITY CHEST")){
+      game.drawCard(false);
+    }
+    else if(deckType.equals("CHANCE")){
+      game.drawCard(true);
     }
   }
 
