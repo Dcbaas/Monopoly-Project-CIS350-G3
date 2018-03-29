@@ -595,7 +595,7 @@ public class GameTextController {
         // If currentLocation type is 2 and ites CHANCE or COMMUNITY CHEST sqaure, canDraw = true
         if(game.getBoard().getLocationType(game.getCurrentPlayer().getPosition()) == 2 &&
                 (game.getBoard().getSquaresList().get(game.getCurrentPlayer().getPosition()).getName().equals("CHANCE")
-                || game.getBoard().getSquaresList().get(game.getCurrentPlayer().getPosition()).getName().equals("COMUNITY CHEST"))){
+                || game.getBoard().getSquaresList().get(game.getCurrentPlayer().getPosition()).getName().equals("COMMUNITY CHEST"))){
             canDraw = true;
         }
     }
