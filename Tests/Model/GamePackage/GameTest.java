@@ -263,27 +263,43 @@ public class GameTest {
 
   @Test
   public void collectFeeTest(){
-
+      game.addPlayer("Dylan", "Top Hat");
+      game.addPlayer("Santiago", "Car");
+      game.setCurrentPlayer(game.getPlayers().get(0));
+      game.getCurrentPlayer().setWallet(0);
+      assertFalse(game.collectFee(game.getCurrentPlayer(), game.getPlayers().get(1), 100));
+      game.getCurrentPlayer().setWallet(1500);
+      assertTrue(game.collectFee(game.getCurrentPlayer(), game.getPlayers().get(1), 100));
+      game.setCurrentPlayer(null);
+      assertTrue(game.collectFee(game.getPlayers().get(1), game.getCurrentPlayer(), 100));
   }
 
   @Test
   public void rolledPairTest(){
-
+      game.getDieOne().setValue(4);
+      game.getDieTwo().setValue(4);
+      assertTrue(game.rolledPair());
   }
 
   @Test
   public void sendPlayerToJailTest(){
-
+      game.addPlayer("Dylan", "Top Hat");
+      game.setCurrentPlayer(game.getPlayers().get(0));
+      game.sendPlayerToJail();
+      assertEquals(10, game.getCurrentPlayer().getPosition());
   }
 
   @Test
   public void checkIfOwnableTest(){
-
+      assertEquals(game.getBoard().getSquaresList().get(1), game.checkIfOwnable(game.getBoard().getSquaresList().get(1)));
   }
 
   @Test
   public void getCurrentPlayerLocationTest() {
-
+      game.addPlayer("Dylan", "Top Hat");
+      game.setCurrentPlayer(game.getPlayers().get(0));
+      game.getCurrentPlayer().setPosition(5);
+      assertEquals(game.getBoard().getSquaresList().get(5), game.getCurrentPlayerLocation());
   }
 
   @Test
