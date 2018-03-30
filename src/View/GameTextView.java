@@ -319,4 +319,9 @@ public class GameTextView {
     System.out.println("In order to mortgage the property, you must sell all the buildings");
     System.out.println("for all properties in that group");
   }
+
+  public void printCardUse(String card){
+    System.out.println("------------------------------------------------------");
+    System.out.printf("You drew:%n\t%s%n", card);
+  }
 }

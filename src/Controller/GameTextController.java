@@ -3,6 +3,7 @@ package Controller;
 import Model.BoardPackage.BoardSquare;
 import Model.BoardPackage.OwnableSquare;
 import Model.BoardPackage.PropertySquare;
+import Model.CardPackage.Card;
 import Model.GamePackage.Game;
 import View.GameTextView;
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ public class GameTextController {
   private boolean canRoll;
   private boolean canBuy;
   private boolean canMortgage;
+  private boolean canDraw;
 
   /**********************************************************************git
    * The constructor that builds a game controller with a Game and View
@@ -30,12 +32,13 @@ public class GameTextController {
    * @param game The Game object
    * @param view The view object
    *********************************************************************/
-  public GameTextController(Game game, GameTextView view, boolean canRoll, boolean canBuy, boolean canMortgage) {
+  public GameTextController(Game game, GameTextView view, boolean canRoll, boolean canBuy, boolean canMortgage, boolean canDraw) {
     this.game = game;
     this.view = view;
     this.canRoll = canRoll;
     this.canBuy = canBuy;
     this.canMortgage = canMortgage;
+    this.canDraw = canDraw;
   }
 
   /**********************************************************************
@@ -101,6 +104,13 @@ public class GameTextController {
       case "mortgage":
         if (canMortgage) {
           mortgage();
+        } else {
+          view.printActionError();
+        }
+        break;
+      case "draw":
+        if (canDraw) {
+          draw();
         } else {
           view.printActionError();
         }
@@ -243,6 +253,9 @@ public class GameTextController {
     actions
         .add("'hotel' - Shows list and prompts user for a property they want to build a hotel on");
 
+    if(canDraw){
+        actions.add("'draw' - Draw a card.");
+    }
     if (!canRoll) {
       actions.add("'done' - Ends Player's turn.");
     }
@@ -301,8 +314,11 @@ public class GameTextController {
     }
 
     int diceSum = game.getDieOne().getValue() + game.getDieTwo().getValue();
+    // Move Player
     game.movePlayer(game.getCurrentPlayer(), game.getDieOne().getValue(),
         game.getDieTwo().getValue());
+    // Check if player can draw
+      checkDraw();
     String locationName = game.getBoard().getSquaresList()
         .get(game.getCurrentPlayer().getPosition()).getName();
     String locationOwner = "N/A";
@@ -354,6 +370,25 @@ public class GameTextController {
       // This action could not be performed.
       view.printCannotBuy();
     }
+  }
+
+  /**********************************************************************
+   * This method performs all the logic for the draw command
+   *********************************************************************/
+  private void draw(){
+      Card card = null;
+    // Determine which deck to draw from
+    String deckType = game.getBoard().getSquaresList().get(game.getCurrentPlayer().getPosition()).getName();
+
+    if(deckType.equals("COMMUNITY CHEST")){
+      card = game.drawCard(false);
+    }
+    else if(deckType.equals("CHANCE")){
+      card = game.drawCard(true);
+    }
+
+    view.printCardUse(card.getCardDescription());
+    canDraw = false;
   }
 
   private void tax() {
@@ -553,6 +588,21 @@ public class GameTextController {
     }
     return isHouseCountEven;
   }
+
+  /**********************************************************************
+   * This method is used to check if the player can draw a card
+   *********************************************************************/
+    private void checkDraw(){
+        // If currentLocation type is 2 and ites CHANCE or COMMUNITY CHEST sqaure, canDraw = true
+        if(game.getBoard().getLocationType(game.getCurrentPlayer().getPosition()) == 2 &&
+                (game.getBoard().getSquaresList().get(game.getCurrentPlayer().getPosition()).getName().equals("CHANCE")
+                || game.getBoard().getSquaresList().get(game.getCurrentPlayer().getPosition()).getName().equals("COMMUNITY CHEST"))){
+            canDraw = true;
+        }
+        else{
+            canDraw = false;
+        }
+    }
 
 }
 
