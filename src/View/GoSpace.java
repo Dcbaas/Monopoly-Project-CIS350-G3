@@ -1,12 +1,11 @@
 package View;
 
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Image;
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-import javax.swing.JPanel;
+import javax.swing.*;
+import javax.swing.border.Border;
 
 /**********************************************************************
  * The GoSpace class creates a JPanel that resembles a Go Square from
@@ -35,6 +34,9 @@ public class GoSpace extends JPanel {
    *******************************************************************/
   public GoSpace() throws IOException {
     goImg = ImageIO.read(new File("res/goImg.gif"));
+
+    Border blackLine = BorderFactory.createLineBorder(Color.BLACK);
+    setBorder(blackLine);
   }
 
   /*******************************************************************

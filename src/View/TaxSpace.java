@@ -1,10 +1,8 @@
 package View;
 
-import java.awt.Dimension;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import java.awt.*;
+import javax.swing.*;
+import javax.swing.border.Border;
 
 /**********************************************************************
  * The TaxSpace creates a board space that is a tax square on the board
@@ -72,6 +70,9 @@ public class TaxSpace extends JPanel {
 
     setLayout(new GridBagLayout());
     drawLabels();
+
+    Border blackLine = BorderFactory.createLineBorder(Color.BLACK);
+    setBorder(blackLine);
   }
 
   /********************************************************************

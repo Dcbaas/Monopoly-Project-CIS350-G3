@@ -1,12 +1,11 @@
 package View;
 
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Image;
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-import javax.swing.JPanel;
+import javax.swing.*;
+import javax.swing.border.Border;
 
 /**********************************************************************
  * The JailSpace class creates a JPanel that resembles a Jail
@@ -34,6 +33,9 @@ public class JailSpace extends JPanel {
    *******************************************************************/
   public JailSpace() throws IOException {
     jailImg = ImageIO.read(new File("res/jailImg.png"));
+
+    Border blackLine = BorderFactory.createLineBorder(Color.BLACK);
+    setBorder(blackLine);
   }
 
   /********************************************************************
