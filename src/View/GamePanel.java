@@ -6,7 +6,7 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.io.IOException;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 /********************************************************************
  * The GamePanel Class creates a JPanel that contains all of the
@@ -17,16 +17,12 @@ import javax.swing.JPanel;
  *******************************************************************/
 public class GamePanel extends JPanel {
 
+  public static final int LENGTH = 675;
   /**
    * An array of JPanels for all of the spaces of the board. A regular array was chosen because of
    * the static item size.
    */
   private JPanel[] spaces;
-
-  /**
-   * A CenterImage panel to display the image in the center of the board.
-   */
-  private CenterImage centerImage;
 
   /********************************************************************
    * Constructor initializes all of the instance variables and draws
@@ -36,7 +32,6 @@ public class GamePanel extends JPanel {
     spaces = new JPanel[40];
     try {
       loadSpaces();
-      centerImage = new CenterImage();
     } catch (IOException e) {
       e.printStackTrace();
     }
@@ -47,7 +42,7 @@ public class GamePanel extends JPanel {
 
   @Override
   public Dimension getMinimumSize() {
-    return new Dimension(600, 600);
+    return new Dimension(LENGTH, LENGTH);
   }
 
   /********************************************************************
@@ -111,7 +106,7 @@ public class GamePanel extends JPanel {
   private void drawSpaces() {
     GridBagConstraints g;
 
-    for (int x = 0; x < 11; ++x) {
+    for (int x = 0; x < 10; ++x) {
       g = new GridBagConstraints();
       coordinateSelector(g, x, 0);
       add(spaces[20 + x], g);
@@ -119,7 +114,7 @@ public class GamePanel extends JPanel {
 
     for (int y = 1; y < 10; ++y) {
       g = new GridBagConstraints();
-      coordinateSelector(g, 1, y);
+      coordinateSelector(g, 0, y);
       g.anchor = GridBagConstraints.WEST;
       System.out.println(20 + y);
       add(spaces[20 - y], g);
@@ -137,17 +132,6 @@ public class GamePanel extends JPanel {
       coordinateSelector(g, x, 10);
       add(spaces[10 - x], g);
     }
-
-    g = new GridBagConstraints();
-    g.gridx = 1;
-    g.gridy = 1;
-    g.gridheight = 9;
-    g.gridwidth = 9;
-    g.weighty = 9;
-    g.weightx = 9;
-    // g.anchor = GridBagConstraints.CENTER;
-    add(centerImage, g);
-
   }
 
   /********************************************************************
@@ -158,5 +142,16 @@ public class GamePanel extends JPanel {
   private void coordinateSelector(GridBagConstraints g, int x, int y) {
     g.gridx = x;
     g.gridy = y;
+  }
+//KEEP THIS HERE FOR TESTING
+  public static void main(String[] args){
+    JFrame frame = new JFrame();
+    frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    frame.setSize(LENGTH, LENGTH);
+
+    GamePanel pane = new GamePanel();
+    frame.add(pane);
+
+    frame.setVisible(true);
   }
 }

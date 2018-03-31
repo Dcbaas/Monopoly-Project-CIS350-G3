@@ -1,12 +1,11 @@
 package View;
 
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Image;
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-import javax.swing.JPanel;
+import javax.swing.*;
+import javax.swing.border.Border;
 
 /**********************************************************************
  * The GoToJailSpace class creates a JPanel that resembles a Go To Jail
@@ -34,6 +33,9 @@ public class GoToJailSpace extends JPanel {
 	 *******************************************************************/
 	public GoToJailSpace() throws IOException {
 		goToJailImg = ImageIO.read(new File("res/goToJailImg.png"));
+
+		Border blackLine = BorderFactory.createLineBorder(Color.BLACK);
+		setBorder(blackLine);
 	}
 
 	/********************************************************************
@@ -44,6 +46,8 @@ public class GoToJailSpace extends JPanel {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		g.drawImage(goToJailImg, 0, 0, LENGTH, LENGTH, null);
+
+
 	}
 
 	/********************************************************************

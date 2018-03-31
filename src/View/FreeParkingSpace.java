@@ -1,12 +1,11 @@
 package View;
 
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Image;
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-import javax.swing.JPanel;
+import javax.swing.*;
+import javax.swing.border.Border;
 
 /**********************************************************************
  * The FreeParkingSpace class creates a JPanel that resembles a Free
@@ -34,6 +33,9 @@ public class FreeParkingSpace extends JPanel {
    *******************************************************************/
   public FreeParkingSpace() throws IOException {
     freeParkingImg = ImageIO.read(new File("res/freeParkingImg.png"));
+    Border blackLine = BorderFactory.createLineBorder(Color.BLACK);
+    setBorder(blackLine);
+
   }
 
   /********************************************************************
