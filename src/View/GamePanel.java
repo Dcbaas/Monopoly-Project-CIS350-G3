@@ -144,14 +144,14 @@ public class GamePanel extends JPanel {
     g.gridy = y;
   }
 //KEEP THIS HERE FOR TESTING
-  public static void main(String[] args){
-    JFrame frame = new JFrame();
-    frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-    frame.setSize(LENGTH, LENGTH);
-
-    GamePanel pane = new GamePanel();
-    frame.add(pane);
-
-    frame.setVisible(true);
-  }
+//  public static void main(String[] args){
+//    JFrame frame = new JFrame();
+//    frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+//    frame.setSize(LENGTH, LENGTH);
+//
+//    GamePanel pane = new GamePanel();
+//    frame.add(pane);
+//
+//    frame.setVisible(true);
+//  }
 }

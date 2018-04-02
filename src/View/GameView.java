@@ -14,9 +14,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class GameView extends JFrame implements ActionListener {
+public class GameView extends JFrame{
 	private JFrame frame;
-	private BoardPanel boardPanel;
+	private GamePanel gamePanel;
 	private SidePanel sidePanel;
 	private BottomPanel bottomPanel;
 	
@@ -28,8 +28,8 @@ public class GameView extends JFrame implements ActionListener {
 		frame.setLayout(new GridBagLayout());
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//frame.setUndecorated(true);
-		
-		boardPanel = new BoardPanel();
+
+		gamePanel = new GamePanel();
 		sidePanel = new SidePanel();
 		bottomPanel = new BottomPanel();
 		
@@ -37,14 +37,18 @@ public class GameView extends JFrame implements ActionListener {
 		
 		c.gridx = 0;
 		c.gridy = 0;
-		c.gridheight = 1;
-		c.gridwidth = 1;
-		frame.add(boardPanel, c);
+//		c.gridheight = 1;
+//		c.gridwidth = 1;
+		c.anchor = c. NORTHWEST;
+
+		frame.add(gamePanel, c);
 		
 		c.gridx = 1;
 		c.gridy = 0;
 		c.gridheight = 2;
 		c.gridwidth = 1;
+		c.weighty = 2;
+		c.weightx = 1;
 		frame.add(sidePanel, c);
 		
 		c.gridx = 0;
@@ -52,14 +56,8 @@ public class GameView extends JFrame implements ActionListener {
 		c.gridheight = 1;
 		c.gridwidth = 1;
 		frame.add(bottomPanel, c);
-		
-		frame.pack();
+		frame.setSize(1000,800);
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		
 	}
 }
