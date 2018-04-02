@@ -13,7 +13,7 @@ public class MonopolyGame {
   public static void main(String[] args) {
     Game game = new Game("res/board.txt", "res/community.txt", "res/chance.txt");
     GameTextView view = new GameTextView();
-    GameTextController controller = new GameTextController(game, view, true, true, false);
+    GameTextController controller = new GameTextController(game, view, true, true, false, false);
 
     boolean quit = false;
 
