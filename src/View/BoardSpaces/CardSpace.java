@@ -1,4 +1,4 @@
-package View;
+package View.BoardSpaces;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -8,7 +8,6 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
-import javax.swing.JPanel;
 import javax.swing.border.Border;
 
 /**********************************************************************
@@ -18,7 +17,7 @@ import javax.swing.border.Border;
  * @author David Baas
  * @version 3/25/2018
  *********************************************************************/
-public class CardSpace extends JPanel {
+public class CardSpace extends Spaces {
 
   /**
    * A static final int to track the width of the tile.

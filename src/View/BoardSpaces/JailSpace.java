@@ -1,4 +1,4 @@
-package View;
+package View.BoardSpaces;
 
 import java.awt.*;
 import java.io.File;
@@ -8,13 +8,13 @@ import javax.swing.*;
 import javax.swing.border.Border;
 
 /**********************************************************************
- * The FreeParkingSpace class creates a JPanel that resembles a Free
- * Parking Square from the game of Monopoly.
+ * The JailSpace class creates a JPanel that resembles a Jail
+ * Square from the game of Monopoly.
  *
  * @author Dustin Ecker
  * @version 3/26/2018
  *********************************************************************/
-public class FreeParkingSpace extends JPanel {
+public class JailSpace extends Spaces {
 
   /**
    * A static int constant to track the length of an edge in the square.
@@ -22,36 +22,36 @@ public class FreeParkingSpace extends JPanel {
   private static final int LENGTH = 100;
 
   /**
-   * An image to hold the image of the Free Parking icon.
+   * An image to hold the image of the Jail icon.
    */
-  private static Image freeParkingImg;
+  private static Image jailImg;
 
   /********************************************************************
    * The constructor initializes the image.
    *
    * @throws IOException If there is an error in loading the image.
    *******************************************************************/
-  public FreeParkingSpace() throws IOException {
-    freeParkingImg = ImageIO.read(new File("res/freeParkingImg.png"));
+  public JailSpace() throws IOException {
+    jailImg = ImageIO.read(new File("res/jailImg.png"));
+
     Border blackLine = BorderFactory.createLineBorder(Color.BLACK);
     setBorder(blackLine);
-
   }
 
   /********************************************************************
-   * The paintComponent draws Free Parking image onto the JPanel.
+   * The paintComponent draws Jail image onto the JPanel.
    *
    * @param g Graphics component of this panel.
    ********************************************************************/
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
-    g.drawImage(freeParkingImg, 0, 0, LENGTH, LENGTH, null);
+    g.drawImage(jailImg, 0, 0, LENGTH, LENGTH, null);
   }
 
   /********************************************************************
    * The getPreferredSize method is used to Lock the size of the Panel
    * to the correct size.
-   * @return The dimensions of the FreeParkingSquare.
+   * @return The dimensions of the JailSquare.
    *******************************************************************/
   @Override
   public Dimension getPreferredSize() {
@@ -61,7 +61,7 @@ public class FreeParkingSpace extends JPanel {
   /********************************************************************
    * The getMinimumSize method refers to the getPreferredSize method
    * to lock the size of the panel.
-   * @return getPreferredSize the dimensions of the FreeParkingSquare.
+   * @return getPreferredSize the dimensions of the JailSquare.
    *******************************************************************/
   @Override
   public Dimension getMinimumSize() {
@@ -71,7 +71,7 @@ public class FreeParkingSpace extends JPanel {
   /********************************************************************
    * The getMaximumSize method refers to the getPreferredSize method
    * to lock the size of the panel.
-   * @return getPreferredSize the dimensions of the FreeParkingSquare.
+   * @return getPreferredSize the dimensions of the JailSquare.
    *******************************************************************/
   @Override
   public Dimension getMaximumSize() {

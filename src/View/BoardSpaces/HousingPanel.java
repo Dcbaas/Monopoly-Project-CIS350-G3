@@ -1,4 +1,4 @@
-package View;
+package View.BoardSpaces;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -117,25 +117,25 @@ public class HousingPanel extends JPanel {
   private void drawHorizontal(Graphics g) {
     switch (houseCounter) {
       case 1:
-        g.drawImage(houseImg, 10, 20, HOUSE_W, HOUSE_H, null);
+        g.drawImage(houseImg, 0, 5, HOUSE_W, HOUSE_H, null);
         break;
       case 2:
-        g.drawImage(houseImg, 10, 20, HOUSE_W, HOUSE_H, null);
-        g.drawImage(houseImg, 50, 20, HOUSE_W, HOUSE_H, null);
+        g.drawImage(houseImg, 0, 5, HOUSE_W, HOUSE_H, null);
+        g.drawImage(houseImg, 10, 5, HOUSE_W, HOUSE_H, null);
         break;
       case 3:
-        g.drawImage(houseImg, 10, 20, HOUSE_W, HOUSE_H, null);
-        g.drawImage(houseImg, 50, 20, HOUSE_W, HOUSE_H, null);
-        g.drawImage(houseImg, 90, 20, HOUSE_W, HOUSE_H, null);
+        g.drawImage(houseImg, 0, 5, HOUSE_W, HOUSE_H, null);
+        g.drawImage(houseImg, 10, 5, HOUSE_W, HOUSE_H, null);
+        g.drawImage(houseImg, 20, 5, HOUSE_W, HOUSE_H, null);
         break;
       case 4:
-        g.drawImage(houseImg, 10, 20, HOUSE_W, HOUSE_H, null);
-        g.drawImage(houseImg, 50, 20, HOUSE_W, HOUSE_H, null);
-        g.drawImage(houseImg, 90, 20, HOUSE_W, HOUSE_H, null);
-        g.drawImage(houseImg, 130, 20, HOUSE_W, HOUSE_H, null);
+        g.drawImage(houseImg, 0, 5, HOUSE_W, HOUSE_H, null);
+        g.drawImage(houseImg, 10, 5, HOUSE_W, HOUSE_H, null);
+        g.drawImage(houseImg, 20, 5, HOUSE_W, HOUSE_H, null);
+        g.drawImage(houseImg, 30, 5, HOUSE_W, HOUSE_H, null);
         break;
       case 5:
-        g.drawImage(hotelImg, 70, 30, 50, HOUSE_H, null);
+        g.drawImage(hotelImg, 25, 5, 50, HOUSE_H, null);
         break;
       default:
     }
@@ -148,25 +148,25 @@ public class HousingPanel extends JPanel {
   private void drawVertical(Graphics g) {
     switch (houseCounter) {
       case 1:
-        g.drawImage(houseImg, 20, 10, HOUSE_W, HOUSE_H, null);
+        g.drawImage(houseImg, 5, 5, HOUSE_W, HOUSE_H, null);
         break;
       case 2:
-        g.drawImage(houseImg, 20, 10, HOUSE_W, HOUSE_H, null);
-        g.drawImage(houseImg, 20, 50, HOUSE_W, HOUSE_H, null);
+        g.drawImage(houseImg, 5, 5, HOUSE_W, HOUSE_H, null);
+        g.drawImage(houseImg, 5, 15, HOUSE_W, HOUSE_H, null);
         break;
       case 3:
-        g.drawImage(houseImg, 20, 10, HOUSE_W, HOUSE_H, null);
-        g.drawImage(houseImg, 20, 50, HOUSE_W, HOUSE_H, null);
-        g.drawImage(houseImg, 20, 90, HOUSE_W, HOUSE_H, null);
+        g.drawImage(houseImg, 5, 5, HOUSE_W, HOUSE_H, null);
+        g.drawImage(houseImg, 5, 15, HOUSE_W, HOUSE_H, null);
+        g.drawImage(houseImg, 5, 25, HOUSE_W, HOUSE_H, null);
         break;
       case 4:
-        g.drawImage(houseImg, 20, 10, HOUSE_W, HOUSE_H, null);
-        g.drawImage(houseImg, 20, 50, HOUSE_W, HOUSE_H, null);
-        g.drawImage(houseImg, 20, 90, HOUSE_W, HOUSE_H, null);
-        g.drawImage(houseImg, 20, 130, HOUSE_W, HOUSE_H, null);
+        g.drawImage(houseImg, 5, 5, HOUSE_W, HOUSE_H, null);
+        g.drawImage(houseImg, 5, 15, HOUSE_W, HOUSE_H, null);
+        g.drawImage(houseImg, 5, 25, HOUSE_W, HOUSE_H, null);
+        g.drawImage(houseImg, 5, 35, HOUSE_W, HOUSE_H, null);
         break;
       case 5:
-        g.drawImage(hotelImg, 30, 70, HOUSE_W, HOUSE_H, null);
+        g.drawImage(hotelImg, 5, 25, HOUSE_W, HOUSE_H, null);
         break;
       default:
     }

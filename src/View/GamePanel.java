@@ -1,6 +1,16 @@
 package View;
 
-import View.PropertySpace.Position;
+import View.BoardSpaces.CardSpace;
+import View.BoardSpaces.FreeParkingSpace;
+import View.BoardSpaces.GoSpace;
+import View.BoardSpaces.GoToJailSpace;
+import View.BoardSpaces.JailSpace;
+import View.BoardSpaces.PropertySpace;
+import View.BoardSpaces.PropertySpace.Position;
+import View.BoardSpaces.RailRoadSpace;
+import View.BoardSpaces.Spaces;
+import View.BoardSpaces.TaxSpace;
+import View.BoardSpaces.UtilitiesSpace;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -22,14 +32,14 @@ public class GamePanel extends JPanel {
    * An array of JPanels for all of the spaces of the board. A regular array was chosen because of
    * the static item size.
    */
-  private JPanel[] spaces;
+  private Spaces[] spaces;
 
   /********************************************************************
    * Constructor initializes all of the instance variables and draws
    * the panel in the correct orientation.
    *******************************************************************/
   public GamePanel() {
-    spaces = new JPanel[40];
+    spaces = new Spaces[40];
     try {
       loadSpaces();
     } catch (IOException e) {
@@ -38,6 +48,15 @@ public class GamePanel extends JPanel {
 
     setLayout(new GridBagLayout());
     drawSpaces();
+  }
+
+  public void buildHouse(int spaceNum, int houses){
+    Spaces temp;
+     if(spaces[spaceNum] instanceof PropertySpace) {
+       temp = (PropertySpace) spaces[spaceNum];
+       ((PropertySpace) temp).setHouses(houses);
+     }
+
   }
 
   @Override
@@ -116,7 +135,6 @@ public class GamePanel extends JPanel {
       g = new GridBagConstraints();
       coordinateSelector(g, 0, y);
       g.anchor = GridBagConstraints.WEST;
-      System.out.println(20 + y);
       add(spaces[20 - y], g);
     }
 
@@ -144,14 +162,14 @@ public class GamePanel extends JPanel {
     g.gridy = y;
   }
 //KEEP THIS HERE FOR TESTING
-  public static void main(String[] args){
-    JFrame frame = new JFrame();
-    frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-    frame.setSize(LENGTH, LENGTH);
-
-    GamePanel pane = new GamePanel();
-    frame.add(pane);
-
-    frame.setVisible(true);
-  }
+//  public static void main(String[] args){
+//    JFrame frame = new JFrame();
+//    frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+//    frame.setSize(LENGTH, LENGTH);
+//
+//    GamePanel pane = new GamePanel();
+//    frame.add(pane);
+//
+//    frame.setVisible(true);
+//  }
 }

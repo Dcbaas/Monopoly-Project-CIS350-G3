@@ -1,4 +1,4 @@
-package View;
+package View.BoardSpaces;
 
 import java.awt.*;
 import java.io.File;
@@ -14,7 +14,7 @@ import javax.swing.border.Border;
  * @author David Baas
  * @version 3/26/2018
  *********************************************************************/
-public class GoSpace extends JPanel {
+public class GoSpace extends Spaces {
 
   /**
    * A static int constant to track the length of an edge in the square.

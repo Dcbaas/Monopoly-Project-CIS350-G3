@@ -1,4 +1,4 @@
-package View;
+package View.BoardSpaces;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -10,7 +10,6 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.border.Border;
 
 /**********************************************************************
@@ -20,7 +19,7 @@ import javax.swing.border.Border;
  * @author David Baas
  * @version 3/24/2018
  *********************************************************************/
-public class RailRoadSpace extends JPanel {
+public class RailRoadSpace extends Spaces {
 
   /**
    * A final int to size the locomotive image.
