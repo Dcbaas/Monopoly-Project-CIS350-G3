@@ -50,13 +50,12 @@ public class GamePanel extends JPanel {
     drawSpaces();
   }
 
-  public void buildHouse(int spaceNum, int houses){
+  public void setHouses(int spaceNum, int houses){
     Spaces temp;
      if(spaces[spaceNum] instanceof PropertySpace) {
        temp = (PropertySpace) spaces[spaceNum];
        ((PropertySpace) temp).setHouses(houses);
      }
-
   }
 
   @Override
