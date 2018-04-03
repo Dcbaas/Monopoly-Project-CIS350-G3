@@ -49,6 +49,7 @@ public class CardSpace extends Spaces {
    * files.
    *******************************************************************/
   public CardSpace(boolean horizontal, boolean chance) throws IOException {
+    super(false);
 
     if (chance) {
       cardImg = ImageIO.read(new File("res/chance.png"));

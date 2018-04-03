@@ -59,8 +59,8 @@ public class PropertySpace extends Spaces {
    * @throws IOException If the images for the HousingPanel don't load.
    *******************************************************************/
   public PropertySpace(Color c, String name, int price, Position position) throws IOException {
-//    this.name = new JLabel(name);
-//    this.price = new JLabel("" + price);
+    super(false);
+
     housingPanel = new HousingPanel(c, false);
 
     setLayout(new BorderLayout());

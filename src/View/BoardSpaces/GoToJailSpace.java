@@ -32,6 +32,8 @@ public class GoToJailSpace extends Spaces {
 	 * @throws IOException If there is an error in loading the image.
 	 *******************************************************************/
 	public GoToJailSpace() throws IOException {
+		super(true);
+
 		goToJailImg = ImageIO.read(new File("res/goToJailImg.png"));
 
 		Border blackLine = BorderFactory.createLineBorder(Color.BLACK);

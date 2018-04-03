@@ -72,8 +72,8 @@ public class RailRoadSpace extends Spaces {
    * image.
    *******************************************************************/
   public RailRoadSpace(boolean horizontal, String name) throws IOException {
-//    this.name = new JLabel(name);
-//    price = new JLabel("$200");
+    super(false);
+
     railRoadImg = ImageIO.read(new File("res/Monopoly RR.jpg"));
 
     dimension = new Dimension(WIDTH, HEIGHT);

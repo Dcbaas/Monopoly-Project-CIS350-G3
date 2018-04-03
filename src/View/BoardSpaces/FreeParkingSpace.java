@@ -32,6 +32,7 @@ public class FreeParkingSpace extends Spaces {
    * @throws IOException If there is an error in loading the image.
    *******************************************************************/
   public FreeParkingSpace() throws IOException {
+    super(true);
     freeParkingImg = ImageIO.read(new File("res/freeParkingImg.png"));
     Border blackLine = BorderFactory.createLineBorder(Color.BLACK);
     setBorder(blackLine);

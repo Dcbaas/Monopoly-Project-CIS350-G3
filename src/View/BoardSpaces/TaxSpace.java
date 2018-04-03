@@ -56,6 +56,8 @@ public class TaxSpace extends Spaces {
    * is.
    *******************************************************************/
   public TaxSpace(boolean incomeTax) {
+    super(false);
+
     this.incomeTax = incomeTax;
 
     if (incomeTax) {
