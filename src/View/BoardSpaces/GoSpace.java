@@ -49,6 +49,7 @@ public class GoSpace extends Spaces {
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
     g.drawImage(goImg, 0, 0, LENGTH, LENGTH, null);
+    drawTokens(g);
   }
 
   /********************************************************************

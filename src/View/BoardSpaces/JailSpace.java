@@ -48,6 +48,7 @@ public class JailSpace extends Spaces {
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
     g.drawImage(jailImg, 0, 0, LENGTH, LENGTH, null);
+    drawTokens(g);
   }
 
   /********************************************************************

@@ -48,6 +48,7 @@ public class GoToJailSpace extends Spaces {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		g.drawImage(goToJailImg, 0, 0, LENGTH, LENGTH, null);
+		drawTokens(g);
 
 
 	}

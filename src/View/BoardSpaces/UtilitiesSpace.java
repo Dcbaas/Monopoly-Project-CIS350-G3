@@ -81,7 +81,7 @@ public class UtilitiesSpace extends Spaces {
     Border blackLine = BorderFactory.createLineBorder(Color.BLACK);
     setBorder(blackLine);
   }
-  
+
   /********************************************************************
    * The paintComponent draws the utility icon onto the JPanel.
    * @param g The Graphics component being drawn.
@@ -93,6 +93,7 @@ public class UtilitiesSpace extends Spaces {
     } else {
       g.drawImage(utilitiesImg, 0, 0, 50, 50, null);
     }
+    drawTokens(g);
   }
 
   /********************************************************************

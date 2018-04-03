@@ -96,6 +96,11 @@ public class TaxSpace extends Spaces {
     add(taxInfo, g);
   }
 
+  public void paintComponent(Graphics g){
+    super.paintComponent(g);
+    drawTokens(g);
+  }
+
   /********************************************************************
    * The getPreferredSize method is used to Lock the size of the Panel
    * to the correct size.
