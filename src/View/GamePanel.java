@@ -1,6 +1,16 @@
 package View;
 
-import View.PropertySpace.Position;
+import View.BoardSpaces.CardSpace;
+import View.BoardSpaces.FreeParkingSpace;
+import View.BoardSpaces.GoSpace;
+import View.BoardSpaces.GoToJailSpace;
+import View.BoardSpaces.JailSpace;
+import View.BoardSpaces.PropertySpace;
+import View.BoardSpaces.PropertySpace.Position;
+import View.BoardSpaces.RailRoadSpace;
+import View.BoardSpaces.Spaces;
+import View.BoardSpaces.TaxSpace;
+import View.BoardSpaces.UtilitiesSpace;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;

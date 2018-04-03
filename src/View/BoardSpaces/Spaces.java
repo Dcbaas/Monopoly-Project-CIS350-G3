@@ -1,4 +1,4 @@
-package View;
+package View.BoardSpaces;
 
 import Model.BoardPackage.BoardSquare;
 import javax.swing.JPanel;

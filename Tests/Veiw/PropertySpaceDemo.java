@@ -1,7 +1,7 @@
 package Veiw;
 
-import View.PropertySpace;
-import View.PropertySpace.Position;
+import View.BoardSpaces.PropertySpace;
+import View.BoardSpaces.PropertySpace.Position;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.io.IOException;

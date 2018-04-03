@@ -1,11 +1,10 @@
-package View;
+package View.BoardSpaces;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.io.IOException;
 import javax.swing.BorderFactory;
-import javax.swing.JPanel;
 import javax.swing.border.Border;
 
 /**********************************************************************

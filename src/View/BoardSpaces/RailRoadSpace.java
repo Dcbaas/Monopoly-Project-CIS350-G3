@@ -1,4 +1,4 @@
-package View;
+package View.BoardSpaces;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -10,88 +10,97 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.border.Border;
 
 /**********************************************************************
- * The Utilities Space draws a JPanel that resembles one of the
- * utilities squares from the Board of Monopoly.
+ * The RailRoadSpace creates a space that resembles a RR space on the
+ * board of Monopoly.
  *
  * @author David Baas
- * @version 2/26/2018
+ * @version 3/24/2018
  *********************************************************************/
-public class UtilitiesSpace extends Spaces {
+public class RailRoadSpace extends Spaces {
 
   /**
-   * A final int to track the width of a space.
+   * A final int to size the locomotive image.
+   */
+  public static final int IMG_SIZE = 50;
+
+  /**
+   * private int houseCounter; A final int to track the width of a housing panel.
    */
   private static final int WIDTH = 50;
-
   /**
-   * A final int to track the height of a space.
+   * A final int to track the height of a housing panel.
    */
   private static final int HEIGHT = 100;
-
   /**
-   * A static final JLabel for the price of the utility.
+   * An image of the Monopoly Locomotive.
    */
-  private static final JLabel price = new JLabel("$150");
+
+  private static Image railRoadImg;
 
   /**
-   * An Image for the icon of the utility.
-   */
-  private Image utilitiesImg;
-
-  /**
-   * A JLabel for the name of the utility.
+   * A JLabel to display the name.
    */
   private JLabel name;
 
   /**
-   * A Dimension to track the dimensions of the utility.
+   * A JLabel for the price.
+   */
+  private JLabel price;
+
+  /**
+   * A boolean to track if this is a horizontal RR.
+   */
+  private boolean horizontal;
+
+  /**
+   * A Dimension to scale the size of the RRSpace.
    */
   private Dimension dimension;
 
-  /**
-   * A boolean to track weather the utility is a Water Works or The Electric company.
-   */
-  private boolean waterworks;
-
 
   /********************************************************************
-   * The constructor creates a UtilitySpace dpendent on what value is
-   * set for the waterworks variable.
-   * @param waterworks The type of utility this UtilitiesSpace will be.
-   * @throws IOException If there is a problem loading the file.
+   * The constrctor creates and initializes all of the variables. It
+   * formats the panel based off of if the horizontal flag is set to
+   * true.
+   * @param horizontal flag to determine if this space will be oriented
+   * horizontal.
+   * @param name The name of the RR this RRSpace represents.
+   * @throws IOException If there is a problem loading the RR locomotive
+   * image.
    *******************************************************************/
-  public UtilitiesSpace(boolean waterworks) throws IOException {
-    this.waterworks = waterworks;
+  public RailRoadSpace(boolean horizontal, String name) throws IOException {
+//    this.name = new JLabel(name);
+//    price = new JLabel("$200");
+    railRoadImg = ImageIO.read(new File("res/Monopoly RR.jpg"));
 
-    if (waterworks) {
-      dimension = new Dimension(WIDTH, HEIGHT);
-      utilitiesImg = ImageIO.read(new File("res/waterWorks.png"));
-      name = new JLabel("Water Works");
-    } else {
+    dimension = new Dimension(WIDTH, HEIGHT);
+    this.horizontal = false;
+
+    if (horizontal) {
       dimension = new Dimension(HEIGHT, WIDTH);
-      //Todo: Find a Better image.
-      utilitiesImg = ImageIO.read(new File("res/electricCompany.jpg"));
-      name = new JLabel("Electric Company");
+      this.horizontal = horizontal;
     }
+
     setLayout(new GridBagLayout());
+    //drawSpace();
     Border blackLine = BorderFactory.createLineBorder(Color.BLACK);
     setBorder(blackLine);
+
   }
 
   /********************************************************************
-   * The drawLabels method is a private method that draws the
-   * labels onto the JPanel.
+   * The drawSpace method is a private method that positions the
+   * JLabels correctly on the panel.
    *******************************************************************/
-  private void drawLabels() {
+//  private void drawSpace() {
 //    GridBagConstraints g = new GridBagConstraints();
 //    g.gridx = 0;
 //    g.gridy = 0;
+//    g.weighty = 1;
 //    g.anchor = GridBagConstraints.NORTH;
-//    g.weighty = 2;
 //    add(name, g);
 //
 //    g = new GridBagConstraints();
@@ -99,25 +108,26 @@ public class UtilitiesSpace extends Spaces {
 //    g.gridy = 2;
 //    g.anchor = GridBagConstraints.SOUTH;
 //    add(price, g);
-  }
+//  }
 
   /********************************************************************
-   * The paintComponent draws the utility icon onto the JPanel.
-   * @param g The Graphics component being drawn.
+   * The paint Component paints the image onto the screen.
+   * @param g The Graphics component.
    *******************************************************************/
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
-    if (waterworks) {
-      g.drawImage(utilitiesImg, 0, 20, 50, 50, null);
+    if (!horizontal) {
+      g.drawImage(railRoadImg, 0, 20, IMG_SIZE, IMG_SIZE, null);
     } else {
-      g.drawImage(utilitiesImg, 0, 0, 50, 50, null);
+      g.drawImage(railRoadImg, 20, 0, IMG_SIZE, IMG_SIZE, null);
     }
+
   }
 
   /********************************************************************
    * The getPreferredSize method is used to Lock the size of the Panel
    * to the correct size.
-   * @return The dimensions of the UtilitiesSpace.
+   * @return The dimensions of the board space.
    *******************************************************************/
   @Override
   public Dimension getPreferredSize() {
@@ -127,7 +137,7 @@ public class UtilitiesSpace extends Spaces {
   /********************************************************************
    * The getMinimumSize method refers to the getPreferredSize method
    * to lock the size of the panel.
-   * @return getPreferredSize the dimensions of the UtilitiesSpace.
+   * @return getPreferredSize the dimensions of the BoardSpace
    *******************************************************************/
   @Override
   public Dimension getMinimumSize() {
@@ -137,7 +147,7 @@ public class UtilitiesSpace extends Spaces {
   /********************************************************************
    * The getMaximumSize method refers to the getPreferredSize method
    * to lock the size of the panel.
-   * @return getPreferredSize the dimensions of the UtilitiesSpace.
+   * @return getPreferredSize the dimensions of the BoardSpace
    *******************************************************************/
   @Override
   public Dimension getMaximumSize() {
