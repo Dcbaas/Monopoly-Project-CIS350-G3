@@ -31,7 +31,7 @@ public class GameView extends JFrame{
 
 		gamePanel = new GamePanel();
 		sidePanel = new SidePanel();
-		bottomPanel = new BottomPanel();
+		bottomPanel = new BottomPanel(gamePanel);
 		
 		c = new GridBagConstraints();
 		

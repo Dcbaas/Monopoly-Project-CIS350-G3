@@ -11,7 +11,7 @@ import javax.swing.border.Border;
  * @author David Baas
  * @version 3/26/2018
  *********************************************************************/
-public class TaxSpace extends JPanel {
+public class TaxSpace extends Spaces {
 
   /**
    * A final int to track the width of a space.

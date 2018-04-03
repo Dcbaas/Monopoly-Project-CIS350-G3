@@ -41,8 +41,8 @@ public class SidePanel extends JPanel {
 		setSize(400, 400);
 		players = new JTabbedPane();
 		
-		//p1Icon = createImageIcon("res/boat.png");
-		//p1Panel = makeTextPanel("Player 1");
+//		p1Icon = createImageIcon("res/boat.png");
+//		p1Panel = makeTextPanel("Player 1");
 		players.addTab("Tab 1", p1Icon, p1Panel, "Player 1's Wealth");
 		players.addTab("Tab 2", p2Icon, p2Panel, "Player 2's Wealth");
 		players.addTab("Tab 3", p3Icon, p3Panel, "Player 3's Wealth");

@@ -18,7 +18,7 @@ import javax.swing.border.Border;
  * @since 2/21/2018
  * @version 2/23/2018
  *********************************************************************/
-public class PropertySpace extends JPanel {
+public class PropertySpace extends Spaces {
 
   /**
    * A final int to track the width of a space.
@@ -116,27 +116,7 @@ public class PropertySpace extends JPanel {
    * space on the bottom part of the board.
    *******************************************************************/
   private void createBotPanel() {
-
-//    GridBagConstraints g = new GridBagConstraints();
-//    g.gridx = 0;
-//    g.gridy = 0;
-//    g.weightx = 2;
-//    g.gridheight = 2;
     add(housingPanel, BorderLayout.NORTH);
-
-//    g = new GridBagConstraints();
-//    g.gridx = 0;
-//    g.gridy = 2;
-//    g.gridheight = 2;
-//    g.weighty = 2;
-//    g.anchor = GridBagConstraints.NORTH;
-//    add(name, g);
-//
-//    g = new GridBagConstraints();
-//    g.gridx = 0;
-//    g.gridy = 4;
-//    g.anchor = GridBagConstraints.SOUTH;
-//    add(price, g);
   }
 
   /********************************************************************
@@ -145,26 +125,6 @@ public class PropertySpace extends JPanel {
    * space on the top part of the board.
    *******************************************************************/
   private void createTopPanel() {
-
-//    GridBagConstraints g = new GridBagConstraints();
-////    g.gridx = 0;
-////    g.gridy = 0;
-////    g.gridheight = 2;
-////    g.weighty = 2;
-////    g.anchor = GridBagConstraints.NORTH;
-////    add(name, g);
-////
-////    g = new GridBagConstraints();
-////    g.gridx = 0;
-////    g.gridy = 3;
-////    g.anchor = GridBagConstraints.SOUTH;
-////    add(price, g);
-//
-//    g = new GridBagConstraints();
-//    g.gridx = 0;
-//    g.gridy = 4;
-//    g.weightx = 2;
-//    g.gridheight = 2;
     add(housingPanel, BorderLayout.SOUTH);
   }
 

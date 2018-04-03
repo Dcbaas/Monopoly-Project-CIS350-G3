@@ -14,11 +14,16 @@ public class BottomPanel extends JPanel {
 	private JButton sell;
 	private JButton mortgage;
 	private JButton trade;
+	int x;
+
+	private GamePanel parent;
 
 	
-	public BottomPanel() {
+	public BottomPanel(GamePanel parent) {
+		x = 0;
 		setLayout(new FlowLayout());
 		setSize(700, 100);
+		this.parent = parent;
 
 		
 		menu = new JButton("Menu");

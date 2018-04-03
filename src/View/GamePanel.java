@@ -22,14 +22,14 @@ public class GamePanel extends JPanel {
    * An array of JPanels for all of the spaces of the board. A regular array was chosen because of
    * the static item size.
    */
-  private JPanel[] spaces;
+  private Spaces[] spaces;
 
   /********************************************************************
    * Constructor initializes all of the instance variables and draws
    * the panel in the correct orientation.
    *******************************************************************/
   public GamePanel() {
-    spaces = new JPanel[40];
+    spaces = new Spaces[40];
     try {
       loadSpaces();
     } catch (IOException e) {
@@ -38,6 +38,15 @@ public class GamePanel extends JPanel {
 
     setLayout(new GridBagLayout());
     drawSpaces();
+  }
+
+  public void buildHouse(int spaceNum, int houses){
+    Spaces temp;
+     if(spaces[spaceNum] instanceof PropertySpace) {
+       temp = (PropertySpace) spaces[spaceNum];
+       ((PropertySpace) temp).setHouses(houses);
+     }
+
   }
 
   @Override
@@ -116,7 +125,6 @@ public class GamePanel extends JPanel {
       g = new GridBagConstraints();
       coordinateSelector(g, 0, y);
       g.anchor = GridBagConstraints.WEST;
-      System.out.println(20 + y);
       add(spaces[20 - y], g);
     }
 

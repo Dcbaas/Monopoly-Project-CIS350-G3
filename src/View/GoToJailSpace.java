@@ -14,7 +14,7 @@ import javax.swing.border.Border;
  * @author Dustin Ecker
  * @version 3/26/2018
  *********************************************************************/
-public class GoToJailSpace extends JPanel {
+public class GoToJailSpace extends Spaces {
 
 	/**
 	 * A static int constant to track the length of an edge in the square.
