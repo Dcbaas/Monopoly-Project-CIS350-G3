@@ -744,15 +744,22 @@ public class Game {
             break;
           case 4:
             rent = railRoadSquare.getFOUR_RENT();
+            break;
+            default:
+              rent = -1;
         }
+
         collectFee(currentPlayer, railRoadSquare.getOwner(), rent);
+        break;
       case 3:
         UtilitiesSquare utilitiesSquare = (UtilitiesSquare) board
             .getOwnableSquare(currentPlayer.getPosition());
         rent = (currentPlayer.getNumPropertiesOwnedByType(3) > 1) ? utilitiesSquare
             .getRentOne(random.nextInt(6) + 1) : utilitiesSquare.getRentTwo(random.nextInt(6) + 1);
         collectFee(currentPlayer, utilitiesSquare.getOwner(), rent);
-
+        break;
+      default:
+        rent = -2;
 
     }
     return rent;

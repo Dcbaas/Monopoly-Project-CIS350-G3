@@ -257,7 +257,7 @@ public class Player {
       amountPaid = amount;
     } else {
       amountPaid = wallet;
-      wallet -= amountPaid;
+      wallet -= 0;
     }
 
     return amountPaid;
