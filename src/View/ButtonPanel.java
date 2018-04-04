@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class BottomPanel extends JPanel {
+public class ButtonPanel extends JPanel {
 	
 	private JButton menu;
 	private JButton build;
@@ -19,7 +19,7 @@ public class BottomPanel extends JPanel {
 	private GamePanel parent;
 
 	
-	public BottomPanel(GamePanel parent) {
+	public ButtonPanel(GamePanel parent) {
 		x = 0;
 		setLayout(new FlowLayout());
 		setSize(700, 100);
