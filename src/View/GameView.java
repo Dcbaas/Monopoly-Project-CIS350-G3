@@ -1,5 +1,6 @@
 package View;
 
+import Model.GamePackage.Player;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import javax.swing.JFrame;
@@ -23,7 +24,11 @@ public class GameView extends JFrame {
 	/**A button panel to hold the buttons.*/
 	private ButtonPanel buttonPanel;
 
-	/**A GridBagConstraint to setup the layout
+	/**A TextPanel to display information.*/
+	private TextPanel textPanel;
+
+	/**
+	 * A GridBagConstraint to setup the layout
 	 * of this view.
 	 */
 	private GridBagConstraints c;
@@ -41,30 +46,38 @@ public class GameView extends JFrame {
 		gamePanel = new GamePanel();
 		playerDetailPanel = new PlayerDetailPanel();
 		buttonPanel = new ButtonPanel(gamePanel);
+		textPanel = new TextPanel();
 
 		c = new GridBagConstraints();
 
 		c.gridx = 0;
 		c.gridy = 0;
-
-		c.anchor = c.NORTHWEST;
-		add(gamePanel, c);
+//		c.gridheight = 2;
+//		c.weighty = 2;
+//		c.anchor = c.NORTHWEST;
+		add(buttonPanel, c);
 
 		c.gridx = 1;
 		c.gridy = 0;
 		c.gridheight = 2;
-		c.gridwidth = 1;
 		c.weighty = 2;
-		c.weightx = 1;
+		add(gamePanel, c);
+
+		c.gridx = 2;
+		c.gridy = 0;
+		c.gridheight = 2;
+		c.weighty = 2;
 		add(playerDetailPanel, c);
 
 		c.gridx = 0;
 		c.gridy = 1;
-		c.gridheight = 1;
-		c.gridwidth = 1;
-		add(buttonPanel, c);
+//		c.weightx= 3;
+		add(textPanel, c);
 
-		setSize(1000, 800);
+		playerDetailPanel.setDisplay(new Player("Mr. Parrot", "The fucktard", 8000));
+
+
+		setSize(1920, 1080);
 		setLocationRelativeTo(null);
 		setVisible(true);
 	}

@@ -2,9 +2,14 @@ package View;
 
 import Model.BoardPackage.OwnableSquare;
 import Model.GamePackage.Player;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.border.Border;
 
 /**********************************************************************
  * The PlayerDetailPanel displays information about the current player
@@ -35,11 +40,15 @@ public class PlayerDetailPanel extends JPanel {
 	public PlayerDetailPanel() {
 		player = new JLabel();
 		wealth = new JLabel();
-		propertiesList = new JTextArea();
+		propertiesList = new JTextArea(100,100);
 
+		setLayout(new GridLayout(3,0,10,10));
 		add(player);
 		add(wealth);
 		add(propertiesList);
+
+		Border blackLine = BorderFactory.createLineBorder(Color.BLACK);
+		setBorder(blackLine);
 	}
 
 
@@ -57,5 +66,9 @@ public class PlayerDetailPanel extends JPanel {
 		propertiesList.setText("");
 		for(OwnableSquare ownableSquare: player.getOwnableProperties())
 			propertiesList.append(ownableSquare.getName() + "\n");
+	}
+
+	public Dimension getMinimumSize(){
+		return new Dimension(500,1080);
 	}
 }

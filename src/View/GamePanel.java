@@ -28,7 +28,7 @@ import javax.swing.*;
  *******************************************************************/
 public class GamePanel extends JPanel {
 
-  public static final int LENGTH = 675;
+  public static final int LENGTH = 650;
   /**
    * An array of JPanels for all of the spaces of the board. A regular array was chosen because of
    * the static item size.
