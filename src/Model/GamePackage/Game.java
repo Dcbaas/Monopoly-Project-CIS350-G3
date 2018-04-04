@@ -79,7 +79,9 @@ public class Game {
     dieTwo = new Die();
     board = new Board(boardFile);
     comunityChestDeck = new Deck(communityChestDeckFile, false);
+    comunityChestDeck.shuffleDeck();
     chanceDeck = new Deck(chanceDeckFile, true);
+    chanceDeck.shuffleDeck();
     players = new ArrayList<>();
     bank = new Bank(board.getOwnableSquares());
   }
