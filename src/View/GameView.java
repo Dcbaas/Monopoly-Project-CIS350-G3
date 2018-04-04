@@ -1,18 +1,9 @@
 package View;
 
-import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
+
 
 public class GameView extends JFrame {
 
@@ -25,7 +16,7 @@ public class GameView extends JFrame {
 	private PlayerToken p;
 
 
-	public GameView() throws IOException, InterruptedException {
+	public GameView(){
 		frame = new JFrame("Monopoly");
 		frame.setLayout(new GridBagLayout());
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -60,15 +51,5 @@ public class GameView extends JFrame {
 		frame.setSize(1000, 800);
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
-
-		p = new PlayerToken("res/hat.png", null);
-		gamePanel.addPlayer(p);
-		int i = 0;
-		while (true) {
-			gamePanel.movePlayer(i, 1);
-			Thread.sleep(1000);
-			++i;
-		}
-
 	}
 }
