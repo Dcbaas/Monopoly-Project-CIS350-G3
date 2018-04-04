@@ -126,8 +126,86 @@ public class GameController {
   public Player getCurrentPlayer() {
     return game.getCurrentPlayer();
   }
+  
+  /**********************************************************************
+   * This method returns the number of pairs
+   * @return  The number of pairs.
+   *********************************************************************/
+  public int getNumPairs() {
+    return numPairs;
+  }
 
-  //TODO: getters and setters for Booleans
+  /**********************************************************************
+   * This method sets the number of pairs
+   * @param numPairs The number of pairs.
+   *********************************************************************/
+  public void setNumPairs(int numPairs) {
+    this.numPairs = numPairs;
+  }
+
+  /**********************************************************************
+   * This method gets the canRoll boolean
+   * @return The canRoll boolean
+   *********************************************************************/
+  public boolean isCanRoll() {
+    return canRoll;
+  }
+
+  /**********************************************************************
+   * This method sets the canRoll method
+   * @param canRoll True if the player can roll, False if they can't.
+   *********************************************************************/
+  public void setCanRoll(boolean canRoll) {
+    this.canRoll = canRoll;
+  }
+
+  /**********************************************************************
+   * This method returns if the player can buy or not
+   * @return True if player can buy, False if they can't.
+   *********************************************************************/
+  public boolean isCanBuy() {
+    return canBuy;
+  }
+
+  /**********************************************************************
+   * This method sets the canBuy boolean.
+   * @param canBuy True if the player can buy, False if they can't.
+   *********************************************************************/
+  public void setCanBuy(boolean canBuy) {
+    this.canBuy = canBuy;
+  }
+
+  /**********************************************************************
+   * This method returns the canMortgage boolean
+   * @return True if the player can mortgage, False if the player can't.
+   *********************************************************************/
+  public boolean isCanMortgage() {
+    return canMortgage;
+  }
+
+  /**********************************************************************
+   * This method sets the canMortgage boolean
+   * @param canMortgage True if the player can mortgage, False if they can't
+   *********************************************************************/
+  public void setCanMortgage(boolean canMortgage) {
+    this.canMortgage = canMortgage;
+  }
+
+  /**********************************************************************
+   * This method returns the canDraw boolean
+   * @return True if the player can draw, false if they can't.
+   *********************************************************************/
+  public boolean isCanDraw() {
+    return canDraw;
+  }
+
+  /**********************************************************************
+   * This method sets the canDraw boolean
+   * @param canDraw True if the player can draw, False if they can't.
+   *********************************************************************/
+  public void setCanDraw(boolean canDraw) {
+    this.canDraw = canDraw;
+  }
 
   // =============================== Private Helpers ==============================================
 
