@@ -18,7 +18,7 @@ public class GameView extends JFrame {
 	private GamePanel gamePanel;
 
 
-	private SidePanel sidePanel;
+	private PlayerDetailPanel playerDetailPanel;
 
 	/**A button panel to hold the buttons.*/
 	private ButtonPanel buttonPanel;
@@ -39,7 +39,7 @@ public class GameView extends JFrame {
 		//setUndecorated(true);
 
 		gamePanel = new GamePanel();
-		sidePanel = new SidePanel();
+		playerDetailPanel = new PlayerDetailPanel();
 		buttonPanel = new ButtonPanel(gamePanel);
 
 		c = new GridBagConstraints();
@@ -56,7 +56,7 @@ public class GameView extends JFrame {
 		c.gridwidth = 1;
 		c.weighty = 2;
 		c.weightx = 1;
-		add(sidePanel, c);
+		add(playerDetailPanel, c);
 
 		c.gridx = 0;
 		c.gridy = 1;
