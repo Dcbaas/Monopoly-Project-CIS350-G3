@@ -64,6 +64,7 @@ public class UtilitiesSpace extends Spaces {
    * @throws IOException If there is a problem loading the file.
    *******************************************************************/
   public UtilitiesSpace(boolean waterworks) throws IOException {
+    super(false);
     this.waterworks = waterworks;
 
     if (waterworks) {
@@ -82,25 +83,6 @@ public class UtilitiesSpace extends Spaces {
   }
 
   /********************************************************************
-   * The drawLabels method is a private method that draws the
-   * labels onto the JPanel.
-   *******************************************************************/
-  private void drawLabels() {
-//    GridBagConstraints g = new GridBagConstraints();
-//    g.gridx = 0;
-//    g.gridy = 0;
-//    g.anchor = GridBagConstraints.NORTH;
-//    g.weighty = 2;
-//    add(name, g);
-//
-//    g = new GridBagConstraints();
-//    g.gridx = 0;
-//    g.gridy = 2;
-//    g.anchor = GridBagConstraints.SOUTH;
-//    add(price, g);
-  }
-
-  /********************************************************************
    * The paintComponent draws the utility icon onto the JPanel.
    * @param g The Graphics component being drawn.
    *******************************************************************/
@@ -111,6 +93,7 @@ public class UtilitiesSpace extends Spaces {
     } else {
       g.drawImage(utilitiesImg, 0, 0, 50, 50, null);
     }
+    drawTokens(g);
   }
 
   /********************************************************************

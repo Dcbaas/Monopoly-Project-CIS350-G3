@@ -32,6 +32,8 @@ public class JailSpace extends Spaces {
    * @throws IOException If there is an error in loading the image.
    *******************************************************************/
   public JailSpace() throws IOException {
+    super(true);
+
     jailImg = ImageIO.read(new File("res/jailImg.png"));
 
     Border blackLine = BorderFactory.createLineBorder(Color.BLACK);
@@ -46,6 +48,7 @@ public class JailSpace extends Spaces {
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
     g.drawImage(jailImg, 0, 0, LENGTH, LENGTH, null);
+    drawTokens(g);
   }
 
   /********************************************************************

@@ -3,6 +3,7 @@ package View.BoardSpaces;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.io.IOException;
 import javax.swing.BorderFactory;
 import javax.swing.border.Border;
@@ -59,8 +60,8 @@ public class PropertySpace extends Spaces {
    * @throws IOException If the images for the HousingPanel don't load.
    *******************************************************************/
   public PropertySpace(Color c, String name, int price, Position position) throws IOException {
-//    this.name = new JLabel(name);
-//    this.price = new JLabel("" + price);
+    super(false);
+
     housingPanel = new HousingPanel(c, false);
 
     setLayout(new BorderLayout());
@@ -90,6 +91,7 @@ public class PropertySpace extends Spaces {
 
     Border blackLine = BorderFactory.createLineBorder(Color.BLACK);
     setBorder(blackLine);
+
   }
 
   /*******************************************************************
@@ -107,6 +109,11 @@ public class PropertySpace extends Spaces {
    ******************************************************************/
   public void setHouses(int houseCounter) {
     housingPanel.setHouses(houseCounter);
+  }
+
+  public void paintComponent(Graphics g){
+    super.paintComponent(g);
+    drawTokens(g);
   }
 
   /********************************************************************
@@ -133,27 +140,6 @@ public class PropertySpace extends Spaces {
    * space on the left part of the board.
    *******************************************************************/
   private void createLeftPanel() {
-//    GridBagConstraints g = new GridBagConstraints();
-//    g.gridx = 0;
-//    g.gridy = 0;
-//    g.gridwidth = 2;
-//    g.weightx = 2;
-//    g.gridheight = 2;
-//    g.weighty = 1;
-//    g.anchor = GridBagConstraints.NORTHWEST;
-//    add(name, g);
-//
-//    g = new GridBagConstraints();
-//    g.gridx = 0;
-//    g.gridy = 3;
-//    g.anchor = GridBagConstraints.SOUTH;
-//    add(price, g);
-
-    //g = new GridBagConstraints();
-//    g.gridx = 1;
-//    g.gridy = 2;
-//    g.gridheight = 2;
-//    g.weighty = 2;
     add(housingPanel, BorderLayout.EAST);
   }
 
@@ -163,28 +149,7 @@ public class PropertySpace extends Spaces {
    * space on the right part of the board.
    *******************************************************************/
   private void createRightPanel() {
-//    GridBagConstraints g = new GridBagConstraints();
-//    g.gridx = 0;
-//    g.gridy = 0;
-//    g.gridheight = 2;
-//    g.weighty = 2;
     add(housingPanel, BorderLayout.WEST);
-
-//    g = new GridBagConstraints();
-//    g.gridx = 1;
-//    g.gridy = 0;
-//    g.gridwidth = 2;
-//    g.weightx = 2;
-//    g.anchor = GridBagConstraints.NORTHEAST;
-//    add(name, g);
-//
-//    g = new GridBagConstraints();
-//    //Todo: do we want to pair up these statements together like this? Make it easier to read?
-//    //ToDo: BUG: The price tag for the Right Label won't anchor to the right place.
-//    g.gridx = 1;
-//    g.gridy = 2;
-//    g.anchor = GridBagConstraints.EAST;
-//    add(price, g);
   }
 
   /********************************************************************

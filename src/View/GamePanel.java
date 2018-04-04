@@ -1,5 +1,6 @@
 package View;
 
+import Model.GamePackage.Player;
 import View.BoardSpaces.CardSpace;
 import View.BoardSpaces.FreeParkingSpace;
 import View.BoardSpaces.GoSpace;
@@ -50,13 +51,24 @@ public class GamePanel extends JPanel {
     drawSpaces();
   }
 
-  public void buildHouse(int spaceNum, int houses){
+  public void setHouses(int spaceNum, int houses){
     Spaces temp;
      if(spaces[spaceNum] instanceof PropertySpace) {
        temp = (PropertySpace) spaces[spaceNum];
        ((PropertySpace) temp).setHouses(houses);
      }
+  }
 
+  public void movePlayer(int startSpace, int distance){
+    PlayerToken p = spaces[startSpace].removePlayer();
+    if(startSpace + distance > spaces.length - 1)
+      spaces[startSpace + distance - spaces.length - 1].addPlayer(p);
+    else
+      spaces[startSpace + distance].addPlayer(p);
+  }
+
+  public void addPlayer(PlayerToken p){
+    spaces[0].addPlayer(p);
   }
 
   @Override

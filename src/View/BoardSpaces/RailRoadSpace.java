@@ -72,8 +72,8 @@ public class RailRoadSpace extends Spaces {
    * image.
    *******************************************************************/
   public RailRoadSpace(boolean horizontal, String name) throws IOException {
-//    this.name = new JLabel(name);
-//    price = new JLabel("$200");
+    super(false);
+
     railRoadImg = ImageIO.read(new File("res/Monopoly RR.jpg"));
 
     dimension = new Dimension(WIDTH, HEIGHT);
@@ -92,25 +92,6 @@ public class RailRoadSpace extends Spaces {
   }
 
   /********************************************************************
-   * The drawSpace method is a private method that positions the
-   * JLabels correctly on the panel.
-   *******************************************************************/
-//  private void drawSpace() {
-//    GridBagConstraints g = new GridBagConstraints();
-//    g.gridx = 0;
-//    g.gridy = 0;
-//    g.weighty = 1;
-//    g.anchor = GridBagConstraints.NORTH;
-//    add(name, g);
-//
-//    g = new GridBagConstraints();
-//    g.gridx = 0;
-//    g.gridy = 2;
-//    g.anchor = GridBagConstraints.SOUTH;
-//    add(price, g);
-//  }
-
-  /********************************************************************
    * The paint Component paints the image onto the screen.
    * @param g The Graphics component.
    *******************************************************************/
@@ -121,7 +102,7 @@ public class RailRoadSpace extends Spaces {
     } else {
       g.drawImage(railRoadImg, 20, 0, IMG_SIZE, IMG_SIZE, null);
     }
-
+    drawTokens(g);
   }
 
   /********************************************************************

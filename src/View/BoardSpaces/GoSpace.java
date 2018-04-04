@@ -33,6 +33,8 @@ public class GoSpace extends Spaces {
    * @throws IOException If there is an error in loading the image.
    *******************************************************************/
   public GoSpace() throws IOException {
+    super(true);
+
     goImg = ImageIO.read(new File("res/goImg.gif"));
 
     Border blackLine = BorderFactory.createLineBorder(Color.BLACK);
@@ -47,6 +49,7 @@ public class GoSpace extends Spaces {
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
     g.drawImage(goImg, 0, 0, LENGTH, LENGTH, null);
+    drawTokens(g);
   }
 
   /********************************************************************

@@ -56,6 +56,8 @@ public class TaxSpace extends Spaces {
    * is.
    *******************************************************************/
   public TaxSpace(boolean incomeTax) {
+    super(false);
+
     this.incomeTax = incomeTax;
 
     if (incomeTax) {
@@ -92,6 +94,11 @@ public class TaxSpace extends Spaces {
     g.gridy = 2;
     g.anchor = GridBagConstraints.SOUTH;
     add(taxInfo, g);
+  }
+
+  public void paintComponent(Graphics g){
+    super.paintComponent(g);
+    drawTokens(g);
   }
 
   /********************************************************************
