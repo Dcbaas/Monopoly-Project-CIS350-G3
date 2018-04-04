@@ -7,14 +7,14 @@ import Model.CardPackage.Card;
 import Model.GamePackage.Game;
 import Model.GamePackage.Player;
 import View.GameTextView;
+import View.GameView;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 public class GameController {
 
   private Game game;
-  //TODO: Tie to GUI not text View
-  private GameTextView view;
+  private GameView view;
   private int numPairs;
   private boolean canRoll;
   private boolean canBuy;
@@ -27,9 +27,8 @@ public class GameController {
    * @param game The Game object
    * @param view The view object
    *********************************************************************/
-  public GameController(Game game, GameTextView view, boolean canRoll, boolean canBuy, boolean canMortgage, boolean canDraw) {
+  public GameController(Game game, GameView view, boolean canRoll, boolean canBuy, boolean canMortgage, boolean canDraw) {
     this.game = game;
-    //TODO: link GUI
     this.view = view;
     this.canRoll = canRoll;
     this.canBuy = canBuy;
@@ -126,7 +125,9 @@ public class GameController {
   public Player getCurrentPlayer() {
     return game.getCurrentPlayer();
   }
-  
+
+  // ======================
+
   /**********************************************************************
    * This method returns the number of pairs
    * @return  The number of pairs.
