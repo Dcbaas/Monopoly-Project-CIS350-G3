@@ -127,7 +127,7 @@ public abstract class BoardSquare {
    * board square is.
    *
    * @return type the type of BoardSquare this board square is.
-   */
+   ***************************************************************/
   public int getType() {
     return type;
   }
@@ -138,7 +138,7 @@ public abstract class BoardSquare {
    *
    * @param type the type of BoardSquare this BoardSquare will be
    *             set to.
-   */
+   ***************************************************************/
   public void setType(int type) {
     this.type = type;
   }
