@@ -58,10 +58,11 @@ public class PlayerDetailPanel extends JPanel {
 
 
   /********************************************************************
-   * The setDisplay method takes a player and pulls the relevent
+   * The setDisplay method takes a player and pulls the relevant
    * information about the player and displays it as text
-   * @param player
+   * @param player The Player being passed in.
    *******************************************************************/
+  //Todo: Implement this feature in the GameView.
   public void setDisplay(Player player) {
     this.player.setText(player.getDisplayName());
 

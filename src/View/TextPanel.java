@@ -53,4 +53,6 @@ public class TextPanel extends JPanel {
   public Dimension getMinimumSize(){
     return new Dimension(500,540);
   }
+  //Todo: Implement functionality for getting information onto the JTextArea.
+  //Todo: Implement functionality for reciving information from the JTextField.
 }

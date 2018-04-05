@@ -77,4 +77,6 @@ public class GameView extends JFrame {
 		setLocationRelativeTo(null);
 		setVisible(true);
 	}
+	//Todo: Merge functions from TextController into the GUI.
+	//Todo: make a menu bar for the top of the JFrame.
 }

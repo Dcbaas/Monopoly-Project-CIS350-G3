@@ -205,4 +205,7 @@ public class GamePanel extends JPanel {
 //
 //    frame.setVisible(true);
 //  }
+
+  //Todo Implement movement of the player withing the GUI.
+  //Todo: Add functonality to GUI to build the houses where needed.
 }

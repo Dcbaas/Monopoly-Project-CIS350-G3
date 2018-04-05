@@ -21,6 +21,7 @@ public class PlayerToken {
    * An reference to the Player this token is for.
    */
   private Player parent;
+  //Todo: Make the PlayerToken reference the Parent or merge this functionality of an image into Player itself.
 
   /******************************************************************
    * The constructor initializes the instance variables.
