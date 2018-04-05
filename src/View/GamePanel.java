@@ -1,6 +1,5 @@
 package View;
 
-import Model.GamePackage.Player;
 import View.BoardSpaces.CardSpace;
 import View.BoardSpaces.FreeParkingSpace;
 import View.BoardSpaces.GoSpace;
@@ -17,7 +16,7 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.io.IOException;
-import javax.swing.*;
+import javax.swing.JPanel;
 
 /********************************************************************
  * The GamePanel Class creates a JPanel that contains all of the
@@ -30,8 +29,8 @@ public class GamePanel extends JPanel {
 
   public static final int LENGTH = 650;
   /**
-   * An array of JPanels for all of the spaces of the board. A regular array was chosen because of
-   * the static item size.
+   * An array of JPanels for all of the spaces of the board. A regular array was
+   * chosen because of the static item size.
    */
   private Spaces[] spaces;
 
@@ -51,23 +50,24 @@ public class GamePanel extends JPanel {
     drawSpaces();
   }
 
-  public void setHouses(int spaceNum, int houses){
+  public void setHouses(int spaceNum, int houses) {
     Spaces temp;
-     if(spaces[spaceNum] instanceof PropertySpace) {
-       temp = (PropertySpace) spaces[spaceNum];
-       ((PropertySpace) temp).setHouses(houses);
-     }
+    if (spaces[spaceNum] instanceof PropertySpace) {
+      temp = (PropertySpace) spaces[spaceNum];
+      ((PropertySpace) temp).setHouses(houses);
+    }
   }
 
-  public void movePlayer(int startSpace, int distance){
+  public void movePlayer(int startSpace, int distance) {
     PlayerToken p = spaces[startSpace].removePlayer();
-    if(startSpace + distance > spaces.length - 1)
+    if (startSpace + distance > spaces.length - 1) {
       spaces[startSpace + distance - spaces.length - 1].addPlayer(p);
-    else
+    } else {
       spaces[startSpace + distance].addPlayer(p);
+    }
   }
 
-  public void addPlayer(PlayerToken p){
+  public void addPlayer(PlayerToken p) {
     spaces[0].addPlayer(p);
   }
 
@@ -83,48 +83,69 @@ public class GamePanel extends JPanel {
    *******************************************************************/
   private void loadSpaces() throws IOException {
     spaces[0] = new GoSpace();
-    spaces[1] = new PropertySpace(new Color(128, 0, 128), "Meiteranian Ave.", 60, Position.BOTTOM);
+    spaces[1] = new PropertySpace(new Color(128, 0, 128), "Meiteranian Ave.",
+        60, Position.BOTTOM);
     spaces[2] = new CardSpace(false, false);
-    spaces[3] = new PropertySpace(new Color(128, 0, 128), "Baltic Ave.", 60, Position.BOTTOM);
+    spaces[3] = new PropertySpace(new Color(128, 0, 128), "Baltic Ave.", 60,
+        Position.BOTTOM);
     spaces[4] = new TaxSpace(true);
     spaces[5] = new RailRoadSpace(false, "Reading RailRoad");
-    spaces[6] = new PropertySpace(Color.CYAN, "Oriental Ave.", 100, Position.BOTTOM);
+    spaces[6] = new PropertySpace(Color.CYAN, "Oriental Ave.", 100,
+        Position.BOTTOM);
     spaces[7] = new CardSpace(false, true);
-    spaces[8] = new PropertySpace(Color.CYAN, "Vermont Ave", 100, Position.BOTTOM);
-    spaces[9] = new PropertySpace(Color.CYAN, "Connecticut Ave", 120, Position.BOTTOM);
+    spaces[8] = new PropertySpace(Color.CYAN, "Vermont Ave", 100,
+        Position.BOTTOM);
+    spaces[9] = new PropertySpace(Color.CYAN, "Connecticut Ave", 120,
+        Position.BOTTOM);
     spaces[10] = new JailSpace();
 
-    spaces[11] = new PropertySpace(Color.MAGENTA, "St. Charles Place", 140, Position.LEFT);
+    spaces[11] = new PropertySpace(Color.MAGENTA, "St. Charles Place", 140,
+        Position.LEFT);
     spaces[12] = new UtilitiesSpace(false);
-    spaces[13] = new PropertySpace(Color.MAGENTA, "States Ave.", 140, Position.LEFT);
-    spaces[14] = new PropertySpace(Color.MAGENTA, "Virgina Ave.", 160, Position.LEFT);
+    spaces[13] = new PropertySpace(Color.MAGENTA, "States Ave.", 140,
+        Position.LEFT);
+    spaces[14] = new PropertySpace(Color.MAGENTA, "Virgina Ave.", 160,
+        Position.LEFT);
     spaces[15] = new RailRoadSpace(true, "Pennsylvania Railroad");
-    spaces[16] = new PropertySpace(Color.ORANGE, "St. James Place", 180, Position.LEFT);
+    spaces[16] = new PropertySpace(Color.ORANGE, "St. James Place", 180,
+        Position.LEFT);
     spaces[17] = new CardSpace(true, false);
-    spaces[18] = new PropertySpace(Color.ORANGE, "Tennessee Ave.", 180, Position.LEFT);
-    spaces[19] = new PropertySpace(Color.ORANGE, "New York Ave.", 200, Position.LEFT);
+    spaces[18] = new PropertySpace(Color.ORANGE, "Tennessee Ave.", 180,
+        Position.LEFT);
+    spaces[19] = new PropertySpace(Color.ORANGE, "New York Ave.", 200,
+        Position.LEFT);
     spaces[20] = new FreeParkingSpace();
 
-    spaces[21] = new PropertySpace(Color.RED, "Kentucky Ave", 220, Position.TOP);
+    spaces[21] = new PropertySpace(Color.RED, "Kentucky Ave", 220,
+        Position.TOP);
     spaces[22] = new CardSpace(false, true);
     spaces[23] = new PropertySpace(Color.RED, "Indiana Ave", 220, Position.TOP);
-    spaces[24] = new PropertySpace(Color.RED, "Illinois Ave", 240, Position.TOP);
+    spaces[24] = new PropertySpace(Color.RED, "Illinois Ave", 240,
+        Position.TOP);
     spaces[25] = new RailRoadSpace(false, "B & O Railroad");
-    spaces[26] = new PropertySpace(Color.YELLOW, "Atlantic Ave", 260, Position.TOP);
-    spaces[27] = new PropertySpace(Color.YELLOW, "Ventnor Ave", 260, Position.TOP);
+    spaces[26] = new PropertySpace(Color.YELLOW, "Atlantic Ave", 260,
+        Position.TOP);
+    spaces[27] = new PropertySpace(Color.YELLOW, "Ventnor Ave", 260,
+        Position.TOP);
     spaces[28] = new UtilitiesSpace(true);
-    spaces[29] = new PropertySpace(Color.YELLOW, "Marvin Ave", 280, Position.TOP);
+    spaces[29] = new PropertySpace(Color.YELLOW, "Marvin Ave", 280,
+        Position.TOP);
     spaces[30] = new GoToJailSpace();
 
-    spaces[31] = new PropertySpace(Color.GREEN, "Pacific Ave.", 300, Position.RIGHT);
-    spaces[32] = new PropertySpace(Color.GREEN, "North Carolina Ave.", 300, Position.RIGHT);
+    spaces[31] = new PropertySpace(Color.GREEN, "Pacific Ave.", 300,
+        Position.RIGHT);
+    spaces[32] = new PropertySpace(Color.GREEN, "North Carolina Ave.", 300,
+        Position.RIGHT);
     spaces[33] = new CardSpace(true, false);
-    spaces[34] = new PropertySpace(Color.GREEN, "Pennsylvania Ave.", 320, Position.RIGHT);
+    spaces[34] = new PropertySpace(Color.GREEN, "Pennsylvania Ave.", 320,
+        Position.RIGHT);
     spaces[35] = new RailRoadSpace(true, "Short Line");
     spaces[36] = new CardSpace(true, true);
-    spaces[37] = new PropertySpace(new Color(0, 0, 139), "Park Place", 350, Position.RIGHT);
+    spaces[37] = new PropertySpace(new Color(0, 0, 139), "Park Place", 350,
+        Position.RIGHT);
     spaces[38] = new TaxSpace(false);
-    spaces[39] = new PropertySpace(new Color(0, 0, 139), "Parrot Town", 400, Position.RIGHT);
+    spaces[39] = new PropertySpace(new Color(0, 0, 139), "Parrot Town", 400,
+        Position.RIGHT);
 
 
   }

@@ -45,16 +45,13 @@ public class GameView extends JFrame {
 
 		gamePanel = new GamePanel();
 		playerDetailPanel = new PlayerDetailPanel();
-		buttonPanel = new ButtonPanel(gamePanel);
+		buttonPanel = new ButtonPanel();
 		textPanel = new TextPanel();
 
 		c = new GridBagConstraints();
 
 		c.gridx = 0;
 		c.gridy = 0;
-//		c.gridheight = 2;
-//		c.weighty = 2;
-//		c.anchor = c.NORTHWEST;
 		add(buttonPanel, c);
 
 		c.gridx = 1;
@@ -71,7 +68,6 @@ public class GameView extends JFrame {
 
 		c.gridx = 0;
 		c.gridy = 1;
-//		c.weightx= 3;
 		add(textPanel, c);
 
 		playerDetailPanel.setDisplay(new Player("Mr. Parrot", "The fucktard", 8000));
