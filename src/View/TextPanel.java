@@ -43,13 +43,13 @@ public class TextPanel extends JPanel {
 
     // Action listener for command text field. 'Enter' activates
       textField.addActionListener(e -> {
-
           // This says something has been sent and stop waiting.
           synchronized (holder) {
               holder.add(textField.getText());
               holder.notify();
           }
       command = textField.getText();
+          // Clear textField
       textField.setText("");
     });
 

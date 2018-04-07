@@ -230,7 +230,7 @@ public class GameController {
                 //Prints the property id and the name of the property
                 // every three properties it creates a new line
 
-                //TODO: This needs to be converted calling the printToTextArea
+            //TODO: This needs to be converted calling the printToTextArea
 //                for (OwnableSquare property : player.getPropertiesOwned()) {
 //
 //                    //Prints the property id and the name of the property

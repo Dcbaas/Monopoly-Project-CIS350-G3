@@ -13,15 +13,28 @@ public class TestView {
 
         // Blocking synchronized code. Makes program wait for textField Input
         final List<String> holder = view.getTextPanel().getHolder();
+
+        String command;
+        // Make textField Editable
+        view.getTextPanel().getTextField().setEditable(true);
+
+        // Blocking synchronized code. Makes program wait for textField Input
         synchronized (holder) {
 
             // wait for input from field
             while (holder.isEmpty()) {
                 holder.wait();
             }
-            holder.remove(0);
+            command = holder.remove(0);
         }
-        view.getTextPanel().printToTextArea("Done");
+
+        // Make textField not Editable
+        view.getTextPanel().getTextField().setEditable(false);
+
+        // Program waits until something is entered, then calls this line and prints it.
+        view.getTextPanel().printToTextArea(command);
 
     }
+
+
 }
