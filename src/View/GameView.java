@@ -79,4 +79,37 @@ public class GameView extends JFrame {
 	}
 	//Todo: Merge functions from TextController into the GUI.
 	//Todo: make a menu bar for the top of the JFrame.
+
+
+	public GamePanel getGamePanel() {
+		return gamePanel;
+	}
+
+	public void setGamePanel(GamePanel gamePanel) {
+		this.gamePanel = gamePanel;
+	}
+
+	public PlayerDetailPanel getPlayerDetailPanel() {
+		return playerDetailPanel;
+	}
+
+	public void setPlayerDetailPanel(PlayerDetailPanel playerDetailPanel) {
+		this.playerDetailPanel = playerDetailPanel;
+	}
+
+	public ButtonPanel getButtonPanel() {
+		return buttonPanel;
+	}
+
+	public void setButtonPanel(ButtonPanel buttonPanel) {
+		this.buttonPanel = buttonPanel;
+	}
+
+	public TextPanel getTextPanel() {
+		return textPanel;
+	}
+
+	public void setTextPanel(TextPanel textPanel) {
+		this.textPanel = textPanel;
+	}
 }
