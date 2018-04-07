@@ -26,9 +26,9 @@ public class TextPanel extends JPanel {
   private JTextArea txtArea;
 
   /**A JTextField to get input.*/
-  private JTextField cmd;
+  private JTextField textField;
 
-    /**A string that holds the info from cmd textField.*/
+  /**A string that holds the info from textField.*/
   private String command;
 
   /********************************************************************
@@ -37,11 +37,11 @@ public class TextPanel extends JPanel {
    *******************************************************************/
   public TextPanel() {
     txtArea = new JTextArea();
-    cmd = new JTextField();
+      textField = new JTextField();
 
     // Action listener for command text field. 'Enter' activates
-    cmd.addActionListener(e -> {
-      command = cmd.getText();
+      textField.addActionListener(e -> {
+      command = textField.getText();
     });
 
     txtArea.setEditable(false);
@@ -49,7 +49,7 @@ public class TextPanel extends JPanel {
     setLayout(new BorderLayout());
 
     add(txtArea,BorderLayout.CENTER);
-    add(cmd,BorderLayout.SOUTH);
+    add(textField,BorderLayout.SOUTH);
 
     Border blackLine = BorderFactory.createLineBorder(Color.BLACK);
     setBorder(blackLine);
@@ -91,18 +91,34 @@ public class TextPanel extends JPanel {
    *
    * @return The command text field
    *******************************************************************/
-  public JTextField getCmd() {
-    return cmd;
+  public JTextField getTextField() {
+    return textField;
   }
 
   /********************************************************************
    * Set the text field (command box)
    *
-   * @param cmd The command text field
+   * @param textField The command text field
    *******************************************************************/
-  public void setCmd(JTextField cmd) {
-    this.cmd = cmd;
+  public void setTextField(JTextField textField) {
+    this.textField = textField;
   }
 
+    /********************************************************************
+     * Get the command
+     *
+     * @return The command
+     *******************************************************************/
+  public String getCommand() {
+      return command;
+  }
 
+    /********************************************************************
+     * Set the command
+     *
+     * @param command The command you want to set
+     *******************************************************************/
+  public void setCommand(String command) {
+      this.command = command;
+  }
 }
