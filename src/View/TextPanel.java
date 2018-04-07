@@ -28,6 +28,9 @@ public class TextPanel extends JPanel {
   /**A JTextField to get input.*/
   private JTextField cmd;
 
+    /**A string that holds the info from cmd textField.*/
+  private String command;
+
   /********************************************************************
    * The constructor initializes the TextPanes and positions them on
    * the JPanel.
@@ -38,8 +41,7 @@ public class TextPanel extends JPanel {
 
     // Action listener for command text field. 'Enter' activates
     cmd.addActionListener(e -> {
-      System.out.println("Handled Lambda listener");
-      System.out.println("Have fun!");
+      command = cmd.getText();
     });
 
     txtArea.setEditable(false);
