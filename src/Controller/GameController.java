@@ -60,6 +60,7 @@ public class GameController {
       canRoll = false;
       canBuy = false;
       game.sendPlayerToJail();
+        //TODO: print to GUI
       view.printDies(game.getDieOne().getValue(), game.getDieTwo().getValue());
       nextPlayer();
       return;
@@ -71,6 +72,7 @@ public class GameController {
         if (canRoll) {
           roll();
         } else {
+            //TODO: print to GUI
           view.printActionError();
         }
         break;
@@ -78,6 +80,7 @@ public class GameController {
         if (canBuy) {
           buy();
         } else {
+            //TODO: print to GUI
           view.printActionError();
         }
         break;
@@ -91,6 +94,7 @@ public class GameController {
         if (!canRoll) {
           nextPlayer();
         } else {
+            //TODO: print to GUI
           view.printActionError();
         }
         break;
@@ -98,6 +102,7 @@ public class GameController {
         if (canMortgage) {
           mortgage();
         } else {
+            //TODO: print to GUI
           view.printActionError();
         }
         break;
@@ -105,10 +110,12 @@ public class GameController {
         if (canDraw) {
           draw();
         } else {
+            //TODO: print to GUI
           view.printActionError();
         }
         break;
       default:
+          //TODO: print to GUI
         view.notAValidCommand();
 
     }
