@@ -70,20 +70,12 @@ public class GameController {
         //Checks which command the player used
         switch (command.toLowerCase()) {
             case "roll":
-                if (canRoll) {
-                    roll();
-                } else {
-                    //TODO: print to GUI
-                    view.printActionError();
-                }
+                // Do not need to check if canRoll b/c button wont be enabled if its false
+                roll();
                 break;
             case "buy":
-                if (canBuy) {
-                    buy();
-                } else {
-                    //TODO: print to GUI
-                    view.printActionError();
-                }
+                // Do not need to check if canBuy b/c button wont be enabled if its false
+                buy();
                 break;
             case "house":
                 buildHouse();
@@ -95,30 +87,19 @@ public class GameController {
                 if (!canRoll) {
                     nextPlayer();
                 } else {
-                    //TODO: print to GUI
-                    view.printActionError();
+                    // This does not apply, button should be disabled
                 }
                 break;
             case "mortgage":
-                if (canMortgage) {
-                    mortgage();
-                } else {
-                    //TODO: print to GUI
-                    view.printActionError();
-                }
+                // Do not need to check if canMortgage b/c button wont be enabled if its false
+                mortgage();
                 break;
             case "draw":
-                if (canDraw) {
-                    draw();
-                } else {
-                    //TODO: print to GUI
-                    view.printActionError();
-                }
+                // Do not need to check if canDraw b/c button wont be enabled if its false
+                draw();
                 break;
             default:
-                //TODO: print to GUI
-                view.notAValidCommand();
-
+                // Do not need a print here like text interface. Only opetions has is buttons
         }
 
         //Checks if the player has any actions left
@@ -241,12 +222,26 @@ public class GameController {
         //Starts the mortgage loop
         while (run) {
             //Propts the user and intakes a command
+            view.getTextPanel().printToTextArea("Type The Id of the property you would like to mortgage");
             //TODO: print to GUI
-            view.MortgageInit();
-            //TODO: print to GUI
-            view.displayProperties(game.getCurrentPlayer());
-            //TODO: prompt user through GUI
-            command = view.getCommand();
+
+            for (OwnableSquare square : game.getCurrentPlayer().getPropertiesOwned()) {
+
+                //Prints the property id and the name of the property
+                // every three properties it creates a new line
+
+                //TODO: This needs to be converted calling the printToTextArea
+//                for (OwnableSquare property : player.getPropertiesOwned()) {
+//
+//                    //Prints the property id and the name of the property
+//                    // every three properties it creates a new line
+//                    System.out.printf("[%n] %s" + ((player.getPropertiesOwned()
+//                                    .indexOf(property) % 3 == 0) ? "%n" : " | ")
+//                            , player.getPropertiesOwned().indexOf(property), property.getName());
+//                }
+            }
+            view.getTextPanel().getTextField().setEditable(true);
+            command = view.getTextPanel().;
 
             //Checks if the user wants to exite the mortgage loop
             if (command.equalsIgnoreCase("done")) {

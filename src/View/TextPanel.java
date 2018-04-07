@@ -45,6 +45,7 @@ public class TextPanel extends JPanel {
     });
 
     txtArea.setEditable(false);
+    textField.setEnabled(false);
 
     setLayout(new BorderLayout());
 
@@ -70,8 +71,6 @@ public class TextPanel extends JPanel {
   }
 
 
-  //Todo: Implement functionality for getting information onto the JTextArea.
-  //Todo: Implement functionality for reciving information from the JTextField.
 
   /********************************************************************
    * Get the text area
