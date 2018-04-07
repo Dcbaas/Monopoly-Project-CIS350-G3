@@ -3,6 +3,8 @@ package View;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -34,6 +36,12 @@ public class TextPanel extends JPanel {
     txtArea = new JTextArea();
     cmd = new JTextField();
 
+    // Action listener for command text field. 'Enter' activates
+    cmd.addActionListener(e -> {
+      System.out.println("Handled Lambda listener");
+      System.out.println("Have fun!");
+    });
+
     txtArea.setEditable(false);
 
     setLayout(new BorderLayout());
@@ -53,6 +61,8 @@ public class TextPanel extends JPanel {
   public Dimension getMinimumSize(){
     return new Dimension(500,540);
   }
+
+
   //Todo: Implement functionality for getting information onto the JTextArea.
   //Todo: Implement functionality for reciving information from the JTextField.
 
@@ -91,4 +101,6 @@ public class TextPanel extends JPanel {
   public void setCmd(JTextField cmd) {
     this.cmd = cmd;
   }
+
+
 }
