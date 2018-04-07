@@ -55,4 +55,40 @@ public class TextPanel extends JPanel {
   }
   //Todo: Implement functionality for getting information onto the JTextArea.
   //Todo: Implement functionality for reciving information from the JTextField.
+
+  /********************************************************************
+   * Get the text area
+   *
+   *@return The text area
+   *******************************************************************/
+  public JTextArea getTxtArea() {
+    return txtArea;
+  }
+
+  /********************************************************************
+   * Set teh text area\
+   *
+   * @param txtArea The text are
+   *******************************************************************/
+  public void setTxtArea(JTextArea txtArea) {
+    this.txtArea = txtArea;
+  }
+
+  /********************************************************************
+   * Get the text field (command box)
+   *
+   * @return The command text field
+   *******************************************************************/
+  public JTextField getCmd() {
+    return cmd;
+  }
+
+  /********************************************************************
+   * Set the text field (command box)
+   *
+   * @param cmd The command text field
+   *******************************************************************/
+  public void setCmd(JTextField cmd) {
+    this.cmd = cmd;
+  }
 }
