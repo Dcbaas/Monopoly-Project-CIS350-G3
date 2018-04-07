@@ -39,6 +39,9 @@ public class TextPanel extends JPanel {
     // Action listener for command text field. 'Enter' activates
       textField.addActionListener(e -> {
       command = textField.getText();
+      textField.setText("");
+      // TODO: Remove this print method call. This is just a test
+      printToTextArea(command);
     });
 
     txtArea.setEditable(false);
