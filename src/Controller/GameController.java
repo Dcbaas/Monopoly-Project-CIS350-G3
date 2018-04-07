@@ -10,6 +10,7 @@ import View.GameTextView;
 import View.GameView;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class GameController {
@@ -21,6 +22,7 @@ public class GameController {
     private boolean canBuy;
     private boolean canMortgage;
     private boolean canDraw;
+    private final List<String> holder = view.getTextPanel().getHolder();
 
     /**********************************************************************git
      * The constructor that builds a game controller with a Game and View
@@ -54,7 +56,7 @@ public class GameController {
      *
      * @param command The command the user entered.
      *********************************************************************/
-    public void commands(String command) {
+    public void commands(String command) throws InterruptedException {
 
         //Checks if the player has rolled pairs three times in a row
         if (numPairs == 3) {
@@ -206,7 +208,7 @@ public class GameController {
      * sell all building before being able to mortgage the desired
      * property.
      *********************************************************************/
-    private void mortgage() {
+    private void mortgage() throws InterruptedException {
         //The variable that will hold the property in question
         OwnableSquare property;
 
@@ -223,10 +225,8 @@ public class GameController {
         while (run) {
             //Propts the user and intakes a command
             view.getTextPanel().printToTextArea("Type The Id of the property you would like to mortgage");
-            //TODO: print to GUI
 
-            for (OwnableSquare square : game.getCurrentPlayer().getPropertiesOwned()) {
-
+            //TODO: print to GUI====================================================================================
                 //Prints the property id and the name of the property
                 // every three properties it creates a new line
 
@@ -239,9 +239,11 @@ public class GameController {
 //                                    .indexOf(property) % 3 == 0) ? "%n" : " | ")
 //                            , player.getPropertiesOwned().indexOf(property), property.getName());
 //                }
+            //TODO ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
             }
-            view.getTextPanel().getTextField().setEditable(true);
-            command = view.getTextPanel().;
+
+            // Call promptUser() which is synchronized call
+            command = promptUser();
 
             //Checks if the user wants to exite the mortgage loop
             if (command.equalsIgnoreCase("done")) {
@@ -664,6 +666,32 @@ public class GameController {
         } else {
             canDraw = false;
         }
+    }
+
+    /**********************************************************************
+     * This method uses a synchronized call and waits for the
+     *   user to enter in a command.
+     *********************************************************************/
+    private String promptUser() throws InterruptedException {
+
+        String command;
+        // Make textField Editable
+        view.getTextPanel().getTextField().setEditable(true);
+
+        // Blocking synchronized code. Makes program wait for textField Input
+        synchronized (holder) {
+
+            // wait for input from field
+            while (holder.isEmpty()) {
+                holder.wait();
+            }
+            command = holder.remove(0);
+        }
+
+        // Make textField not Editable
+        view.getTextPanel().getTextField().setEditable(false);
+
+        return command;
     }
 
 }
