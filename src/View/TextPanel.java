@@ -5,10 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.BorderFactory;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
+import javax.swing.*;
 import javax.swing.border.Border;
 
 /**********************************************************************
@@ -50,6 +47,11 @@ public class TextPanel extends JPanel {
 
     add(txtArea,BorderLayout.CENTER);
     add(textField,BorderLayout.SOUTH);
+
+    JScrollPane scroll = new JScrollPane (txtArea);
+    scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+    scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+    add(scroll);
 
     Border blackLine = BorderFactory.createLineBorder(Color.BLACK);
     setBorder(blackLine);
@@ -129,7 +131,8 @@ public class TextPanel extends JPanel {
      * @param message The message you want to print.
      *******************************************************************/
   public void printToTextArea(String message){
-      txtArea.append(message);
-      txtArea.append("\n");
+      txtArea.append(message + "\n");
+      txtArea.append("--------------------------------------------------------------" +
+                        "----------------------------------------------------------\n");
   }
 }

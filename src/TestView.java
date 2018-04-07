@@ -6,5 +6,8 @@ public class TestView {
 	public static void main(String[] args)
 			throws IOException, InterruptedException {
 		GameView view = new GameView();
-	}
+
+		view.getTextPanel().printToTextArea("Hello World!");
+
+    }
 }
