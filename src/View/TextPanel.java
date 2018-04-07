@@ -121,4 +121,15 @@ public class TextPanel extends JPanel {
   public void setCommand(String command) {
       this.command = command;
   }
+
+
+    /********************************************************************
+     * Prints a message to the text area1
+     *
+     * @param message The message you want to print.
+     *******************************************************************/
+  public void printToTextArea(String message){
+      txtArea.append(message);
+      txtArea.append("\n");
+  }
 }
