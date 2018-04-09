@@ -2,7 +2,7 @@ import View.GameView;
 import java.io.IOException;
 import java.util.List;
 
-public class TestView {
+public class Monopoly {
 
 	public static void main(String[] args)
 			throws IOException, InterruptedException {
