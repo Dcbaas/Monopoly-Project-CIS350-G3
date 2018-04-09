@@ -20,7 +20,7 @@ import javax.swing.border.Border;
  *
  * @author David Baas
  * @version 4/4/2018
- **/
+ */
 public class TextPanel extends JPanel implements FocusListener {
 
   /**
@@ -49,7 +49,7 @@ public class TextPanel extends JPanel implements FocusListener {
   /**
    * The constructor initializes the TextPanes and positions them on
    * the JPanel.
-   **/
+   */
   TextPanel() {
     txtArea = new JTextArea();
     textField = new JTextField();
@@ -91,7 +91,7 @@ public class TextPanel extends JPanel implements FocusListener {
    * Get the minimum dimension of this TextPanel.
    *
    * @return The minimum dimension of this TextPanel.
-   **/
+   */
   public Dimension getMinimumSize() {
     return new Dimension(500, 540);
   }
@@ -101,7 +101,7 @@ public class TextPanel extends JPanel implements FocusListener {
    * Get the text area.
    *
    * @return The text area.
-   **/
+   */
   public JTextArea getTxtArea() {
     return txtArea;
   }
@@ -110,7 +110,7 @@ public class TextPanel extends JPanel implements FocusListener {
    * Set teh text area.
    *
    * @param txtArea The text are.
-   **/
+   */
   public void setTxtArea(JTextArea txtArea) {
     this.txtArea = txtArea;
   }
@@ -119,7 +119,7 @@ public class TextPanel extends JPanel implements FocusListener {
    * Get the text field (command box).
    *
    * @return The command text field
-   **/
+   */
   public JTextField getTextField() {
     return textField;
   }
@@ -128,7 +128,7 @@ public class TextPanel extends JPanel implements FocusListener {
    * Set the text field (command box).
    *
    * @param textField The command text field.
-   **/
+   */
   public void setTextField(JTextField textField) {
     this.textField = textField;
   }
@@ -137,7 +137,7 @@ public class TextPanel extends JPanel implements FocusListener {
    * Get the command.
    *
    * @return The command.
-   **/
+   */
   public String getCommand() {
     return command;
   }
@@ -146,7 +146,7 @@ public class TextPanel extends JPanel implements FocusListener {
    * Set the command.
    *
    * @param command The command you want to set.
-   **/
+   */
   public void setCommand(String command) {
     this.command = command;
   }
@@ -156,7 +156,7 @@ public class TextPanel extends JPanel implements FocusListener {
    * Prints a message to the text area.
    *
    * @param message The message you want to print.
-   **/
+   */
   public void printToTextArea(String message) {
     txtArea.append(message + "\n");
     txtArea.append("--------------------------------------------------------------"
@@ -167,7 +167,7 @@ public class TextPanel extends JPanel implements FocusListener {
    * Get the holder so others can use it.
    *
    * @return The holder.
-   **/
+   */
   public List<String> getHolder() {
     return holder;
   }
@@ -176,7 +176,7 @@ public class TextPanel extends JPanel implements FocusListener {
   /**
    * Sets The hint text for the JTextfield.
    * *
-   **/
+   */
   public void setHintText() {
     textField.setText(DEFAULT_TEXT);
   }
@@ -187,7 +187,7 @@ public class TextPanel extends JPanel implements FocusListener {
    * Enables the hint text.
    *
    * @param e event triggered from a component.
-   **/
+   */
   @Override
   public void focusGained(FocusEvent e) {
     textField.setText("");
@@ -198,7 +198,7 @@ public class TextPanel extends JPanel implements FocusListener {
    * Disables the hint text.
    *
    * @param e event triggered from a component.
-   **/
+   */
   @Override
   public void focusLost(FocusEvent e) {
     setHintText();
