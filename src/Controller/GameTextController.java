@@ -5,7 +5,7 @@ import Model.BoardPackage.OwnableSquare;
 import Model.BoardPackage.PropertySquare;
 import Model.CardPackage.Card;
 import Model.GamePackage.Game;
-import View.GameTextView;
+import view.GameTextView;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
@@ -27,7 +27,7 @@ public class GameTextController {
   private boolean canDraw;
 
   /**********************************************************************git
-   * The constructor that builds a game controller with a Game and View
+   * The constructor that builds a game controller with a Game and view
    *
    * @param game The Game object
    * @param view The view object

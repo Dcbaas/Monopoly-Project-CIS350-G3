@@ -1,4 +1,4 @@
-package View.BoardSpaces;
+package view.BoardSpaces;
 
 import java.awt.*;
 import java.io.File;

@@ -1,6 +1,6 @@
 import Controller.GameTextController;
 import Model.GamePackage.Game;
-import View.GameTextView;
+import view.GameTextView;
 
 /**********************************************************************
  * This is the class that is ran and holds the main

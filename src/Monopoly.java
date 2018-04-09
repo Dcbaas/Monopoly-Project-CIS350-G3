@@ -1,4 +1,4 @@
-import View.GameView;
+import view.GameView;
 import java.io.IOException;
 import java.util.List;
 
