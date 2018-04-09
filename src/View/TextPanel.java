@@ -3,18 +3,12 @@ package View;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.*;
 import javax.swing.border.Border;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
-import javax.swing.text.Document;
-import javax.swing.text.Element;
 
 /**********************************************************************
  * The Text Panel creates a JPanel with the ability to dispaly
@@ -25,12 +19,13 @@ import javax.swing.text.Element;
  *********************************************************************/
 public class TextPanel extends JPanel implements  FocusListener {
 
-    // Holder for synchronized call
+  /** Hint text */
+  private static final String DEFAULT_TEXT = "Enter a Command";
+
+  // Holder for synchronized call
     final List<String> holder = new LinkedList<String>();
 
-  /**
-   * A JTextArea to display information.
-   */
+   /** A JTextArea to display information. */
   private JTextArea txtArea;
 
   /**A JTextField to get input.*/
@@ -77,6 +72,7 @@ public class TextPanel extends JPanel implements  FocusListener {
     Border blackLine = BorderFactory.createLineBorder(Color.BLACK);
     setBorder(blackLine);
 
+    //Adds a focus listener to the command TextField int order to detect actions
     textField.addFocusListener(this);
   }
 
@@ -166,21 +162,36 @@ public class TextPanel extends JPanel implements  FocusListener {
       return holder;
   }
 
-  public void setDeafaultText() {
-    textField.setText("Enter a command");
+
+  /**********************************************************************
+   * Sets The hint text for the JTextfield/
+   *********************************************************************/
+  public void setHintText() {
+    textField.setText(DEFAULT_TEXT);
   }
 
 
-
+  /**********************************************************************
+   * Performs and action when the textfeld is being focused.
+   * Enables the hint text.
+   *
+   * @param e event triggered from a component
+   *********************************************************************/
   @Override
   public void focusGained(FocusEvent e) {
     isFocused = true;
     textField.setText("");
   }
 
+  /**********************************************************************
+   * Performs and action when the textfeld is being focused.
+   * Disables the hint text.
+   *
+   * @param e event triggered from a component
+   *********************************************************************/
   @Override
   public void focusLost(FocusEvent e) {
     isFocused = false;
-    setDeafaultText();
+    setHintText();
   }
 }

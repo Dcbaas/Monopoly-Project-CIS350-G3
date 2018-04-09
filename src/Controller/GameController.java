@@ -666,7 +666,7 @@
 //        String command;
 //        // Make textField Editable
 //        view.getTextPanel().getTextField().setEditable(true);
-//        view.getTextPanel().setDeafaultText();
+//        view.getTextPanel().setHintText();
 //
 //        // Blocking synchronized code. Makes program wait for textField Input
 //        synchronized (holder) {
