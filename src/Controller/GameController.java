@@ -6,7 +6,7 @@
 //import Model.CardPackage.Card;
 //import Model.GamePackage.Game;
 //import Model.GamePackage.Player;
-//import View.GameView;
+//import view.GameView;
 //
 //import java.util.ArrayList;
 //import java.util.List;
@@ -24,7 +24,7 @@
 //    private final List<String> holder = view.getTextPanel().getHolder();
 //
 //    /**********************************************************************git
-//     * The constructor that builds a game controller with a Game and View
+//     * The constructor that builds a game controller with a Game and view
 //     *
 //     * @param game The Game object
 //     * @param view The view object

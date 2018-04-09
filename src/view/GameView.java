@@ -1,4 +1,4 @@
-package View;
+package view;
 
 import Model.GamePackage.Player;
 import java.awt.GridBagConstraints;

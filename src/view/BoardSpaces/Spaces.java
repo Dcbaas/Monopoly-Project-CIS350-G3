@@ -1,7 +1,7 @@
-package View.BoardSpaces;
+package view.BoardSpaces;
 
 
-import View.PlayerToken;
+import view.PlayerToken;
 import java.awt.Graphics;
 import java.util.LinkedList;
 import javax.swing.JPanel;
