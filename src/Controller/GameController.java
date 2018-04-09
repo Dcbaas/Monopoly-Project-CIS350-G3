@@ -6,7 +6,6 @@
 //import Model.CardPackage.Card;
 //import Model.GamePackage.Game;
 //import Model.GamePackage.Player;
-//import View.GameTextView;
 //import View.GameView;
 //
 //import java.util.ArrayList;
@@ -224,22 +223,8 @@
 //        //Starts the mortgage loop
 //        while (run) {
 //            //Propts the user and intakes a command
-//            view.getTextPanel().printToTextArea("Type The Id of the property you would like to mortgage");
+//            view.getTextPanel().printToTextArea("Type The name of the property you would like to mortgage");
 //
-//            //TODO: print to GUI====================================================================================
-//                //Prints the property id and the name of the property
-//                // every three properties it creates a new line
-//
-//            //TODO: This needs to be converted calling the printToTextArea
-////                for (OwnableSquare property : player.getPropertiesOwned()) {
-////
-////                    //Prints the property id and the name of the property
-////                    // every three properties it creates a new line
-////                    System.out.printf("[%n] %s" + ((player.getPropertiesOwned()
-////                                    .indexOf(property) % 3 == 0) ? "%n" : " | ")
-////                            , player.getPropertiesOwned().indexOf(property), property.getName());
-////                }
-//            //TODO ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 //            }
 //
 //            // Call promptUser() which is synchronized call
@@ -261,8 +246,12 @@
 //            }
 //
 //            //find the property the player Owns from the board
-//            property = game.getBoard().getOwnableSquare(game.getCurrentPlayer().getPropertiesOwned()
-//                    .get(propertyId).getPOSITION());
+//      for (OwnableSquare propertyOwned: game.getCurrentPlayer().getPropertiesOwned()) {
+//        if (propertyOwned.getName().equalsIgnoreCase(command)) {
+//          property = propertyOwned;
+//        }
+//      }
+//
 //
 //            //Checks if the player owns the group of properties
 //            if (game.getCurrentPlayer().getPropertiesOwned().contains(property.getGROUP_NUMBER())) {
@@ -677,6 +666,7 @@
 //        String command;
 //        // Make textField Editable
 //        view.getTextPanel().getTextField().setEditable(true);
+//        view.getTextPanel().setDeafaultText();
 //
 //        // Blocking synchronized code. Makes program wait for textField Input
 //        synchronized (holder) {
@@ -690,6 +680,7 @@
 //
 //        // Make textField not Editable
 //        view.getTextPanel().getTextField().setEditable(false);
+//        view.getTextPanel().getTextField().setText("");
 //
 //        return command;
 //    }
