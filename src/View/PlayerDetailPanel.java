@@ -2,9 +2,9 @@ package View;
 
 import Model.BoardPackage.OwnableSquare;
 import Model.GamePackage.Player;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.GridLayout;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -22,9 +22,10 @@ import javax.swing.border.Border;
 public class PlayerDetailPanel extends JPanel {
 
   /**
-   * A final label for dispalying a header for a properties list.
+   * A JPanel to hold the JLabels.
    */
-  private final JLabel PROPERTIES_LBL = new JLabel("Properties");
+  private JPanel labelPanel;
+
   /**
    * A Label to hold the players name.
    */
@@ -43,14 +44,17 @@ public class PlayerDetailPanel extends JPanel {
    * on the panel.
    *******************************************************************/
   public PlayerDetailPanel() {
+    labelPanel = new JPanel();
     player = new JLabel();
     wealth = new JLabel();
     propertiesList = new JTextArea(100, 100);
+    propertiesList.setEditable(false);
 
-    setLayout(new GridLayout(3, 0, 10, 10));
-    add(player);
-    add(wealth);
-    add(propertiesList);
+    setLayout(new BorderLayout());
+    labelPanel.add(player);
+    labelPanel.add(wealth);
+    add(labelPanel, BorderLayout.NORTH);
+    add(propertiesList, BorderLayout.CENTER);
 
     Border blackLine = BorderFactory.createLineBorder(Color.BLACK);
     setBorder(blackLine);
@@ -64,7 +68,7 @@ public class PlayerDetailPanel extends JPanel {
    *******************************************************************/
   //Todo: Implement this feature in the GameView.
   public void setDisplay(Player player) {
-    this.player.setText(player.getDisplayName());
+    this.player.setText("Name: " + player.getDisplayName() + " -");
 
     wealth.setText("Wealth: $" + player.getWallet());
 
