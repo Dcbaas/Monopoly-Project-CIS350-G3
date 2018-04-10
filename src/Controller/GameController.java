@@ -361,9 +361,14 @@ public class GameController {
         }
 
         int diceSum = game.getDieOne().getValue() + game.getDieTwo().getValue();
+
         // Move Player
         game.movePlayer(game.getCurrentPlayer(), game.getDieOne().getValue(),
                 game.getDieTwo().getValue());
+
+        // Move player in GUI
+        view.getGamePanel().movePlayer(game.getCurrentPlayer().getPosition(), diceSum);
+
         // Check if player can draw
         checkDraw();
         String locationName = game.getBoard().getSquaresList()
