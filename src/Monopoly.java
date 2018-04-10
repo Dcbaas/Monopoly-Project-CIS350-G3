@@ -12,15 +12,15 @@ public class Monopoly {
         Game game = new Game("res/board.txt", "res/community.txt", "res/chance.txt");
         GameController controller = new GameController(game, view, true, true, false, false);
 
-        view.getTextPanel().getTextField().setEditable(true);
+        // TODO ============= REMOVE TESTING ONLY=================================
 		view.getTextPanel().printToTextArea("Hello World!");
 
         // Blocking synchronized code. Makes program wait for textField Input
         String command = controller.promptUser();
 
-
         // Program waits until something is entered, then calls this line and prints it.
         view.getTextPanel().printToTextArea(command);
+        //TODO ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
     }
 
