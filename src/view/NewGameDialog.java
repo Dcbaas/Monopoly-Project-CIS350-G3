@@ -3,11 +3,14 @@ package view;
 import Model.GamePackage.Player;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -23,8 +26,8 @@ public class NewGameDialog extends JDialog {
   /**
    * A static Label constant to prompt the user for instructions.
    */
-  private static final JLabel instructions = new JLabel("Enter player"
-      + " details.");
+  private static final JLabel INSTRUCTIONS = new JLabel("Enter the "
+      + "names of players");
 
   /**
    * A final int for the number of players that can play.
@@ -48,10 +51,6 @@ public class NewGameDialog extends JDialog {
   private JTextField[] textFields;
 
   /**
-   * A flag to set weather a line is used or not.
-   */
-  private boolean[] selectedPlayers;
-  /**
    * A panel to hold the buttons that are used on this dialog box.
    */
   private JPanel buttonPanel;
@@ -66,6 +65,12 @@ public class NewGameDialog extends JDialog {
    */
   private JButton okayItem;
 
+  /**
+   * A reference to the ArrayList of Players that will be used for this game of
+   * Monopoly.
+   */
+  private ArrayList<Player> parentArrayList;
+
   /********************************************************************
    * The constructor initializes all of the elements of the dialog box
    * and positions them on the box correctly. An reference to a vector
@@ -73,26 +78,35 @@ public class NewGameDialog extends JDialog {
    * to be used when creating the game.
    * @param players the ArrayList being passed to this dialog box.
    *******************************************************************/
-  public NewGameDialog(ArrayList<Player> players){
+  public NewGameDialog(ArrayList<Player> players) {
+    parentArrayList = players;
+
     setTitle("New Game");
 
     playerPanels = new JPanel[PLAYERS];
     checkBoxes = new JCheckBox[PLAYERS];
     textFields = new JTextField[PLAYERS];
-    selectedPlayers = new boolean[PLAYERS];
 
     buttonPanel = new JPanel();
     cancelItem = new JButton("Cancel");
     okayItem = new JButton("Ok");
 
     cancelItem.addActionListener(e -> System.exit(0));
+    okayItem.addActionListener(e -> {
+      try {
+        onOk();
+      } catch (IOException e1) {
+        e1.printStackTrace();
+        System.exit(0);
+      }
+    });
 
     buttonPanel.setLayout(new BorderLayout());
-    buttonPanel.add(okayItem,BorderLayout.WEST);
-    buttonPanel.add(cancelItem,BorderLayout.EAST);
+    buttonPanel.add(okayItem, BorderLayout.WEST);
+    buttonPanel.add(cancelItem, BorderLayout.EAST);
 
     setLayout(new GridLayout(PLAYERS + 2, 0, 30, 30));
-    add(instructions);
+    add(INSTRUCTIONS);
 
     /*
      *  This for loop creates all of the text panels and check boxes as
@@ -101,18 +115,9 @@ public class NewGameDialog extends JDialog {
     for (int i = 0; i < PLAYERS; ++i) {
       playerPanels[i] = new JPanel();
       checkBoxes[i] = new JCheckBox();
-      selectedPlayers[i] = false;
       textFields[i] = new JTextField();
 
       playerPanels[i].setLayout(new BorderLayout());
-
-      //Keep the lambda function happy with finalI.
-      int finalI = i;
-      checkBoxes[i].addItemListener(item -> {
-        if (checkBoxes[finalI].isSelected()) {
-          selectedPlayers[finalI] = true;
-        }
-      });
 
       playerPanels[i].add(checkBoxes[i], BorderLayout.WEST);
       playerPanels[i].add(textFields[i], BorderLayout.CENTER);
@@ -136,15 +141,45 @@ public class NewGameDialog extends JDialog {
    *******************************************************************/
   private String getPlayerImage(int playerNumber) {
     switch (playerNumber) {
-      case 1:
+      case 0:
         return "res/boat.png";
-      case 2:
+      case 1:
         return "res/car.png";
-      case 3:
+      case 2:
         return "res/hat.png";
-      case 4:
+      case 3:
       default:
         return "res/iron.png";
+    }
+  }
+
+  /********************************************************************
+   * The onOk method parses the name inputs and creates the list of
+   * players who will be playing this game of Monopoly.
+   *
+   * @throws IOException If there is a problem loading the image file.
+   *******************************************************************/
+  private void onOk() throws IOException {
+    boolean approved = true;
+    for (int i = 0; i < PLAYERS; ++i) {
+      if (checkBoxes[i].isSelected()) {
+        String playerName = textFields[i].getText();
+        if (playerName.length() != 0) {
+          parentArrayList
+              .add(new Player(playerName, new File(getPlayerImage(i)),
+                  1500));
+        } else {
+          approved = false;
+        }
+      }
+    }
+    //Was there an invalid input. If yes force error correction.
+    if (approved) {
+      dispose();
+    } else {
+      JOptionPane.showMessageDialog(this, "Error: Invalid input on one "
+          + "of the name boxes.");
+      parentArrayList.clear();
     }
   }
 }

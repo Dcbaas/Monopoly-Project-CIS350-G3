@@ -1,5 +1,6 @@
 package view;
 
+import Model.GamePackage.Player;
 import view.BoardSpaces.CardSpace;
 import view.BoardSpaces.FreeParkingSpace;
 import view.BoardSpaces.GoSpace;
@@ -59,16 +60,16 @@ public class GamePanel extends JPanel {
   }
 
   public void movePlayer(int startSpace, int distance) {
-    PlayerToken p = spaces[startSpace].removePlayer();
+    Player player = spaces[startSpace].removePlayer();
     if (startSpace + distance > spaces.length - 1) {
-      spaces[startSpace + distance - spaces.length - 1].addPlayer(p);
+      spaces[startSpace + distance - spaces.length - 1].addPlayer(player);
     } else {
-      spaces[startSpace + distance].addPlayer(p);
+      spaces[startSpace + distance].addPlayer(player);
     }
   }
 
-  public void addPlayer(PlayerToken p) {
-    spaces[0].addPlayer(p);
+  public void addPlayer(Player player) {
+    spaces[0].addPlayer(player);
   }
 
   @Override

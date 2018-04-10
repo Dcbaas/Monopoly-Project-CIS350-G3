@@ -10,6 +10,7 @@ import javax.imageio.ImageIO;
  * The PlayerToken class creates a PlayerToken Image that can be used
  * to dispaly the player on the board.
  *********************************************************************/
+@Deprecated
 public class PlayerToken {
 
   /**
