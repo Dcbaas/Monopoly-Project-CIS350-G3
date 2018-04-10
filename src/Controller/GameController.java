@@ -21,7 +21,7 @@ public class GameController {
     private boolean canBuy;
     private boolean canMortgage;
     private boolean canDraw;
-    private final List<String> holder = view.getTextPanel().getHolder();
+    private List<String> holder = null;
 
     /**********************************************************************git
      * The constructor that builds a game controller with a Game and view
@@ -36,6 +36,7 @@ public class GameController {
         this.canBuy = canBuy;
         this.canMortgage = canMortgage;
         this.canDraw = canDraw;
+        this.holder = view.getTextPanel().getHolder();
     }
 
     /**********************************************************************
@@ -629,7 +630,7 @@ public class GameController {
      * This method uses a synchronized call and waits for the
      *   user to enter in a command.
      *********************************************************************/
-    private String promptUser() throws InterruptedException {
+    public String promptUser() throws InterruptedException {
 
         String command;
         // Make textField Editable
