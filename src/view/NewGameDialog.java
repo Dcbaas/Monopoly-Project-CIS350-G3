@@ -74,6 +74,8 @@ public class NewGameDialog extends JDialog {
    * @param players the ArrayList being passed to this dialog box.
    *******************************************************************/
   public NewGameDialog(ArrayList<Player> players){
+    setTitle("New Game");
+
     playerPanels = new JPanel[PLAYERS];
     checkBoxes = new JCheckBox[PLAYERS];
     textFields = new JTextField[PLAYERS];
@@ -85,7 +87,11 @@ public class NewGameDialog extends JDialog {
 
     cancelItem.addActionListener(e -> System.exit(0));
 
-    setLayout(new GridLayout(PLAYERS + 2, 0, 50, 50));
+    buttonPanel.setLayout(new BorderLayout());
+    buttonPanel.add(okayItem,BorderLayout.WEST);
+    buttonPanel.add(cancelItem,BorderLayout.EAST);
+
+    setLayout(new GridLayout(PLAYERS + 2, 0, 30, 30));
     add(instructions);
 
     /*
@@ -113,6 +119,8 @@ public class NewGameDialog extends JDialog {
 
       add(playerPanels[i]);
     }
+
+    add(buttonPanel);
 
     setSize(300, 350);
     setLocationRelativeTo(null);
