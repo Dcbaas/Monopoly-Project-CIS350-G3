@@ -1,6 +1,7 @@
 package view;
 
 import Controller.GameController;
+import javax.swing.JOptionPane;
 import view.boardspaces.MenuPanel;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -79,14 +80,19 @@ public class GameView extends JFrame {
 
 		constraintsBag.gridx = 0;
 		constraintsBag.gridy = 1;
-		add(textPanel, constraintsBag);
-
-//		playerDetailPanel.setDisplay(new Player("Mr. Parrot", "The fucktard", 8000));
-
+		add(textPanel, constraintsBag);;
 
 		setSize(1920, 1080);
 		setLocationRelativeTo(null);
 		setVisible(true);
+
+
+		menu.getNewGame().addActionListener(click -> {
+			JOptionPane pane = new JOptionPane();
+			NewGameDialog dialog = new NewGameDialog();
+			controller.addPlayers(dialog.getPlayers());
+
+		});
 	}
 	//Todo: Merge functions from TextController into the GUI.
 	//Todo: make a menu bar for the top of the JFrame.

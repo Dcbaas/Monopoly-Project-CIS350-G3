@@ -76,10 +76,9 @@ public class NewGameDialog extends JDialog {
    * and positions them on the box correctly. An reference to a vector
    * of players is passed in to the dialog box to be modified in order
    * to be used when creating the game.
-   * @param players the ArrayList being passed to this dialog box.
    *******************************************************************/
-  public NewGameDialog(ArrayList<Player> players) {
-    parentArrayList = players;
+  public NewGameDialog() {
+    parentArrayList = new ArrayList<>();
 
     setTitle("New Game");
 
@@ -181,5 +180,13 @@ public class NewGameDialog extends JDialog {
           + "of the name boxes.");
       parentArrayList.clear();
     }
+
+//    public static ArrayList<Player> getPlayers(){
+//      NewGameDialog newGameDialog = new NewGameDialog();
+//    }
+  }
+
+  public ArrayList<Player> getPlayers() {
+    return parentArrayList;
   }
 }

@@ -1,23 +1,24 @@
 
 import Model.GamePackage.Game;
-import Model.GamePackage.Player;
 import Controller.GameController;
 import view.GameView;
 import java.io.IOException;
-import java.util.ArrayList;
-import view.NewGameDialog;
 
 public class Monopoly {
 
 	public static void main(String[] args)
 			throws IOException, InterruptedException {
 
-    GameView view = new GameView();
+
 
 
     GameController controller = new GameController(new Game("res/board.txt","res/community.txt",
-        "res/chance.txt"), view, true, true, false, false);
+        "res/chance.txt"), null, true, true, false, false);
 
+    GameView view = new GameView(controller);
+
+    controller.setView(view);
+    controller.setHolder(view.getTextPanel().getHolder());
 
     // TODO ============= REMOVE TESTING ONLY=================================
     view.getTextPanel().printToTextArea("Hello World!");

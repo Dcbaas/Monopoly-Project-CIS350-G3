@@ -36,7 +36,6 @@ public class GameController {
         this.canBuy = canBuy;
         this.canMortgage = canMortgage;
         this.canDraw = canDraw;
-        this.holder = view.getTextPanel().getHolder();
     }
 
     /**********************************************************************
@@ -46,10 +45,21 @@ public class GameController {
      *********************************************************************/
     public void addPlayers(int num) {
         for (int i = 0; i < num; i++) {
-            //TODO: GUI Prompt user. I think this is going to be handled in a dialog box somewhere
-            //game.addPlayer(view.getPlayerName(i + 1), view.getPlayerToken(i + 1));
+            game.addPlayer("Player" + i, Integer.toString(i));
         }
     }
+
+    /**********************************************************************
+     * This method takes info from the view calls the games add players method.
+     *
+     * @param players The ArrayList of players
+     *********************************************************************/
+    public void addPlayers(ArrayList<Player> players) {
+        game.setPlayers(players);
+        game.setPlayerOrder();
+    }
+
+
 
     /**********************************************************************
      * This method calls Game function based on command passed in.
@@ -666,4 +676,11 @@ public class GameController {
         return command;
     }
 
+    public void setView(GameView view) {
+        this.view = view;
+    }
+
+    public void setHolder(List<String> holder) {
+        this.holder = holder;
+    }
 }

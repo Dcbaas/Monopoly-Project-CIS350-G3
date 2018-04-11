@@ -261,7 +261,6 @@ public class Game {
    * @param name The display name the player chooses
    * @param token The token the player chooses
    *********************************************************************/
-  @Deprecated
   public void addPlayer(String name, String token) {
     players.add(new Player(name, token, 1500));
   }
