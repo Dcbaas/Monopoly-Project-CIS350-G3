@@ -60,6 +60,8 @@ public class GamePanel extends JPanel {
   }
 
   public void movePlayer(int startSpace, int distance) {
+
+
     Player player = spaces[startSpace].removePlayer();
     if (startSpace + distance > spaces.length - 1) {
       spaces[startSpace + distance - spaces.length - 1].addPlayer(player);

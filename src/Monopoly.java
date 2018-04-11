@@ -9,27 +9,15 @@ import view.NewGameDialog;
 
 public class Monopoly {
 
-  private static boolean isRunning = false;
-
-
 	public static void main(String[] args)
 			throws IOException, InterruptedException {
 
-    //newGameItem.addActionListener();
-    ArrayList<Player> players = new ArrayList<>();
-    NewGameDialog newGameDialog = new NewGameDialog(players);
-
-    Game game = new Game("res/board.txt","res/community.txt",
-        "res/chance.txt",players);
-
     GameView view = new GameView();
-    //Initialization
-    view.getPlayerDetailPanel().setDisplay(game.getCurrentPlayer());
 
-    GameController controller = new GameController(game, view, true, true, false, false);
 
-    for(Player player: players)
-      view.getGamePanel().addPlayer(player);
+    GameController controller = new GameController(new Game("res/board.txt","res/community.txt",
+        "res/chance.txt"), view, true, true, false, false);
+
 
     // TODO ============= REMOVE TESTING ONLY=================================
     view.getTextPanel().printToTextArea("Hello World!");

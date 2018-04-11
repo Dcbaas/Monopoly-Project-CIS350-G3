@@ -76,7 +76,6 @@ public class Game {
    * @param chanceDeckFile The file that is used to generate the chance
    *                       deck.
    *********************************************************************/
-  @Deprecated //Text Based Constructor
   public Game(String boardFile, String communityChestDeckFile,
       String chanceDeckFile) {
     dieOne = new Die();

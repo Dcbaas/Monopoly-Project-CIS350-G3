@@ -1,5 +1,6 @@
 package view;
 
+import Controller.GameController;
 import view.boardspaces.MenuPanel;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -27,19 +28,25 @@ public class GameView extends JFrame {
 	/**A TextPanel to display information.*/
 	private TextPanel textPanel;
 
-	private MenuPanel menu;
 
 	/**
 	 * A GridBagConstraint to setup the layout
 	 * of this view.
 	 */
-	private GridBagConstraints c;
+	private GridBagConstraints constraintsBag;
+
+	private MenuPanel menu;
+	private GameController controller;
+
 
 	/********************************************************************
 	 * The constructor creates all of the JPanels needed and displays
 	 * them in the correct alignment.
 	 *******************************************************************/
-	public GameView(){
+	public GameView(GameController controller){
+
+		this.controller = controller;
+
 		setTitle("Monopoly");
 		setLayout(new GridBagLayout());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -52,27 +59,27 @@ public class GameView extends JFrame {
 		menu = new MenuPanel();
 		setJMenuBar(menu.getMenuBar());
 
-		c = new GridBagConstraints();
+		constraintsBag = new GridBagConstraints();
 
-		c.gridx = 0;
-		c.gridy = 0;
-		add(buttonPanel, c);
+		constraintsBag.gridx = 0;
+		constraintsBag.gridy = 0;
+		add(buttonPanel, constraintsBag);
 
-		c.gridx = 1;
-		c.gridy = 0;
-		c.gridheight = 2;
-		c.weighty = 2;
-		add(gamePanel, c);
+		constraintsBag.gridx = 1;
+		constraintsBag.gridy = 0;
+		constraintsBag.gridheight = 2;
+		constraintsBag.weighty = 2;
+		add(gamePanel, constraintsBag);
 
-		c.gridx = 2;
-		c.gridy = 0;
-		c.gridheight = 2;
-		c.weighty = 2;
-		add(playerDetailPanel, c);
+		constraintsBag.gridx = 2;
+		constraintsBag.gridy = 0;
+		constraintsBag.gridheight = 2;
+		constraintsBag.weighty = 2;
+		add(playerDetailPanel, constraintsBag);
 
-		c.gridx = 0;
-		c.gridy = 1;
-		add(textPanel, c);
+		constraintsBag.gridx = 0;
+		constraintsBag.gridy = 1;
+		add(textPanel, constraintsBag);
 
 //		playerDetailPanel.setDisplay(new Player("Mr. Parrot", "The fucktard", 8000));
 
