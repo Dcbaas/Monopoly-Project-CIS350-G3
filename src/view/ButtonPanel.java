@@ -13,12 +13,16 @@ public class ButtonPanel extends JPanel {
   /**
    * ToDo: Make the menu an option at the top with features.
    */
-  private JButton menu;
+  private JButton roll;
 
   /**
-   * A button to build properties.
+   * A button to build houses.
    */
-  private JButton build;
+  private JButton buildHouse;
+
+  /**A button to build hotels
+   */
+  private JButton buildHotel;
 
   /**
    * A button to sell properties
@@ -30,25 +34,34 @@ public class ButtonPanel extends JPanel {
    */
   private JButton mortgage;
 
+  /**A button to be done with the turn.
+   *
+   */
+  private JButton done;
+
   /********************************************************************
    * The constructor creates all of the buttons and places them in the
    * correct position.
    *******************************************************************/
   public ButtonPanel() {
-    setLayout(new GridLayout(5, 1, 10, 10));
+    setLayout(new GridLayout(6, 1, 10, 10));
     setSize(700, 100);
 
-    menu = new JButton("Menu");
-    build = new JButton("Build");
+    roll = new JButton("Roll");
+    buildHouse = new JButton("Build House");
+    buildHotel = new JButton("Build Hotel");
     sell = new JButton("Sell");
     mortgage = new JButton("Mortgage");
+    done = new JButton("Done");
 
     //Todo: Add ActionListeners for the buttons.
 
-    add(menu);
-    add(build);
+    add(roll);
+    add(buildHouse);
+    add(buildHotel);
     add(sell);
     add(mortgage);
+    add(done);
 
     Border blackLine = BorderFactory.createLineBorder(Color.BLACK);
     setBorder(blackLine);
