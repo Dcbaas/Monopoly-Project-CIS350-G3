@@ -2,8 +2,6 @@
 import Model.GamePackage.Game;
 import Model.GamePackage.Player;
 import Controller.GameController;
-import Model.GamePackage.Game;
-import javax.swing.JMenuItem;
 import view.GameView;
 import java.io.IOException;
 import java.util.ArrayList;

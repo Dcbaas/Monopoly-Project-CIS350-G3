@@ -14,7 +14,7 @@ import javax.swing.KeyStroke;
  * @author Santiago Quiroga.
  * @version April/11/2018.
  */
-public class MenuPanel  {
+public class MenuPanel {
 
   /**
    * the menu Bar/ top level component.
@@ -57,7 +57,6 @@ public class MenuPanel  {
         KeyEvent.VK_Q, ActionEvent.ALT_MASK));
     menu.add(exit);
 
-
     newGame = new JMenuItem("new game", KeyEvent.VK_N);
     newGame.setAccelerator(KeyStroke.getKeyStroke(
         KeyEvent.VK_N, ActionEvent.ALT_MASK));
@@ -67,6 +66,7 @@ public class MenuPanel  {
 
   /**
    * Menu getter.
+   *
    * @return JMenu for this class.
    */
   public JMenu getMenu() {
@@ -75,6 +75,7 @@ public class MenuPanel  {
 
   /**
    * Returns Menu item for exit.
+   *
    * @return JMenuItem for menu JMenu.
    */
   public JMenuItem getExit() {
@@ -83,6 +84,7 @@ public class MenuPanel  {
 
   /**
    * Returns Menu item for newGame.
+   *
    * @return JMenuItem for menu JMenu.
    */
   public JMenuItem getNewGame() {
@@ -91,6 +93,7 @@ public class MenuPanel  {
 
   /**
    * Returns Menu bar.
+   *
    * @return JMenuBar fot this class.
    */
   public JMenuBar getMenuBar() {
