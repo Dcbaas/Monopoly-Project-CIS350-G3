@@ -21,21 +21,19 @@ public class Monopoly {
     Game game = new Game("res/board.txt","res/community.txt",
         "res/chance.txt",players);
 
-    //Todo: Finish The initialization.
-
 		GameView view = new GameView();
-        Game game = new Game("res/board.txt", "res/community.txt", "res/chance.txt");
-        GameController controller = new GameController(game, view, true, true, false, false);
 
-        // TODO ============= REMOVE TESTING ONLY=================================
-		view.getTextPanel().printToTextArea("Hello World!");
+    GameController controller = new GameController(game, view, true, true, false, false);
 
-        // Blocking synchronized code. Makes program wait for textField Input
-        String command = controller.promptUser();
+    // TODO ============= REMOVE TESTING ONLY=================================
+    view.getTextPanel().printToTextArea("Hello World!");
 
-        // Program waits until something is entered, then calls this line and prints it.
-        view.getTextPanel().printToTextArea(command);
-        //TODO ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    // Blocking synchronized code. Makes program wait for textField Input
+    String command = controller.promptUser();
 
-    }
+    // Program waits until something is entered, then calls this line and prints it.
+    view.getTextPanel().printToTextArea(command);
+    //TODO ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+  }
 }
