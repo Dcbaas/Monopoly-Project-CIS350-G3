@@ -1,4 +1,4 @@
-package view.BoardSpaces;
+package view.boardSpaces;
 
 import java.awt.Color;
 import java.awt.Dimension;

@@ -1,7 +1,6 @@
 package view;
 
-import Model.GamePackage.Player;
-import View.BoardSpaces.MenuPanel;
+import view.boardSpaces.MenuPanel;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import javax.swing.JFrame;

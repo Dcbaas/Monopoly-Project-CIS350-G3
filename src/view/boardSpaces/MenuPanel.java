@@ -1,4 +1,4 @@
-package View.BoardSpaces;
+package view.boardSpaces;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -8,13 +8,33 @@ import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 
 /**
- * Created by unclear on 4/9/18.
+ * This is the Menu bar with its Items It allows for the whole piece
+ * to be single class
+ *
+ * @author Santiago Quiroga
+ * @version April/11/2018
  */
 public class MenuPanel  {
+
+  /**
+   * the menu Bar/ top level component
+   */
   JMenuBar menuBar;
+
+  /**
+   * a single menu button
+   */
   JMenu menu;
+
+  /**
+   * Exit and neg game menu items
+   */
   JMenuItem exit, newGame;
 
+
+  /**
+   * Basic constructor
+   */
   public MenuPanel() {
     //instantiates menu bar
     menuBar = new JMenuBar();
@@ -30,8 +50,6 @@ public class MenuPanel  {
     exit= new JMenuItem("exit", KeyEvent.VK_Q);
     exit.setAccelerator(KeyStroke.getKeyStroke(
         KeyEvent.VK_Q, ActionEvent.ALT_MASK));
-    exit.getAccessibleContext().setAccessibleDescription(
-        "This doesn't really do anything");
     menu.add(exit);
 
 
@@ -42,18 +60,34 @@ public class MenuPanel  {
 
   }
 
+  /**
+   * Menu getter
+   * @return JMenu for this class
+   */
   public JMenu getMenu() {
     return menu;
   }
 
+  /**
+   * Returns Menu item for exit
+   * @return JMenuItem for menu JMenu
+   */
   public JMenuItem getExit() {
     return exit;
   }
 
+  /**
+   * Returns Menu item for newGame
+   * @return JMenuItem for menu JMenu
+   */
   public JMenuItem getNewGame() {
     return newGame;
   }
 
+  /**
+   * Returns Menu bar
+   * @return JMenuBar fot this class
+   */
   public JMenuBar getMenuBar() {
     return menuBar;
   }

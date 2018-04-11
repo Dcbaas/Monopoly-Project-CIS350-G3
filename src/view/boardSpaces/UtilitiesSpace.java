@@ -1,17 +1,25 @@
-package view.BoardSpaces;
+package view.boardSpaces;
 
-import java.awt.*;
-import javax.swing.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.GridBagLayout;
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
+import javax.swing.JLabel;
 import javax.swing.border.Border;
 
 /**********************************************************************
- * The TaxSpace creates a board space that is a tax square on the board
- * of Monopoly
+ * The Utilities Space draws a JPanel that resembles one of the
+ * utilities squares from the Board of Monopoly.
  *
  * @author David Baas
- * @version 3/26/2018
+ * @version 2/26/2018
  *********************************************************************/
-public class TaxSpace extends Spaces {
+public class UtilitiesSpace extends Spaces {
 
   /**
    * A final int to track the width of a space.
@@ -24,87 +32,74 @@ public class TaxSpace extends Spaces {
   private static final int HEIGHT = 100;
 
   /**
-   * An array of infomation strings for taxInfo.
+   * A static final JLabel for the price of the utility.
    */
-  private static final String[] infoStrings = {"Pay 10% or $200", "Pay $75.00"};
+  private static final JLabel price = new JLabel("$150");
 
   /**
-   * A JLabel to track the name of the TaxSpace.
+   * An Image for the icon of the utility.
    */
-  private JLabel taxName;
+  private Image utilitiesImg;
 
   /**
-   * A JLabel to display info about the tax in the TaxSpace.
+   * A JLabel for the name of the utility.
    */
-  private JLabel taxInfo;
+  private JLabel name;
 
   /**
-   * A boolean to track what type of tax space this TaxSpace is.
-   */
-  private boolean incomeTax;
-
-  /**
-   * A Dimension to track the dimensions of the tax space.
+   * A Dimension to track the dimensions of the utility.
    */
   private Dimension dimension;
 
+  /**
+   * A boolean to track weather the utility is a Water Works or The Electric company.
+   */
+  private boolean waterworks;
+
+
   /********************************************************************
-   * The constructor for the TaxSpace creates a tax space depanding on
-   * weather it is an income tax space or a luxury space.
-   *
-   * @param incomeTax Determines what type of tax space this TaxSpace
-   * is.
+   * The constructor creates a UtilitySpace dpendent on what value is
+   * set for the waterworks variable.
+   * @param waterworks The type of utility this UtilitiesSpace will be.
+   * @throws IOException If there is a problem loading the file.
    *******************************************************************/
-  public TaxSpace(boolean incomeTax) {
+  public UtilitiesSpace(boolean waterworks) throws IOException {
     super(false);
+    this.waterworks = waterworks;
 
-    this.incomeTax = incomeTax;
-
-    if (incomeTax) {
-      taxName = new JLabel("Income Tax");
-      taxInfo = new JLabel(infoStrings[0]);
+    if (waterworks) {
       dimension = new Dimension(WIDTH, HEIGHT);
+      utilitiesImg = ImageIO.read(new File("res/waterWorks.png"));
+      name = new JLabel("Water Works");
     } else {
-      taxName = new JLabel("Luxury Tax");
-      taxInfo = new JLabel(infoStrings[1]);
       dimension = new Dimension(HEIGHT, WIDTH);
+      //Todo: Find a Better image.
+      utilitiesImg = ImageIO.read(new File("res/electricCompany.jpg"));
+      name = new JLabel("Electric Company");
     }
-
     setLayout(new GridBagLayout());
-    drawLabels();
-
     Border blackLine = BorderFactory.createLineBorder(Color.BLACK);
     setBorder(blackLine);
   }
 
   /********************************************************************
-   * The drawLabels method is a private method that draws the
-   * labels onto the JPanel.
+   * The paintComponent draws the utility icon onto the JPanel.
+   * @param g The Graphics component being drawn.
    *******************************************************************/
-  private void drawLabels() {
-    GridBagConstraints g = new GridBagConstraints();
-    g.gridx = 0;
-    g.gridy = 0;
-    g.anchor = GridBagConstraints.NORTH;
-    g.weighty = 2;
-    add(taxName, g);
-
-    g = new GridBagConstraints();
-    g.gridx = 0;
-    g.gridy = 2;
-    g.anchor = GridBagConstraints.SOUTH;
-    add(taxInfo, g);
-  }
-
-  public void paintComponent(Graphics g){
+  public void paintComponent(Graphics g) {
     super.paintComponent(g);
+    if (waterworks) {
+      g.drawImage(utilitiesImg, 0, 20, 50, 50, null);
+    } else {
+      g.drawImage(utilitiesImg, 0, 0, 50, 50, null);
+    }
     drawTokens(g);
   }
 
   /********************************************************************
    * The getPreferredSize method is used to Lock the size of the Panel
    * to the correct size.
-   * @return The dimensions of the TaxSpace.
+   * @return The dimensions of the UtilitiesSpace.
    *******************************************************************/
   @Override
   public Dimension getPreferredSize() {
@@ -114,7 +109,7 @@ public class TaxSpace extends Spaces {
   /********************************************************************
    * The getMinimumSize method refers to the getPreferredSize method
    * to lock the size of the panel.
-   * @return getPreferredSize the dimensions of the TaxSpace.
+   * @return getPreferredSize the dimensions of the UtilitiesSpace.
    *******************************************************************/
   @Override
   public Dimension getMinimumSize() {
@@ -124,7 +119,7 @@ public class TaxSpace extends Spaces {
   /********************************************************************
    * The getMaximumSize method refers to the getPreferredSize method
    * to lock the size of the panel.
-   * @return getPreferredSize the dimensions of the TaxSpace.
+   * @return getPreferredSize the dimensions of the UtilitiesSpace.
    *******************************************************************/
   @Override
   public Dimension getMaximumSize() {
