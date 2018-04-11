@@ -1,14 +1,13 @@
-package view.BoardSpaces;
+package view.boardspaces;
 
 
 import Model.GamePackage.Player;
-import view.PlayerToken;
 import java.awt.Graphics;
 import java.util.LinkedList;
 import javax.swing.JPanel;
 
 /**********************************************************************
- * The Spaces class is an abstract class which all of the BoardSpaces
+ * The Spaces class is an abstract class which all of the boardspaces
  * draw from primarily to draw player tokens on the screen.
  *
  * @author David Baas

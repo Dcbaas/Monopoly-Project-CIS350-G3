@@ -1,6 +1,6 @@
 package view;
 
-import Model.GamePackage.Player;
+import view.boardspaces.MenuPanel;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import javax.swing.JFrame;
@@ -27,6 +27,8 @@ public class GameView extends JFrame {
 	/**A TextPanel to display information.*/
 	private TextPanel textPanel;
 
+	private MenuPanel menu;
+
 	/**
 	 * A GridBagConstraint to setup the layout
 	 * of this view.
@@ -47,6 +49,8 @@ public class GameView extends JFrame {
 		playerDetailPanel = new PlayerDetailPanel();
 		buttonPanel = new ButtonPanel();
 		textPanel = new TextPanel();
+		menu = new MenuPanel();
+		setJMenuBar(menu.getMenuBar());
 
 		c = new GridBagConstraints();
 
