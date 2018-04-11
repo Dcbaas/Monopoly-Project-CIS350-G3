@@ -1,6 +1,6 @@
 package view;
 
-import view.boardSpaces.MenuPanel;
+import view.boardspaces.MenuPanel;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import javax.swing.JFrame;

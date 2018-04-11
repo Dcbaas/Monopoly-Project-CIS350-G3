@@ -1,4 +1,4 @@
-package view.boardSpaces;
+package view.boardspaces;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -9,31 +9,36 @@ import javax.swing.KeyStroke;
 
 /**
  * This is the Menu bar with its Items It allows for the whole piece
- * to be single class
+ * to be single class.
  *
- * @author Santiago Quiroga
- * @version April/11/2018
+ * @author Santiago Quiroga.
+ * @version April/11/2018.
  */
 public class MenuPanel  {
 
   /**
-   * the menu Bar/ top level component
+   * the menu Bar/ top level component.
    */
   JMenuBar menuBar;
 
   /**
-   * a single menu button
+   * a single menu button.
    */
   JMenu menu;
 
   /**
-   * Exit and neg game menu items
+   * Exit  menu item.
    */
-  JMenuItem exit, newGame;
+  JMenuItem exit;
+
+  /**
+   * New game  menu Item.
+   */
+  JMenuItem newGame;
 
 
   /**
-   * Basic constructor
+   * Basic constructor.
    */
   public MenuPanel() {
     //instantiates menu bar
@@ -47,7 +52,7 @@ public class MenuPanel  {
     menuBar.add(menu);
 
     //Menu items
-    exit= new JMenuItem("exit", KeyEvent.VK_Q);
+    exit = new JMenuItem("exit", KeyEvent.VK_Q);
     exit.setAccelerator(KeyStroke.getKeyStroke(
         KeyEvent.VK_Q, ActionEvent.ALT_MASK));
     menu.add(exit);
@@ -61,32 +66,32 @@ public class MenuPanel  {
   }
 
   /**
-   * Menu getter
-   * @return JMenu for this class
+   * Menu getter.
+   * @return JMenu for this class.
    */
   public JMenu getMenu() {
     return menu;
   }
 
   /**
-   * Returns Menu item for exit
-   * @return JMenuItem for menu JMenu
+   * Returns Menu item for exit.
+   * @return JMenuItem for menu JMenu.
    */
   public JMenuItem getExit() {
     return exit;
   }
 
   /**
-   * Returns Menu item for newGame
-   * @return JMenuItem for menu JMenu
+   * Returns Menu item for newGame.
+   * @return JMenuItem for menu JMenu.
    */
   public JMenuItem getNewGame() {
     return newGame;
   }
 
   /**
-   * Returns Menu bar
-   * @return JMenuBar fot this class
+   * Returns Menu bar.
+   * @return JMenuBar fot this class.
    */
   public JMenuBar getMenuBar() {
     return menuBar;
