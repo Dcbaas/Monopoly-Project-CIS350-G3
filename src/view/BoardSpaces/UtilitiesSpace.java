@@ -1,4 +1,4 @@
-package View.BoardSpaces;
+package view.BoardSpaces;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -13,94 +13,85 @@ import javax.swing.JLabel;
 import javax.swing.border.Border;
 
 /**********************************************************************
- * The RailRoadSpace creates a space that resembles a RR space on the
- * board of Monopoly.
+ * The Utilities Space draws a JPanel that resembles one of the
+ * utilities squares from the Board of Monopoly.
  *
  * @author David Baas
- * @version 3/24/2018
+ * @version 2/26/2018
  *********************************************************************/
-public class RailRoadSpace extends Spaces {
+public class UtilitiesSpace extends Spaces {
 
   /**
-   * A final int to size the locomotive image.
-   */
-  public static final int IMG_SIZE = 50;
-
-  /**
-   * private int houseCounter; A final int to track the width of a housing panel.
+   * A final int to track the width of a space.
    */
   private static final int WIDTH = 50;
+
   /**
-   * A final int to track the height of a housing panel.
+   * A final int to track the height of a space.
    */
   private static final int HEIGHT = 100;
+
   /**
-   * An image of the Monopoly Locomotive.
+   * A static final JLabel for the price of the utility.
    */
-
-  private static Image railRoadImg;
+  private static final JLabel price = new JLabel("$150");
 
   /**
-   * A JLabel to display the name.
+   * An Image for the icon of the utility.
+   */
+  private Image utilitiesImg;
+
+  /**
+   * A JLabel for the name of the utility.
    */
   private JLabel name;
 
   /**
-   * A JLabel for the price.
-   */
-  private JLabel price;
-
-  /**
-   * A boolean to track if this is a horizontal RR.
-   */
-  private boolean horizontal;
-
-  /**
-   * A Dimension to scale the size of the RRSpace.
+   * A Dimension to track the dimensions of the utility.
    */
   private Dimension dimension;
 
+  /**
+   * A boolean to track weather the utility is a Water Works or The Electric company.
+   */
+  private boolean waterworks;
+
 
   /********************************************************************
-   * The constrctor creates and initializes all of the variables. It
-   * formats the panel based off of if the horizontal flag is set to
-   * true.
-   * @param horizontal flag to determine if this space will be oriented
-   * horizontal.
-   * @param name The name of the RR this RRSpace represents.
-   * @throws IOException If there is a problem loading the RR locomotive
-   * image.
+   * The constructor creates a UtilitySpace dpendent on what value is
+   * set for the waterworks variable.
+   * @param waterworks The type of utility this UtilitiesSpace will be.
+   * @throws IOException If there is a problem loading the file.
    *******************************************************************/
-  public RailRoadSpace(boolean horizontal, String name) throws IOException {
+  public UtilitiesSpace(boolean waterworks) throws IOException {
     super(false);
+    this.waterworks = waterworks;
 
-    railRoadImg = ImageIO.read(new File("res/Monopoly RR.jpg"));
-
-    dimension = new Dimension(WIDTH, HEIGHT);
-    this.horizontal = false;
-
-    if (horizontal) {
+    if (waterworks) {
+      dimension = new Dimension(WIDTH, HEIGHT);
+      utilitiesImg = ImageIO.read(new File("res/waterWorks.png"));
+      name = new JLabel("Water Works");
+    } else {
       dimension = new Dimension(HEIGHT, WIDTH);
-      this.horizontal = horizontal;
+      //Todo: Find a Better image.
+      utilitiesImg = ImageIO.read(new File("res/electricCompany.jpg"));
+      name = new JLabel("Electric Company");
     }
-
     setLayout(new GridBagLayout());
-    //drawSpace();
     Border blackLine = BorderFactory.createLineBorder(Color.BLACK);
     setBorder(blackLine);
-
   }
 
   /********************************************************************
-   * The paint Component paints the image onto the screen.
-   * @param g The Graphics component.
+   * The paintComponent draws the utility icon onto the JPanel.
+   * @param g The Graphics component being drawn.
    *******************************************************************/
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
-    if (!horizontal) {
-      g.drawImage(railRoadImg, 0, 20, IMG_SIZE, IMG_SIZE, null);
+    if (waterworks) {
+      g.drawImage(utilitiesImg, 0, 20, 50, 50, null);
     } else {
-      g.drawImage(railRoadImg, 20, 0, IMG_SIZE, IMG_SIZE, null);
+      g.drawImage(utilitiesImg, 0, 0, 50, 50, null);
     }
     drawTokens(g);
   }
@@ -108,7 +99,7 @@ public class RailRoadSpace extends Spaces {
   /********************************************************************
    * The getPreferredSize method is used to Lock the size of the Panel
    * to the correct size.
-   * @return The dimensions of the board space.
+   * @return The dimensions of the UtilitiesSpace.
    *******************************************************************/
   @Override
   public Dimension getPreferredSize() {
@@ -118,7 +109,7 @@ public class RailRoadSpace extends Spaces {
   /********************************************************************
    * The getMinimumSize method refers to the getPreferredSize method
    * to lock the size of the panel.
-   * @return getPreferredSize the dimensions of the BoardSpace
+   * @return getPreferredSize the dimensions of the UtilitiesSpace.
    *******************************************************************/
   @Override
   public Dimension getMinimumSize() {
@@ -128,7 +119,7 @@ public class RailRoadSpace extends Spaces {
   /********************************************************************
    * The getMaximumSize method refers to the getPreferredSize method
    * to lock the size of the panel.
-   * @return getPreferredSize the dimensions of the BoardSpace
+   * @return getPreferredSize the dimensions of the UtilitiesSpace.
    *******************************************************************/
   @Override
   public Dimension getMaximumSize() {

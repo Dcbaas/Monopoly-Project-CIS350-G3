@@ -1,16 +1,17 @@
-package View;
+package view;
 
-import View.BoardSpaces.CardSpace;
-import View.BoardSpaces.FreeParkingSpace;
-import View.BoardSpaces.GoSpace;
-import View.BoardSpaces.GoToJailSpace;
-import View.BoardSpaces.JailSpace;
-import View.BoardSpaces.PropertySpace;
-import View.BoardSpaces.PropertySpace.Position;
-import View.BoardSpaces.RailRoadSpace;
-import View.BoardSpaces.Spaces;
-import View.BoardSpaces.TaxSpace;
-import View.BoardSpaces.UtilitiesSpace;
+import Model.GamePackage.Player;
+import view.BoardSpaces.CardSpace;
+import view.BoardSpaces.FreeParkingSpace;
+import view.BoardSpaces.GoSpace;
+import view.BoardSpaces.GoToJailSpace;
+import view.BoardSpaces.JailSpace;
+import view.BoardSpaces.PropertySpace;
+import view.BoardSpaces.PropertySpace.Position;
+import view.BoardSpaces.RailRoadSpace;
+import view.BoardSpaces.Spaces;
+import view.BoardSpaces.TaxSpace;
+import view.BoardSpaces.UtilitiesSpace;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -59,16 +60,16 @@ public class GamePanel extends JPanel {
   }
 
   public void movePlayer(int startSpace, int distance) {
-    PlayerToken p = spaces[startSpace].removePlayer();
+    Player player = spaces[startSpace].removePlayer();
     if (startSpace + distance > spaces.length - 1) {
-      spaces[startSpace + distance - spaces.length - 1].addPlayer(p);
+      spaces[startSpace + distance - spaces.length - 1].addPlayer(player);
     } else {
-      spaces[startSpace + distance].addPlayer(p);
+      spaces[startSpace + distance].addPlayer(player);
     }
   }
 
-  public void addPlayer(PlayerToken p) {
-    spaces[0].addPlayer(p);
+  public void addPlayer(Player player) {
+    spaces[0].addPlayer(player);
   }
 
   @Override

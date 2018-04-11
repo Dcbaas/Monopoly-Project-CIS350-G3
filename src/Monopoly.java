@@ -1,40 +1,55 @@
-import View.GameView;
+
+import Model.GamePackage.Game;
+import Model.GamePackage.Player;
+import Controller.GameController;
+import Model.GamePackage.Game;
+import javax.swing.JMenuItem;
+import view.GameView;
 import java.io.IOException;
-import java.util.List;
+import java.util.ArrayList;
+import view.NewGameDialog;
 
 public class Monopoly {
 
+  private static boolean isRunning = false;
+
+  private static JMenuItem newGameItem;
+
+  private static JMenuItem quitItem;
+
 	public static void main(String[] args)
 			throws IOException, InterruptedException {
-		GameView view = new GameView();
 
-        view.getTextPanel().getTextField().setEditable(true);
-		view.getTextPanel().printToTextArea("Hello World!");
+    newGameItem = new JMenuItem("New Game");
+    quitItem = new JMenuItem("Quit");
 
-        // Blocking synchronized code. Makes program wait for textField Input
-        final List<String> holder = view.getTextPanel().getHolder();
+    quitItem.addActionListener(e -> System.exit(0));
 
-        String command;
-        // Make textField Editable
-        view.getTextPanel().getTextField().setEditable(true);
+    //newGameItem.addActionListener();
+    ArrayList<Player> players = new ArrayList<>();
+    NewGameDialog newGameDialog = new NewGameDialog(players);
 
-        // Blocking synchronized code. Makes program wait for textField Input
-        synchronized (holder) {
+    Game game = new Game("res/board.txt","res/community.txt",
+        "res/chance.txt",players);
 
-            // wait for input from field
-            while (holder.isEmpty()) {
-                holder.wait();
-            }
-            command = holder.remove(0);
-        }
+    GameView view = new GameView();
+    //Initialization
+    view.getPlayerDetailPanel().setDisplay(game.getCurrentPlayer());
 
-        // Make textField not Editable
-        view.getTextPanel().getTextField().setEditable(false);
+    GameController controller = new GameController(game, view, true, true, false, false);
 
-        // Program waits until something is entered, then calls this line and prints it.
-        view.getTextPanel().printToTextArea(command);
+    for(Player player: players)
+      view.getGamePanel().addPlayer(player);
 
-    }
+    // TODO ============= REMOVE TESTING ONLY=================================
+    view.getTextPanel().printToTextArea("Hello World!");
 
+    // Blocking synchronized code. Makes program wait for textField Input
+    String command = controller.promptUser();
 
+    // Program waits until something is entered, then calls this line and prints it.
+    view.getTextPanel().printToTextArea(command);
+    //TODO ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+  }
 }

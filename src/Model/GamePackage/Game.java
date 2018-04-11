@@ -20,7 +20,9 @@ import java.util.stream.Collectors;
  *
  * @author Dylan Kernohan
  * @author Santiago Quiroga
- * @version 2/19/2018
+ * @author David Baas
+ * @since 2/19/2018
+ * @version 4/10/2018
  *********************************************************************/
 public class Game {
 
@@ -74,7 +76,9 @@ public class Game {
    * @param chanceDeckFile The file that is used to generate the chance
    *                       deck.
    *********************************************************************/
-  public Game(String boardFile, String communityChestDeckFile, String chanceDeckFile) {
+  @Deprecated //Text Based Constructor
+  public Game(String boardFile, String communityChestDeckFile,
+      String chanceDeckFile) {
     dieOne = new Die();
     dieTwo = new Die();
     board = new Board(boardFile);
@@ -83,6 +87,30 @@ public class Game {
     chanceDeck = new Deck(chanceDeckFile, true);
     chanceDeck.shuffleDeck();
     players = new ArrayList<>();
+    bank = new Bank(board.getOwnableSquares());
+  }
+
+  /**********************************************************************
+   * The constructor creates a game by creating the die, board,
+   * decks/cards, players, and bank objects.
+   *
+   * @param boardFile The file that is used to generates the board.
+   * @param communityChestDeckFile The file that is used to generate the
+   *                               community chest deck.
+   * @param chanceDeckFile The file that is used to generate the chance
+   *                       deck.
+   * @param players The List of player this Game will have.
+   *********************************************************************/
+  public Game(String boardFile, String communityChestDeckFile,
+      String chanceDeckFile, ArrayList<Player> players) {
+    dieOne = new Die();
+    dieTwo = new Die();
+    board = new Board(boardFile);
+    comunityChestDeck = new Deck(communityChestDeckFile, false);
+    comunityChestDeck.shuffleDeck();
+    chanceDeck = new Deck(chanceDeckFile, true);
+    chanceDeck.shuffleDeck();
+    this.players = players;
     bank = new Bank(board.getOwnableSquares());
   }
 
@@ -234,6 +262,7 @@ public class Game {
    * @param name The display name the player chooses
    * @param token The token the player chooses
    *********************************************************************/
+  @Deprecated
   public void addPlayer(String name, String token) {
     players.add(new Player(name, token, 1500));
   }
@@ -273,9 +302,11 @@ public class Game {
    * @param buyer The player trying to buy
    * @return wetherthe action was able to be completed succesfully or not
    *********************************************************************/
-  public boolean buyOwnableSquare(OwnableSquare ownableSquare, Player buyer, int price) {
+  public boolean buyOwnableSquare(OwnableSquare ownableSquare, Player buyer,
+      int price) {
     // Check is buyer has enough money
-    if (buyer.getWallet() >= ownableSquare.getPRICE() && ownableSquare.getOwner() == null) {
+    if (buyer.getWallet() >= ownableSquare.getPRICE()
+        && ownableSquare.getOwner() == null) {
       buyer.recieveProperty(bank.giveProperty(ownableSquare));
       buyer.pay(ownableSquare.getPRICE());
       ownableSquare.setOwner(buyer);
@@ -288,7 +319,8 @@ public class Game {
         }
       }
 
-      if (ownableSquare.getGROUP_NUMBER() == 1 || ownableSquare.getGROUP_NUMBER() == 8) {
+      if (ownableSquare.getGROUP_NUMBER() == 1
+          || ownableSquare.getGROUP_NUMBER() == 8) {
         if (groupCounter == 2) {
           currentPlayer.addGroupOwned(ownableSquare.getGROUP_NUMBER());
         }
@@ -321,12 +353,14 @@ public class Game {
     // Check if player will be passing GO square
     if (player.getPosition() + (dieVal1 + dieVal2) > 39) {
       // New position = old position + dieVals - numberOfSquares
-      board.setPlayerPosition(player, (player.getPosition() + (dieVal1 + dieVal2)) - 40);
+      board.setPlayerPosition(player,
+          (player.getPosition() + (dieVal1 + dieVal2)) - 40);
       player.setPosition((player.getPosition() + (dieVal1 + dieVal2)) - 40);
       player.receiveMoney(200);
     } else {
       //Sets the player position
-      board.setPlayerPosition(player, player.getPosition() + (dieVal1 + dieVal2));
+      board.setPlayerPosition(player,
+          player.getPosition() + (dieVal1 + dieVal2));
       player.setPosition(player.getPosition() + (dieVal1 + dieVal2));
     }
   }
@@ -341,7 +375,8 @@ public class Game {
     // Check if buyer paid full amount
     if (buyer.pay(ownableSquare.getPRICE()) == ownableSquare.getPRICE()) {
       // Buyer receives ownableSquare, Owner gives it.
-      buyer.recieveProperty(ownableSquare.getOwner().giveProperty(ownableSquare));
+      buyer.recieveProperty(
+          ownableSquare.getOwner().giveProperty(ownableSquare));
     } else {
       return false;
     }
@@ -368,7 +403,8 @@ public class Game {
    *********************************************************************/
   public void payMortgage(OwnableSquare propertySquare) {
     propertySquare.setMortgaged(false);
-    propertySquare.getOwner().pay((int) Math.ceil(propertySquare.getMORTGAGE_VAL() * 1.1));
+    propertySquare.getOwner()
+        .pay((int) Math.ceil(propertySquare.getMORTGAGE_VAL() * 1.1));
   }
 
 
@@ -381,27 +417,24 @@ public class Game {
    *********************************************************************/
   public Card drawCard(Boolean deckType) {
     //Checks for the deckType
-      Card card;
-      if(deckType == true){
-          card = chanceDeck.drawCard();
-      }
-      else{
-          card = comunityChestDeck.drawCard();
-      }
-
-      // Gives player "get out of jail free" card, uses all others right away.
-    if(card.getCardDescription().equals("Get out of Jail Free Card")){
-          currentPlayer.recieveCard(card);
+    Card card;
+    if (deckType == true) {
+      card = chanceDeck.drawCard();
+    } else {
+      card = comunityChestDeck.drawCard();
     }
-    else{
-          useCard(card);
-          //Return card to deck after it was used.
-        if(deckType == true){
-            chanceDeck.returnCard(card);
-        }
-        else{
-            comunityChestDeck.returnCard(card);
-        }
+
+    // Gives player "get out of jail free" card, uses all others right away.
+    if (card.getCardDescription().equals("Get out of Jail Free Card")) {
+      currentPlayer.recieveCard(card);
+    } else {
+      useCard(card);
+      //Return card to deck after it was used.
+      if (deckType == true) {
+        chanceDeck.returnCard(card);
+      } else {
+        comunityChestDeck.returnCard(card);
+      }
     }
     return card;
   }
@@ -422,8 +455,8 @@ public class Game {
 
     //Checks which instructions need to be performed
     if (actions[0] != -1) {
-        // Advance to Go, collect $200
-        currentPlayer.setPosition(0);
+      // Advance to Go, collect $200
+      currentPlayer.setPosition(0);
       cardCollect(actions[0]);
     }
     if (actions[1] != -1) {
@@ -439,16 +472,20 @@ public class Game {
       cardMoveBack(actions[4]);
     }
     if (actions[5] != -1) {
-      actionSuccess = !(actionSuccess && !cardTax(currentPlayer)) && actionSuccess;
+      actionSuccess =
+          !(actionSuccess && !cardTax(currentPlayer)) && actionSuccess;
     }
     if (actions[6] != -1) {
-      actionSuccess = !(actionSuccess && !cardPayBank(actions[6])) && actionSuccess;
+      actionSuccess =
+          !(actionSuccess && !cardPayBank(actions[6])) && actionSuccess;
     }
     if (actions[7] != -1) {
-      actionSuccess = !(actionSuccess && !cardPayAllPlayers(actions[7])) && actionSuccess;
+      actionSuccess =
+          !(actionSuccess && !cardPayAllPlayers(actions[7])) && actionSuccess;
     }
     if (actions[8] != -1) {
-      actionSuccess = !(actionSuccess && !cardCollectFromPlayers(actions[8])) && actionSuccess;
+      actionSuccess = !(actionSuccess && !cardCollectFromPlayers(actions[8]))
+          && actionSuccess;
     }
     return actionSuccess;
   }
@@ -462,14 +499,16 @@ public class Game {
    * @param fee the amount to be paid
    * @return boolean whether the action was fully proceed
    *********************************************************************/
-  public boolean collectFee(Player unfortunateSoul, Player fortunateSoul, int fee) {
+  public boolean collectFee(Player unfortunateSoul, Player fortunateSoul,
+      int fee) {
     //Check if player can pay fee
     if (unfortunateSoul.getWallet() - fee >= 0 && fortunateSoul != null) {
       //collect the given fee from player / bank
       unfortunateSoul.pay(fee);
       //pay the collected fee to player/ bank
       fortunateSoul.setWallet(fortunateSoul.getWallet() + fee);
-    } else if (unfortunateSoul.getWallet() - fee >= 0 && fortunateSoul == null) {
+    } else if (unfortunateSoul.getWallet() - fee >= 0
+        && fortunateSoul == null) {
       unfortunateSoul.pay(fee);
     } else {
       return false;
@@ -519,7 +558,8 @@ public class Game {
     int negativeMoves = 1, positiveMoves = 1;
 
     //Creates two pointers that start right where the player is at.
-    int negativePointer = currentPlayer.getPosition(), positivePointer = currentPlayer
+    int negativePointer = currentPlayer
+        .getPosition(), positivePointer = currentPlayer
         .getPosition();
 
     //The closest board square.
@@ -530,9 +570,11 @@ public class Game {
 
       //Check if either pointer will go over the limits of the board
       negativePointer =
-          (negativePointer - 1 == 0) ? board.getSquaresList().size() - 1 : negativePointer;
+          (negativePointer - 1 == 0) ? board.getSquaresList().size() - 1
+              : negativePointer;
       positivePointer =
-          (positivePointer + 1 == board.getSquaresList().size() - 1) ? 0 : positivePointer;
+          (positivePointer + 1 == board.getSquaresList().size() - 1) ? 0
+              : positivePointer;
 
       //Check if the negative pointer to see if the current location matches the desired square
       if (boardSquares.get(negativePointer).getType() == typeID) {
@@ -574,7 +616,8 @@ public class Game {
     //Checks if the number of steps that the player has to move back are beyond th Go square
     int newPosition = (currentPlayer.getPosition() - numSquares > 0) ?
         currentPlayer.getPosition() - numSquares :
-        currentPlayer.getPosition() - numSquares + board.getSquaresList().size() - 1;
+        currentPlayer.getPosition() - numSquares + board.getSquaresList().size()
+            - 1;
 
     //Set the player's new position
     board.setPlayerPosition(currentPlayer, newPosition);
@@ -593,7 +636,8 @@ public class Game {
 
     //goes through all properties that have a house or a hotel and calculates the amount due
     for (PropertySquare propertySquare : player.getOwnableProperties().stream()
-        .filter(property -> property.getType() == 0).map(property -> (PropertySquare) property)
+        .filter(property -> property.getType() == 0)
+        .map(property -> (PropertySquare) property)
 
         .filter(lambdaPropertySquare -> lambdaPropertySquare.isHasHotel()
             || lambdaPropertySquare.getNumHouses() > 0)
@@ -639,8 +683,9 @@ public class Game {
   private boolean cardPayAllPlayers(int amount) {
     //Checks if the player can pay all player
     if (currentPlayer.getWallet() < amount * (players.size() - 1)) {
-      players.stream().filter(player -> player != currentPlayer).forEach(player ->
-          player.receiveMoney(currentPlayer.pay(amount)));
+      players.stream().filter(player -> player != currentPlayer)
+          .forEach(player ->
+              player.receiveMoney(currentPlayer.pay(amount)));
       return true;
     } else {
       return false;
@@ -655,7 +700,8 @@ public class Game {
    *********************************************************************/
   private boolean cardCollectFromPlayers(int amount) {
     //Goes through the list of other players
-    for (Player player : players.stream().filter(lambdaPlayer -> lambdaPlayer != currentPlayer)
+    for (Player player : players.stream()
+        .filter(lambdaPlayer -> lambdaPlayer != currentPlayer)
 
         .collect(Collectors.toCollection(ArrayList<Player>::new))) {
       //checks if the given player will be able to pay the given amount.
@@ -745,8 +791,8 @@ public class Game {
           case 4:
             rent = railRoadSquare.getFOUR_RENT();
             break;
-            default:
-              rent = -1;
+          default:
+            rent = -1;
         }
 
         collectFee(currentPlayer, railRoadSquare.getOwner(), rent);
@@ -754,8 +800,10 @@ public class Game {
       case 3:
         UtilitiesSquare utilitiesSquare = (UtilitiesSquare) board
             .getOwnableSquare(currentPlayer.getPosition());
-        rent = (currentPlayer.getNumPropertiesOwnedByType(3) > 1) ? utilitiesSquare
-            .getRentOne(random.nextInt(6) + 1) : utilitiesSquare.getRentTwo(random.nextInt(6) + 1);
+        rent =
+            (currentPlayer.getNumPropertiesOwnedByType(3) > 1) ? utilitiesSquare
+                .getRentOne(random.nextInt(6) + 1)
+                : utilitiesSquare.getRentTwo(random.nextInt(6) + 1);
         collectFee(currentPlayer, utilitiesSquare.getOwner(), rent);
         break;
       default:
@@ -775,7 +823,8 @@ public class Game {
     //Checks if the player is at an OwnableSquare
     if (board.isSquareOwnable(currentPlayer.getPosition())) {
       //Checks if the bank owns the square
-      if (board.getOwnableSquare(currentPlayer.getPosition()).getOwner() != null)
+      if (board.getOwnableSquare(currentPlayer.getPosition()).getOwner()
+          != null)
       //Checks if the current player is the owner of the square he is standing at.
       {
         return !board.getOwnableSquare(currentPlayer.getPosition()).getOwner()

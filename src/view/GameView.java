@@ -1,4 +1,4 @@
-package View;
+package view;
 
 import Model.GamePackage.Player;
 import View.BoardSpaces.MenuPanel;
@@ -75,7 +75,7 @@ public class GameView extends JFrame {
 		c.gridy = 1;
 		add(textPanel, c);
 
-		playerDetailPanel.setDisplay(new Player("Mr. Parrot", "The fucktard", 8000));
+//		playerDetailPanel.setDisplay(new Player("Mr. Parrot", "The fucktard", 8000));
 
 
 		setSize(1920, 1080);
