@@ -13,17 +13,9 @@ public class Monopoly {
 
   private static boolean isRunning = false;
 
-  private static JMenuItem newGameItem;
-
-  private static JMenuItem quitItem;
 
 	public static void main(String[] args)
 			throws IOException, InterruptedException {
-
-    newGameItem = new JMenuItem("New Game");
-    quitItem = new JMenuItem("Quit");
-
-    quitItem.addActionListener(e -> System.exit(0));
 
     //newGameItem.addActionListener();
     ArrayList<Player> players = new ArrayList<>();
