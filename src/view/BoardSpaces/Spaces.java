@@ -71,10 +71,10 @@ public abstract class Spaces extends JPanel {
 
     for (Player player : onSpace) {
       if (i >= 2) {
-        graphics.drawImage(player.getToken(), 15+ offset, 30 , 10, 10, null);
+        graphics.drawImage(player.getToken(), 15+ offset, 40 , 20, 20, null);
       }
       else {
-        graphics.drawImage(player.getToken(), 15, 20 + offset, 10, 10, null);
+        graphics.drawImage(player.getToken(), 15 + offset, 40, 20, 20, null);
       }
       offset += 20;
     }

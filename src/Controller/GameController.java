@@ -451,6 +451,7 @@ public class GameController {
         numPairs = 0;
         canRoll = true;
         canBuy = true;
+        view.getPlayerDetailPanel().setDisplay(game.getCurrentPlayer());
     }
 
     /**********************************************************************
