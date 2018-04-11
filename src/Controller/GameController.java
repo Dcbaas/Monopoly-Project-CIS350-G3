@@ -451,6 +451,7 @@ public class GameController {
         numPairs = 0;
         canRoll = true;
         canBuy = true;
+        view.getPlayerDetailPanel().setDisplay(game.getCurrentPlayer());
     }
 
     /**********************************************************************
@@ -485,6 +486,8 @@ public class GameController {
                             if (game.getCurrentPlayer().getWallet() >= property.getHouseCost()) {
                                 //add one house to the desired property
                                 property.setNumHouses(property.getNumHouses() + 1);
+                                //Update the view.
+                                view.getGamePanel().setHouses(property.getPOSITION(),property.getNumHouses());
 
                                 //remove one house from bank
                                 game.getBank().setNumHouses(game.getBank().getNumHouses() - 1);
@@ -562,6 +565,10 @@ public class GameController {
                             if (game.getCurrentPlayer().getWallet() >= property.getHotelCost()) {
                                 // Add one hotel to the desired property (set hasHotel to true)
                                 property.setHasHotel(true);
+
+                                //Update the view.
+                                view.getGamePanel().setHouses(property.getPOSITION(),5);
+
                                 // remove 4 houses from the desired property
                                 property.setNumHouses(property.getNumHouses() - 4);
                                 // remove one hotel from the bank

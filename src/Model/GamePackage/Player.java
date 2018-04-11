@@ -3,15 +3,19 @@ package Model.GamePackage;
 import Model.BoardPackage.OwnableSquare;
 import Model.BoardPackage.PropertySquare;
 import Model.CardPackage.Card;
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import javax.imageio.ImageIO;
 
 /**********************************************************************
  * The Player class will keep track of each player's money, properties,
  * and other stats.
  *
- * @author Dustin Ecker Dylan Kernohan
+ * @author Dustin Ecker Dylan Kernohan David Baas
  * @since 2/16/2018
- * @version 3/17/2018
+ * @version 4/10/2018
  *********************************************************************/
 public class Player {
 
@@ -23,7 +27,13 @@ public class Player {
   /**
    * Player's token
    */
-  private final String TOKEN;
+  private Image TOKEN;
+
+  /**
+   * Player's token in string form
+   */
+  @Deprecated
+  private final String STR_TOKEN;
 
   /**
    * Tells if player is bankrupt
@@ -63,6 +73,7 @@ public class Player {
    */
   private ArrayList<Integer> groupsOwned;
 
+
   /******************************************************************
    * Constructor method for Player class.
    *
@@ -70,9 +81,10 @@ public class Player {
    * @param token Sets the player's chosen token.
    * @param wallet Sets the player's starting wallet value.
    *****************************************************************/
+  @Deprecated
   public Player(String displayName, String token, int wallet) {
     DISPLAY_NAME = displayName;
-    TOKEN = token;
+    STR_TOKEN = token;
     this.wallet = wallet;
 
     position = 0;
@@ -86,6 +98,33 @@ public class Player {
     groupsOwned = new ArrayList<>();
   }
 
+
+  /******************************************************************
+   * Constructor method for Player class.
+   *
+   * @param displayName Sets the player's name.
+   * @param tokenImage The file that contains the image for this players
+   * token.
+   * @param wallet Sets the player's starting wallet value.
+   *****************************************************************/
+  public Player(String displayName, File tokenImage, int wallet)
+      throws IOException {
+    DISPLAY_NAME = displayName;
+    TOKEN = ImageIO.read(tokenImage);
+    this.wallet = wallet;
+
+    position = 0;
+
+    isBankrupt = false;
+
+    propertiesOwned = new ArrayList<>();
+    cardsHeld = new ArrayList<>();
+
+    inJail = -1;
+    groupsOwned = new ArrayList<>();
+    STR_TOKEN = null;
+  }
+
   /******************************************************************
    * Getter method for displayName variable.
    *
@@ -96,11 +135,10 @@ public class Player {
   }
 
   /******************************************************************
-   * Getter method for token variable.
-   *
-   * @return token Returns the String token.
-   *****************************************************************/
-  public String getToken() {
+   * Get the image for this players token.
+   * @return The image for this players token.
+   *******************************************************************/
+  public Image getToken() {
     return TOKEN;
   }
 

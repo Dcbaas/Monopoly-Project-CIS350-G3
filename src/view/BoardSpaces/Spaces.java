@@ -1,6 +1,7 @@
 package view.BoardSpaces;
 
 
+import Model.GamePackage.Player;
 import view.PlayerToken;
 import java.awt.Graphics;
 import java.util.LinkedList;
@@ -22,7 +23,7 @@ public abstract class Spaces extends JPanel {
    * A linked list was chosen because of the order of how players
    * enter and leave this space is always constant.
    */
-  protected LinkedList<PlayerToken> onSpace;
+  protected LinkedList<Player> onSpace;
 
   /**
    * A boolean to track if this space is on a corner.
@@ -43,7 +44,7 @@ public abstract class Spaces extends JPanel {
    * Adds a playerToken onto this space.
    * @param playerToken the PlayerToken being added.
    *******************************************************************/
-  public void addPlayer(PlayerToken playerToken) {
+  public void addPlayer(Player playerToken) {
     onSpace.add(playerToken);
     repaint();
     revalidate();
@@ -53,8 +54,8 @@ public abstract class Spaces extends JPanel {
    * Removes a playerToken from this space and returns its object.
    * @return playerToken being removed.
    *******************************************************************/
-  public PlayerToken removePlayer() {
-    PlayerToken p = onSpace.pollFirst();
+  public Player removePlayer() {
+    Player p = onSpace.pollFirst();
     repaint();
     revalidate();
     return p;
@@ -68,12 +69,12 @@ public abstract class Spaces extends JPanel {
     int i = 1;
     int offset = 0;
 
-    for (PlayerToken p : onSpace) {
+    for (Player player : onSpace) {
       if (i >= 2) {
-        graphics.drawImage(p.getToken(), 15+ offset, 30 , 10, 10, null);
+        graphics.drawImage(player.getToken(), 15+ offset, 40 , 20, 20, null);
       }
       else {
-        graphics.drawImage(p.getToken(), 15, 20 + offset, 10, 10, null);
+        graphics.drawImage(player.getToken(), 15 + offset, 40, 20, 20, null);
       }
       offset += 20;
     }
