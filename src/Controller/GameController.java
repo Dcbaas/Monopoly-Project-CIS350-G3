@@ -696,10 +696,18 @@ public class GameController {
     }
 
     /**
-     * Restart the game in orde to play a new game.
+     * Restart the game in order to play a new game.
      */
     public void newGame() {
         game.newGame("res/board.txt","res/community.txt",
             "res/chance.txt");
+    }
+
+    /**
+     * Set the inital player for game
+     */
+    public void setInitialPlayer(){
+        game.setCurrentPlayer(game.getPlayers().get(0));
+        view.getPlayerDetailPanel().setDisplay(game.getCurrentPlayer());
     }
 }
