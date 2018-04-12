@@ -35,7 +35,7 @@ public class GamePanel extends JPanel {
    */
   private Spaces[] spaces;
 
-  /********************************************************************
+/********************************************************************
    * Constructor initializes all of the instance variables and draws
    * the panel in the correct orientation.
    *******************************************************************/
@@ -51,11 +51,20 @@ public class GamePanel extends JPanel {
     drawSpaces();
   }
 
+<<<<<<< HEAD
   /**
    *
    * @param spaceNum
    * @param houses
    */
+=======
+  /********************************************************************
+   * Sets the number of houses on the space being modified.
+   *
+   * @param spaceNum The boardSpace
+   * @param houses the number of houses being added.
+   *******************************************************************/
+>>>>>>> Develop
   public void setHouses(int spaceNum, int houses) {
     Spaces temp;
     if (spaces[spaceNum] instanceof PropertySpace) {
@@ -64,11 +73,20 @@ public class GamePanel extends JPanel {
     }
   }
 
+<<<<<<< HEAD
   /**
    *
    * @param startSpace
    * @param distance
    */
+=======
+  /********************************************************************
+   * The movePlayer method takes the player that first entered the space
+   * and moves it a distance.
+   * @param startSpace The starting space of the player moving.
+   * @param distance The distance the player is moving.
+   *******************************************************************/
+>>>>>>> Develop
   public void movePlayer(int startSpace, int distance) {
 
 
@@ -80,18 +98,33 @@ public class GamePanel extends JPanel {
     }
   }
 
+<<<<<<< HEAD
   /**
    *
    * @param player
    */
+=======
+  /********************************************************************
+   * Adds a player to the GoSquare on the view board.
+   * @param player The player being added to the board.
+   *******************************************************************/
+>>>>>>> Develop
   public void addPlayer(Player player) {
     spaces[0].addPlayer(player);
   }
 
+<<<<<<< HEAD
   /**
    *
    * @return
    */
+=======
+  /********************************************************************
+   * Returns the absolute minimum size the GamePanel can be.
+   *
+   * @return The minimum Dimensions this GamePanel can be.
+   *******************************************************************/
+>>>>>>> Develop
   @Override
   public Dimension getMinimumSize() {
     return new Dimension(LENGTH, LENGTH);
@@ -215,18 +248,6 @@ public class GamePanel extends JPanel {
     g.gridx = x;
     g.gridy = y;
   }
-//KEEP THIS HERE FOR TESTING
-//  public static void main(String[] args){
-//    JFrame frame = new JFrame();
-//    frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-//    frame.setSize(LENGTH, LENGTH);
-//
-//    GamePanel pane = new GamePanel();
-//    frame.add(pane);
-//
-//    frame.setVisible(true);
-//  }
-
   //Todo Implement movement of the player withing the GUI.
   //Todo: Add functonality to GUI to build the houses where needed.
 }
