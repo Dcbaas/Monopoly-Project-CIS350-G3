@@ -57,6 +57,9 @@ public class GameController {
     public void addPlayers(ArrayList<Player> players) {
         game.setPlayers(players);
         game.setPlayerOrder();
+
+        for(Player player: game.getPlayers())
+            view.getGamePanel().addPlayer(player);
     }
 
 
