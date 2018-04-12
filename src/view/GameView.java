@@ -12,7 +12,7 @@ import javax.swing.JFrame;
  *
  * @author David Baas Dustin Ecker
  * @since 4/2/2018
- * @version 4/4/2018
+ * @version 4/12/2018
  *********************************************************************/
 public class GameView extends JFrame {
 
@@ -29,27 +29,27 @@ public class GameView extends JFrame {
 	private TextPanel textPanel;
 
 
-	/**
+	/********************************************************************
 	 * A GridBagConstraint to setup the layout
 	 * of this view.
-	 */
+	 *******************************************************************/
 	private GridBagConstraints constraintsBag;
 
-	/**
+	/********************************************************************
 	 * The Main menu component.
-	 */
+	 *******************************************************************/
 	private MenuPanel menu;
 
-	/**
+	/********************************************************************
 	 * The game controller.
-	 */
+	 *******************************************************************/
 	private GameController controller;
 
 
-	/**
+	/********************************************************************
 	 * The constructor creates all of the JPanels needed and displays
 	 * them in the correct alignment.
-	 **/
+	 ********************************************************************/
 	public GameView(GameController controller){
 
 		this.controller = controller;
@@ -61,7 +61,7 @@ public class GameView extends JFrame {
 
 		gamePanel = new GamePanel();
 		playerDetailPanel = new PlayerDetailPanel();
-		buttonPanel = new ButtonPanel();
+		buttonPanel = new ButtonPanel(this);
 		textPanel = new TextPanel();
 		menu = new MenuPanel();
 		setJMenuBar(menu.getMenuBar());
@@ -104,67 +104,71 @@ public class GameView extends JFrame {
 	//Todo: make a menu bar for the top of the JFrame.
 
 
-	/**
+	/********************************************************************
 	 * Returns the game panel.
 	 * @return gamepanel main game panel.
-	 */
+	 *******************************************************************/
 	public GamePanel getGamePanel() {
 		return gamePanel;
 	}
 
-	/**
+	/********************************************************************
 	 * Sets the main game panel.
 	 * @param gamePanel the new game panel.
-	 */
+	 *******************************************************************/
 	public void setGamePanel(GamePanel gamePanel) {
 		this.gamePanel = gamePanel;
 	}
 
-	/**
+	/********************************************************************
 	 * Returns the playerFetailPanel
 	 * @return the main GameDetailPanel.
-	 */
+	 *******************************************************************/
 	public PlayerDetailPanel getPlayerDetailPanel() {
 		return playerDetailPanel;
 	}
 
-	/**
+	/********************************************************************
 	 * Sets the Main Player Detail Panel.
 	 * @param playerDetailPanel the main game detail panel.
-	 */
+	 *******************************************************************/
 	public void setPlayerDetailPanel(PlayerDetailPanel playerDetailPanel) {
 		this.playerDetailPanel = playerDetailPanel;
 	}
 
-	/**
+	/********************************************************************
 	 * Returns the main button panel.
 	 * @return the main button panel.
-	 */
+	 *******************************************************************/
 	public ButtonPanel getButtonPanel() {
 		return buttonPanel;
 	}
 
-	/**
+	/********************************************************************
 	 * Sets the main button panel.
 	 * @param buttonPanel the new main button panel.
-	 */
+	 *******************************************************************/
 	public void setButtonPanel(ButtonPanel buttonPanel) {
 		this.buttonPanel = buttonPanel;
 	}
 
-	/**
+	/********************************************************************
 	 * Returns the main text panel.
 	 * @return the main text panel.
-	 */
+	 *******************************************************************/
 	public TextPanel getTextPanel() {
 		return textPanel;
 	}
 
-	/**
+	/********************************************************************
 	 * Sets the main text panel.
 	 * @param textPanel the new main text panel.
-	 */
+	 *******************************************************************/
 	public void setTextPanel(TextPanel textPanel) {
 		this.textPanel = textPanel;
+	}
+
+	public GameController getController() {
+		return controller;
 	}
 }
