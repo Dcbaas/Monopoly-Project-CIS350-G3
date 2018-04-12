@@ -51,12 +51,20 @@ public class GamePanel extends JPanel {
     drawSpaces();
   }
 
+<<<<<<< HEAD
+  /**
+   *
+   * @param spaceNum
+   * @param houses
+   */
+=======
   /********************************************************************
    * Sets the number of houses on the space being modified.
    *
    * @param spaceNum The boardSpace
    * @param houses the number of houses being added.
    *******************************************************************/
+>>>>>>> Develop
   public void setHouses(int spaceNum, int houses) {
     Spaces temp;
     if (spaces[spaceNum] instanceof PropertySpace) {
@@ -65,13 +73,23 @@ public class GamePanel extends JPanel {
     }
   }
 
+<<<<<<< HEAD
+  /**
+   *
+   * @param startSpace
+   * @param distance
+   */
+=======
   /********************************************************************
    * The movePlayer method takes the player that first entered the space
    * and moves it a distance.
    * @param startSpace The starting space of the player moving.
    * @param distance The distance the player is moving.
    *******************************************************************/
+>>>>>>> Develop
   public void movePlayer(int startSpace, int distance) {
+
+
     Player player = spaces[startSpace].removePlayer();
     if (startSpace + distance > spaces.length - 1) {
       spaces[startSpace + distance - spaces.length - 1].addPlayer(player);
@@ -80,19 +98,33 @@ public class GamePanel extends JPanel {
     }
   }
 
+<<<<<<< HEAD
+  /**
+   *
+   * @param player
+   */
+=======
   /********************************************************************
    * Adds a player to the GoSquare on the view board.
    * @param player The player being added to the board.
    *******************************************************************/
+>>>>>>> Develop
   public void addPlayer(Player player) {
     spaces[0].addPlayer(player);
   }
 
+<<<<<<< HEAD
+  /**
+   *
+   * @return
+   */
+=======
   /********************************************************************
    * Returns the absolute minimum size the GamePanel can be.
    *
    * @return The minimum Dimensions this GamePanel can be.
    *******************************************************************/
+>>>>>>> Develop
   @Override
   public Dimension getMinimumSize() {
     return new Dimension(LENGTH, LENGTH);

@@ -1,35 +1,34 @@
 
 import Model.GamePackage.Game;
-import Model.GamePackage.Player;
 import Controller.GameController;
 import view.GameView;
 import java.io.IOException;
-import java.util.ArrayList;
-import view.NewGameDialog;
 
+/**
+ * This is the Glue class for the Monopoly Game.
+ */
 public class Monopoly {
 
-  private static boolean isRunning = false;
-
-
+  /**
+   * Runs Initial monopoly game Logic.
+   * @param args
+   * @throws IOException
+   * @throws InterruptedException
+   */
 	public static void main(String[] args)
 			throws IOException, InterruptedException {
 
-    //newGameItem.addActionListener();
-    ArrayList<Player> players = new ArrayList<>();
-    NewGameDialog newGameDialog = new NewGameDialog(players);
 
-    Game game = new Game("res/board.txt","res/community.txt",
-        "res/chance.txt",players);
 
-    GameView view = new GameView();
-    //Initialization
-    view.getPlayerDetailPanel().setDisplay(game.getCurrentPlayer());
 
-    GameController controller = new GameController(game, view, true, true, false, false);
+    GameController controller = new GameController(new Game("res/board.txt","res/community.txt",
+        "res/chance.txt"), null, true, true, false, false);
 
-    for(Player player: players)
-      view.getGamePanel().addPlayer(player);
+      GameView view = new GameView(controller);
+
+    //Set the vie and the holder for the controller
+    controller.setView(view);
+    controller.setHolder(view.getTextPanel().getHolder());
 
     // TODO ============= REMOVE TESTING ONLY=================================
     view.getTextPanel().printToTextArea("Hello World!");
