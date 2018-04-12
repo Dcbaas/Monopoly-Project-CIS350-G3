@@ -180,10 +180,6 @@ public class NewGameDialog extends JDialog {
           + "of the name boxes.");
       parentArrayList.clear();
     }
-
-//    public static ArrayList<Player> getPlayers(){
-//      NewGameDialog newGameDialog = new NewGameDialog();
-//    }
   }
 
   /**
