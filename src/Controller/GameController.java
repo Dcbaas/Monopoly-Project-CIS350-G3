@@ -676,11 +676,27 @@ public class GameController {
         return command;
     }
 
+    /**
+     * Set the controller view.
+     * @param view the controller view.
+     */
     public void setView(GameView view) {
         this.view = view;
     }
 
+    /**
+     *  Sets the controller holder.
+     * @param holder the controller holder.
+     */
     public void setHolder(List<String> holder) {
         this.holder = holder;
+    }
+
+    /**
+     * Restart the game in orde to play a new game.
+     */
+    public void newGame() {
+        game.newGame("res/board.txt","res/community.txt",
+            "res/chance.txt");
     }
 }

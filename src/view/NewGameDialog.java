@@ -186,6 +186,10 @@ public class NewGameDialog extends JDialog {
 //    }
   }
 
+  /**
+   * Returns the ArrayList of generated Players.
+   * @return The arrayList of players.
+   */
   public ArrayList<Player> getPlayers() {
     return parentArrayList;
   }

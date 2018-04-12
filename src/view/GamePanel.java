@@ -51,6 +51,11 @@ public class GamePanel extends JPanel {
     drawSpaces();
   }
 
+  /**
+   *
+   * @param spaceNum
+   * @param houses
+   */
   public void setHouses(int spaceNum, int houses) {
     Spaces temp;
     if (spaces[spaceNum] instanceof PropertySpace) {
@@ -59,6 +64,11 @@ public class GamePanel extends JPanel {
     }
   }
 
+  /**
+   *
+   * @param startSpace
+   * @param distance
+   */
   public void movePlayer(int startSpace, int distance) {
 
 
@@ -70,10 +80,18 @@ public class GamePanel extends JPanel {
     }
   }
 
+  /**
+   *
+   * @param player
+   */
   public void addPlayer(Player player) {
     spaces[0].addPlayer(player);
   }
 
+  /**
+   *
+   * @return
+   */
   @Override
   public Dimension getMinimumSize() {
     return new Dimension(LENGTH, LENGTH);

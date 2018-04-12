@@ -78,41 +78,8 @@ public class Game {
    *********************************************************************/
   public Game(String boardFile, String communityChestDeckFile,
       String chanceDeckFile) {
-    dieOne = new Die();
-    dieTwo = new Die();
-    board = new Board(boardFile);
-    comunityChestDeck = new Deck(communityChestDeckFile, false);
-    comunityChestDeck.shuffleDeck();
-    chanceDeck = new Deck(chanceDeckFile, true);
-    chanceDeck.shuffleDeck();
-    players = new ArrayList<>();
-    bank = new Bank(board.getOwnableSquares());
+    newGame(boardFile,communityChestDeckFile,chanceDeckFile);
   }
-
-  /**********************************************************************
-   * The constructor creates a game by creating the die, board,
-   * decks/cards, players, and bank objects.
-   *
-   * @param boardFile The file that is used to generates the board.
-   * @param communityChestDeckFile The file that is used to generate the
-   *                               community chest deck.
-   * @param chanceDeckFile The file that is used to generate the chance
-   *                       deck.
-   * @param players The List of player this Game will have.
-   *********************************************************************/
-  public Game(String boardFile, String communityChestDeckFile,
-      String chanceDeckFile, ArrayList<Player> players) {
-    dieOne = new Die();
-    dieTwo = new Die();
-    board = new Board(boardFile);
-    comunityChestDeck = new Deck(communityChestDeckFile, false);
-    comunityChestDeck.shuffleDeck();
-    chanceDeck = new Deck(chanceDeckFile, true);
-    chanceDeck.shuffleDeck();
-    this.players = players;
-    bank = new Bank(board.getOwnableSquares());
-  }
-
   // Getters and Setters for Game variables. Mainly used so the Controller can get info from game elements ===========
 
   /**********************************************************************
@@ -831,5 +798,18 @@ public class Game {
     }
 
     return false;
+  }
+
+  public void newGame(String boardFile, String communityChestDeckFile,
+      String chanceDeckFile) {
+    dieOne = new Die();
+    dieTwo = new Die();
+    board = new Board(boardFile);
+    comunityChestDeck = new Deck(communityChestDeckFile, false);
+    comunityChestDeck.shuffleDeck();
+    chanceDeck = new Deck(chanceDeckFile, true);
+    chanceDeck.shuffleDeck();
+    players = new ArrayList<>();
+    bank = new Bank(board.getOwnableSquares());
   }
 }
