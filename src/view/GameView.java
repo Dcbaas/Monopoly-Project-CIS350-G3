@@ -105,6 +105,8 @@ public class GameView extends JFrame {
       controller.newGame();
       NewGameDialog dialog = new NewGameDialog();
       controller.addPlayers(dialog.getPlayers());
+      controller.setInitialPlayer();
+
 
     });
   }
