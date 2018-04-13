@@ -8,6 +8,8 @@ import Model.GamePackage.Game;
 import Model.GamePackage.Player;
 import view.GameView;
 
+
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -36,6 +38,7 @@ public class GameController {
         this.canBuy = canBuy;
         this.canMortgage = canMortgage;
         this.canDraw = canDraw;
+
     }
 
     /**********************************************************************
@@ -236,11 +239,7 @@ public class GameController {
         //Starts the mortgage loop
         while (run) {
             //Propts the user and intakes a command
-            view.getTextPanel().printToTextArea("Type The name of the property you would like to mortgage");
-
-
-            // Call promptUser() which is synchronized call
-            command = promptUser();
+            command = JOptionPane.showInputDialog("Type The name of the property you would like to mortgage");
 
             //Checks if the user wants to exit the mortgage loop
             if (command.equalsIgnoreCase("done")) {
@@ -287,8 +286,9 @@ public class GameController {
                     //Sell buildings loop
                     while (!answered) {
                         //Prompts the user and reads a command
-                        view.getTextPanel().printToTextArea("Would you like to sell all building for the group matching the \n property that is going to be mortgaged ? (YES/NO) \n or type  done to stop action");
-                        command = promptUser();
+                        command = JOptionPane.showInputDialog("Would you like to sell all building for the group matching the \n property that is going to be mortgaged ? (YES/NO) \n or type  done to stop action");
+
+
 
                         //Checks if the user would like to exit out of the mortgage loop
                         if (command.equalsIgnoreCase("done")) {
@@ -473,9 +473,11 @@ public class GameController {
      *********************************************************************/
     private void buildHouse() throws InterruptedException {
         // Show the user all owned properties and prompt for which prop to build on
-        view.getTextPanel().printToTextArea("Enter which property you want to build on below.");
-        String propertyName = promptUser();
 
+        String propertyName = JOptionPane.showInputDialog("Enter which property you want to build on below.");
+
+
+        //holder.add("trash");
         // Get the actual propertySqaure
         PropertySquare property = null;
         for (BoardSquare square : game.getBoard().getSquaresList()) {
@@ -535,9 +537,7 @@ public class GameController {
      *********************************************************************/
     private void buildHotel() throws InterruptedException {
         // Show the user all owned properties and prompt for which prop to build on
-        view.getTextPanel().printToTextArea("Enter which property you want to build on below.");
-        String propertyName = promptUser();
-
+        String propertyName = JOptionPane.showInputDialog("Enter which property you want to build on below.");
         // Get the actual propertySqaure
         PropertySquare property = null;
         for (BoardSquare square : game.getBoard().getSquaresList()) {
@@ -652,33 +652,6 @@ public class GameController {
         }
     }
 
-    /**********************************************************************
-     * This method uses a synchronized call and waits for the
-     *   user to enter in a command.
-     *********************************************************************/
-    public String promptUser() throws InterruptedException {
-
-        String command;
-        // Make textField Editable
-        view.getTextPanel().getTextField().setEditable(true);
-        view.getTextPanel().setHintText();
-
-        // Blocking synchronized code. Makes program wait for textField Input
-        synchronized (holder) {
-
-            // wait for input from field
-            while (holder.isEmpty()) {
-                holder.wait();
-            }
-            command = holder.remove(0);
-        }
-
-        // Make textField not Editable
-        view.getTextPanel().getTextField().setEditable(false);
-        view.getTextPanel().getTextField().setText("");
-
-        return command;
-    }
 
     /**
      * Set the controller view.
