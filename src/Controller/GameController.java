@@ -370,27 +370,28 @@ public class GameController {
         if (game.rolledPair()) {
             numPairs++;
         } else {
-            canRoll = false;
+          canRoll = false;
         }
 
-        int diceSum = game.getDieOne().getValue() + game.getDieTwo().getValue();
+      int diceSum = game.getDieOne().getValue() + game.getDieTwo().getValue();
 
-        // Move Player
-        game.movePlayer(game.getCurrentPlayer(), game.getDieOne().getValue(),
-                game.getDieTwo().getValue());
+      // Move player in GUI
+      view.getGamePanel().movePlayer(game.getCurrentPlayer().getPosition(), diceSum);
 
-        // Move player in GUI
-        view.getGamePanel().movePlayer(game.getCurrentPlayer().getPosition(), diceSum);
+      // Move Player
+      game.movePlayer(game.getCurrentPlayer(), game.getDieOne().getValue(),
+          game.getDieTwo().getValue());
 
-        // Check if player can draw
-        checkDraw();
-        String locationName = game.getBoard().getSquaresList()
-                .get(game.getCurrentPlayer().getPosition()).getName();
-        String locationOwner = "N/A";
-        //Figure out if current location is ownable square. If so, find owner name
-        if (game.getBoard().getSquaresList().get(game.getCurrentPlayer().getPosition()).getType() == 0
-                ||
-                game.getBoard().getSquaresList().get(game.getCurrentPlayer().getPosition()).getType() == 1
+
+      // Check if player can draw
+      checkDraw();
+      String locationName = game.getBoard().getSquaresList()
+          .get(game.getCurrentPlayer().getPosition()).getName();
+      String locationOwner = "N/A";
+      //Figure out if current location is ownable square. If so, find owner name
+      if (game.getBoard().getSquaresList().get(game.getCurrentPlayer().getPosition()).getType() == 0
+          ||
+          game.getBoard().getSquaresList().get(game.getCurrentPlayer().getPosition()).getType() == 1
                 ||
                 game.getBoard().getSquaresList().get(game.getCurrentPlayer().getPosition()).getType() == 3
                 ) {
