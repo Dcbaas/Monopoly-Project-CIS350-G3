@@ -1,5 +1,8 @@
 package view;
 
+import Controller.GameController;
+import Model.GamePackage.Game;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -28,8 +31,6 @@ public class TextPanel extends JPanel implements FocusListener {
    */
   private static final String DEFAULT_TEXT = "Enter a Command";
 
-  // Holder for synchronized call
-  private final List<String> holder;
 
   /**
    * A JTextArea to display information.
@@ -55,13 +56,8 @@ public class TextPanel extends JPanel implements FocusListener {
     textField = new JTextField();
 
     // Action listener for command text field. 'Enter' activates
-    holder = new LinkedList<String>();
     textField.addActionListener(e -> {
-      // This says something has been sent and stop waiting.
-      synchronized (holder) {
-        holder.add(textField.getText());
-        holder.notify();
-      }
+
       command = textField.getText();
       // Clear textField
       textField.setText("");
@@ -163,14 +159,6 @@ public class TextPanel extends JPanel implements FocusListener {
         + "----------------------------------------------------------\n");
   }
 
-  /**
-   * Get the holder so others can use it.
-   *
-   * @return The holder.
-   */
-  public List<String> getHolder() {
-    return holder;
-  }
 
 
   /**

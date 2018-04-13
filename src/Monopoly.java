@@ -28,17 +28,7 @@ public class Monopoly {
 
     //Set the vie and the holder for the controller
     controller.setView(view);
-    controller.setHolder(view.getTextPanel().getHolder());
-
-//    // TODO ============= REMOVE TESTING ONLY=================================
-//    view.getTextPanel().printToTextArea("Hello World!");
-//
-//    // Blocking synchronized code. Makes program wait for textField Input
-//    String command = controller.promptUser();
-//
-//    // Program waits until something is entered, then calls this line and prints it.
-//    view.getTextPanel().printToTextArea(command);
-//    //TODO ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    
 
   }
 }
