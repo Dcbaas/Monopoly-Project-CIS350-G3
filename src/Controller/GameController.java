@@ -333,6 +333,9 @@ public class GameController {
             }
 
         }
+
+        //Change the buttons based on the state of the game.
+        view.getButtonPanel().toggleButtons();
     }
 
     /**********************************************************************
@@ -409,6 +412,9 @@ public class GameController {
             }
         }
         view.getTextPanel().printToTextArea("You landed on '" + locationName + "'. \nThe owner of this location is: " + locationOwner);
+
+      //Change the buttons based on the state of the game.
+      view.getButtonPanel().toggleButtons();
     }
 
     /**********************************************************************
@@ -432,6 +438,9 @@ public class GameController {
             // This action could not be performed.
             view.getTextPanel().printToTextArea("This property cannot be bought at the moment.");
         }
+
+        //Change the buttons based on the state of the game.
+        view.getButtonPanel().toggleButtons();
     }
 
     /**********************************************************************
@@ -466,6 +475,9 @@ public class GameController {
         canRoll = true;
         canBuy = true;
         view.getPlayerDetailPanel().setDisplay(game.getCurrentPlayer());
+
+        //Change the buttons based on the state of the game.
+        view.getButtonPanel().toggleButtons();
     }
 
     /**********************************************************************
