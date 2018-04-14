@@ -39,8 +39,10 @@ public class ButtonPanel extends JPanel {
    */
   private JButton done;
 
-  /** A reference to the parent GameView.*/
-  GameView parent;
+  /**
+   * A reference to the parent GameView.
+   */
+  private GameView parent;
 
   /********************************************************************
    * The constructor creates all of the buttons and places them in the
