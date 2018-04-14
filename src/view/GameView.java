@@ -4,6 +4,7 @@ import Controller.GameController;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import javax.swing.JFrame;
+import javax.swing.WindowConstants;
 import view.boardspaces.MenuPanel;
 
 /**********************************************************************
@@ -109,10 +110,9 @@ public class GameView extends JFrame {
 
 
     });
-  }
-  //Todo: Merge functions from TextController into the GUI.
-  //Todo: make a menu bar for the top of the JFrame.
 
+    menu.getExit().addActionListener(click -> System.exit(0));
+  }
 
   /********************************************************************
    * Returns the game panel.
