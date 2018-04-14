@@ -20,14 +20,15 @@ public class ButtonPanel extends JPanel {
    */
   private JButton buildHouse;
 
-  /**A button to build hotels
+  /**
+   * A button to build hotels.
    */
   private JButton buildHotel;
 
-//  /**
-//   * A button to sell properties
-//   */
-//  private JButton sell;
+  /**
+   * A button to buy properties.
+   */
+  private JButton buy;
 
   /**
    * A button to mortgage properties.
@@ -51,13 +52,13 @@ public class ButtonPanel extends JPanel {
   public ButtonPanel(GameView parent) {
     this.parent = parent;
 
-    setLayout(new GridLayout(5, 1, 10, 10));
+    setLayout(new GridLayout(6,1, 10, 10));
     setSize(700, 100);
 
     roll = new JButton("Roll");
     buildHouse = new JButton("Build House");
     buildHotel = new JButton("Build Hotel");
-//    sell = new JButton("Sell");
+    buy = new JButton("Buy");
     mortgage = new JButton("Mortgage");
     done = new JButton("Done");
 
@@ -87,13 +88,13 @@ public class ButtonPanel extends JPanel {
       }
     });
 
-//    sell.addActionListener(click -> {
-//      try {
-//        parent.getController().commands("house");
-//      } catch (InterruptedException e) {
-//        e.printStackTrace();
-//      }
-//    });
+    buy.addActionListener(click -> {
+      try {
+        parent.getController().commands("buy");
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+    });
 
     mortgage.addActionListener(click -> {
       try {
@@ -114,7 +115,7 @@ public class ButtonPanel extends JPanel {
     add(roll);
     add(buildHouse);
     add(buildHotel);
-//    add(sell);
+    add(buy);
     add(mortgage);
     add(done);
 
@@ -128,5 +129,16 @@ public class ButtonPanel extends JPanel {
    *******************************************************************/
   public Dimension getMinimumSize() {
     return new Dimension(500, 540);
+  }
+
+  /********************************************************************
+   * Checks the state of the game and enables and disables buttons
+   * that can be utilized or are not usable.
+   *******************************************************************/
+  public void toggleButtons() {
+    roll.setEnabled(parent.getController().isCanRoll());
+    buy.setEnabled(parent.getController().isCanBuy());
+    mortgage.setEnabled(parent.getController().isCanMortgage());
+    done.setEnabled(!parent.getController().isCanRoll());
   }
 }
