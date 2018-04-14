@@ -36,6 +36,11 @@ public class ButtonPanel extends JPanel {
   private JButton mortgage;
 
   /**
+   * A button to draw a card.
+   */
+  private JButton drawCard;
+
+  /**
    * A button to be done with the turn.
    */
   private JButton done;
@@ -52,7 +57,7 @@ public class ButtonPanel extends JPanel {
   public ButtonPanel(GameView parent) {
     this.parent = parent;
 
-    setLayout(new GridLayout(6,1, 10, 10));
+    setLayout(new GridLayout(7,1, 10, 10));
     setSize(700, 100);
 
     roll = new JButton("Roll");
@@ -60,6 +65,7 @@ public class ButtonPanel extends JPanel {
     buildHotel = new JButton("Build Hotel");
     buy = new JButton("Buy");
     mortgage = new JButton("Mortgage");
+    drawCard = new JButton("Draw Card");
     done = new JButton("Done");
 
     //Todo: Add ActionListeners for the buttons.
@@ -104,6 +110,14 @@ public class ButtonPanel extends JPanel {
       }
     });
 
+    drawCard.addActionListener(click -> {
+      try {
+        parent.getController().commands("draw");
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+    });
+
     done.addActionListener(click -> {
       try {
         parent.getController().commands("done");
@@ -117,6 +131,7 @@ public class ButtonPanel extends JPanel {
     add(buildHotel);
     add(buy);
     add(mortgage);
+    add(drawCard);
     add(done);
 
     Border blackLine = BorderFactory.createLineBorder(Color.BLACK);
@@ -139,6 +154,7 @@ public class ButtonPanel extends JPanel {
     roll.setEnabled(parent.getController().isCanRoll());
     buy.setEnabled(parent.getController().isCanBuy());
     mortgage.setEnabled(parent.getController().isCanMortgage());
-    done.setEnabled(!parent.getController().isCanRoll());
+    drawCard.setEnabled(parent.getController().isCanDraw());
+    done.setEnabled(!parent.getController().isCanRoll() && !parent.getController().isCanDraw());
   }
 }

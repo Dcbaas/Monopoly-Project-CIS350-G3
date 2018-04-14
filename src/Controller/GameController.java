@@ -451,6 +451,8 @@ public class GameController {
         // Determine which deck to draw from
         String deckType = game.getBoard().getSquaresList().get(game.getCurrentPlayer().getPosition()).getName();
 
+        int position = game.getCurrentPlayer().getPosition();
+
         if (deckType.equals("COMMUNITY CHEST")) {
             card = game.drawCard(false);
         } else if (deckType.equals("CHANCE")) {
@@ -459,6 +461,8 @@ public class GameController {
 
         view.getTextPanel().printToTextArea("You drew:\n\t" + card.getCardDescription());
         canDraw = false;
+        if(game.getCurrentPlayer().getPosition() != position)
+            view.getGamePanel().movePlayer(position,game.getCurrentPlayer().getPosition() - position);
     }
 
     private void tax() {
@@ -687,6 +691,8 @@ public class GameController {
     public void newGame() {
         game.newGame("res/board.txt","res/community.txt",
             "res/chance.txt");
+
+        view.getButtonPanel().toggleButtons();
     }
 
     /**
