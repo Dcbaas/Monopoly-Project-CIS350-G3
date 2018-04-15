@@ -74,6 +74,9 @@ public class GameController {
      *********************************************************************/
     public void commands(String command) throws InterruptedException {
 
+        // Update player detail panel
+        view.getPlayerDetailPanel().setDisplay(game.getCurrentPlayer());
+
         //Checks if the player has rolled pairs three times in a row
         if (numPairs == 3) {
             canRoll = false;
@@ -118,6 +121,10 @@ public class GameController {
             default:
                 // Do not need a print here like text interface. Only opetions has is buttons
         }
+
+        // Update player detail panel
+        view.getPlayerDetailPanel().setDisplay(game.getCurrentPlayer());
+
 
         //Checks if the player has any actions left
         if (!canRoll && !canBuy) {
