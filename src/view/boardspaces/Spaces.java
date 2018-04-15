@@ -41,10 +41,10 @@ public abstract class Spaces extends JPanel {
 
   /********************************************************************
    * Adds a playerToken onto this space.
-   * @param playerToken the PlayerToken being added.
+   * @param player the Player being added.
    *******************************************************************/
-  public void addPlayer(Player playerToken) {
-    onSpace.add(playerToken);
+  public void addPlayer(Player player) {
+    onSpace.add(player);
     repaint();
     revalidate();
   }
