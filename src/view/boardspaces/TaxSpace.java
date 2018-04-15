@@ -1,7 +1,12 @@
 package view.boardspaces;
 
-import java.awt.*;
-import javax.swing.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import javax.swing.BorderFactory;
+import javax.swing.JLabel;
 import javax.swing.border.Border;
 
 /**********************************************************************
@@ -96,9 +101,9 @@ public class TaxSpace extends Spaces {
     add(taxInfo, g);
   }
 
-  public void paintComponent(Graphics g){
+  public void paintComponent(Graphics g) {
     super.paintComponent(g);
-    drawTokens(g);
+    drawTokens(g, !incomeTax);
   }
 
   /********************************************************************

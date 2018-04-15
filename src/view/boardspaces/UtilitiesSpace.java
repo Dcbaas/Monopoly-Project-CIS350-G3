@@ -52,7 +52,8 @@ public class UtilitiesSpace extends Spaces {
   private Dimension dimension;
 
   /**
-   * A boolean to track weather the utility is a Water Works or The Electric company.
+   * A boolean to track weather the utility is a Water Works or The Electric
+   * company.
    */
   private boolean waterworks;
 
@@ -93,7 +94,7 @@ public class UtilitiesSpace extends Spaces {
     } else {
       g.drawImage(utilitiesImg, 0, 0, 50, 50, null);
     }
-    drawTokens(g);
+    drawTokens(g, waterworks);
   }
 
   /********************************************************************

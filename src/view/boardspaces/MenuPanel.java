@@ -8,8 +8,8 @@ import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 
 /**
- * This is the Menu bar with its Items It allows for the whole piece
- * to be single class.
+ * This is the Menu bar with its Items It allows for the whole piece to be
+ * single class.
  *
  * @author Santiago Quiroga.
  * @version April/11/2018.

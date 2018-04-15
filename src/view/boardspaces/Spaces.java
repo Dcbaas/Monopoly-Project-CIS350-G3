@@ -4,7 +4,6 @@ package view.boardspaces;
 import Model.GamePackage.Player;
 import java.awt.Graphics;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import javax.swing.JPanel;
 
 /**********************************************************************
@@ -60,35 +59,18 @@ public abstract class Spaces extends JPanel {
    * Draws the token on the space.
    * @param graphics the Graphics component being used to draw.
    *******************************************************************/
-  protected void drawTokens(Graphics graphics) {
-    int i = 1;
+  protected void drawTokens(Graphics graphics, boolean horizontal) {
     int offset = 0;
 
     for (Player player : onSpace) {
-//      if (i >= 2) {
-//        graphics.drawImage(player.getToken(), 15+ offset, 35 , 20, 20, null);
-//      }
-//      else {
-//        graphics.drawImage(player.getToken(), 15 + offset, 30, 20, 20, null);
-//      }
-//      offset += 20;
-//      ++i;
-//      if(i >= 2)
-//        offset = 0;
-//    }
-      if(sqSpace){
-        graphics.drawImage(player.getToken(),20 + offset, 35 , 15, 15, null);
+      if (sqSpace) {
+        graphics.drawImage(player.getToken(), 20 + offset, 35, 15, 15, null);
         offset += 15;
-      }
-      else{
-        if (i > 2) {
-          if(i== 3)
-            offset = 0;
-          graphics.drawImage(player.getToken(), 25+ offset, 45 , 20, 20, null);
-        }
-        else
-          graphics.drawImage(player.getToken(),25 + offset, 30 , 15, 15, null);
-        ++i;
+      } else if (horizontal) {
+        graphics.drawImage(player.getToken(), 25 + offset, 15, 15, 15, null);
+        offset += 15;
+      } else {
+        graphics.drawImage(player.getToken(), 20, 25 + offset, 15, 15, null);
         offset += 15;
       }
     }
