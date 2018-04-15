@@ -4,8 +4,6 @@ import Controller.GameController;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import javax.swing.JFrame;
-import javax.swing.WindowConstants;
-import view.boardspaces.MenuPanel;
 
 /**********************************************************************
  * The GameView Class serves as the primary application window where

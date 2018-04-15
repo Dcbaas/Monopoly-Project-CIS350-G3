@@ -1,4 +1,4 @@
-package view.boardspaces;
+package view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -7,39 +7,41 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 
-/**
- * This is the Menu bar with its Items It allows for the whole piece
- * to be single class.
+/**********************************************************************
+ * The MenuPanel packages all of the components of the JMenu into one
+ * class for encapsulation. The menu allows for a new game to be created
+ * and for the game to be quit at any time.
  *
  * @author Santiago Quiroga.
- * @version April/11/2018.
- */
+ * @version 4/11/2018.
+ *********************************************************************/
 public class MenuPanel {
 
   /**
-   * the menu Bar/ top level component.
+   * The menu Bar/ top level component.
    */
-  JMenuBar menuBar;
+  private JMenuBar menuBar;
 
   /**
-   * a single menu button.
+   * A single menu button.
    */
-  JMenu menu;
+  private JMenu menu;
 
   /**
    * Exit  menu item.
    */
-  JMenuItem exit;
+  private JMenuItem exit;
 
   /**
    * New game  menu Item.
    */
-  JMenuItem newGame;
+  private JMenuItem newGame;
 
 
-  /**
-   * Basic constructor.
-   */
+  /********************************************************************
+   * Basic constructor. Creates the menu bar and items along with
+   * adding action listeners to each item.
+   *******************************************************************/
   public MenuPanel() {
     //instantiates menu bar
     menuBar = new JMenuBar();
@@ -64,38 +66,38 @@ public class MenuPanel {
 
   }
 
-  /**
+  /********************************************************************
    * Menu getter.
    *
    * @return JMenu for this class.
-   */
+   *******************************************************************/
   public JMenu getMenu() {
     return menu;
   }
 
-  /**
+  /********************************************************************
    * Returns Menu item for exit.
    *
    * @return JMenuItem for menu JMenu.
-   */
+   *******************************************************************/
   public JMenuItem getExit() {
     return exit;
   }
 
-  /**
+  /********************************************************************
    * Returns Menu item for newGame.
    *
    * @return JMenuItem for menu JMenu.
-   */
+   *******************************************************************/
   public JMenuItem getNewGame() {
     return newGame;
   }
 
-  /**
+  /********************************************************************
    * Returns Menu bar.
    *
    * @return JMenuBar fot this class.
-   */
+   *******************************************************************/
   public JMenuBar getMenuBar() {
     return menuBar;
   }
