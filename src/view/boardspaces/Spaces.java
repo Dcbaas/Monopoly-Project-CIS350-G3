@@ -3,6 +3,7 @@ package view.boardspaces;
 
 import Model.GamePackage.Player;
 import java.awt.Graphics;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import javax.swing.JPanel;
 
@@ -18,11 +19,7 @@ public abstract class Spaces extends JPanel {
   /**
    * A linked list to track player tokens on this space of the board.
    */
-  /*
-   * A linked list was chosen because of the order of how players
-   * enter and leave this space is always constant.
-   */
-  protected LinkedList<Player> onSpace;
+  protected ArrayList<Player> onSpace;
 
   /**
    * A boolean to track if this space is on a corner.
@@ -35,7 +32,7 @@ public abstract class Spaces extends JPanel {
    * @param sqSpace boolean for weather this space is a corner.
    *******************************************************************/
   public Spaces(boolean sqSpace) {
-    onSpace = new LinkedList<>();
+    onSpace = new ArrayList<>();
     this.sqSpace = sqSpace;
   }
 
@@ -53,11 +50,10 @@ public abstract class Spaces extends JPanel {
    * Removes a playerToken from this space and returns its object.
    * @return playerToken being removed.
    *******************************************************************/
-  public Player removePlayer() {
-    Player p = onSpace.pollFirst();
+  public void removePlayer(Player player) {
+    onSpace.remove(player);
     repaint();
     revalidate();
-    return p;
   }
 
   /********************************************************************
@@ -69,16 +65,32 @@ public abstract class Spaces extends JPanel {
     int offset = 0;
 
     for (Player player : onSpace) {
-      if (i >= 2) {
-        graphics.drawImage(player.getToken(), 15+ offset, 35 , 20, 20, null);
+//      if (i >= 2) {
+//        graphics.drawImage(player.getToken(), 15+ offset, 35 , 20, 20, null);
+//      }
+//      else {
+//        graphics.drawImage(player.getToken(), 15 + offset, 30, 20, 20, null);
+//      }
+//      offset += 20;
+//      ++i;
+//      if(i >= 2)
+//        offset = 0;
+//    }
+      if(sqSpace){
+        graphics.drawImage(player.getToken(),20 + offset, 35 , 15, 15, null);
+        offset += 15;
       }
-      else {
-        graphics.drawImage(player.getToken(), 15 + offset, 30, 20, 20, null);
+      else{
+        if (i > 2) {
+          if(i== 3)
+            offset = 0;
+          graphics.drawImage(player.getToken(), 25+ offset, 45 , 20, 20, null);
+        }
+        else
+          graphics.drawImage(player.getToken(),25 + offset, 30 , 15, 15, null);
+        ++i;
+        offset += 15;
       }
-      offset += 20;
-      ++i;
-      if(i >= 2)
-        offset = 0;
     }
   }
 }

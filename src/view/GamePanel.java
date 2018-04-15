@@ -71,14 +71,14 @@ public class GamePanel extends JPanel {
    * @param startSpace The starting space of the player moving.
    * @param distance The distance the player is moving.
    *******************************************************************/
-  public void movePlayer(int startSpace, int distance) {
+  public void movePlayer(int startSpace, int distance, Player currentPlayer) {
 
 
-    Player player = spaces[startSpace].removePlayer();
+     spaces[startSpace].removePlayer(currentPlayer);
     if (startSpace + distance > spaces.length - 1) {
-      spaces[startSpace + distance - spaces.length - 1].addPlayer(player);
+      spaces[startSpace + distance - spaces.length - 1].addPlayer(currentPlayer);
     } else {
-      spaces[startSpace + distance].addPlayer(player);
+      spaces[startSpace + distance].addPlayer(currentPlayer);
     }
   }
 
