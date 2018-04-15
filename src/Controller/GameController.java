@@ -251,7 +251,7 @@ public class GameController {
             try {
                 propertyId = Integer.parseUnsignedInt(command);
             } catch (NumberFormatException e) {
-                view.getTextPanel().printToTextArea("You cannot perform that action right now.");
+                view.getTextPanel().printToTextArea(game.getCurrentPlayer().getDisplayName() + " cannot perform that action right now.");
                 continue;
             }
 
@@ -309,7 +309,7 @@ public class GameController {
                                 group = null;
                             }
                         } else {
-                            view.getTextPanel().printToTextArea("You cannot perform that action right now.");
+                            view.getTextPanel().printToTextArea(game.getCurrentPlayer().getDisplayName() + " cannot perform that action right now.");
 
                         }
                     }
@@ -322,7 +322,7 @@ public class GameController {
 
                         view.getTextPanel().printToTextArea(property.getName() + " was mortgaged for " + property.getMORTGAGE_VAL());
                     } else {
-                        view.getTextPanel().printToTextArea("In order to mortgage the property, you must sell all the buildings \n for all properties in that group.");
+                        view.getTextPanel().printToTextArea("In order to mortgage the property, " + game.getCurrentPlayer().getDisplayName() + " must sell all the buildings \n for all properties in that group.");
                     }
                 }
             } else {
@@ -411,7 +411,7 @@ public class GameController {
                 tax();
             }
         }
-        view.getTextPanel().printToTextArea("You landed on '" + locationName + "'. \nThe owner of this location is: " + locationOwner);
+        view.getTextPanel().printToTextArea(game.getCurrentPlayer().getDisplayName() + " landed on '" + locationName + "'. \nThe owner of this location is: " + locationOwner);
 
       //Change the buttons based on the state of the game.
       view.getButtonPanel().toggleButtons();
@@ -429,10 +429,10 @@ public class GameController {
                     game.getCurrentPlayer(),
                     ((OwnableSquare) game.getCurrentPlayerLocation()).getPRICE())) {
                 // Player had enough money
-                view.getTextPanel().printToTextArea("You bought " + game.getCurrentPlayerLocation().getName());
+                view.getTextPanel().printToTextArea(game.getCurrentPlayer().getDisplayName() + " bought " + game.getCurrentPlayerLocation().getName());
             } else {
                 // Player did not have enough money
-                view.getTextPanel().printToTextArea("You do not have enough money to buy this");
+                view.getTextPanel().printToTextArea(game.getCurrentPlayer().getDisplayName() + " do not have enough money to buy this");
             }
         } else {
             // This action could not be performed.
@@ -459,14 +459,14 @@ public class GameController {
             card = game.drawCard(true);
         }
 
-        view.getTextPanel().printToTextArea("You drew:\n\t" + card.getCardDescription());
+        view.getTextPanel().printToTextArea(game.getCurrentPlayer().getDisplayName() + " drew:\n\t" + card.getCardDescription());
         canDraw = false;
         if(game.getCurrentPlayer().getPosition() != position)
             view.getGamePanel().movePlayer(position,game.getCurrentPlayer().getPosition() - position);
     }
 
     private void tax() {
-        view.getTextPanel().printToTextArea("You paid " + game.collectFee() + " in fees/rent");
+        view.getTextPanel().printToTextArea(game.getCurrentPlayer().getDisplayName() + " paid " + game.collectFee() + " in fees/rent");
     }
 
     /**********************************************************************
@@ -479,6 +479,7 @@ public class GameController {
         canRoll = true;
         canBuy = true;
         view.getPlayerDetailPanel().setDisplay(game.getCurrentPlayer());
+        view.getTextPanel().printToTextArea("\n---------------------------------------------------- " + game.getCurrentPlayer().getDisplayName() + "'s Turn ----------------------------------------------------\n");
 
         //Change the buttons based on the state of the game.
         view.getButtonPanel().toggleButtons();
@@ -527,7 +528,7 @@ public class GameController {
                                 // Print build success
                                 view.getTextPanel().printToTextArea("A house was successfully built on " + property.getName() + ".");
                             } else {
-                                view.getTextPanel().printToTextArea("You do not have enough money to buy this");
+                                view.getTextPanel().printToTextArea(game.getCurrentPlayer().getDisplayName() + " does not have enough money to buy this");
                             }
                         } else {
                             view.getTextPanel().printToTextArea("House counts across this group are not even. Try building on a different property in this group first.");
@@ -540,7 +541,7 @@ public class GameController {
                 }
 
             } else {
-                view.getTextPanel().printToTextArea("You do not own this monopoly.");
+                view.getTextPanel().printToTextArea(game.getCurrentPlayer().getDisplayName() + " does not own this monopoly.");
             }
         } else {
             view.getTextPanel().printToTextArea("The bank is out of houses.");
@@ -609,7 +610,7 @@ public class GameController {
                                 // Print build success
                                 view.getTextPanel().printToTextArea("A hotel was successfully built on " + property.getName() + ".");
                             } else {
-                                view.getTextPanel().printToTextArea("You do not have enough money to buy this");
+                                view.getTextPanel().printToTextArea(game.getCurrentPlayer().getDisplayName() + " does not have enough money to buy this");
                             }
                         } else {
                             view.getTextPanel().printToTextArea("House counts across this group are not even. Try building on a different property in this group first.");
@@ -622,7 +623,7 @@ public class GameController {
                     view.getTextPanel().printToTextArea("This property has a hotel.");
                 }
             } else {
-                view.getTextPanel().printToTextArea("You do not own this monopoly.");
+                view.getTextPanel().printToTextArea(game.getCurrentPlayer().getDisplayName() + " does not own this monopoly.");
             }
         } else {
             view.getTextPanel().printToTextArea("The bank is out of hotels.");
@@ -701,5 +702,6 @@ public class GameController {
     public void setInitialPlayer(){
         game.setCurrentPlayer(game.getPlayers().get(0));
         view.getPlayerDetailPanel().setDisplay(game.getCurrentPlayer());
+        view.getTextPanel().printToTextArea("\n---------------------------------------------------- " + game.getCurrentPlayer().getDisplayName() + "'s Turn ----------------------------------------------------\n");
     }
 }
