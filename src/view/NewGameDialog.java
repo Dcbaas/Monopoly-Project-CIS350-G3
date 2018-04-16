@@ -90,7 +90,7 @@ public class NewGameDialog extends JDialog {
     cancelItem = new JButton("Cancel");
     okayItem = new JButton("Ok");
 
-    cancelItem.addActionListener(e -> System.exit(0));
+    cancelItem.addActionListener(e -> dispose());
     okayItem.addActionListener(e -> {
       try {
         onOk();
@@ -172,6 +172,9 @@ public class NewGameDialog extends JDialog {
         }
       }
     }
+    if (parentArrayList.size() < 2) {
+      approved = false;
+    }
     //Was there an invalid input. If yes force error correction.
     if (approved) {
       dispose();
@@ -184,6 +187,7 @@ public class NewGameDialog extends JDialog {
 
   /**
    * Returns the ArrayList of generated Players.
+   *
    * @return The arrayList of players.
    */
   public ArrayList<Player> getPlayers() {
