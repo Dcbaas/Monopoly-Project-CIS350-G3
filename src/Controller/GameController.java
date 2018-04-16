@@ -706,9 +706,14 @@ public class GameController {
     /**
      * Set the inital player for game
      */
-    public void setInitialPlayer(){
-        game.setCurrentPlayer(game.getPlayers().get(0));
-        view.getPlayerDetailPanel().setDisplay(game.getCurrentPlayer());
-        view.getTextPanel().printToTextArea("\n---------------------------------------------------- " + game.getCurrentPlayer().getDisplayName() + "'s Turn ----------------------------------------------------\n");
+    public void setInitialPlayer() {
+        if (!game.getPlayers().isEmpty()) {
+            game.setCurrentPlayer(game.getPlayers().get(0));
+            view.getPlayerDetailPanel().setDisplay(game.getCurrentPlayer());
+            view.getTextPanel().printToTextArea(
+                "\n---------------------------------------------------- " + game
+                    .getCurrentPlayer().getDisplayName()
+                    + "'s Turn ----------------------------------------------------\n");
+        }
     }
 }
