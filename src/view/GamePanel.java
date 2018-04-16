@@ -1,6 +1,12 @@
 package view;
 
 import Model.GamePackage.Player;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.io.IOException;
+import javax.swing.JPanel;
 import view.boardspaces.CardSpace;
 import view.boardspaces.FreeParkingSpace;
 import view.boardspaces.GoSpace;
@@ -12,12 +18,6 @@ import view.boardspaces.RailRoadSpace;
 import view.boardspaces.Spaces;
 import view.boardspaces.TaxSpace;
 import view.boardspaces.UtilitiesSpace;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.io.IOException;
-import javax.swing.JPanel;
 
 /********************************************************************
  * The GamePanel Class creates a JPanel that contains all of the
@@ -35,7 +35,7 @@ public class GamePanel extends JPanel {
    */
   private Spaces[] spaces;
 
-/********************************************************************
+  /********************************************************************
    * Constructor initializes all of the instance variables and draws
    * the panel in the correct orientation.
    *******************************************************************/
@@ -72,11 +72,9 @@ public class GamePanel extends JPanel {
    * @param distance The distance the player is moving.
    *******************************************************************/
   public void movePlayer(int startSpace, int distance, Player currentPlayer) {
-
-
-     spaces[startSpace].removePlayer(currentPlayer);
-    if (startSpace + distance > spaces.length - 1) {
-      spaces[startSpace + distance - spaces.length - 1].addPlayer(currentPlayer);
+    spaces[startSpace].removePlayer(currentPlayer);
+    if (startSpace + distance >= spaces.length) {
+      spaces[startSpace + distance - spaces.length].addPlayer(currentPlayer);
     } else {
       spaces[startSpace + distance].addPlayer(currentPlayer);
     }
@@ -93,12 +91,13 @@ public class GamePanel extends JPanel {
   /********************************************************************
    * The clearBoard method clears the board of all tokens and houses.
    *******************************************************************/
-  public void clearBoard(){
-    for(Spaces space: spaces){
+  public void clearBoard() {
+    for (Spaces space : spaces) {
       space.clearSpace();
 
-      if(space instanceof PropertySpace)
+      if (space instanceof PropertySpace) {
         ((PropertySpace) space).setHouses(0);
+      }
     }
   }
 
