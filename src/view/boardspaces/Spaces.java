@@ -56,6 +56,16 @@ public abstract class Spaces extends JPanel {
   }
 
   /********************************************************************
+   * The clearSpace method clears all tokens off the board for a new
+   * game.
+   *******************************************************************/
+  public void clearSpace(){
+    onSpace.clear();
+    repaint();
+    revalidate();
+  }
+
+  /********************************************************************
    * Draws the token on the space.
    * @param graphics the Graphics component being used to draw.
    *******************************************************************/

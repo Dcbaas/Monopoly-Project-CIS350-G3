@@ -704,6 +704,7 @@ public class GameController {
             "res/chance.txt");
 
         view.getButtonPanel().toggleButtons();
+        view.getGamePanel().clearBoard();
     }
 
     /**
