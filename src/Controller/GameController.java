@@ -595,7 +595,7 @@ public class GameController {
                                     // Check if property is in same group
                                     if (propertySquare.getGROUP_NUMBER() == property.getGROUP_NUMBER()) {
                                         // Make sure num houses is not less desired prop num houses - 1
-                                        if (propertySquare.getNumHouses() < 3 && propertySquare.isHasHotel() == false) {
+                                        if (propertySquare.getNumHouses() < 4 && propertySquare.isHasHotel() == false) {
                                             isHouseCountEven = false;
                                         }
                                     }
