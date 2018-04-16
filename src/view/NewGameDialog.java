@@ -172,8 +172,9 @@ public class NewGameDialog extends JDialog {
         }
       }
     }
-    if(parentArrayList.size() < 2)
+    if (parentArrayList.size() < 2) {
       approved = false;
+    }
     //Was there an invalid input. If yes force error correction.
     if (approved) {
       dispose();
@@ -186,6 +187,7 @@ public class NewGameDialog extends JDialog {
 
   /**
    * Returns the ArrayList of generated Players.
+   *
    * @return The arrayList of players.
    */
   public ArrayList<Player> getPlayers() {
