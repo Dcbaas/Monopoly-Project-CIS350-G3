@@ -90,6 +90,18 @@ public class GamePanel extends JPanel {
     spaces[0].addPlayer(player);
   }
 
+  /********************************************************************
+   * The clearBoard method clears the board of all tokens and houses.
+   *******************************************************************/
+  public void clearBoard(){
+    for(Spaces space: spaces){
+      space.clearSpace();
+
+      if(space instanceof PropertySpace)
+        ((PropertySpace) space).setHouses(0);
+    }
+  }
+
 
   /********************************************************************
    * Returns the absolute minimum size the GamePanel can be.
@@ -219,6 +231,4 @@ public class GamePanel extends JPanel {
     g.gridx = x;
     g.gridy = y;
   }
-  //Todo Implement movement of the player withing the GUI.
-  //Todo: Add functonality to GUI to build the houses where needed.
 }
