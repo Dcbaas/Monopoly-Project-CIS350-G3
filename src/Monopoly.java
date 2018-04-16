@@ -29,6 +29,6 @@ public class Monopoly {
     //Set the vie and the holder for the controller
     controller.setView(view);
     
-
+    view.getButtonPanel().preGame();
   }
 }
