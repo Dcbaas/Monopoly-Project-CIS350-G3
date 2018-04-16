@@ -124,12 +124,7 @@ public class GameController {
 
         // Update player detail panel
         view.getPlayerDetailPanel().setDisplay(game.getCurrentPlayer());
-
-
-        //Checks if the player has any actions left
-        if (!canRoll && !canBuy) {
-            nextPlayer();
-        }
+        
     }
 
     /**********************************************************************
