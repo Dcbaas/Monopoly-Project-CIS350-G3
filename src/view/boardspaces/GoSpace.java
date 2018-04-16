@@ -1,10 +1,13 @@
 package view.boardspaces;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-import javax.swing.*;
+import javax.swing.BorderFactory;
 import javax.swing.border.Border;
 
 /**********************************************************************
@@ -49,7 +52,7 @@ public class GoSpace extends Spaces {
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
     g.drawImage(goImg, 0, 0, LENGTH, LENGTH, null);
-    drawTokens(g);
+    drawTokens(g, false);
   }
 
   /********************************************************************

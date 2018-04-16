@@ -7,10 +7,12 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 
+
 /**********************************************************************
  * The MenuPanel packages all of the components of the JMenu into one
  * class for encapsulation. The menu allows for a new game to be created
  * and for the game to be quit at any time.
+>>>>>>> Develop:src/view/MenuPanel.java
  *
  * @author Santiago Quiroga.
  * @version 4/11/2018.

@@ -386,7 +386,8 @@ public class GameController {
       int diceSum = game.getDieOne().getValue() + game.getDieTwo().getValue();
 
       // Move player in GUI
-      view.getGamePanel().movePlayer(game.getCurrentPlayer().getPosition(), diceSum);
+      view.getGamePanel().movePlayer(game.getCurrentPlayer().getPosition(),
+          diceSum, game.getCurrentPlayer());
 
       // Move Player
       game.movePlayer(game.getCurrentPlayer(), game.getDieOne().getValue(),
@@ -469,7 +470,9 @@ public class GameController {
         view.getTextPanel().printToTextArea(game.getCurrentPlayer().getDisplayName() + " drew:\n\t" + card.getCardDescription());
         canDraw = false;
         if(game.getCurrentPlayer().getPosition() != position)
-            view.getGamePanel().movePlayer(position,game.getCurrentPlayer().getPosition() - position);
+            view.getGamePanel().movePlayer(position,
+                game.getCurrentPlayer().getPosition() - position,
+                game.getCurrentPlayer());
     }
 
     private void tax() {
