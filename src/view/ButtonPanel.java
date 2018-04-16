@@ -153,8 +153,23 @@ public class ButtonPanel extends JPanel {
   public void toggleButtons() {
     roll.setEnabled(parent.getController().isCanRoll());
     buy.setEnabled(parent.getController().isCanBuy());
+    buildHouse.setEnabled(true); //Todo Is there logic for this?
+    buildHotel.setEnabled(true);//Todo same question.
     mortgage.setEnabled(parent.getController().isCanMortgage());
     drawCard.setEnabled(parent.getController().isCanDraw());
     done.setEnabled(!parent.getController().isCanRoll() && !parent.getController().isCanDraw());
+  }
+
+  /********************************************************************
+   * Sets all the buttons to disabled before a new game is created.
+   *******************************************************************/
+  public void preGame(){
+    roll.setEnabled(false);
+    buy.setEnabled(false);
+    buildHouse.setEnabled(false);
+    buildHotel.setEnabled(false);
+    mortgage.setEnabled(false);
+    drawCard.setEnabled(false);
+    done.setEnabled(false);
   }
 }
