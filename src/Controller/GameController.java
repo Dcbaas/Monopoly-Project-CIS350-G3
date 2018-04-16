@@ -473,6 +473,7 @@ public class GameController {
             view.getGamePanel().movePlayer(position,
                 game.getCurrentPlayer().getPosition() - position,
                 game.getCurrentPlayer());
+        view.getButtonPanel().toggleButtons();
     }
 
     private void tax() {
