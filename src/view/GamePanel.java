@@ -1,22 +1,23 @@
-package View;
+package view;
 
-import View.BoardSpaces.CardSpace;
-import View.BoardSpaces.FreeParkingSpace;
-import View.BoardSpaces.GoSpace;
-import View.BoardSpaces.GoToJailSpace;
-import View.BoardSpaces.JailSpace;
-import View.BoardSpaces.PropertySpace;
-import View.BoardSpaces.PropertySpace.Position;
-import View.BoardSpaces.RailRoadSpace;
-import View.BoardSpaces.Spaces;
-import View.BoardSpaces.TaxSpace;
-import View.BoardSpaces.UtilitiesSpace;
+import Model.GamePackage.Player;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.io.IOException;
 import javax.swing.JPanel;
+import view.boardspaces.CardSpace;
+import view.boardspaces.FreeParkingSpace;
+import view.boardspaces.GoSpace;
+import view.boardspaces.GoToJailSpace;
+import view.boardspaces.JailSpace;
+import view.boardspaces.PropertySpace;
+import view.boardspaces.PropertySpace.Position;
+import view.boardspaces.RailRoadSpace;
+import view.boardspaces.Spaces;
+import view.boardspaces.TaxSpace;
+import view.boardspaces.UtilitiesSpace;
 
 /********************************************************************
  * The GamePanel Class creates a JPanel that contains all of the
@@ -50,6 +51,12 @@ public class GamePanel extends JPanel {
     drawSpaces();
   }
 
+  /********************************************************************
+   * Sets the number of houses on the space being modified.
+   *
+   * @param spaceNum The boardSpace
+   * @param houses the number of houses being added.
+   *******************************************************************/
   public void setHouses(int spaceNum, int houses) {
     Spaces temp;
     if (spaces[spaceNum] instanceof PropertySpace) {
@@ -58,19 +65,48 @@ public class GamePanel extends JPanel {
     }
   }
 
-  public void movePlayer(int startSpace, int distance) {
-    PlayerToken p = spaces[startSpace].removePlayer();
-    if (startSpace + distance > spaces.length - 1) {
-      spaces[startSpace + distance - spaces.length - 1].addPlayer(p);
+  /********************************************************************
+   * The movePlayer method takes the player that first entered the space
+   * and moves it a distance.
+   * @param startSpace The starting space of the player moving.
+   * @param distance The distance the player is moving.
+   *******************************************************************/
+  public void movePlayer(int startSpace, int distance, Player currentPlayer) {
+    spaces[startSpace].removePlayer(currentPlayer);
+    if (startSpace + distance >= spaces.length) {
+      spaces[startSpace + distance - spaces.length].addPlayer(currentPlayer);
     } else {
-      spaces[startSpace + distance].addPlayer(p);
+      spaces[startSpace + distance].addPlayer(currentPlayer);
     }
   }
 
-  public void addPlayer(PlayerToken p) {
-    spaces[0].addPlayer(p);
+  /********************************************************************
+   * Adds a player to the GoSquare on the view board.
+   * @param player The player being added to the board.
+   *******************************************************************/
+  public void addPlayer(Player player) {
+    spaces[0].addPlayer(player);
   }
 
+  /********************************************************************
+   * The clearBoard method clears the board of all tokens and houses.
+   *******************************************************************/
+  public void clearBoard() {
+    for (Spaces space : spaces) {
+      space.clearSpace();
+
+      if (space instanceof PropertySpace) {
+        ((PropertySpace) space).setHouses(0);
+      }
+    }
+  }
+
+
+  /********************************************************************
+   * Returns the absolute minimum size the GamePanel can be.
+   *
+   * @return The minimum Dimensions this GamePanel can be.
+   *******************************************************************/
   @Override
   public Dimension getMinimumSize() {
     return new Dimension(LENGTH, LENGTH);
@@ -83,7 +119,7 @@ public class GamePanel extends JPanel {
    *******************************************************************/
   private void loadSpaces() throws IOException {
     spaces[0] = new GoSpace();
-    spaces[1] = new PropertySpace(new Color(128, 0, 128), "Meiteranian Ave.",
+    spaces[1] = new PropertySpace(new Color(128, 0, 128), "Mediterranean Ave.",
         60, Position.BOTTOM);
     spaces[2] = new CardSpace(false, false);
     spaces[3] = new PropertySpace(new Color(128, 0, 128), "Baltic Ave.", 60,
@@ -194,18 +230,4 @@ public class GamePanel extends JPanel {
     g.gridx = x;
     g.gridy = y;
   }
-//KEEP THIS HERE FOR TESTING
-//  public static void main(String[] args){
-//    JFrame frame = new JFrame();
-//    frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-//    frame.setSize(LENGTH, LENGTH);
-//
-//    GamePanel pane = new GamePanel();
-//    frame.add(pane);
-//
-//    frame.setVisible(true);
-//  }
-
-  //Todo Implement movement of the player withing the GUI.
-  //Todo: Add functonality to GUI to build the houses where needed.
 }

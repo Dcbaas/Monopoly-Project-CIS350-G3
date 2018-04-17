@@ -1,4 +1,4 @@
-package View.BoardSpaces;
+package view.boardspaces;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -27,7 +27,8 @@ public class RailRoadSpace extends Spaces {
   public static final int IMG_SIZE = 50;
 
   /**
-   * private int houseCounter; A final int to track the width of a housing panel.
+   * private int houseCounter; A final int to track the width of a housing
+   * panel.
    */
   private static final int WIDTH = 50;
   /**
@@ -85,7 +86,7 @@ public class RailRoadSpace extends Spaces {
     }
 
     setLayout(new GridBagLayout());
-    //drawSpace();
+
     Border blackLine = BorderFactory.createLineBorder(Color.BLACK);
     setBorder(blackLine);
 
@@ -102,7 +103,7 @@ public class RailRoadSpace extends Spaces {
     } else {
       g.drawImage(railRoadImg, 20, 0, IMG_SIZE, IMG_SIZE, null);
     }
-    drawTokens(g);
+    drawTokens(g, horizontal);
   }
 
   /********************************************************************

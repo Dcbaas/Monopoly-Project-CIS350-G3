@@ -1,4 +1,4 @@
-package View;
+package view;
 
 import Model.BoardPackage.OwnableSquare;
 import Model.GamePackage.Player;

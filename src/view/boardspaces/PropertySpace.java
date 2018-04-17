@@ -1,4 +1,4 @@
-package View.BoardSpaces;
+package view.boardspaces;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -36,15 +36,10 @@ public class PropertySpace extends Spaces {
    */
   private Dimension dimensions;
 
-//  /**
-//   * A Label for the name of the property.
-//   */
-//  private JLabel name;
-//
-//  /**
-//   * A label for the price of the property.
-//   */
-//  private JLabel price;
+  /**
+   * A Position to track orientation.
+   */
+  private Position position;
 
   /**
    * A Housing panel for drawing houses.
@@ -59,12 +54,15 @@ public class PropertySpace extends Spaces {
    * @param price The price of the property.
    * @throws IOException If the images for the HousingPanel don't load.
    *******************************************************************/
-  public PropertySpace(Color c, String name, int price, Position position) throws IOException {
+  public PropertySpace(Color c, String name, int price, Position position)
+      throws IOException {
     super(false);
 
     housingPanel = new HousingPanel(c, false);
 
     setLayout(new BorderLayout());
+
+    this.position = position;
 
     switch (position) {
       case BOTTOM:
@@ -111,9 +109,16 @@ public class PropertySpace extends Spaces {
     housingPanel.setHouses(houseCounter);
   }
 
-  public void paintComponent(Graphics g){
+  public void paintComponent(Graphics g) {
     super.paintComponent(g);
-    drawTokens(g);
+    switch (position) {
+      case TOP:
+      case BOTTOM:
+        drawTokens(g, false);
+        break;
+      default:
+        drawTokens(g, true);
+    }
   }
 
   /********************************************************************
@@ -183,7 +188,8 @@ public class PropertySpace extends Spaces {
   }
 
   /**
-   * Enum position types for depending where on the board this property space is.
+   * Enum position types for depending where on the board this property space
+   * is.
    */
   public enum Position {
     TOP, BOTTOM, LEFT, RIGHT

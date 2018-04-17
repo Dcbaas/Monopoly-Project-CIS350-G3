@@ -1,13 +1,13 @@
-package View.BoardSpaces;
+package view.boardspaces;
 
 
-import View.PlayerToken;
+import Model.GamePackage.Player;
 import java.awt.Graphics;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import javax.swing.JPanel;
 
 /**********************************************************************
- * The Spaces class is an abstract class which all of the BoardSpaces
+ * The Spaces class is an abstract class which all of the boardspaces
  * draw from primarily to draw player tokens on the screen.
  *
  * @author David Baas
@@ -18,11 +18,7 @@ public abstract class Spaces extends JPanel {
   /**
    * A linked list to track player tokens on this space of the board.
    */
-  /*
-   * A linked list was chosen because of the order of how players
-   * enter and leave this space is always constant.
-   */
-  protected LinkedList<PlayerToken> onSpace;
+  protected ArrayList<Player> onSpace;
 
   /**
    * A boolean to track if this space is on a corner.
@@ -35,16 +31,16 @@ public abstract class Spaces extends JPanel {
    * @param sqSpace boolean for weather this space is a corner.
    *******************************************************************/
   public Spaces(boolean sqSpace) {
-    onSpace = new LinkedList<>();
+    onSpace = new ArrayList<>();
     this.sqSpace = sqSpace;
   }
 
   /********************************************************************
    * Adds a playerToken onto this space.
-   * @param playerToken the PlayerToken being added.
+   * @param player the Player being added.
    *******************************************************************/
-  public void addPlayer(PlayerToken playerToken) {
-    onSpace.add(playerToken);
+  public void addPlayer(Player player) {
+    onSpace.add(player);
     repaint();
     revalidate();
   }
@@ -53,29 +49,40 @@ public abstract class Spaces extends JPanel {
    * Removes a playerToken from this space and returns its object.
    * @return playerToken being removed.
    *******************************************************************/
-  public PlayerToken removePlayer() {
-    PlayerToken p = onSpace.pollFirst();
+  public void removePlayer(Player player) {
+    onSpace.remove(player);
     repaint();
     revalidate();
-    return p;
+  }
+
+  /********************************************************************
+   * The clearSpace method clears all tokens off the board for a new
+   * game.
+   *******************************************************************/
+  public void clearSpace(){
+    onSpace.clear();
+    repaint();
+    revalidate();
   }
 
   /********************************************************************
    * Draws the token on the space.
    * @param graphics the Graphics component being used to draw.
    *******************************************************************/
-  protected void drawTokens(Graphics graphics) {
-    int i = 1;
+  protected void drawTokens(Graphics graphics, boolean horizontal) {
     int offset = 0;
 
-    for (PlayerToken p : onSpace) {
-      if (i >= 2) {
-        graphics.drawImage(p.getToken(), 15+ offset, 30 , 10, 10, null);
+    for (Player player : onSpace) {
+      if (sqSpace) {
+        graphics.drawImage(player.getToken(), 20 + offset, 35, 15, 15, null);
+        offset += 15;
+      } else if (horizontal) {
+        graphics.drawImage(player.getToken(), 25 + offset, 15, 15, 15, null);
+        offset += 15;
+      } else {
+        graphics.drawImage(player.getToken(), 20, 25 + offset, 15, 15, null);
+        offset += 15;
       }
-      else {
-        graphics.drawImage(p.getToken(), 15, 20 + offset, 10, 10, null);
-      }
-      offset += 20;
     }
   }
 }

@@ -1,5 +1,5 @@
 Advance to Go (Collect $200),200,1,-1,-1,-1,-1,-1,-1,-1
-Bank error in your favor - Collect $200,200,-1,-1,-1,-1,-1,-1,-1,-1
+Bank error in your favor - Collect $200,200,0,-1,-1,-1,-1,-1,-1,-1
 Doctor's fees - Pay $50,-1,-1,-1,-1,-1,-1,50,-1,-1
 From sale of stock you get $50,50,-1,-1,-1,-1,-1,-1,-1,-1
 Get Out of Jail Free,-1,-1,-1,1,-1,-1,-1,-1,-1

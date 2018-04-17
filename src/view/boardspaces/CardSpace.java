@@ -1,4 +1,4 @@
-package View.BoardSpaces;
+package view.boardspaces;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -77,7 +77,7 @@ public class CardSpace extends Spaces {
     } else {
       g.drawImage(cardImg, 0, 30, 50, 50, null);
     }
-    drawTokens(g);
+    drawTokens(g, horizontal);
   }
 
   /********************************************************************
