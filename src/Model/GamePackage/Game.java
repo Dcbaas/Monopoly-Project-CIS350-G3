@@ -420,8 +420,6 @@ public class Game {
 
     //Checks which instructions need to be performed
     if (actions[0] != -1) {
-      // Advance to Go, collect $200
-      currentPlayer.setPosition(0);
       cardCollect(actions[0]);
     }
     if (actions[1] != -1) {

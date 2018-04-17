@@ -46,9 +46,8 @@ public class Die {
     // Generate a random number
     Random random = new Random();
 
-    // Assign random number to value
+    //Assign random number to value
     value = random.nextInt(6) + 1;
-
 
   }
 }
