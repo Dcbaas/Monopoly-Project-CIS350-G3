@@ -119,7 +119,7 @@ public class GamePanel extends JPanel {
    *******************************************************************/
   private void loadSpaces() throws IOException {
     spaces[0] = new GoSpace();
-    spaces[1] = new PropertySpace(new Color(128, 0, 128), "Meiteranian Ave.",
+    spaces[1] = new PropertySpace(new Color(128, 0, 128), "Mediterranean Ave.",
         60, Position.BOTTOM);
     spaces[2] = new CardSpace(false, false);
     spaces[3] = new PropertySpace(new Color(128, 0, 128), "Baltic Ave.", 60,
