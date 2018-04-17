@@ -398,46 +398,82 @@ public class GameController {
 
     int diceSum = game.getDieOne().getValue() + game.getDieTwo().getValue();
 
-    // Move player in GUI
-    view.getGamePanel().movePlayer(game.getCurrentPlayer().getPosition(),
-        diceSum, game.getCurrentPlayer());
+    // Check if player is not in jail OR player is in Jail AND doubles were rolled OR player is holding get out of jail free card
+    if(!checkJail(game.getCurrentPlayer()) || (checkJail(game.getCurrentPlayer()) && game.getDieOne().getValue() == game.getDieTwo().getValue()) || (checkJail(game.getCurrentPlayer()) && game.getCurrentPlayer().getCardsHeld().size() > 0)){
 
-    // Move Player
-    game.movePlayer(game.getCurrentPlayer(), game.getDieOne().getValue(),
-        game.getDieTwo().getValue());
-
-    // Check if player can draw
-    checkDraw();
-    String locationName = game.getBoard().getSquaresList()
-        .get(game.getCurrentPlayer().getPosition()).getName();
-    String locationOwner = "N/A";
-    //Figure out if current location is ownable square. If so, find owner name
-    if (game.getBoard().getSquaresList()
-        .get(game.getCurrentPlayer().getPosition()).getType() == 0
-        ||
-        game.getBoard().getSquaresList()
-            .get(game.getCurrentPlayer().getPosition()).getType() == 1
-        ||
-        game.getBoard().getSquaresList()
-            .get(game.getCurrentPlayer().getPosition()).getType() == 3
-        ) {
-      // Check if the owner is null (Bank)
-      if (((OwnableSquare) game.getBoard().getSquaresList()
-          .get(game.getCurrentPlayer().getPosition())).getOwner() != null) {
-        locationOwner = ((OwnableSquare) game.getBoard().getSquaresList()
-            .get(game.getCurrentPlayer().getPosition())).getOwner()
-            .getDisplayName();
-      } else {
-        locationOwner = "Bank";
+      if(checkJail(game.getCurrentPlayer()) && game.getCurrentPlayer().getCardsHeld().size() > 0){
+        game.getCurrentPlayer().setInJail(-1);
+        view.getTextPanel().printToTextArea(game.getCurrentPlayer().getDisplayName() + " was in Jail but used a Get Out Of Jail Free card.");
+        game.getCurrentPlayer().getCardsHeld().remove(0);
       }
 
-      if (game.shouldPlayerBeTaxed() && !canRoll) {
-        tax();
+      if(checkJail(game.getCurrentPlayer()) && game.getDieOne().getValue() == game.getDieTwo().getValue()){
+        game.getCurrentPlayer().setInJail(-1);
+        view.getTextPanel().printToTextArea(game.getCurrentPlayer().getDisplayName() + " was in Jail but rolled doubles so is now free at no cost.");
+      }
+      // Move player in GUI
+      view.getGamePanel().movePlayer(game.getCurrentPlayer().getPosition(),
+              diceSum, game.getCurrentPlayer());
+
+      // Move Player
+      game.movePlayer(game.getCurrentPlayer(), game.getDieOne().getValue(),
+              game.getDieTwo().getValue());
+
+      // Check if player landed on Go To Jail
+      if(game.getCurrentPlayer().getPosition() == 30){
+        view.getTextPanel().printToTextArea(game.getCurrentPlayer().getDisplayName() + " landed on Go To Jail and was sent to Jail.");
+        game.getCurrentPlayer().setInJail(0);
+        game.getCurrentPlayer().setPosition(10);
+        view.getGamePanel().movePlayer(30, 20, game.getCurrentPlayer());
+        canRoll = false;
+      }
+
+      // Check if player can draw
+      checkDraw();
+      String locationName = game.getBoard().getSquaresList()
+              .get(game.getCurrentPlayer().getPosition()).getName();
+      String locationOwner = "N/A";
+      //Figure out if current location is ownable square. If so, find owner name
+      if (game.getBoard().getSquaresList()
+              .get(game.getCurrentPlayer().getPosition()).getType() == 0
+              ||
+              game.getBoard().getSquaresList()
+                      .get(game.getCurrentPlayer().getPosition()).getType() == 1
+              ||
+              game.getBoard().getSquaresList()
+                      .get(game.getCurrentPlayer().getPosition()).getType() == 3
+              ) {
+        // Check if the owner is null (Bank)
+        if (((OwnableSquare) game.getBoard().getSquaresList()
+                .get(game.getCurrentPlayer().getPosition())).getOwner() != null) {
+          locationOwner = ((OwnableSquare) game.getBoard().getSquaresList()
+                  .get(game.getCurrentPlayer().getPosition())).getOwner()
+                  .getDisplayName();
+        } else {
+          locationOwner = "Bank";
+        }
+
+        if (game.shouldPlayerBeTaxed() && !canRoll) {
+          tax();
+        }
+      }
+      view.getTextPanel().printToTextArea(
+              game.getCurrentPlayer().getDisplayName() + " landed on '" + locationName
+                      + "'. \nThe owner of this location is: " + locationOwner);
+    }
+    else{
+      int num = 2 - game.getCurrentPlayer().getInJail();
+      view.getTextPanel().printToTextArea(game.getCurrentPlayer().getDisplayName() + " is in Jail and cannot move for " + num + " more turns.");
+      if(game.getCurrentPlayer().getInJail() == 1){
+        game.getCurrentPlayer().pay(50);
+        game.getCurrentPlayer().setInJail(-1);
+      }
+      else{
+        game.getCurrentPlayer().setInJail(game.getCurrentPlayer().getInJail() + 1);
       }
     }
-    view.getTextPanel().printToTextArea(
-        game.getCurrentPlayer().getDisplayName() + " landed on '" + locationName
-            + "'. \nThe owner of this location is: " + locationOwner);
+
+
 
     //Change the buttons based on the state of the game.
     view.getButtonPanel().toggleButtons();
@@ -785,4 +821,16 @@ public class GameController {
               + "'s Turn ----------------------------------------------------\n");
     }
   }
+
+  /**
+   * Check if the player is in jail
+   * @retun true if in jail, false if not
+   */
+  public boolean checkJail(Player player){
+    if(player.getInJail() != -1){
+      return true;
+    }
+    return false;
+  }
+
 }
