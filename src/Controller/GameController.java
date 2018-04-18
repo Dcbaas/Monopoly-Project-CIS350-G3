@@ -86,7 +86,8 @@ public class GameController {
         if (numPairs == 3) {
             canRoll = false;
             canBuy = false;
-            game.sendPlayerToJail();
+            view.getGamePanel().movePlayer(game.getCurrentPlayer().getPosition(),game.sendPlayerToJail(),game.getCurrentPlayer());
+
             view.getTextPanel().printToTextArea(
                     "Die 1: " + game.getDieOne().getValue() + "\n" + "Die 2: " + game
                             .getDieTwo().getValue());
