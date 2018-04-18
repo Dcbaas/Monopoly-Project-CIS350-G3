@@ -75,7 +75,32 @@ public class PlayerDetailPanel extends JPanel {
     //Clear the TextArea
     propertiesList.setText("");
     for (OwnableSquare ownableSquare : player.getOwnableProperties()) {
-      propertiesList.append(ownableSquare.getName() + "\n");
+      String color = "";
+           if(ownableSquare.getGROUP_NUMBER() == 1){
+                color = "Dark Purple";
+              }
+           else if(ownableSquare.getGROUP_NUMBER() == 2){
+               color = "Light Blue";
+             }
+            else if(ownableSquare.getGROUP_NUMBER() == 3){
+                color = "Light Pruple";
+              }
+           else if(ownableSquare.getGROUP_NUMBER() == 4){
+                color = "Orange";
+              }
+          else if(ownableSquare.getGROUP_NUMBER() == 5){
+                color = "Red";
+              }
+            else if(ownableSquare.getGROUP_NUMBER() == 6){
+                color = "Yellow";
+              }
+            else if(ownableSquare.getGROUP_NUMBER() == 7){
+                color = "Green";    }
+           else if(ownableSquare.getGROUP_NUMBER() == 8){
+                color = "Dark Blue";
+             }
+           propertiesList.append(ownableSquare.getName() + " - " + color + "\n");
+
     }
   }
 
