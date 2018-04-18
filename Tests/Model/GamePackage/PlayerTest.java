@@ -27,7 +27,14 @@ public class PlayerTest {
     public void getDisplayNameTest() {
         assertEquals("Dylan", player.getDisplayName());
     }
-    
+
+    /*****************************************************************
+     * Test the getBankrupt method
+     *****************************************************************/
+    @Test
+    public void getTokenTest() {
+        assertEquals("The Top Hat", player.getToken());
+    }
 
     /*****************************************************************
      * Test the isBankrupt method
@@ -169,6 +176,7 @@ public class PlayerTest {
         // Test when player does not have enough money. Should pay all they have
         player.setWallet(10);
         assertEquals("Test when player does not have enough money.",10, player.pay(50));
+        assertEquals("Player did not have enough. Payed all they had", 0, player.getWallet());
 
         // Test when the player has just enough.
         player.setWallet(50);

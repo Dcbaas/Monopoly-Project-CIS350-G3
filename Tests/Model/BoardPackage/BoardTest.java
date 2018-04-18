@@ -30,7 +30,7 @@ public class BoardTest {
      *****************************************************************/
     @Test
     public void getOwnableSquareTest() {
-        assertTrue(board.getOwnableSquare(1).getName().equals("Mediterranean Ave"));
+        assertTrue(board.getOwnableSquare(1).getName().equals("Old Kent Road"));
     }
 
     /*****************************************************************
@@ -104,8 +104,8 @@ public class BoardTest {
      *****************************************************************/
     @Test
     public void getGroupTest() {
-        assertTrue(board.getGroup(1).get(0).getName().equals("Mediterranean Ave"));
-        assertTrue(board.getGroup(1).get(1).getName().equals("Baltic Ave"));
+        assertTrue(board.getGroup(1).get(0).getName().equals("Old Kent Road"));
+        assertTrue(board.getGroup(1).get(1).getName().equals("Whitechapel Road"));
 
     }
 }

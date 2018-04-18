@@ -10,10 +10,8 @@ import Model.GamePackage.Player;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
-import javax.swing.JTextField;
 import view.GameView;
 
 public class GameController {
@@ -26,7 +24,6 @@ public class GameController {
     private boolean canMortgage;
     private boolean canDraw;
     private List<String> holder = null;
-    private boolean testing;
 
     /**********************************************************************git
      * The constructor that builds a game controller with a Game and view
@@ -42,7 +39,6 @@ public class GameController {
         this.canBuy = canBuy;
         this.canMortgage = canMortgage;
         this.canDraw = canDraw;
-        testing = false;
 
     }
 
@@ -86,8 +82,7 @@ public class GameController {
         if (numPairs == 3) {
             canRoll = false;
             canBuy = false;
-            view.getGamePanel().movePlayer(game.getCurrentPlayer().getPosition(),game.sendPlayerToJail(),game.getCurrentPlayer());
-
+            game.sendPlayerToJail();
             view.getTextPanel().printToTextArea(
                     "Die 1: " + game.getDieOne().getValue() + "\n" + "Die 2: " + game
                             .getDieTwo().getValue());
@@ -393,23 +388,7 @@ public class GameController {
      * This method performs all the logic for the roll command.
      *********************************************************************/
     private void roll() {
-        if (testing){
-
-            JTextField val1 = new JTextField();
-            JTextField val2 = new JTextField();
-
-            Object[] message = {
-                "Die One", val1,
-                "Die Two", val2,
-            };
-
-            JOptionPane.showConfirmDialog(null, message, "Enter dice values", JOptionPane.OK_CANCEL_OPTION);
-            game.getDieOne().setValue(Integer.parseInt(val1.getText()));
-            game.getDieTwo().setValue(Integer.parseInt(val2.getText()));
-        }else {
-            game.rollDice();
-        }
-
+        game.rollDice();
         view.getTextPanel().printToTextArea(
                 "Die 1: " + game.getDieOne().getValue() + "\n" + "Die 2: " + game
                         .getDieTwo().getValue());
@@ -434,8 +413,6 @@ public class GameController {
                 game.getCurrentPlayer().setInJail(-1);
                 view.getTextPanel().printToTextArea(game.getCurrentPlayer().getDisplayName() + " was in Jail but rolled doubles so is now free at no cost.");
             }
-
-
             // Move player in GUI
             view.getGamePanel().movePlayer(game.getCurrentPlayer().getPosition(),
                     diceSum, game.getCurrentPlayer());
@@ -443,15 +420,6 @@ public class GameController {
             // Move Player
             game.movePlayer(game.getCurrentPlayer(), game.getDieOne().getValue(),
                     game.getDieTwo().getValue());
-
-
-
-
-
-
-
-
-
 
             // Check if player landed on Go To Jail
             if (game.getCurrentPlayer().getPosition() == 30) {
@@ -863,14 +831,6 @@ public class GameController {
             return true;
         }
         return false;
-    }
-
-    public boolean isTesting() {
-        return testing;
-    }
-
-    public void setTesting(boolean testing) {
-        this.testing = testing;
     }
 
 }
