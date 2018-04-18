@@ -390,7 +390,7 @@ public class Game {
     }
 
     // Gives player "get out of jail free" card, uses all others right away.
-    if (card.getCardDescription().equals("Get out of Jail Free Card")) {
+    if (card.getCardDescription().equals("Get Out of Jail Free")) {
       currentPlayer.recieveCard(card);
     } else {
       useCard(card);

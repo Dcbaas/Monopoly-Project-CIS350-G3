@@ -3,7 +3,7 @@ Bank error in your favor - Collect $200,200,0,-1,-1,-1,-1,-1,-1,-1
 Doctor's fees - Pay $50,-1,-1,-1,-1,-1,-1,50,-1,-1
 From sale of stock you get $50,50,-1,-1,-1,-1,-1,-1,-1,-1
 Get Out of Jail Free,-1,-1,-1,1,-1,-1,-1,-1,-1
-Go to Jail - Go directly to jail - Do not pass Go - Do not collect $200,-1,30,-1,-1,-1,-1,-1,-1,-1
+Go to Jail - Go directly to jail,-1,-1,-1,-1,-1,-1,-1,-1,-1
 Grand Opera Night - Collect $50 from every player for opening night seats,-1,-1,-1,-1,-1,-1,-1,-1,50
 Holiday Fund matures - Receive $100,100,-1,-1,-1,-1,-1,-1,-1,-1
 Income tax refund - Collect $20,20,-1,-1,-1,-1,-1,-1,-1,-1
