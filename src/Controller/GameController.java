@@ -445,14 +445,6 @@ public class GameController {
                     game.getDieTwo().getValue());
 
 
-
-
-
-
-
-
-
-
             // Check if player landed on Go To Jail
             if (game.getCurrentPlayer().getPosition() == 30) {
                 view.getTextPanel().printToTextArea(game.getCurrentPlayer().getDisplayName() + " landed on Go To Jail and was sent to Jail.");
@@ -567,6 +559,11 @@ public class GameController {
             view.getGamePanel().movePlayer(position,
                     game.getCurrentPlayer().getPosition() - position,
                     game.getCurrentPlayer());
+        }
+
+        // Send player to jail if Go To Jail is drew
+        if(card.getCardDescription().equals("Go to Jail - Go directly to jail")){
+            view.getGamePanel().movePlayer(game.getCurrentPlayer().getPosition(),game.sendPlayerToJail(),game.getCurrentPlayer());
         }
         view.getButtonPanel().toggleButtons();
     }
