@@ -688,19 +688,12 @@ public class Game {
     return dieTwo.value == dieOne.value;
   }
 
-  /**********************************************************************w
+  /**********************************************************************
    * Sends the current player to jail/
    *********************************************************************/
-  public int sendPlayerToJail() {
-    int translation = (currentPlayer.getPosition() > 10)?
-                        40 - currentPlayer.getPosition()
-                      + 10: 10 - currentPlayer.getPosition();
-
+  public void sendPlayerToJail() {
     board.sendToJail(currentPlayer);
     currentPlayer.setPosition(10);
-    currentPlayer.setInJail(0);
-
-    return translation;
   }
 
   /*********************************************************************

@@ -39,10 +39,6 @@ public class MenuPanel {
    */
   private JMenuItem newGame;
 
-  /**
-   * Testing settings on
-   */
-  private JMenuItem testing;
 
   /********************************************************************
    * Basic constructor. Creates the menu bar and items along with
@@ -69,11 +65,6 @@ public class MenuPanel {
     newGame.setAccelerator(KeyStroke.getKeyStroke(
         KeyEvent.VK_N, ActionEvent.ALT_MASK));
     menu.add(newGame);
-
-    testing =new JMenuItem("testing", KeyEvent.VK_ENTER);
-    testing.setAccelerator(KeyStroke.getKeyStroke(
-        KeyEvent.VK_ENTER, ActionEvent.ALT_MASK));
-    menu.add(testing);
 
   }
 
@@ -111,15 +102,5 @@ public class MenuPanel {
    *******************************************************************/
   public JMenuBar getMenuBar() {
     return menuBar;
-  }
-
-
-  /********************************************************************
-   * Returns Menu item for testing.
-   *
-   * @return JMenuItem for menu JMenu.
-   *******************************************************************/
-  public JMenuItem getTesting() {
-    return testing;
   }
 }
