@@ -106,10 +106,13 @@ public class GameView extends JFrame {
       controller.addPlayers(dialog.getPlayers());
       controller.setInitialPlayer();
 
-
     });
 
     menu.getExit().addActionListener(click -> System.exit(0));
+
+    menu.getTesting().addActionListener(click -> {
+      controller.setTesting(!controller.isTesting());
+    });
   }
 
   /********************************************************************
