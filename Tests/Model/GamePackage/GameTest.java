@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import Model.BoardPackage.Board;
 import Model.BoardPackage.OwnableSquare;
 import Model.BoardPackage.PropertySquare;
+import Model.CardPackage.Deck;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -101,22 +102,30 @@ public class GameTest {
 
   @Test
   public void getComunityChestDeckTest(){
+       Deck comunityChestDeck = new Deck("res/community.txt", false);
+       assertFalse(game.getComunityChestDeck().getDeck().contains(comunityChestDeck.getDeck().get(0).getCardDescription()));
 
   }
 
   @Test
   public void setComunityChestDeckTest(){
-
+        Deck comunityChestDeck = new Deck("res/community.txt", false);
+        game.setComunityChestDeck(comunityChestDeck);
+        assertEquals(game.getComunityChestDeck(), comunityChestDeck);
   }
 
   @Test
   public void getChanceDeckTest(){
+      Deck chanceDeck = new Deck("res/chance.txt", true);
+      assertFalse(game.getComunityChestDeck().getDeck().contains(chanceDeck.getDeck().get(0).getCardDescription()));
 
   }
 
   @Test
   public void setChanceDeckTest(){
-
+      Deck chanceDeck = new Deck("res/chance.txt", true);
+      game.setChanceDeck(chanceDeck);
+      assertEquals(game.getChanceDeck(), chanceDeck);
   }
 
   @Test
@@ -253,11 +262,41 @@ public class GameTest {
 
   @Test
   public void drawCardTest(){
+      game.addPlayer("Dylan", "Hat");
+      game.setCurrentPlayer(game.getPlayers().get(0));
+      Deck chanceDeck = new Deck("res/chance.txt", true);
+      game.setChanceDeck(chanceDeck);
+
+      assertEquals("Advance to Go (Collect $200)", game.drawCard(true).getCardDescription());
 
   }
 
   @Test
   public void useCardTest(){
+      Deck chanceDeck = new Deck("res/chance.txt", true);
+      game.addPlayer("Dylan", "Hat");
+      game.setCurrentPlayer(game.getPlayers().get(0));
+      game.setChanceDeck(chanceDeck);
+      assertTrue(game.useCard(chanceDeck.getDeck().get(0)));
+      assertTrue(game.useCard(chanceDeck.getDeck().get(1)));
+      assertTrue(game.useCard(chanceDeck.getDeck().get(2)));
+      assertTrue(game.useCard(chanceDeck.getDeck().get(3)));
+      assertTrue(game.useCard(chanceDeck.getDeck().get(4)));
+      assertTrue(game.useCard(chanceDeck.getDeck().get(5)));
+      assertTrue(game.useCard(chanceDeck.getDeck().get(6)));
+      assertTrue(game.useCard(chanceDeck.getDeck().get(7)));
+      assertTrue(game.useCard(chanceDeck.getDeck().get(8)));
+      assertTrue(game.useCard(chanceDeck.getDeck().get(9)));
+      assertTrue(game.useCard(chanceDeck.getDeck().get(10)));
+      assertTrue(game.useCard(chanceDeck.getDeck().get(11)));
+      assertTrue(game.useCard(chanceDeck.getDeck().get(12)));
+      assertFalse(game.useCard(chanceDeck.getDeck().get(13)));
+      assertTrue(game.useCard(chanceDeck.getDeck().get(14)));
+      assertTrue(game.useCard(chanceDeck.getDeck().get(15)));
+
+
+
+
 
   }
 
