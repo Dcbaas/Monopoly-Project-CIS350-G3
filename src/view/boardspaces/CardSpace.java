@@ -10,13 +10,13 @@ import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.border.Border;
 
-/**********************************************************************
+/**
  * The CardSpace class creates a JPanel that displays the icons of a
  * Chance or Community Chest spaces on the Board of Monopoly.
  *
  * @author David Baas
  * @version 3/25/2018
- *********************************************************************/
+ */
 public class CardSpace extends Spaces {
 
   /**
@@ -39,15 +39,15 @@ public class CardSpace extends Spaces {
    */
   private Image cardImg;
 
-  /********************************************************************
+  /**
    * The constructor creates a CardSpace tile and initializes what
    * image is displayed.
    * @param horizontal Boolean for if the CardSpace is horizontal.
    * @param chance Boolean for if this CardSpace is a Chance or CC
-   * space.
+   *        space.
    * @throws IOException if there is a problem loading the image
-   * files.
-   *******************************************************************/
+   *          files.
+   */
   public CardSpace(boolean horizontal, boolean chance) throws IOException {
     super(false);
 
@@ -64,11 +64,11 @@ public class CardSpace extends Spaces {
 
   }
 
-  /********************************************************************
+  /**
    * The paint Component draws the image on the screen for the Tile.
    *
    * @param g The Graphics component drawing the image.
-   *******************************************************************/
+   */
   //ToDo Draw the horizontal view better.
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
@@ -80,11 +80,11 @@ public class CardSpace extends Spaces {
     drawTokens(g, horizontal);
   }
 
-  /********************************************************************
+  /**
    * The getPreferredSize method is used to Lock the size of the Panel
    * to the correct size.
    * @return The dimensions of the CardSpace
-   *******************************************************************/
+   */
   @Override
   public Dimension getPreferredSize() {
     if (horizontal) {
@@ -93,21 +93,21 @@ public class CardSpace extends Spaces {
     return new Dimension(WIDTH, HEIGHT);
   }
 
-  /********************************************************************
+  /**
    * The getMinimumSize method refers to the getPreferredSize method
    * to lock the size of the panel.
    * @return getPreferredSize the dimensions of the CardSpace
-   *******************************************************************/
+   */
   @Override
   public Dimension getMinimumSize() {
     return getPreferredSize();
   }
 
-  /********************************************************************
+  /**
    * The getMaximumSize method refers to the getPreferredSize method
    * to lock the size of the panel.
    * @return getPreferredSize the dimensions of the CardSpace
-   *******************************************************************/
+   */
   @Override
   public Dimension getMaximumSize() {
     return getPreferredSize();

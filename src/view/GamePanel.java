@@ -1,12 +1,15 @@
 package view;
 
-import Model.GamePackage.Player;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.io.IOException;
+
 import javax.swing.JPanel;
+
+import model.gamepackage.Player;
+
 import view.boardspaces.CardSpace;
 import view.boardspaces.FreeParkingSpace;
 import view.boardspaces.GoSpace;
@@ -19,13 +22,13 @@ import view.boardspaces.Spaces;
 import view.boardspaces.TaxSpace;
 import view.boardspaces.UtilitiesSpace;
 
-/********************************************************************
+/**
  * The GamePanel Class creates a JPanel that contains all of the
  * individual spaces that are a Monopoly Board.
  *
  * @author David Baas
  * @version 3/27/2018
- *******************************************************************/
+ */
 public class GamePanel extends JPanel {
 
   public static final int LENGTH = 650;
@@ -35,10 +38,10 @@ public class GamePanel extends JPanel {
    */
   private Spaces[] spaces;
 
-  /********************************************************************
+  /**
    * Constructor initializes all of the instance variables and draws
    * the panel in the correct orientation.
-   *******************************************************************/
+   */
   public GamePanel() {
     spaces = new Spaces[40];
     try {
@@ -51,12 +54,12 @@ public class GamePanel extends JPanel {
     drawSpaces();
   }
 
-  /********************************************************************
+  /**
    * Sets the number of houses on the space being modified.
    *
    * @param spaceNum The boardSpace
    * @param houses the number of houses being added.
-   *******************************************************************/
+   */
   public void setHouses(int spaceNum, int houses) {
     Spaces temp;
     if (spaces[spaceNum] instanceof PropertySpace) {
@@ -65,12 +68,12 @@ public class GamePanel extends JPanel {
     }
   }
 
-  /********************************************************************
+  /**
    * The movePlayer method takes the player that first entered the space
    * and moves it a distance.
    * @param startSpace The starting space of the player moving.
    * @param distance The distance the player is moving.
-   *******************************************************************/
+   */
   public void movePlayer(int startSpace, int distance, Player currentPlayer) {
     spaces[startSpace].removePlayer(currentPlayer);
     if (startSpace + distance >= spaces.length) {
@@ -80,17 +83,17 @@ public class GamePanel extends JPanel {
     }
   }
 
-  /********************************************************************
+  /**
    * Adds a player to the GoSquare on the view board.
    * @param player The player being added to the board.
-   *******************************************************************/
+   */
   public void addPlayer(Player player) {
     spaces[0].addPlayer(player);
   }
 
-  /********************************************************************
+  /**
    * The clearBoard method clears the board of all tokens and houses.
-   *******************************************************************/
+   */
   public void clearBoard() {
     for (Spaces space : spaces) {
       space.clearSpace();
@@ -102,21 +105,21 @@ public class GamePanel extends JPanel {
   }
 
 
-  /********************************************************************
+  /**
    * Returns the absolute minimum size the GamePanel can be.
    *
    * @return The minimum Dimensions this GamePanel can be.
-   *******************************************************************/
+   */
   @Override
   public Dimension getMinimumSize() {
     return new Dimension(LENGTH, LENGTH);
   }
 
-  /********************************************************************
+  /**
    * Loads all of the spaces from the standard American Monopoly Board.
    * @throws IOException if there is an problem loading any of the
-   * assets for the board spaces.
-   *******************************************************************/
+   *         assets for the board spaces.
+   */
   private void loadSpaces() throws IOException {
     spaces[0] = new GoSpace();
     spaces[1] = new PropertySpace(new Color(128, 0, 128), "Mediterranean Ave.",
@@ -186,11 +189,11 @@ public class GamePanel extends JPanel {
 
   }
 
-  /********************************************************************
+  /**
    * Draws the spaces in order onto the panel. For loops were uses as it
    * reduced on the amount of lines that were needed to generate the
    * board.
-   *******************************************************************/
+   */
   private void drawSpaces() {
     GridBagConstraints g;
 
@@ -221,11 +224,11 @@ public class GamePanel extends JPanel {
     }
   }
 
-  /********************************************************************
+  /**
    * With GridBag Coordinates being used often, the
    * coordinateSelector was used to cut down on repeated coordinate
    * changes in the drawSpaces class.
-   *******************************************************************/
+   */
   private void coordinateSelector(GridBagConstraints g, int x, int y) {
     g.gridx = x;
     g.gridy = y;

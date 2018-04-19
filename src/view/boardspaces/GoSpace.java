@@ -10,13 +10,13 @@ import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.border.Border;
 
-/**********************************************************************
+/**
  * The GoSpace class creates a JPanel that resembles a Go Square from
  * the game of Monopoly.
  *
  * @author David Baas
  * @version 3/26/2018
- *********************************************************************/
+ */
 public class GoSpace extends Spaces {
 
   /**
@@ -30,11 +30,11 @@ public class GoSpace extends Spaces {
   private static Image goImg;
 
 
-  /********************************************************************
+  /**
    * The constructor initializes the image.
    *
    * @throws IOException If there is an error in loading the image.
-   *******************************************************************/
+   */
   public GoSpace() throws IOException {
     super(true);
 
@@ -44,42 +44,42 @@ public class GoSpace extends Spaces {
     setBorder(blackLine);
   }
 
-  /*******************************************************************
+  /**
    * The paintComponent draws the Go Image onto the JPanel.
    *
    * @param g Graphics component of this panel.
-   ******************************************************************/
+   */
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
     g.drawImage(goImg, 0, 0, LENGTH, LENGTH, null);
     drawTokens(g, false);
   }
 
-  /********************************************************************
+  /**
    * The getPreferredSize method is used to Lock the size of the Panel
    * to the correct size.
    * @return The dimensions of the GoSquare.
-   *******************************************************************/
+   */
   @Override
   public Dimension getPreferredSize() {
     return new Dimension(LENGTH, LENGTH);
   }
 
-  /********************************************************************
+  /**
    * The getMinimumSize method refers to the getPreferredSize method
    * to lock the size of the panel.
    * @return getPreferredSize the dimensions of the GoSquare.
-   *******************************************************************/
+   */
   @Override
   public Dimension getMinimumSize() {
     return getPreferredSize();
   }
 
-  /********************************************************************
+  /**
    * The getMaximumSize method refers to the getPreferredSize method
    * to lock the size of the panel.
    * @return getPreferredSize the dimensions of the GoSquare.
-   *******************************************************************/
+   */
   @Override
   public Dimension getMaximumSize() {
     return getPreferredSize();

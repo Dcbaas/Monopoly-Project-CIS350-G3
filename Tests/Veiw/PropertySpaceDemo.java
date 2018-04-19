@@ -1,7 +1,5 @@
 package Veiw;
 
-import view.boardspaces.PropertySpace;
-import view.boardspaces.PropertySpace.Position;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.io.IOException;
@@ -9,6 +7,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
+import view.boardspaces.PropertySpace;
+import view.boardspaces.PropertySpace.Position;
 
 /**********************************************************************
  * This is a demo class for the group. It is not intended to be a concrete

@@ -9,13 +9,13 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.border.Border;
 
-/**********************************************************************
+/**
  * The TaxSpace creates a board space that is a tax square on the board
- * of Monopoly
+ * of Monopoly.
  *
  * @author David Baas
  * @version 3/26/2018
- *********************************************************************/
+ */
 public class TaxSpace extends Spaces {
 
   /**
@@ -53,13 +53,13 @@ public class TaxSpace extends Spaces {
    */
   private Dimension dimension;
 
-  /********************************************************************
+  /**
    * The constructor for the TaxSpace creates a tax space depanding on
    * weather it is an income tax space or a luxury space.
    *
    * @param incomeTax Determines what type of tax space this TaxSpace
-   * is.
-   *******************************************************************/
+   *        is.
+   */
   public TaxSpace(boolean incomeTax) {
     super(false);
 
@@ -82,10 +82,10 @@ public class TaxSpace extends Spaces {
     setBorder(blackLine);
   }
 
-  /********************************************************************
+  /**
    * The drawLabels method is a private method that draws the
    * labels onto the JPanel.
-   *******************************************************************/
+   */
   private void drawLabels() {
     GridBagConstraints g = new GridBagConstraints();
     g.gridx = 0;
@@ -106,31 +106,31 @@ public class TaxSpace extends Spaces {
     drawTokens(g, !incomeTax);
   }
 
-  /********************************************************************
+  /**
    * The getPreferredSize method is used to Lock the size of the Panel
    * to the correct size.
    * @return The dimensions of the TaxSpace.
-   *******************************************************************/
+   */
   @Override
   public Dimension getPreferredSize() {
     return dimension;
   }
 
-  /********************************************************************
+  /**
    * The getMinimumSize method refers to the getPreferredSize method
    * to lock the size of the panel.
    * @return getPreferredSize the dimensions of the TaxSpace.
-   *******************************************************************/
+   */
   @Override
   public Dimension getMinimumSize() {
     return getPreferredSize();
   }
 
-  /********************************************************************
+  /**
    * The getMaximumSize method refers to the getPreferredSize method
    * to lock the size of the panel.
    * @return getPreferredSize the dimensions of the TaxSpace.
-   *******************************************************************/
+   */
   @Override
   public Dimension getMaximumSize() {
     return getPreferredSize();

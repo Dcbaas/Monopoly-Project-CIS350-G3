@@ -9,7 +9,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-/**********************************************************************
+/**
  * The HousingPanel provide abstraction for drawing houses on a
  * property tile on the board. It handles all of the functionality of
  * drawing or removing a house or hotel in the space where they are
@@ -18,7 +18,7 @@ import javax.swing.JPanel;
  * @author David Baas
  * @since 3/21/2018
  * @version 3/24/2018
- *********************************************************************/
+ */
 public class HousingPanel extends JPanel {
 
   public static final int HOUSE_H = 13;
@@ -51,14 +51,14 @@ public class HousingPanel extends JPanel {
    */
   private int houseCounter;
 
-  /*******************************************************************
+  /**
    * The constructor creates the images and sets the hotels to zero as
    * well as sets the background of the panel depending on what
    * grouping the parent property belongs to.
    * @param color the Color this HousingPanel will be set to.
    * @throws IOException If there is a failure loading either housing
-   * image.
-   ******************************************************************/
+   *         image.
+   */
   public HousingPanel(Color color, boolean vertical) throws IOException {
     houseCounter = 0;
 
@@ -70,19 +70,19 @@ public class HousingPanel extends JPanel {
     setBackground(color);
   }
 
-  /*******************************************************************
+  /**
    * The getHouses method returns the number of houses on this panel.
    *
    * @return houseCounter The number houses on this panel.
-   ******************************************************************/
+   */
   public int getHouses() {
     return houseCounter;
   }
 
-  /*******************************************************************
+  /**
    * The setHouses method sets the number of houses on this panel.
    * @param houseCounter the number of houses on this panel.
-   ******************************************************************/
+   */
   public void setHouses(int houseCounter) {
     if (houseCounter > 5) {
       this.houseCounter = 5;
@@ -95,11 +95,11 @@ public class HousingPanel extends JPanel {
     revalidate();
   }
 
-  /*******************************************************************
+  /**
    * The paintComponent draws the houses in the panel based off the
    * current number of houses this panel currently has.
    * @param g Graphics component of this panel.
-   ******************************************************************/
+   */
   @Override
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
@@ -110,10 +110,8 @@ public class HousingPanel extends JPanel {
     }
   }
 
-  /*******************************************************************
-   * The drawHorizontal method draws the houses horizontally for the
-   * paint component.H
-   ******************************************************************/
+  /**
+   * paint component.H*/
   private void drawHorizontal(Graphics g) {
     switch (houseCounter) {
       case 1:
@@ -141,10 +139,10 @@ public class HousingPanel extends JPanel {
     }
   }
 
-  /*******************************************************************
+  /**
    * The drawHorizontal method draws the houses vertically for the
    * paint component.
-   ******************************************************************/
+   */
   private void drawVertical(Graphics g) {
     switch (houseCounter) {
       case 1:
@@ -172,11 +170,11 @@ public class HousingPanel extends JPanel {
     }
   }
 
-  /********************************************************************
+  /**
    * The getPreferredSize method is used to Lock the size of the Panel
    * to the correct size.
    * @return The dimensions of the housing panel.
-   *******************************************************************/
+   */
   @Override
   public Dimension getPreferredSize() {
     if (VERTICAL) {
@@ -185,21 +183,21 @@ public class HousingPanel extends JPanel {
     return new Dimension(WIDTH, HEIGHT);
   }
 
-  /********************************************************************
+  /**
    * The getMinimumSize method refers to the getPreferredSize method
    * to lock the size of the panel.
    * @return getPreferredSize the dimensions of the housingPanel.
-   *******************************************************************/
+   */
   @Override
   public Dimension getMinimumSize() {
     return getPreferredSize();
   }
 
-  /********************************************************************
+  /**
    * The getMaximumSize method refers to the getPreferredSize method
    * to lock the size of the panel.
    * @return getPreferredSize the dimensions of the housingPanel.
-   *******************************************************************/
+   */
   @Override
   public Dimension getMaximumSize() {
     return getPreferredSize();

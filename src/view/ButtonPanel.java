@@ -50,14 +50,14 @@ public class ButtonPanel extends JPanel {
    */
   private GameView parent;
 
-  /********************************************************************
+  /**
    * The constructor creates all of the buttons and places them in the
    * correct position.
-   *******************************************************************/
+   */
   public ButtonPanel(GameView parent) {
     this.parent = parent;
 
-    setLayout(new GridLayout(7,1, 10, 10));
+    setLayout(new GridLayout(7, 1, 10, 10));
     setSize(700, 100);
 
     roll = new JButton("Roll");
@@ -138,18 +138,18 @@ public class ButtonPanel extends JPanel {
     setBorder(blackLine);
   }
 
-  /********************************************************************
+  /**
    * Get the minimum size of this Button Panel.
    * @return The minimum size of this ButtonPanel.
-   *******************************************************************/
+   **/
   public Dimension getMinimumSize() {
     return new Dimension(500, 540);
   }
 
-  /********************************************************************
+  /**
    * Checks the state of the game and enables and disables buttons
    * that can be utilized or are not usable.
-   *******************************************************************/
+   */
   public void toggleButtons() {
     roll.setEnabled(parent.getController().isCanRoll());
     buy.setEnabled(parent.getController().isCanBuy());
@@ -160,10 +160,10 @@ public class ButtonPanel extends JPanel {
     done.setEnabled(!parent.getController().isCanRoll() && !parent.getController().isCanDraw());
   }
 
-  /********************************************************************
+  /**
    * Sets all the buttons to disabled before a new game is created.
-   *******************************************************************/
-  public void preGame(){
+   */
+  public void preGame() {
     roll.setEnabled(false);
     buy.setEnabled(false);
     buildHouse.setEnabled(false);

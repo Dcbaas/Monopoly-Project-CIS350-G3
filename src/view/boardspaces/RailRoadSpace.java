@@ -12,13 +12,13 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.border.Border;
 
-/**********************************************************************
+/**
  * The RailRoadSpace creates a space that resembles a RR space on the
  * board of Monopoly.
  *
  * @author David Baas
  * @version 3/24/2018
- *********************************************************************/
+ */
 public class RailRoadSpace extends Spaces {
 
   /**
@@ -62,16 +62,16 @@ public class RailRoadSpace extends Spaces {
   private Dimension dimension;
 
 
-  /********************************************************************
+  /**
    * The constrctor creates and initializes all of the variables. It
    * formats the panel based off of if the horizontal flag is set to
    * true.
    * @param horizontal flag to determine if this space will be oriented
-   * horizontal.
+   *        horizontal.
    * @param name The name of the RR this RRSpace represents.
    * @throws IOException If there is a problem loading the RR locomotive
-   * image.
-   *******************************************************************/
+   *        image.
+   */
   public RailRoadSpace(boolean horizontal, String name) throws IOException {
     super(false);
 
@@ -92,10 +92,10 @@ public class RailRoadSpace extends Spaces {
 
   }
 
-  /********************************************************************
+  /**
    * The paint Component paints the image onto the screen.
    * @param g The Graphics component.
-   *******************************************************************/
+   */
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
     if (!horizontal) {
@@ -106,31 +106,31 @@ public class RailRoadSpace extends Spaces {
     drawTokens(g, horizontal);
   }
 
-  /********************************************************************
+  /**
    * The getPreferredSize method is used to Lock the size of the Panel
    * to the correct size.
    * @return The dimensions of the board space.
-   *******************************************************************/
+   */
   @Override
   public Dimension getPreferredSize() {
     return dimension;
   }
 
-  /********************************************************************
+  /**
    * The getMinimumSize method refers to the getPreferredSize method
    * to lock the size of the panel.
    * @return getPreferredSize the dimensions of the BoardSpace
-   *******************************************************************/
+   */
   @Override
   public Dimension getMinimumSize() {
     return getPreferredSize();
   }
 
-  /********************************************************************
+  /**
    * The getMaximumSize method refers to the getPreferredSize method
    * to lock the size of the panel.
    * @return getPreferredSize the dimensions of the BoardSpace
-   *******************************************************************/
+   */
   @Override
   public Dimension getMaximumSize() {
     return getPreferredSize();

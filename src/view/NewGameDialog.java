@@ -1,11 +1,11 @@
 package view;
 
-import Model.GamePackage.Player;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JDialog;
@@ -14,13 +14,15 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-/**********************************************************************
+import model.gamepackage.Player;
+
+/**
  * The NewGameDialog is used to create a new game of Monopoly.
  * It ask for how many players are playing and what their names are.
  *
  * @author David Baas
  * @version 4/9/2018
- *********************************************************************/
+ */
 public class NewGameDialog extends JDialog {
 
   /**
@@ -41,12 +43,12 @@ public class NewGameDialog extends JDialog {
 
   /**
    * An array of check-boxes for enabling what boxes are considered valid
-   * players
+   * players.
    */
   private JCheckBox[] checkBoxes;
 
   /**
-   * An array of text fields to get the names of the Players
+   * An array of text fields to get the names of the Players.
    */
   private JTextField[] textFields;
 
@@ -71,12 +73,12 @@ public class NewGameDialog extends JDialog {
    */
   private ArrayList<Player> parentArrayList;
 
-  /********************************************************************
+  /**
    * The constructor initializes all of the elements of the dialog box
    * and positions them on the box correctly. An reference to a vector
    * of players is passed in to the dialog box to be modified in order
    * to be used when creating the game.
-   *******************************************************************/
+   */
   public NewGameDialog() {
     parentArrayList = new ArrayList<>();
 
@@ -132,12 +134,12 @@ public class NewGameDialog extends JDialog {
     setVisible(true);
   }
 
-  /********************************************************************
+  /**
    * The getPlayerImage returns a file path as a string based on what
    * player is being created.
    * @param playerNumber The player being created.
    * @return A string that is the reletive path of an image.
-   *******************************************************************/
+   */
   private String getPlayerImage(int playerNumber) {
     switch (playerNumber) {
       case 0:
@@ -152,12 +154,12 @@ public class NewGameDialog extends JDialog {
     }
   }
 
-  /********************************************************************
+  /**
    * The onOk method parses the name inputs and creates the list of
    * players who will be playing this game of Monopoly.
    *
    * @throws IOException If there is a problem loading the image file.
-   *******************************************************************/
+   */
   private void onOk() throws IOException {
     boolean approved = true;
     for (int i = 0; i < PLAYERS; ++i) {
