@@ -123,7 +123,7 @@ fabric.properties
 .idea/
 # Sonarlint plugin
 .idea/sonarlint
-Model/Model.iml
+model/model.iml
 
 ### Linux ###
 *~
