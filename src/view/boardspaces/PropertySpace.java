@@ -8,7 +8,7 @@ import java.io.IOException;
 import javax.swing.BorderFactory;
 import javax.swing.border.Border;
 
-/**********************************************************************
+/**
  * The PropertySpace class is an extensions of the JPanel and creates
  * a functional tile for one space on the Monopoly Board. It holds
  * functionality for tracking the name and price of a property as well
@@ -17,7 +17,7 @@ import javax.swing.border.Border;
  * @author David Baas
  * @since 2/21/2018
  * @version 2/23/2018
- *********************************************************************/
+ */
 public class PropertySpace extends Spaces {
 
   /**
@@ -46,14 +46,14 @@ public class PropertySpace extends Spaces {
    */
   private HousingPanel housingPanel;
 
-  /********************************************************************
+  /**
    * The constructor initializes all of the variables and sets the
    * color of the property.
    * @param c The color of the property.
    * @param name The name of the property.
    * @param price The price of the property.
    * @throws IOException If the images for the HousingPanel don't load.
-   *******************************************************************/
+   */
   public PropertySpace(Color c, String name, int price, Position position)
       throws IOException {
     super(false);
@@ -92,23 +92,27 @@ public class PropertySpace extends Spaces {
 
   }
 
-  /*******************************************************************
+  /**
    * The getHouses method returns the number of houses on this property.
    *
    * @return houseCounter The number houses on this property.
-   ******************************************************************/
+   */
   public int getHouses() {
     return housingPanel.getHouses();
   }
 
-  /*******************************************************************
+  /**
    * The setHouses method sets the number of houses on this property.
    * @param houseCounter the number of houses on this property.
-   ******************************************************************/
+   */
   public void setHouses(int houseCounter) {
     housingPanel.setHouses(houseCounter);
   }
 
+  /**
+   * This method paints the component.
+   * @param g the graphic component.
+   */
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
     switch (position) {
@@ -121,67 +125,67 @@ public class PropertySpace extends Spaces {
     }
   }
 
-  /********************************************************************
+  /**
    * The createBotPanel method is a private method that places the
    * JComponents into the correct positions to resemble a Monopoly
    * space on the bottom part of the board.
-   *******************************************************************/
+   */
   private void createBotPanel() {
     add(housingPanel, BorderLayout.NORTH);
   }
 
-  /********************************************************************
+  /**
    * The createTopPanel method is a private method that places the
    * JComponents into the correct positions to resemble a Monopoly
    * space on the top part of the board.
-   *******************************************************************/
+   */
   private void createTopPanel() {
     add(housingPanel, BorderLayout.SOUTH);
   }
 
-  /********************************************************************
+  /**
    * The createLeftPanel method is a private method that places the
    * JComponents into the correct positions to resemble a Monopoly
    * space on the left part of the board.
-   *******************************************************************/
+   */
   private void createLeftPanel() {
     add(housingPanel, BorderLayout.EAST);
   }
 
-  /********************************************************************
+  /**
    * The createRightPanel method is a private method that places the
    * JComponents into the correct positions to resemble a Monopoly
    * space on the right part of the board.
-   *******************************************************************/
+   */
   private void createRightPanel() {
     add(housingPanel, BorderLayout.WEST);
   }
 
-  /********************************************************************
+  /**
    * The getPreferredSize method is used to Lock the size of the Panel
    * to the correct size.
    * @return The dimensions of the board space.
-   *******************************************************************/
+   */
   @Override
   public Dimension getPreferredSize() {
     return dimensions;
   }
 
-  /********************************************************************
+  /**
    * The getMinimumSize method refers to the getPreferredSize method
    * to lock the size of the panel.
    * @return getPrefferedSize the dimensions of the BoardSpace
-   *******************************************************************/
+   */
   @Override
   public Dimension getMinimumSize() {
     return getPreferredSize();
   }
 
-  /********************************************************************
+  /**
    * The getMaximumSize method refers to the getPreferredSize method
    * to lock the size of the panel.
    * @return getPreferredSize the dimensions of the BoardSpace
-   *******************************************************************/
+   */
   @Override
   public Dimension getMaximumSize() {
     return getPreferredSize();

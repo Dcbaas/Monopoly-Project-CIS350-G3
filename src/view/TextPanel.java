@@ -1,15 +1,10 @@
 package view;
 
-import Controller.GameController;
-import Model.GamePackage.Game;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import java.util.LinkedList;
-import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -158,7 +153,6 @@ public class TextPanel extends JPanel implements FocusListener {
     txtArea.append("--------------------------------------------------------------"
         + "----------------------------------------------------------\n");
   }
-
 
 
   /**

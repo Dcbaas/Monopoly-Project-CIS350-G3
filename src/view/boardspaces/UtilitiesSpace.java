@@ -12,13 +12,13 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.border.Border;
 
-/**********************************************************************
+/**
  * The Utilities Space draws a JPanel that resembles one of the
  * utilities squares from the Board of Monopoly.
  *
  * @author David Baas
  * @version 2/26/2018
- *********************************************************************/
+ */
 public class UtilitiesSpace extends Spaces {
 
   /**
@@ -58,12 +58,12 @@ public class UtilitiesSpace extends Spaces {
   private boolean waterworks;
 
 
-  /********************************************************************
+  /**
    * The constructor creates a UtilitySpace dpendent on what value is
    * set for the waterworks variable.
    * @param waterworks The type of utility this UtilitiesSpace will be.
    * @throws IOException If there is a problem loading the file.
-   *******************************************************************/
+   */
   public UtilitiesSpace(boolean waterworks) throws IOException {
     super(false);
     this.waterworks = waterworks;
@@ -83,10 +83,10 @@ public class UtilitiesSpace extends Spaces {
     setBorder(blackLine);
   }
 
-  /********************************************************************
+  /**
    * The paintComponent draws the utility icon onto the JPanel.
    * @param g The Graphics component being drawn.
-   *******************************************************************/
+   */
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
     if (waterworks) {
@@ -97,31 +97,31 @@ public class UtilitiesSpace extends Spaces {
     drawTokens(g, waterworks);
   }
 
-  /********************************************************************
+  /**
    * The getPreferredSize method is used to Lock the size of the Panel
    * to the correct size.
    * @return The dimensions of the UtilitiesSpace.
-   *******************************************************************/
+   */
   @Override
   public Dimension getPreferredSize() {
     return dimension;
   }
 
-  /********************************************************************
+  /**
    * The getMinimumSize method refers to the getPreferredSize method
    * to lock the size of the panel.
    * @return getPreferredSize the dimensions of the UtilitiesSpace.
-   *******************************************************************/
+   */
   @Override
   public Dimension getMinimumSize() {
     return getPreferredSize();
   }
 
-  /********************************************************************
+  /**
    * The getMaximumSize method refers to the getPreferredSize method
    * to lock the size of the panel.
    * @return getPreferredSize the dimensions of the UtilitiesSpace.
-   *******************************************************************/
+   */
   @Override
   public Dimension getMaximumSize() {
     return getPreferredSize();

@@ -1,24 +1,27 @@
 package view;
 
-import Model.BoardPackage.OwnableSquare;
-import Model.GamePackage.Player;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.Border;
 
-/**********************************************************************
+import model.boardpackage.OwnableSquare;
+import model.gamepackage.Player;
+
+
+/**
  * The PlayerDetailPanel displays information about the current player
  * taking their turn. It displays information on the Name, Wealth and
  * properties they own.
  *
  * @author David Baas
  * @version 4/4/2018
- *********************************************************************/
+ */
 public class PlayerDetailPanel extends JPanel {
 
   /**
@@ -39,10 +42,10 @@ public class PlayerDetailPanel extends JPanel {
    */
   private JTextArea propertiesList;
 
-  /********************************************************************
+  /**
    * The constructor initializes all of the JComponents and places them
    * on the panel.
-   *******************************************************************/
+   */
   public PlayerDetailPanel() {
     labelPanel = new JPanel();
     player = new JLabel();
@@ -61,11 +64,11 @@ public class PlayerDetailPanel extends JPanel {
   }
 
 
-  /********************************************************************
+  /**
    * The setDisplay method takes a player and pulls the relevant
-   * information about the player and displays it as text
+   * information about the player and displays it as text.
    * @param player The Player being passed in.
-   *******************************************************************/
+   */
   //Todo: Implement this feature in the GameView.
   public void setDisplay(Player player) {
     this.player.setText("Name: " + player.getDisplayName() + " -");
@@ -77,38 +80,31 @@ public class PlayerDetailPanel extends JPanel {
 
     for (OwnableSquare ownableSquare : player.getOwnableProperties()) {
       String color = "";
-      if(ownableSquare.getGROUP_NUMBER() == 1){
+      if (ownableSquare.getGROUP_NUMBER() == 1) {
         color = "Dark Purple";
-      }
-      else if(ownableSquare.getGROUP_NUMBER() == 2){
+      } else if (ownableSquare.getGROUP_NUMBER() == 2) {
         color = "Light Blue";
-      }
-      else if(ownableSquare.getGROUP_NUMBER() == 3){
+      } else if (ownableSquare.getGROUP_NUMBER() == 3) {
         color = "Light Pruple";
-      }
-      else if(ownableSquare.getGROUP_NUMBER() == 4){
+      } else if (ownableSquare.getGROUP_NUMBER() == 4) {
         color = "Orange";
-      }
-      else if(ownableSquare.getGROUP_NUMBER() == 5){
+      } else if (ownableSquare.getGROUP_NUMBER() == 5) {
         color = "Red";
-      }
-      else if(ownableSquare.getGROUP_NUMBER() == 6){
+      } else if (ownableSquare.getGROUP_NUMBER() == 6) {
         color = "Yellow";
-      }
-      else if(ownableSquare.getGROUP_NUMBER() == 7){
+      } else if (ownableSquare.getGROUP_NUMBER() == 7) {
         color = "Green";
-      }
-      else if(ownableSquare.getGROUP_NUMBER() == 8){
+      } else if (ownableSquare.getGROUP_NUMBER() == 8) {
         color = "Dark Blue";
       }
       propertiesList.append(ownableSquare.getName() + " - " + color + "\n");
     }
   }
 
-  /********************************************************************
-   * Gets the minimum size of this PlayerDetailPanel
+  /**
+   * Gets the minimum size of this PlayerDetailPanel.
    * @return The minimum size of this PlayerDetailPanel.
-   *******************************************************************/
+   */
   public Dimension getMinimumSize() {
     return new Dimension(500, 1080);
   }
